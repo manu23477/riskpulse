@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import '../../data/models/risk_assessment.dart';
+import '../../data/repositories/risk_repository.dart';
 
 class CurrentRiskScreen extends StatelessWidget {
   const CurrentRiskScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final RiskRepository repository = RiskRepository();
+    final RiskAssessment assessment = repository.getCurrentRisk();
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Current Risk'),
@@ -14,9 +19,9 @@ class CurrentRiskScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'Himachal Pradesh',
-              style: TextStyle(
+            Text(
+              assessment.location,
+              style: const TextStyle(
                 fontSize: 22,
                 fontWeight: FontWeight.bold,
               ),
@@ -34,7 +39,6 @@ class CurrentRiskScreen extends StatelessWidget {
 
             const SizedBox(height: 20),
 
-            // Overall risk card
             Container(
               width: double.infinity,
               padding: const EdgeInsets.all(20),
@@ -47,10 +51,10 @@ class CurrentRiskScreen extends StatelessWidget {
                 ),
                 borderRadius: BorderRadius.circular(22),
               ),
-              child: const Column(
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  const Text(
                     'OVERALL RISK',
                     style: TextStyle(
                       color: Colors.white70,
@@ -60,21 +64,21 @@ class CurrentRiskScreen extends StatelessWidget {
                     ),
                   ),
 
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
 
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Text(
-                        '52',
-                        style: TextStyle(
+                        assessment.riskScore.round().toString(),
+                        style: const TextStyle(
                           color: Colors.white,
                           fontSize: 48,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      SizedBox(width: 6),
-                      Padding(
+                      const SizedBox(width: 6),
+                      const Padding(
                         padding: EdgeInsets.only(bottom: 8),
                         child: Text(
                           '/100',
@@ -87,21 +91,22 @@ class CurrentRiskScreen extends StatelessWidget {
                     ],
                   ),
 
-                  SizedBox(height: 4),
+                  const SizedBox(height: 4),
 
                   Text(
-                    'Moderate Risk',
-                    style: TextStyle(
+                    '${assessment.riskLevel} Risk',
+                    style: const TextStyle(
                       color: Colors.white,
                       fontSize: 20,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
 
-                  SizedBox(height: 8),
+                  const SizedBox(height: 8),
 
-                  Text(
-                    'Risk is currently increasing.',
+                  const Text(
+                    'Risk is currently being assessed using '
+                        'hazard, exposure and vulnerability.',
                     style: TextStyle(
                       color: Colors.white70,
                       fontSize: 14,
@@ -112,6 +117,36 @@ class CurrentRiskScreen extends StatelessWidget {
             ),
 
             const SizedBox(height: 24),
+
+            const Text(
+              'Risk Components',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+
+            const SizedBox(height: 12),
+
+            _scoreCard(
+              title: 'Hazard',
+              score: assessment.hazardScore,
+              icon: Icons.warning_amber_rounded,
+            ),
+
+            _scoreCard(
+              title: 'Exposure',
+              score: assessment.exposureScore,
+              icon: Icons.people_outline,
+            ),
+
+            _scoreCard(
+              title: 'Vulnerability',
+              score: assessment.vulnerabilityScore,
+              icon: Icons.shield_outlined,
+            ),
+
+            const SizedBox(height: 20),
 
             const Text(
               'Active Hazards',
@@ -149,38 +184,6 @@ class CurrentRiskScreen extends StatelessWidget {
 
             const SizedBox(height: 20),
 
-            const Text(
-              'Risk Contributors',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-
-            const SizedBox(height: 12),
-
-            _contributor(
-              'Hazard Exposure',
-              0.72,
-            ),
-
-            _contributor(
-              'Vulnerability',
-              0.58,
-            ),
-
-            _contributor(
-              'Environmental Conditions',
-              0.67,
-            ),
-
-            _contributor(
-              'Population Exposure',
-              0.49,
-            ),
-
-            const SizedBox(height: 20),
-
             Container(
               width: double.infinity,
               padding: const EdgeInsets.all(18),
@@ -203,9 +206,9 @@ class CurrentRiskScreen extends StatelessWidget {
                   SizedBox(height: 8),
 
                   Text(
-                    'Current conditions indicate moderate overall risk. '
-                        'Landslide susceptibility is the most significant '
-                        'hazard requiring attention.',
+                    'Current conditions indicate a moderate overall '
+                        'risk level. Landslide susceptibility requires '
+                        'particular attention.',
                     style: TextStyle(
                       fontSize: 14,
                       height: 1.4,
@@ -218,6 +221,76 @@ class CurrentRiskScreen extends StatelessWidget {
             const SizedBox(height: 20),
           ],
         ),
+      ),
+    );
+  }
+
+  static Widget _scoreCard({
+    required String title,
+    required double score,
+    required IconData icon,
+  }) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 10),
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(18),
+        border: Border.all(
+          color: Colors.black12,
+        ),
+      ),
+      child: Row(
+        children: [
+          Container(
+            width: 46,
+            height: 46,
+            decoration: BoxDecoration(
+              color: const Color(0xFFE6F2F1),
+              borderRadius: BorderRadius.circular(14),
+            ),
+            child: Icon(
+              icon,
+              color: const Color(0xFF0B5D5E),
+            ),
+          ),
+
+          const SizedBox(width: 14),
+
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 15,
+                  ),
+                ),
+
+                const SizedBox(height: 7),
+
+                LinearProgressIndicator(
+                  value: score / 100,
+                  minHeight: 7,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ],
+            ),
+          ),
+
+          const SizedBox(width: 14),
+
+          Text(
+            '${score.round()}',
+            style: const TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              color: Color(0xFF0B5D5E),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -293,49 +366,6 @@ class CurrentRiskScreen extends StatelessWidget {
                 ),
               ],
             ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  static Widget _contributor(
-      String title,
-      double value,
-      ) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 14),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Text(
-                title,
-                style: const TextStyle(
-                  fontSize: 13,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-
-              const Spacer(),
-
-              Text(
-                '${(value * 100).round()}%',
-                style: const TextStyle(
-                  fontSize: 13,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ],
-          ),
-
-          const SizedBox(height: 6),
-
-          LinearProgressIndicator(
-            value: value,
-            minHeight: 7,
-            borderRadius: BorderRadius.circular(10),
           ),
         ],
       ),

@@ -2,6 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 
+import '../../data/models/exposure.dart';
+import '../../data/models/hazard.dart';
+import '../../data/models/risk_assessment.dart';
+import '../../data/models/risk_layer.dart';
+import '../../data/repositories/map_repository.dart';
+import '../../data/repositories/risk_layer_repository.dart';
+import '../../data/services/gis_data_service.dart';
+
 class RiskMapScreen extends StatefulWidget {
   const RiskMapScreen({super.key});
 
@@ -10,113 +18,151 @@ class RiskMapScreen extends StatefulWidget {
 }
 
 class _RiskMapScreenState extends State<RiskMapScreen> {
+  final GisDataService _gisDataService = GisDataService();
+  final MapRepository _mapRepository = MapRepository();
+  final RiskLayerRepository _riskLayerRepository =
+  RiskLayerRepository();
+
   String selectedLayer = 'Risk';
 
-  final Map<String, List<Marker>> layerMarkers = {
-    'Landslide': [
-      Marker(
-        point: LatLng(31.1048, 77.1734),
-        width: 50,
-        height: 50,
-        child: Icon(
-          Icons.terrain,
-          color: Colors.orange,
-          size: 38,
+  List<RiskLayer> get layers {
+    return _riskLayerRepository.getLayers();
+  }
+
+  List<Hazard> get hazards {
+    return _gisDataService.getHazards();
+  }
+
+  List<Exposure> get exposure {
+    return _gisDataService.getExposure();
+  }
+
+  RiskAssessment get riskAssessment {
+    return _mapRepository.getMapRisk();
+  }
+
+  List<Marker> _getMarkersForLayer(String layer) {
+    if (layer == 'Exposure') {
+      return _getExposureMarkers();
+    }
+
+    if (layer == 'Risk') {
+      return _getRiskMarkers();
+    }
+
+    final selectedHazards = hazards.where((hazard) {
+      return hazard.name == layer;
+    }).toList();
+
+    return selectedHazards.map((hazard) {
+      return Marker(
+        point: LatLng(
+          hazard.location.latitude,
+          hazard.location.longitude,
         ),
-      ),
-      Marker(
-        point: LatLng(31.0950, 77.1900),
-        width: 50,
-        height: 50,
-        child: Icon(
-          Icons.terrain,
-          color: Colors.orange,
-          size: 38,
-        ),
-      ),
-    ],
-    'Flood': [
-      Marker(
-        point: LatLng(31.1100, 77.1650),
-        width: 50,
-        height: 50,
-        child: Icon(
-          Icons.water,
-          color: Colors.blue,
-          size: 38,
-        ),
-      ),
-      Marker(
-        point: LatLng(31.0850, 77.1800),
-        width: 50,
-        height: 50,
-        child: Icon(
-          Icons.water,
-          color: Colors.blue,
-          size: 38,
-        ),
-      ),
-    ],
-    'Earthquake': [
-      Marker(
-        point: LatLng(31.1150, 77.1800),
-        width: 50,
-        height: 50,
-        child: Icon(
-          Icons.vibration,
-          color: Colors.purple,
-          size: 38,
-        ),
-      ),
-    ],
-    'Exposure': [
-      Marker(
-        point: LatLng(31.1000, 77.1700),
-        width: 50,
-        height: 50,
-        child: Icon(
-          Icons.people,
-          color: Colors.deepOrange,
-          size: 38,
-        ),
-      ),
-      Marker(
-        point: LatLng(31.0900, 77.1850),
-        width: 50,
-        height: 50,
-        child: Icon(
-          Icons.people,
-          color: Colors.deepOrange,
-          size: 38,
-        ),
-      ),
-    ],
-    'Risk': [
-      Marker(
-        point: LatLng(31.1048, 77.1734),
         width: 55,
         height: 55,
         child: Icon(
+          _getHazardIcon(hazard.name),
+          color: _getHazardColor(hazard.name),
+          size: 40,
+        ),
+      );
+    }).toList();
+  }
+
+  List<Marker> _getExposureMarkers() {
+    return exposure.map((item) {
+      return Marker(
+        point: LatLng(
+          item.latitude,
+          item.longitude,
+        ),
+        width: 55,
+        height: 55,
+        child: const Icon(
+          Icons.people,
+          color: Colors.deepOrange,
+          size: 40,
+        ),
+      );
+    }).toList();
+  }
+
+  List<Marker> _getRiskMarkers() {
+    final riskScore = riskAssessment.riskScore;
+
+    final Color riskColor;
+
+    if (riskScore >= 70) {
+      riskColor = Colors.red;
+    } else if (riskScore >= 40) {
+      riskColor = Colors.orange;
+    } else {
+      riskColor = Colors.green;
+    }
+
+    return [
+      Marker(
+        point: LatLng(
+          hazards.first.location.latitude,
+          hazards.first.location.longitude,
+        ),
+        width: 65,
+        height: 65,
+        child: Icon(
           Icons.warning,
-          color: Colors.red,
-          size: 42,
+          color: riskColor,
+          size: 48,
         ),
       ),
       Marker(
-        point: LatLng(31.0950, 77.1900),
-        width: 55,
-        height: 55,
+        point: LatLng(
+          hazards[1].location.latitude,
+          hazards[1].location.longitude,
+        ),
+        width: 65,
+        height: 65,
         child: Icon(
           Icons.warning,
-          color: Colors.red,
-          size: 42,
+          color: riskColor,
+          size: 48,
         ),
       ),
-    ],
-  };
+    ];
+  }
+
+  IconData _getHazardIcon(String hazardName) {
+    switch (hazardName) {
+      case 'Landslide':
+        return Icons.terrain;
+      case 'Flood':
+        return Icons.water;
+      case 'Earthquake':
+        return Icons.vibration;
+      default:
+        return Icons.warning;
+    }
+  }
+
+  Color _getHazardColor(String hazardName) {
+    switch (hazardName) {
+      case 'Landslide':
+        return Colors.orange;
+      case 'Flood':
+        return Colors.blue;
+      case 'Earthquake':
+        return Colors.purple;
+      default:
+        return Colors.red;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    final riskScore = riskAssessment.riskScore;
+    final riskLevel = riskAssessment.riskLevel;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Risk Map'),
@@ -126,18 +172,23 @@ class _RiskMapScreenState extends State<RiskMapScreen> {
           Expanded(
             child: FlutterMap(
               options: const MapOptions(
-                initialCenter: LatLng(31.1048, 77.1734),
+                initialCenter: LatLng(
+                  31.1048,
+                  77.1734,
+                ),
                 initialZoom: 8.0,
               ),
               children: [
                 TileLayer(
                   urlTemplate:
                   'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                  userAgentPackageName: 'com.example.riskpulse',
+                  userAgentPackageName:
+                  'com.example.riskpulse',
                 ),
-
                 MarkerLayer(
-                  markers: layerMarkers[selectedLayer] ?? [],
+                  markers: _getMarkersForLayer(
+                    selectedLayer,
+                  ),
                 ),
               ],
             ),
@@ -149,7 +200,8 @@ class _RiskMapScreenState extends State<RiskMapScreen> {
               color: Colors.white,
             ),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment:
+              CrossAxisAlignment.start,
               children: [
                 Row(
                   children: [
@@ -160,7 +212,9 @@ class _RiskMapScreenState extends State<RiskMapScreen> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
+
                     const Spacer(),
+
                     Text(
                       selectedLayer,
                       style: const TextStyle(
@@ -171,51 +225,32 @@ class _RiskMapScreenState extends State<RiskMapScreen> {
                   ],
                 ),
 
-                const SizedBox(height: 12),
+                if (selectedLayer == 'Risk') ...[
+                  const SizedBox(height: 6),
 
-                Row(
-                  children: [
-                    Expanded(
-                      child: _layerButton(
-                        icon: Icons.terrain,
-                        label: 'Landslide',
-                      ),
+                  Text(
+                    'Current Risk: '
+                        '${riskScore.round()}/100 • $riskLevel',
+                    style: const TextStyle(
+                      fontSize: 13,
+                      color: Colors.black54,
                     ),
-                    const SizedBox(width: 10),
-                    Expanded(
-                      child: _layerButton(
-                        icon: Icons.water,
-                        label: 'Flood',
-                      ),
-                    ),
-                    const SizedBox(width: 10),
-                    Expanded(
-                      child: _layerButton(
-                        icon: Icons.vibration,
-                        label: 'Earthquake',
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
 
                 const SizedBox(height: 12),
 
-                Row(
-                  children: [
-                    Expanded(
-                      child: _layerButton(
-                        icon: Icons.people_outline,
-                        label: 'Exposure',
+                Wrap(
+                  spacing: 10,
+                  runSpacing: 10,
+                  children: layers.map((layer) {
+                    return _layerButton(
+                      icon: _getLayerIcon(
+                        layer.name,
                       ),
-                    ),
-                    const SizedBox(width: 10),
-                    Expanded(
-                      child: _layerButton(
-                        icon: Icons.warning_amber,
-                        label: 'Risk',
-                      ),
-                    ),
-                  ],
+                      layer: layer,
+                    );
+                  }).toList(),
                 ),
               ],
             ),
@@ -227,51 +262,75 @@ class _RiskMapScreenState extends State<RiskMapScreen> {
 
   Widget _layerButton({
     required IconData icon,
-    required String label,
+    required RiskLayer layer,
   }) {
-    final bool isSelected = selectedLayer == label;
+    final bool isSelected =
+        selectedLayer == layer.name;
 
-    return InkWell(
-      borderRadius: BorderRadius.circular(14),
-      onTap: () {
-        setState(() {
-          selectedLayer = label;
-        });
-      },
-      child: Container(
-        padding: const EdgeInsets.symmetric(
-          vertical: 12,
-          horizontal: 8,
-        ),
-        decoration: BoxDecoration(
-          color: isSelected
-              ? const Color(0xFF0B5D5E)
-              : const Color(0xFFE8F4F3),
-          borderRadius: BorderRadius.circular(14),
-        ),
-        child: Column(
-          children: [
-            Icon(
-              icon,
-              color: isSelected
-                  ? Colors.white
-                  : const Color(0xFF0B5D5E),
-            ),
-            const SizedBox(height: 6),
-            Text(
-              label,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.w600,
+    return SizedBox(
+      width: 105,
+      child: InkWell(
+        borderRadius: BorderRadius.circular(14),
+        onTap: () {
+          setState(() {
+            selectedLayer = layer.name;
+          });
+        },
+        child: Container(
+          padding: const EdgeInsets.symmetric(
+            vertical: 12,
+            horizontal: 8,
+          ),
+          decoration: BoxDecoration(
+            color: isSelected
+                ? const Color(0xFF0B5D5E)
+                : const Color(0xFFE8F4F3),
+            borderRadius:
+            BorderRadius.circular(14),
+          ),
+          child: Column(
+            children: [
+              Icon(
+                icon,
                 color: isSelected
                     ? Colors.white
-                    : Colors.black87,
+                    : const Color(0xFF0B5D5E),
               ),
-            ),
-          ],
+
+              const SizedBox(height: 6),
+
+              Text(
+                layer.name,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w600,
+                  color: isSelected
+                      ? Colors.white
+                      : Colors.black87,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
+  }
+
+  IconData _getLayerIcon(String layerName) {
+    switch (layerName) {
+      case 'Landslide':
+        return Icons.terrain;
+      case 'Flood':
+        return Icons.water;
+      case 'Earthquake':
+        return Icons.vibration;
+      case 'Exposure':
+        return Icons.people_outline;
+      case 'Risk':
+        return Icons.warning_amber;
+      default:
+        return Icons.layers;
+    }
   }
 }

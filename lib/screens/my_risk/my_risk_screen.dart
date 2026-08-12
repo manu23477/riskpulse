@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import '../../data/models/risk_assessment.dart';
+import '../../data/repositories/risk_repository.dart';
 
 class MyRiskScreen extends StatelessWidget {
   const MyRiskScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final RiskRepository repository = RiskRepository();
+    final RiskAssessment assessment = repository.getCurrentRisk();
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('My Risk'),
@@ -34,7 +39,6 @@ class MyRiskScreen extends StatelessWidget {
 
             const SizedBox(height: 20),
 
-            // Location card
             Container(
               width: double.infinity,
               padding: const EdgeInsets.all(18),
@@ -42,28 +46,33 @@ class MyRiskScreen extends StatelessWidget {
                 color: const Color(0xFFE8F4F3),
                 borderRadius: BorderRadius.circular(18),
               ),
-              child: const Row(
+              child: Row(
                 children: [
-                  Icon(
+                  const Icon(
                     Icons.location_on,
                     color: Color(0xFF0B5D5E),
                     size: 30,
                   ),
-                  SizedBox(width: 12),
+
+                  const SizedBox(width: 12),
+
                   Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment:
+                    CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      const Text(
                         'Current Location',
                         style: TextStyle(
                           fontSize: 12,
                           color: Colors.black54,
                         ),
                       ),
-                      SizedBox(height: 3),
+
+                      const SizedBox(height: 3),
+
                       Text(
-                        'Himachal Pradesh',
-                        style: TextStyle(
+                        assessment.location,
+                        style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
                         ),
@@ -76,7 +85,6 @@ class MyRiskScreen extends StatelessWidget {
 
             const SizedBox(height: 20),
 
-            // Personal risk score
             Container(
               width: double.infinity,
               padding: const EdgeInsets.all(22),
@@ -89,9 +97,9 @@ class MyRiskScreen extends StatelessWidget {
                 ),
                 borderRadius: BorderRadius.circular(22),
               ),
-              child: const Column(
+              child: Column(
                 children: [
-                  Text(
+                  const Text(
                     'YOUR CURRENT RISK',
                     style: TextStyle(
                       color: Colors.white70,
@@ -101,18 +109,18 @@ class MyRiskScreen extends StatelessWidget {
                     ),
                   ),
 
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
 
                   Text(
-                    '46',
-                    style: TextStyle(
+                    assessment.riskScore.round().toString(),
+                    style: const TextStyle(
                       color: Colors.white,
                       fontSize: 52,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
 
-                  Text(
+                  const Text(
                     '/100',
                     style: TextStyle(
                       color: Colors.white70,
@@ -120,21 +128,22 @@ class MyRiskScreen extends StatelessWidget {
                     ),
                   ),
 
-                  SizedBox(height: 6),
+                  const SizedBox(height: 6),
 
                   Text(
-                    'Moderate Risk',
-                    style: TextStyle(
+                    '${assessment.riskLevel} Risk',
+                    style: const TextStyle(
                       color: Colors.white,
                       fontSize: 20,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
 
-                  SizedBox(height: 8),
+                  const SizedBox(height: 8),
 
-                  Text(
-                    'Your estimated disaster risk is moderate.',
+                  const Text(
+                    'Your estimated disaster risk is calculated '
+                        'from hazard, exposure and vulnerability.',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.white70,
@@ -146,6 +155,33 @@ class MyRiskScreen extends StatelessWidget {
             ),
 
             const SizedBox(height: 24),
+
+            const Text(
+              'Risk Components',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+
+            const SizedBox(height: 12),
+
+            _riskFactor(
+              'Hazard Exposure',
+              assessment.hazardScore,
+            ),
+
+            _riskFactor(
+              'Location Vulnerability',
+              assessment.vulnerabilityScore,
+            ),
+
+            _riskFactor(
+              'Population Exposure',
+              assessment.exposureScore,
+            ),
+
+            const SizedBox(height: 20),
 
             const Text(
               'Your Main Hazards',
@@ -183,39 +219,6 @@ class MyRiskScreen extends StatelessWidget {
 
             const SizedBox(height: 20),
 
-            const Text(
-              'Risk Factors',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-
-            const SizedBox(height: 12),
-
-            _riskFactor(
-              'Hazard Exposure',
-              0.68,
-            ),
-
-            _riskFactor(
-              'Location Vulnerability',
-              0.54,
-            ),
-
-            _riskFactor(
-              'Population Exposure',
-              0.43,
-            ),
-
-            _riskFactor(
-              'Preparedness',
-              0.72,
-            ),
-
-            const SizedBox(height: 20),
-
-            // Recommendation
             Container(
               width: double.infinity,
               padding: const EdgeInsets.all(18),
@@ -224,7 +227,8 @@ class MyRiskScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(18),
               ),
               child: const Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment:
+                CrossAxisAlignment.start,
                 children: [
                   Row(
                     children: [
@@ -232,7 +236,9 @@ class MyRiskScreen extends StatelessWidget {
                         Icons.shield_outlined,
                         color: Color(0xFF0B5D5E),
                       ),
+
                       SizedBox(width: 8),
+
                       Text(
                         'Recommended Action',
                         style: TextStyle(
@@ -247,9 +253,9 @@ class MyRiskScreen extends StatelessWidget {
                   SizedBox(height: 10),
 
                   Text(
-                    'Review your local landslide and flood preparedness '
-                        'measures and identify the safest evacuation route '
-                        'from your location.',
+                    'Review your local landslide and flood '
+                        'preparedness measures and identify the '
+                        'safest evacuation route from your location.',
                     style: TextStyle(
                       fontSize: 14,
                       height: 1.4,
@@ -266,83 +272,6 @@ class MyRiskScreen extends StatelessWidget {
     );
   }
 
-  static Widget _hazardCard({
-    required IconData icon,
-    required String title,
-    required String level,
-    required String description,
-  }) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 10),
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(18),
-        border: Border.all(
-          color: Colors.black12,
-        ),
-      ),
-      child: Row(
-        children: [
-          Container(
-            width: 48,
-            height: 48,
-            decoration: BoxDecoration(
-              color: const Color(0xFFE6F2F1),
-              borderRadius: BorderRadius.circular(14),
-            ),
-            child: Icon(
-              icon,
-              color: const Color(0xFF0B5D5E),
-            ),
-          ),
-
-          const SizedBox(width: 14),
-
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    Text(
-                      title,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 15,
-                      ),
-                    ),
-
-                    const Spacer(),
-
-                    Text(
-                      level,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 12,
-                      ),
-                    ),
-                  ],
-                ),
-
-                const SizedBox(height: 5),
-
-                Text(
-                  description,
-                  style: const TextStyle(
-                    color: Colors.black54,
-                    fontSize: 12,
-                    height: 1.3,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
   static Widget _riskFactor(
       String title,
       double value,
@@ -350,7 +279,8 @@ class MyRiskScreen extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: 14),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment:
+        CrossAxisAlignment.start,
         children: [
           Row(
             children: [
@@ -365,7 +295,7 @@ class MyRiskScreen extends StatelessWidget {
               const Spacer(),
 
               Text(
-                '${(value * 100).round()}%',
+                '${value.round()}%',
                 style: const TextStyle(
                   fontSize: 13,
                   fontWeight: FontWeight.bold,
@@ -377,9 +307,98 @@ class MyRiskScreen extends StatelessWidget {
           const SizedBox(height: 6),
 
           LinearProgressIndicator(
-            value: value,
+            value: value / 100,
             minHeight: 7,
-            borderRadius: BorderRadius.circular(10),
+            borderRadius:
+            BorderRadius.circular(10),
+          ),
+        ],
+      ),
+    );
+  }
+
+  static Widget _hazardCard({
+    required IconData icon,
+    required String title,
+    required String level,
+    required String description,
+  }) {
+    return Container(
+      margin:
+      const EdgeInsets.only(bottom: 10),
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius:
+        BorderRadius.circular(18),
+        border: Border.all(
+          color: Colors.black12,
+        ),
+      ),
+      child: Row(
+        children: [
+          Container(
+            width: 48,
+            height: 48,
+            decoration: BoxDecoration(
+              color:
+              const Color(0xFFE6F2F1),
+              borderRadius:
+              BorderRadius.circular(14),
+            ),
+            child: Icon(
+              icon,
+              color:
+              const Color(0xFF0B5D5E),
+            ),
+          ),
+
+          const SizedBox(width: 14),
+
+          Expanded(
+            child: Column(
+              crossAxisAlignment:
+              CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Text(
+                      title,
+                      style:
+                      const TextStyle(
+                        fontWeight:
+                        FontWeight.bold,
+                        fontSize: 15,
+                      ),
+                    ),
+
+                    const Spacer(),
+
+                    Text(
+                      level,
+                      style:
+                      const TextStyle(
+                        fontWeight:
+                        FontWeight.w600,
+                        fontSize: 12,
+                      ),
+                    ),
+                  ],
+                ),
+
+                const SizedBox(height: 5),
+
+                Text(
+                  description,
+                  style:
+                  const TextStyle(
+                    color: Colors.black54,
+                    fontSize: 12,
+                    height: 1.3,
+                  ),
+                ),
+              ],
+            ),
           ),
         ],
       ),

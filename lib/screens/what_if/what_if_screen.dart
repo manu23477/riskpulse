@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../data/services/risk_engine.dart';
 
 class WhatIfScreen extends StatefulWidget {
   const WhatIfScreen({super.key});
@@ -12,24 +13,16 @@ class _WhatIfScreenState extends State<WhatIfScreen> {
   double exposure = 50;
   double vulnerability = 50;
 
-  double get projectedRisk {
-    return (rainfall * 0.4) +
-        (exposure * 0.3) +
-        (vulnerability * 0.3);
-  }
-
-  String get riskLevel {
-    if (projectedRisk >= 70) {
-      return 'High';
-    } else if (projectedRisk >= 40) {
-      return 'Moderate';
-    } else {
-      return 'Low';
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
+    final assessment = RiskEngine.calculateRisk(
+      id: 'what-if-001',
+      location: 'Himachal Pradesh',
+      hazardScore: rainfall,
+      exposureScore: exposure,
+      vulnerabilityScore: vulnerability,
+    );
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('What If?'),
@@ -118,7 +111,7 @@ class _WhatIfScreenState extends State<WhatIfScreen> {
                   const SizedBox(height: 10),
 
                   Text(
-                    projectedRisk.round().toString(),
+                    assessment.riskScore.round().toString(),
                     style: const TextStyle(
                       color: Colors.white,
                       fontSize: 52,
@@ -137,7 +130,7 @@ class _WhatIfScreenState extends State<WhatIfScreen> {
                   const SizedBox(height: 8),
 
                   Text(
-                    '$riskLevel Risk',
+                    '${assessment.riskLevel} Risk',
                     style: const TextStyle(
                       color: Colors.white,
                       fontSize: 20,
@@ -168,14 +161,47 @@ class _WhatIfScreenState extends State<WhatIfScreen> {
                 color: const Color(0xFFE8F4F3),
                 borderRadius: BorderRadius.circular(18),
               ),
-              child: const Text(
-                'RiskPulse uses scenario modelling to help users '
-                    'understand how changing hazard, exposure and '
-                    'vulnerability conditions can influence risk.',
-                style: TextStyle(
-                  fontSize: 14,
-                  height: 1.4,
-                ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'Risk Assessment',
+                    style: TextStyle(
+                      color: Color(0xFF0B5D5E),
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                    ),
+                  ),
+
+                  const SizedBox(height: 12),
+
+                  _scoreRow(
+                    'Hazard',
+                    assessment.hazardScore,
+                  ),
+
+                  _scoreRow(
+                    'Exposure',
+                    assessment.exposureScore,
+                  ),
+
+                  _scoreRow(
+                    'Vulnerability',
+                    assessment.vulnerabilityScore,
+                  ),
+                ],
+              ),
+            ),
+
+            const SizedBox(height: 20),
+
+            const Text(
+              'RiskPulse uses scenario modelling to help users '
+                  'understand how changing hazard, exposure and '
+                  'vulnerability conditions can influence risk.',
+              style: TextStyle(
+                fontSize: 14,
+                height: 1.4,
               ),
             ),
 
@@ -232,6 +258,36 @@ class _WhatIfScreenState extends State<WhatIfScreen> {
             max: 100,
             divisions: 20,
             onChanged: onChanged,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _scoreRow(
+      String title,
+      double value,
+      ) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 10),
+      child: Row(
+        children: [
+          Text(
+            title,
+            style: const TextStyle(
+              fontSize: 13,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+
+          const Spacer(),
+
+          Text(
+            '${value.round()}/100',
+            style: const TextStyle(
+              fontSize: 13,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ],
       ),
