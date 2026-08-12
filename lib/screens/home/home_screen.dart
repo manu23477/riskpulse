@@ -1,12 +1,57 @@
-import '../my_risk/my_risk_screen.dart';
-import '../ai_assistant/ai_assistant_screen.dart';
-import '../what_if/what_if_screen.dart';
 import 'package:flutter/material.dart';
 import '../risk_map/risk_map_screen.dart';
 import '../current_risk/current_risk_screen.dart';
+import '../what_if/what_if_screen.dart';
+import '../ai_assistant/ai_assistant_screen.dart';
+import '../my_risk/my_risk_screen.dart';
 
-class RiskPulseHome extends StatelessWidget {
+class RiskPulseHome extends StatefulWidget {
   const RiskPulseHome({super.key});
+
+  @override
+  State<RiskPulseHome> createState() => _RiskPulseHomeState();
+}
+
+class _RiskPulseHomeState extends State<RiskPulseHome> {
+  int _selectedIndex = 0;
+
+  void _onNavigationSelected(int index) {
+    if (index == 0) {
+      setState(() {
+        _selectedIndex = 0;
+      });
+      return;
+    }
+
+    if (index == 1) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const RiskMapScreen(),
+        ),
+      );
+      return;
+    }
+
+    if (index == 2) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const AiAssistantScreen(),
+        ),
+      );
+      return;
+    }
+
+    if (index == 3) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const MyRiskScreen(),
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,6 +90,7 @@ class RiskPulseHome extends StatelessWidget {
           ),
         ],
       ),
+
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(16),
@@ -97,7 +143,9 @@ class RiskPulseHome extends StatelessWidget {
                         fontWeight: FontWeight.w600,
                       ),
                     ),
+
                     const SizedBox(height: 12),
+
                     const Row(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
@@ -120,7 +168,9 @@ class RiskPulseHome extends StatelessWidget {
                         ),
                       ],
                     ),
+
                     const SizedBox(height: 8),
+
                     const Text(
                       'Risk conditions are currently being monitored.',
                       style: TextStyle(
@@ -128,7 +178,9 @@ class RiskPulseHome extends StatelessWidget {
                         fontSize: 14,
                       ),
                     ),
+
                     const SizedBox(height: 18),
+
                     Row(
                       children: [
                         Expanded(
@@ -167,7 +219,6 @@ class RiskPulseHome extends StatelessWidget {
 
               const SizedBox(height: 14),
 
-              // Risk Map
               _actionCard(
                 context,
                 icon: Icons.map_outlined,
@@ -185,7 +236,6 @@ class RiskPulseHome extends StatelessWidget {
                 },
               ),
 
-              // Current Risk
               _actionCard(
                 context,
                 icon: Icons.warning_amber_rounded,
@@ -203,7 +253,6 @@ class RiskPulseHome extends StatelessWidget {
                 },
               ),
 
-              // What If?
               _actionCard(
                 context,
                 icon: Icons.auto_graph,
@@ -214,13 +263,13 @@ class RiskPulseHome extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const WhatIfScreen(),
+                      builder: (context) =>
+                      const WhatIfScreen(),
                     ),
                   );
                 },
               ),
 
-              // AI Risk Assistant
               _actionCard(
                 context,
                 icon: Icons.psychology_outlined,
@@ -231,13 +280,13 @@ class RiskPulseHome extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const AiAssistantScreen(),
+                      builder: (context) =>
+                      const AiAssistantScreen(),
                     ),
                   );
                 },
               ),
 
-              // My Risk
               _actionCard(
                 context,
                 icon: Icons.location_searching,
@@ -248,7 +297,8 @@ class RiskPulseHome extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const MyRiskScreen(),
+                      builder: (context) =>
+                      const MyRiskScreen(),
                     ),
                   );
                 },
@@ -295,8 +345,8 @@ class RiskPulseHome extends StatelessWidget {
       ),
 
       bottomNavigationBar: NavigationBar(
-        selectedIndex: 0,
-        onDestinationSelected: (index) {},
+        selectedIndex: _selectedIndex,
+        onDestinationSelected: _onNavigationSelected,
         destinations: const [
           NavigationDestination(
             icon: Icon(Icons.home_outlined),
@@ -381,7 +431,9 @@ class RiskPulseHome extends StatelessWidget {
                     color: const Color(0xFF0B5D5E),
                   ),
                 ),
+
                 const SizedBox(width: 14),
+
                 Expanded(
                   child: Column(
                     crossAxisAlignment:
@@ -405,6 +457,7 @@ class RiskPulseHome extends StatelessWidget {
                     ],
                   ),
                 ),
+
                 const Icon(
                   Icons.chevron_right,
                   color: Colors.black38,
