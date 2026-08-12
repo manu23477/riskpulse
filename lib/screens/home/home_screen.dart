@@ -1,4 +1,9 @@
+import '../my_risk/my_risk_screen.dart';
+import '../ai_assistant/ai_assistant_screen.dart';
+import '../what_if/what_if_screen.dart';
 import 'package:flutter/material.dart';
+import '../risk_map/risk_map_screen.dart';
+import '../current_risk/current_risk_screen.dart';
 
 class RiskPulseHome extends StatelessWidget {
   const RiskPulseHome({super.key});
@@ -40,7 +45,6 @@ class RiskPulseHome extends StatelessWidget {
           ),
         ],
       ),
-
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(16),
@@ -93,9 +97,7 @@ class RiskPulseHome extends StatelessWidget {
                         fontWeight: FontWeight.w600,
                       ),
                     ),
-
                     const SizedBox(height: 12),
-
                     const Row(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
@@ -118,9 +120,7 @@ class RiskPulseHome extends StatelessWidget {
                         ),
                       ],
                     ),
-
                     const SizedBox(height: 8),
-
                     const Text(
                       'Risk conditions are currently being monitored.',
                       style: TextStyle(
@@ -128,9 +128,7 @@ class RiskPulseHome extends StatelessWidget {
                         fontSize: 14,
                       ),
                     ),
-
                     const SizedBox(height: 18),
-
                     Row(
                       children: [
                         Expanded(
@@ -169,44 +167,91 @@ class RiskPulseHome extends StatelessWidget {
 
               const SizedBox(height: 14),
 
+              // Risk Map
               _actionCard(
                 context,
                 icon: Icons.map_outlined,
                 title: 'Risk Map',
                 subtitle:
                 'Explore hazards, exposure and vulnerability',
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                      const RiskMapScreen(),
+                    ),
+                  );
+                },
               ),
 
+              // Current Risk
               _actionCard(
                 context,
                 icon: Icons.warning_amber_rounded,
                 title: 'Current Risk',
                 subtitle:
                 'Understand what is happening right now',
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                      const CurrentRiskScreen(),
+                    ),
+                  );
+                },
               ),
 
+              // What If?
               _actionCard(
                 context,
                 icon: Icons.auto_graph,
                 title: 'What If?',
                 subtitle:
                 'Explore possible disaster scenarios',
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const WhatIfScreen(),
+                    ),
+                  );
+                },
               ),
 
+              // AI Risk Assistant
               _actionCard(
                 context,
                 icon: Icons.psychology_outlined,
                 title: 'AI Risk Assistant',
                 subtitle:
                 'Ask questions about disaster risk',
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const AiAssistantScreen(),
+                    ),
+                  );
+                },
               ),
 
+              // My Risk
               _actionCard(
                 context,
                 icon: Icons.location_searching,
                 title: 'My Risk',
                 subtitle:
                 'Understand risk around your location',
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const MyRiskScreen(),
+                    ),
+                  );
+                },
               ),
 
               const SizedBox(height: 20),
@@ -310,6 +355,7 @@ class RiskPulseHome extends StatelessWidget {
         required IconData icon,
         required String title,
         required String subtitle,
+        required VoidCallback onTap,
       }) {
     return Container(
       margin: const EdgeInsets.only(bottom: 10),
@@ -318,7 +364,7 @@ class RiskPulseHome extends StatelessWidget {
         borderRadius: BorderRadius.circular(18),
         child: InkWell(
           borderRadius: BorderRadius.circular(18),
-          onTap: () {},
+          onTap: onTap,
           child: Padding(
             padding: const EdgeInsets.all(16),
             child: Row(
@@ -335,9 +381,7 @@ class RiskPulseHome extends StatelessWidget {
                     color: const Color(0xFF0B5D5E),
                   ),
                 ),
-
                 const SizedBox(width: 14),
-
                 Expanded(
                   child: Column(
                     crossAxisAlignment:
@@ -361,7 +405,6 @@ class RiskPulseHome extends StatelessWidget {
                     ],
                   ),
                 ),
-
                 const Icon(
                   Icons.chevron_right,
                   color: Colors.black38,
