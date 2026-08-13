@@ -3,6 +3,7 @@ import '../models/hazard.dart';
 import '../models/vulnerability.dart';
 import '../providers/gis_data_provider.dart';
 import '../providers/local_gis_data_provider.dart';
+import '../providers/geojson_data_provider.dart';
 
 class GisDataService {
   final GisDataProvider _provider;
@@ -12,6 +13,14 @@ class GisDataService {
   }) : _provider = provider ?? LocalGisDataProvider();
 
   List<Hazard> getHazards() {
+    return _provider.getHazards();
+  }
+
+  Future<List<Hazard>> getHazardsAsync() async {
+    if (_provider is GeoJsonDataProvider) {
+      return await _provider.getHazardsFromAsset();
+    }
+
     return _provider.getHazards();
   }
 

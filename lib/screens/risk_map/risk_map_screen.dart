@@ -18,12 +18,20 @@ class RiskMapScreen extends StatefulWidget {
 }
 
 class _RiskMapScreenState extends State<RiskMapScreen> {
-  final GisDataService _gisDataService = GisDataService();
-  final MapRepository _mapRepository = MapRepository();
+  final GisDataService _gisDataService =
+  GisDataService();
+
+  final MapRepository _mapRepository =
+  MapRepository();
+
   final RiskLayerRepository _riskLayerRepository =
   RiskLayerRepository();
 
   String selectedLayer = 'Risk';
+
+  List<Hazard> geoJsonHazards = [];
+
+  bool isLoadingGeoJson = true;
 
   List<RiskLayer> get layers {
     return _riskLayerRepository.getLayers();
@@ -41,6 +49,36 @@ class _RiskMapScreenState extends State<RiskMapScreen> {
     return _mapRepository.getMapRisk();
   }
 
+  @override
+  void initState() {
+    super.initState();
+    _loadGeoJsonHazards();
+  }
+
+  Future<void> _loadGeoJsonHazards() async {
+    try {
+      final loadedHazards =
+      await _gisDataService.getHazardsAsync();
+
+      if (!mounted) {
+        return;
+      }
+
+      setState(() {
+        geoJsonHazards = loadedHazards;
+        isLoadingGeoJson = false;
+      });
+    } catch (error) {
+      if (!mounted) {
+        return;
+      }
+
+      setState(() {
+        isLoadingGeoJson = false;
+      });
+    }
+  }
+
   List<Marker> _getMarkersForLayer(String layer) {
     if (layer == 'Exposure') {
       return _getExposureMarkers();
@@ -50,11 +88,29 @@ class _RiskMapScreenState extends State<RiskMapScreen> {
       return _getRiskMarkers();
     }
 
-    final selectedHazards = hazards.where((hazard) {
+    final selectedHazards =
+    geoJsonHazards.where((hazard) {
       return hazard.name == layer;
     }).toList();
 
-    return selectedHazards.map((hazard) {
+    if (selectedHazards.isEmpty) {
+      final localHazards =
+      hazards.where((hazard) {
+        return hazard.name == layer;
+      }).toList();
+
+      return _createHazardMarkers(localHazards);
+    }
+
+    return _createHazardMarkers(
+      selectedHazards,
+    );
+  }
+
+  List<Marker> _createHazardMarkers(
+      List<Hazard> hazardList,
+      ) {
+    return hazardList.map((hazard) {
       return Marker(
         point: LatLng(
           hazard.location.latitude,
@@ -90,7 +146,8 @@ class _RiskMapScreenState extends State<RiskMapScreen> {
   }
 
   List<Marker> _getRiskMarkers() {
-    final riskScore = riskAssessment.riskScore;
+    final riskScore =
+        riskAssessment.riskScore;
 
     final Color riskColor;
 
@@ -102,11 +159,16 @@ class _RiskMapScreenState extends State<RiskMapScreen> {
       riskColor = Colors.green;
     }
 
-    return [
-      Marker(
+    final List<Hazard> riskHazards =
+    geoJsonHazards.isNotEmpty
+        ? geoJsonHazards
+        : hazards;
+
+    return riskHazards.map((hazard) {
+      return Marker(
         point: LatLng(
-          hazards.first.location.latitude,
-          hazards.first.location.longitude,
+          hazard.location.latitude,
+          hazard.location.longitude,
         ),
         width: 65,
         height: 65,
@@ -115,44 +177,41 @@ class _RiskMapScreenState extends State<RiskMapScreen> {
           color: riskColor,
           size: 48,
         ),
-      ),
-      Marker(
-        point: LatLng(
-          hazards[1].location.latitude,
-          hazards[1].location.longitude,
-        ),
-        width: 65,
-        height: 65,
-        child: Icon(
-          Icons.warning,
-          color: riskColor,
-          size: 48,
-        ),
-      ),
-    ];
+      );
+    }).toList();
   }
 
-  IconData _getHazardIcon(String hazardName) {
+  IconData _getHazardIcon(
+      String hazardName,
+      ) {
     switch (hazardName) {
       case 'Landslide':
         return Icons.terrain;
+
       case 'Flood':
         return Icons.water;
+
       case 'Earthquake':
         return Icons.vibration;
+
       default:
         return Icons.warning;
     }
   }
 
-  Color _getHazardColor(String hazardName) {
+  Color _getHazardColor(
+      String hazardName,
+      ) {
     switch (hazardName) {
       case 'Landslide':
         return Colors.orange;
+
       case 'Flood':
         return Colors.blue;
+
       case 'Earthquake':
         return Colors.purple;
+
       default:
         return Colors.red;
     }
@@ -160,12 +219,33 @@ class _RiskMapScreenState extends State<RiskMapScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final riskScore = riskAssessment.riskScore;
-    final riskLevel = riskAssessment.riskLevel;
+    final riskScore =
+        riskAssessment.riskScore;
+
+    final riskLevel =
+        riskAssessment.riskLevel;
 
     return Scaffold(
       appBar: AppBar(
         title: const Text('Risk Map'),
+        actions: [
+          if (isLoadingGeoJson)
+            const Padding(
+              padding: EdgeInsets.only(
+                right: 16,
+              ),
+              child: Center(
+                child: SizedBox(
+                  width: 18,
+                  height: 18,
+                  child:
+                  CircularProgressIndicator(
+                    strokeWidth: 2,
+                  ),
+                ),
+              ),
+            ),
+        ],
       ),
       body: Column(
         children: [
@@ -186,17 +266,19 @@ class _RiskMapScreenState extends State<RiskMapScreen> {
                   'com.example.riskpulse',
                 ),
                 MarkerLayer(
-                  markers: _getMarkersForLayer(
+                  markers:
+                  _getMarkersForLayer(
                     selectedLayer,
                   ),
                 ),
               ],
             ),
           ),
-
           Container(
-            padding: const EdgeInsets.all(16),
-            decoration: const BoxDecoration(
+            padding:
+            const EdgeInsets.all(16),
+            decoration:
+            const BoxDecoration(
               color: Colors.white,
             ),
             child: Column(
@@ -209,43 +291,57 @@ class _RiskMapScreenState extends State<RiskMapScreen> {
                       'Risk Layers',
                       style: TextStyle(
                         fontSize: 18,
-                        fontWeight: FontWeight.bold,
+                        fontWeight:
+                        FontWeight.bold,
                       ),
                     ),
-
                     const Spacer(),
-
                     Text(
                       selectedLayer,
                       style: const TextStyle(
-                        color: Color(0xFF0B5D5E),
-                        fontWeight: FontWeight.w600,
+                        color:
+                        Color(0xFF0B5D5E),
+                        fontWeight:
+                        FontWeight.w600,
                       ),
                     ),
                   ],
                 ),
-
-                if (selectedLayer == 'Risk') ...[
+                if (selectedLayer ==
+                    'Risk') ...[
                   const SizedBox(height: 6),
-
                   Text(
                     'Current Risk: '
-                        '${riskScore.round()}/100 • $riskLevel',
-                    style: const TextStyle(
+                        '${riskScore.round()}/100 • '
+                        '$riskLevel',
+                    style:
+                    const TextStyle(
                       fontSize: 13,
-                      color: Colors.black54,
+                      color:
+                      Colors.black54,
                     ),
                   ),
                 ],
-
+                if (isLoadingGeoJson) ...[
+                  const SizedBox(height: 6),
+                  const Text(
+                    'Loading GIS data...',
+                    style: TextStyle(
+                      fontSize: 12,
+                      color:
+                      Colors.black54,
+                    ),
+                  ),
+                ],
                 const SizedBox(height: 12),
-
                 Wrap(
                   spacing: 10,
                   runSpacing: 10,
-                  children: layers.map((layer) {
+                  children:
+                  layers.map((layer) {
                     return _layerButton(
-                      icon: _getLayerIcon(
+                      icon:
+                      _getLayerIcon(
                         layer.name,
                       ),
                       layer: layer,
@@ -270,23 +366,33 @@ class _RiskMapScreenState extends State<RiskMapScreen> {
     return SizedBox(
       width: 105,
       child: InkWell(
-        borderRadius: BorderRadius.circular(14),
+        borderRadius:
+        BorderRadius.circular(14),
         onTap: () {
           setState(() {
-            selectedLayer = layer.name;
+            selectedLayer =
+                layer.name;
           });
         },
         child: Container(
-          padding: const EdgeInsets.symmetric(
+          padding:
+          const EdgeInsets.symmetric(
             vertical: 12,
             horizontal: 8,
           ),
-          decoration: BoxDecoration(
+          decoration:
+          BoxDecoration(
             color: isSelected
-                ? const Color(0xFF0B5D5E)
-                : const Color(0xFFE8F4F3),
+                ? const Color(
+              0xFF0B5D5E,
+            )
+                : const Color(
+              0xFFE8F4F3,
+            ),
             borderRadius:
-            BorderRadius.circular(14),
+            BorderRadius.circular(
+              14,
+            ),
           ),
           child: Column(
             children: [
@@ -294,17 +400,21 @@ class _RiskMapScreenState extends State<RiskMapScreen> {
                 icon,
                 color: isSelected
                     ? Colors.white
-                    : const Color(0xFF0B5D5E),
+                    : const Color(
+                  0xFF0B5D5E,
+                ),
               ),
-
-              const SizedBox(height: 6),
-
+              const SizedBox(
+                height: 6,
+              ),
               Text(
                 layer.name,
-                textAlign: TextAlign.center,
+                textAlign:
+                TextAlign.center,
                 style: TextStyle(
                   fontSize: 12,
-                  fontWeight: FontWeight.w600,
+                  fontWeight:
+                  FontWeight.w600,
                   color: isSelected
                       ? Colors.white
                       : Colors.black87,
@@ -317,18 +427,25 @@ class _RiskMapScreenState extends State<RiskMapScreen> {
     );
   }
 
-  IconData _getLayerIcon(String layerName) {
+  IconData _getLayerIcon(
+      String layerName,
+      ) {
     switch (layerName) {
       case 'Landslide':
         return Icons.terrain;
+
       case 'Flood':
         return Icons.water;
+
       case 'Earthquake':
         return Icons.vibration;
+
       case 'Exposure':
         return Icons.people_outline;
+
       case 'Risk':
         return Icons.warning_amber;
+
       default:
         return Icons.layers;
     }

@@ -1,0 +1,50 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "hazard-geo-001",
+        "name": "Landslide",
+        "category": "Geological",
+        "intensity": 75,
+        "unit": "score",
+        "active": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [77.1734, 31.1048]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "hazard-geo-002",
+        "name": "Flood",
+        "category": "Hydrological",
+        "intensity": 60,
+        "unit": "score",
+        "active": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [77.1900, 31.0950]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "hazard-geo-003",
+        "name": "Earthquake",
+        "category": "Geological",
+        "intensity": 65,
+        "unit": "score",
+        "active": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [77.1800, 31.1150]
+      }
+    }
+  ]
+}
