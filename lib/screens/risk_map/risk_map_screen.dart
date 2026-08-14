@@ -3,35 +3,57 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 
 import '../../data/models/exposure.dart';
+import '../../data/models/geo_location.dart';
 import '../../data/models/hazard.dart';
+import '../../data/models/landslide_polygon.dart';
 import '../../data/models/risk_assessment.dart';
 import '../../data/models/risk_layer.dart';
+import '../../data/repositories/landslide_polygon_repository.dart';
 import '../../data/repositories/map_repository.dart';
 import '../../data/repositories/risk_layer_repository.dart';
 import '../../data/services/gis_data_service.dart';
+import 'widgets/landslide_info_card.dart';
 
 class RiskMapScreen extends StatefulWidget {
-  const RiskMapScreen({super.key});
+  const RiskMapScreen({
+    super.key,
+  });
 
   @override
-  State<RiskMapScreen> createState() => _RiskMapScreenState();
+  State<RiskMapScreen> createState() =>
+      _RiskMapScreenState();
 }
 
-class _RiskMapScreenState extends State<RiskMapScreen> {
+class _RiskMapScreenState
+    extends State<RiskMapScreen> {
   final GisDataService _gisDataService =
   GisDataService();
 
   final MapRepository _mapRepository =
   MapRepository();
 
-  final RiskLayerRepository _riskLayerRepository =
+  final RiskLayerRepository
+  _riskLayerRepository =
   RiskLayerRepository();
+
+  final LandslidePolygonRepository
+  _landslidePolygonRepository =
+  LandslidePolygonRepository(
+    assetPath:
+    'lib/data/assets/hazards/kotropi_polygon.geojson',
+  );
 
   String selectedLayer = 'Risk';
 
   List<Hazard> geoJsonHazards = [];
 
+  List<Hazard> landslideHazards = [];
+
+  List<LandslidePolygon> landslidePolygons = [];
+
   bool isLoadingGeoJson = true;
+
+  bool isLoadingPolygons = true;
 
   List<RiskLayer> get layers {
     return _riskLayerRepository.getLayers();
@@ -52,13 +74,19 @@ class _RiskMapScreenState extends State<RiskMapScreen> {
   @override
   void initState() {
     super.initState();
-    _loadGeoJsonHazards();
+
+    _loadGeoJsonData();
+
+    _loadLandslidePolygons();
   }
 
-  Future<void> _loadGeoJsonHazards() async {
+  Future<void> _loadGeoJsonData() async {
     try {
       final loadedHazards =
       await _gisDataService.getHazardsAsync();
+
+      final loadedLandslides =
+      await _gisDataService.getLandslideHazards();
 
       if (!mounted) {
         return;
@@ -66,6 +94,10 @@ class _RiskMapScreenState extends State<RiskMapScreen> {
 
       setState(() {
         geoJsonHazards = loadedHazards;
+
+        landslideHazards =
+            loadedLandslides;
+
         isLoadingGeoJson = false;
       });
     } catch (error) {
@@ -79,13 +111,54 @@ class _RiskMapScreenState extends State<RiskMapScreen> {
     }
   }
 
-  List<Marker> _getMarkersForLayer(String layer) {
+  Future<void> _loadLandslidePolygons() async {
+    try {
+      final List<LandslidePolygon>
+      loadedPolygons =
+      await _landslidePolygonRepository
+          .getLandslidePolygons();
+
+      if (!mounted) {
+        return;
+      }
+
+      setState(() {
+        landslidePolygons =
+            loadedPolygons;
+
+        isLoadingPolygons = false;
+      });
+    } catch (error) {
+      if (!mounted) {
+        return;
+      }
+
+      setState(() {
+        isLoadingPolygons = false;
+      });
+    }
+  }
+
+  // ============================================================
+  // MAP MARKERS
+  // ============================================================
+
+  List<Marker> _getMarkersForLayer(
+      String layer,
+      ) {
     if (layer == 'Exposure') {
       return _getExposureMarkers();
     }
 
     if (layer == 'Risk') {
       return _getRiskMarkers();
+    }
+
+    if (layer == 'Landslide' &&
+        landslideHazards.isNotEmpty) {
+      return _createHazardMarkers(
+        landslideHazards,
+      );
     }
 
     final selectedHazards =
@@ -99,7 +172,9 @@ class _RiskMapScreenState extends State<RiskMapScreen> {
         return hazard.name == layer;
       }).toList();
 
-      return _createHazardMarkers(localHazards);
+      return _createHazardMarkers(
+        localHazards,
+      );
     }
 
     return _createHazardMarkers(
@@ -118,13 +193,40 @@ class _RiskMapScreenState extends State<RiskMapScreen> {
         ),
         width: 55,
         height: 55,
-        child: Icon(
-          _getHazardIcon(hazard.name),
-          color: _getHazardColor(hazard.name),
-          size: 40,
+        child: GestureDetector(
+          behavior: HitTestBehavior.opaque,
+          onTap: () {
+            _showLandslideInformation(
+              hazard,
+            );
+          },
+          child: Icon(
+            _getHazardIcon(
+              hazard.name,
+            ),
+            color: _getHazardColor(
+              hazard.name,
+            ),
+            size: 40,
+          ),
         ),
       );
     }).toList();
+  }
+
+  void _showLandslideInformation(
+      Hazard hazard,
+      ) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (BuildContext context) {
+        return LandslideInfoCard(
+          hazard: hazard,
+        );
+      },
+    );
   }
 
   List<Marker> _getExposureMarkers() {
@@ -160,7 +262,9 @@ class _RiskMapScreenState extends State<RiskMapScreen> {
     }
 
     final List<Hazard> riskHazards =
-    geoJsonHazards.isNotEmpty
+    landslideHazards.isNotEmpty
+        ? landslideHazards
+        : geoJsonHazards.isNotEmpty
         ? geoJsonHazards
         : hazards;
 
@@ -172,22 +276,86 @@ class _RiskMapScreenState extends State<RiskMapScreen> {
         ),
         width: 65,
         height: 65,
-        child: Icon(
-          Icons.warning,
-          color: riskColor,
-          size: 48,
+        child: GestureDetector(
+          behavior: HitTestBehavior.opaque,
+          onTap: () {
+            _showLandslideInformation(
+              hazard,
+            );
+          },
+          child: Icon(
+            Icons.warning,
+            color: riskColor,
+            size: 48,
+          ),
         ),
       );
     }).toList();
   }
 
+  // ============================================================
+  // LANDSLIDE POLYGON LAYER
+  // ============================================================
+
+  List<Polygon> _getLandslidePolygons(
+      String layer,
+      ) {
+    if (layer != 'Landslide' &&
+        layer != 'Risk') {
+      return [];
+    }
+
+    final List<Polygon> polygons = [];
+
+    for (final LandslidePolygon landslide
+    in landslidePolygons) {
+      for (final List<GeoLocation> ring
+      in landslide.rings) {
+        final List<LatLng> points =
+        ring.map((GeoLocation location) {
+          return LatLng(
+            location.latitude,
+            location.longitude,
+          );
+        }).toList();
+
+        if (points.length < 3) {
+          continue;
+        }
+
+        polygons.add(
+          Polygon(
+            points: points,
+            color: Colors.orange.withValues(
+              alpha: 0.35,
+            ),
+            borderColor: Colors.orange,
+            borderStrokeWidth: 3,
+          ),
+        );
+      }
+    }
+
+    return polygons;
+  }
+
+  // ============================================================
+  // HAZARD ICONS
+  // ============================================================
+
   IconData _getHazardIcon(
       String hazardName,
       ) {
-    switch (hazardName) {
-      case 'Landslide':
-        return Icons.terrain;
+    final String normalized =
+    hazardName.toLowerCase();
 
+    if (normalized.contains('landslide') ||
+        normalized.contains('kotrupi') ||
+        normalized.contains('kotropi')) {
+      return Icons.terrain;
+    }
+
+    switch (hazardName) {
       case 'Flood':
         return Icons.water;
 
@@ -202,10 +370,16 @@ class _RiskMapScreenState extends State<RiskMapScreen> {
   Color _getHazardColor(
       String hazardName,
       ) {
-    switch (hazardName) {
-      case 'Landslide':
-        return Colors.orange;
+    final String normalized =
+    hazardName.toLowerCase();
 
+    if (normalized.contains('landslide') ||
+        normalized.contains('kotrupi') ||
+        normalized.contains('kotropi')) {
+      return Colors.orange;
+    }
+
+    switch (hazardName) {
       case 'Flood':
         return Colors.blue;
 
@@ -217,6 +391,10 @@ class _RiskMapScreenState extends State<RiskMapScreen> {
     }
   }
 
+  // ============================================================
+  // SCREEN
+  // ============================================================
+
   @override
   Widget build(BuildContext context) {
     final riskScore =
@@ -227,9 +405,12 @@ class _RiskMapScreenState extends State<RiskMapScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Risk Map'),
+        title: const Text(
+          'Risk Map',
+        ),
         actions: [
-          if (isLoadingGeoJson)
+          if (isLoadingGeoJson ||
+              isLoadingPolygons)
             const Padding(
               padding: EdgeInsets.only(
                 right: 16,
@@ -253,10 +434,10 @@ class _RiskMapScreenState extends State<RiskMapScreen> {
             child: FlutterMap(
               options: const MapOptions(
                 initialCenter: LatLng(
-                  31.1048,
-                  77.1734,
+                  31.91044,
+                  76.89064,
                 ),
-                initialZoom: 8.0,
+                initialZoom: 14.0,
               ),
               children: [
                 TileLayer(
@@ -265,6 +446,14 @@ class _RiskMapScreenState extends State<RiskMapScreen> {
                   userAgentPackageName:
                   'com.example.riskpulse',
                 ),
+
+                PolygonLayer(
+                  polygons:
+                  _getLandslidePolygons(
+                    selectedLayer,
+                  ),
+                ),
+
                 MarkerLayer(
                   markers:
                   _getMarkersForLayer(
@@ -322,11 +511,26 @@ class _RiskMapScreenState extends State<RiskMapScreen> {
                     ),
                   ),
                 ],
-                if (isLoadingGeoJson) ...[
+                if (isLoadingGeoJson ||
+                    isLoadingPolygons) ...[
                   const SizedBox(height: 6),
                   const Text(
                     'Loading GIS data...',
                     style: TextStyle(
+                      fontSize: 12,
+                      color:
+                      Colors.black54,
+                    ),
+                  ),
+                ],
+                if (!isLoadingPolygons &&
+                    landslidePolygons.isNotEmpty) ...[
+                  const SizedBox(height: 6),
+                  Text(
+                    'Landslide polygons: '
+                        '${landslidePolygons.length}',
+                    style:
+                    const TextStyle(
                       fontSize: 12,
                       color:
                       Colors.black54,
@@ -355,6 +559,10 @@ class _RiskMapScreenState extends State<RiskMapScreen> {
       ),
     );
   }
+
+  // ============================================================
+  // LAYER BUTTON
+  // ============================================================
 
   Widget _layerButton({
     required IconData icon,
@@ -426,6 +634,10 @@ class _RiskMapScreenState extends State<RiskMapScreen> {
       ),
     );
   }
+
+  // ============================================================
+  // LAYER ICONS
+  // ============================================================
 
   IconData _getLayerIcon(
       String layerName,

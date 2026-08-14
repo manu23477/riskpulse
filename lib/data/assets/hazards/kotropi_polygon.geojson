@@ -1,0 +1,37 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "kotropi-test-001",
+        "slide_name": "Kotropi Landslide",
+        "source": "RiskPulse Test Geometry",
+        "state": "Himachal Pradesh",
+        "district": "Mandi",
+        "activity": "Active",
+        "triggering": "Monsoon rainfall",
+        "movement_t": "Complex",
+        "geology": "Sheared and weathered rock mass",
+        "remarks": "Test polygon for RiskPulse rendering architecture"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [76.88880, 31.91110],
+            [76.88940, 31.91155],
+            [76.89030, 31.91165],
+            [76.89115, 31.91125],
+            [76.89155, 31.91055],
+            [76.89120, 31.90975],
+            [76.89035, 31.90935],
+            [76.88945, 31.90945],
+            [76.88885, 31.91010],
+            [76.88880, 31.91110]
+          ]
+        ]
+      }
+    }
+  ]
+}

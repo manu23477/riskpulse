@@ -7,6 +7,10 @@ class RiskEngine {
     required double hazardScore,
     required double exposureScore,
     required double vulnerabilityScore,
+    String confidence = 'Moderate',
+    List<String> riskFactors = const [],
+    List<String> dataSources = const [],
+    String explanation = '',
   }) {
     final double riskScore =
         (hazardScore * 0.4) +
@@ -32,6 +36,10 @@ class RiskEngine {
       riskScore: riskScore,
       riskLevel: riskLevel,
       assessedAt: DateTime.now(),
+      confidence: confidence,
+      riskFactors: riskFactors,
+      dataSources: dataSources,
+      explanation: explanation,
     );
   }
 }

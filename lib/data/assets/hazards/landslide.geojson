@@ -1,0 +1,50 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "landslide-001",
+        "name": "Landslide",
+        "category": "Geological",
+        "intensity": 75,
+        "unit": "score",
+        "active": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [77.1734, 31.1048]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "landslide-002",
+        "name": "Landslide",
+        "category": "Geological",
+        "intensity": 65,
+        "unit": "score",
+        "active": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [77.2100, 31.0900]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "landslide-003",
+        "name": "Landslide",
+        "category": "Geological",
+        "intensity": 55,
+        "unit": "score",
+        "active": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [77.1450, 31.1250]
+      }
+    }
+  ]
+}
