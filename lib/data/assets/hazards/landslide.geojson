@@ -4,46 +4,171 @@
     {
       "type": "Feature",
       "properties": {
-        "id": "landslide-001",
-        "name": "Landslide",
+        "id": "ls-mandi-kotropi",
+        "name": "Kotropi Landslide",
+        "category": "Geological",
+        "intensity": 95,
+        "unit": "score",
+        "active": true,
+        "district": "Mandi",
+        "remarks": "Major active landslide zone on NH-154"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [76.8906, 31.9104]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ls-kinnaur-nigulsari",
+        "name": "Nigulsari Landslide",
+        "category": "Geological",
+        "intensity": 90,
+        "unit": "score",
+        "active": true,
+        "district": "Kinnaur",
+        "remarks": "Chronic landslide area on NH-5"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [77.9200, 31.5300]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ls-kinnaur-urni",
+        "name": "Urni Landslide",
+        "category": "Geological",
+        "intensity": 85,
+        "unit": "score",
+        "active": true,
+        "district": "Kinnaur",
+        "remarks": "Significant slope failure near Urni village"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [78.1800, 31.5300]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ls-mandi-hanogi",
+        "name": "Hanogi Landslide",
+        "category": "Geological",
+        "intensity": 80,
+        "unit": "score",
+        "active": true,
+        "district": "Mandi",
+        "remarks": "Rockfall and slide zone near Hanogi Temple"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [77.1900, 31.7300]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ls-shimla-dhalli",
+        "name": "Dhalli Landslide",
+        "category": "Geological",
+        "intensity": 70,
+        "unit": "score",
+        "active": true,
+        "district": "Shimla",
+        "remarks": "Active slide near Dhalli tunnel"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [77.2000, 31.1100]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ls-kullu-aut",
+        "name": "Aut Landslide",
         "category": "Geological",
         "intensity": 75,
         "unit": "score",
-        "active": true
+        "active": true,
+        "district": "Kullu",
+        "remarks": "Frequent slides near Aut tunnel"
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [77.1734, 31.1048]
+        "coordinates": [77.2100, 31.7400]
       }
     },
     {
       "type": "Feature",
       "properties": {
-        "id": "landslide-002",
-        "name": "Landslide",
+        "id": "ls-chamba-surangani",
+        "name": "Surangani Landslide",
         "category": "Geological",
         "intensity": 65,
         "unit": "score",
-        "active": true
+        "active": true,
+        "district": "Chamba",
+        "remarks": "Slope instability in Surangani area"
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [77.2100, 31.0900]
+        "coordinates": [76.1500, 32.7500]
       }
     },
     {
       "type": "Feature",
       "properties": {
-        "id": "landslide-003",
-        "name": "Landslide",
+        "id": "ls-lahaul-billing",
+        "name": "Billing Landslide",
         "category": "Geological",
-        "intensity": 55,
+        "intensity": 60,
         "unit": "score",
-        "active": true
+        "active": true,
+        "district": "Lahaul & Spiti",
+        "remarks": "Debris flow zone in Lahaul valley"
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [77.1450, 31.1250]
+        "coordinates": [76.9800, 32.5500]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ls-kangra-dharamshala",
+        "name": "McLeod Ganj Slide",
+        "category": "Geological",
+        "intensity": 55,
+        "unit": "score",
+        "active": true,
+        "district": "Kangra",
+        "remarks": "Urban landslide risk in McLeod Ganj area"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [76.3234, 32.2190]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ls-solan-kumarhatti",
+        "name": "Kumarhatti Slide",
+        "category": "Geological",
+        "intensity": 50,
+        "unit": "score",
+        "active": true,
+        "district": "Solan",
+        "remarks": "Soil slide zone on NH-5"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [77.0600, 30.9100]
       }
     }
   ]

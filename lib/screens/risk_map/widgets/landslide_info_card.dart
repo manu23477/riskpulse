@@ -14,28 +14,24 @@ class LandslideInfoCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Container(
-        constraints: const BoxConstraints(
-          maxHeight: 620,
+        constraints: BoxConstraints(
+          maxHeight: MediaQuery.of(context).size.height * 0.85,
         ),
         decoration: const BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.vertical(
-            top: Radius.circular(28),
+            top: Radius.circular(32),
           ),
         ),
         child: SingleChildScrollView(
-          padding: const EdgeInsets.fromLTRB(
-            20,
-            12,
-            20,
-            24,
-          ),
+          physics: const BouncingScrollPhysics(),
+          padding: const EdgeInsets.fromLTRB(24, 12, 24, 32),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Center(
                 child: Container(
-                  width: 45,
+                  width: 50,
                   height: 5,
                   decoration: BoxDecoration(
                     color: Colors.black12,
@@ -43,41 +39,41 @@ class LandslideInfoCard extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(height: 18),
+              const SizedBox(height: 24),
               _buildHeader(),
-              const SizedBox(height: 18),
-              _buildStatusSection(),
-              const SizedBox(height: 18),
-              _buildLocationSection(),
-              const SizedBox(height: 18),
-              _buildDimensionsSection(),
-              const SizedBox(height: 18),
-              _buildTriggerSection(),
-              const SizedBox(height: 18),
-              _buildGeologySection(),
-              const SizedBox(height: 18),
-              _buildImpactSection(),
-              const SizedBox(height: 18),
-              _buildHistorySection(),
-              const SizedBox(height: 18),
-              _buildSourceSection(),
+              const SizedBox(height: 24),
+              _buildRiskProfileSection(),
               const SizedBox(height: 20),
+              _buildStatusSection(),
+              const SizedBox(height: 20),
+              _buildLocationSection(),
+              const SizedBox(height: 20),
+              _buildDimensionsSection(),
+              const SizedBox(height: 20),
+              _buildTriggerSection(),
+              const SizedBox(height: 20),
+              _buildGeologySection(),
+              const SizedBox(height: 20),
+              _buildImpactSection(),
+              const SizedBox(height: 20),
+              _buildHistorySection(),
+              const SizedBox(height: 20),
+              _buildTechnicalParametersSection(),
+              const SizedBox(height: 20),
+              _buildSourceSection(),
+              const SizedBox(height: 32),
               SizedBox(
                 width: double.infinity,
+                height: 56,
                 child: ElevatedButton.icon(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
+                  onPressed: () => Navigator.of(context).pop(),
                   icon: const Icon(Icons.close),
-                  label: const Text('Close'),
+                  label: const Text('Close Intelligence Card', style: TextStyle(fontWeight: FontWeight.bold)),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF0B5D5E),
+                    backgroundColor: const Color(0xFF0F172A),
                     foregroundColor: Colors.white,
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 14,
-                    ),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(14),
+                      borderRadius: BorderRadius.circular(16),
                     ),
                   ),
                 ),
@@ -91,44 +87,49 @@ class LandslideInfoCard extends StatelessWidget {
 
   Widget _buildHeader() {
     return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Container(
-          width: 54,
-          height: 54,
+          width: 64,
+          height: 64,
           decoration: BoxDecoration(
-            color: Colors.orange.withValues(alpha: 0.12),
-            borderRadius: BorderRadius.circular(16),
+            color: const Color(0xFFF59E0B).withValues(alpha: 0.1),
+            borderRadius: BorderRadius.circular(20),
           ),
           child: const Icon(
             Icons.terrain,
-            color: Colors.orange,
-            size: 32,
+            color: Color(0xFFF59E0B),
+            size: 36,
           ),
         ),
-        const SizedBox(width: 14),
+        const SizedBox(width: 16),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                _displayValue(
-                  hazard.slideName ?? hazard.name,
-                  'Landslide',
-                ),
+                _displayValue(hazard.slideName ?? hazard.name, 'Landslide Event'),
                 style: const TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF173B3C),
+                  fontSize: 22,
+                  fontWeight: FontWeight.w900,
+                  color: Color(0xFF0F172A),
+                  letterSpacing: -0.5,
                 ),
               ),
               const SizedBox(height: 4),
-              Text(
-                'Landslide Information',
-                style: TextStyle(
-                  fontSize: 13,
-                  color: Colors.grey.shade600,
-                ),
+              Row(
+                children: [
+                  const Icon(Icons.analytics_outlined, size: 14, color: Color(0xFF64748B)),
+                  const SizedBox(width: 6),
+                  Text(
+                    'Landslide Intelligence Report',
+                    style: TextStyle(
+                      fontSize: 13,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.grey.shade600,
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
@@ -137,334 +138,204 @@ class LandslideInfoCard extends StatelessWidget {
     );
   }
 
-  Widget _buildStatusSection() {
-    final String activity = _displayValue(
-      hazard.activity,
-      'Unknown',
-    );
-
-    final String movement = _displayValue(
-      hazard.movementRate,
-      'Unknown',
-    );
-
-    final String movementType = _displayValue(
-      hazard.movementType,
-      'Unknown',
-    );
-
+  Widget _buildRiskProfileSection() {
     return _section(
-      title: 'Current Characteristics',
-      icon: Icons.warning_amber_rounded,
+      title: 'Risk Profile',
+      icon: Icons.shield_outlined,
       children: [
-        _infoRow(
-          'Activity',
-          activity,
-          valueColor: _activityColor(activity),
-        ),
-        _infoRow(
-          'Movement rate',
-          movement,
-        ),
-        _infoRow(
-          'Movement type',
-          movementType,
-        ),
+        _infoRow('Category', hazard.category),
+        _infoRow('Intensity Score', '${hazard.intensity.round()}/100'),
+        _infoRow('Unit of Measure', hazard.unit),
+        _infoRow('Monitoring Status', hazard.active ? 'Active / Live' : 'Stable / Historical', 
+          valueColor: hazard.active ? const Color(0xFFE11D48) : const Color(0xFF10B981)),
+      ],
+    );
+  }
+
+  Widget _buildStatusSection() {
+    return _section(
+      title: 'Activity & Movement',
+      icon: Icons.speed_outlined,
+      children: [
+        _infoRow('Current Activity', _displayValue(hazard.activity, 'Not Recorded')),
+        _infoRow('Movement Rate', _displayValue(hazard.movementRate, 'Unknown')),
+        _infoRow('Movement Type', _displayValue(hazard.movementType, 'Unknown')),
       ],
     );
   }
 
   Widget _buildLocationSection() {
     return _section(
-      title: 'Location',
+      title: 'Geographic Location',
       icon: Icons.location_on_outlined,
       children: [
-        _infoRow(
-          'State',
-          _displayValue(
-            hazard.state,
-            'Unknown',
-          ),
-        ),
-        _infoRow(
-          'District',
-          _displayValue(
-            hazard.district,
-            'Unknown',
-          ),
-        ),
-        _infoRow(
-          'Latitude',
-          hazard.location.latitude.toStringAsFixed(5),
-        ),
-        _infoRow(
-          'Longitude',
-          hazard.location.longitude.toStringAsFixed(5),
-        ),
+        _infoRow('State', _displayValue(hazard.state, 'Himachal Pradesh')),
+        _infoRow('District', _displayValue(hazard.district, 'Unknown')),
+        _infoRow('GPS Latitude', hazard.location.latitude.toStringAsFixed(6)),
+        _infoRow('GPS Longitude', hazard.location.longitude.toStringAsFixed(6)),
       ],
     );
   }
 
   Widget _buildDimensionsSection() {
+    final bool hasData = hazard.lengthMeters != null || hazard.widthMeters != null || 
+                        hazard.areaSquareMeters != null || hazard.volumeCubicMeters != null;
+
     return _section(
-      title: 'Landslide Dimensions',
-      icon: Icons.straighten,
+      title: 'Event Dimensions',
+      icon: Icons.straighten_outlined,
       children: [
-        if (hazard.lengthMeters != null)
-          _infoRow(
-            'Length',
-            '${_formatNumber(hazard.lengthMeters!)} m',
-          ),
-        if (hazard.widthMeters != null)
-          _infoRow(
-            'Width',
-            '${_formatNumber(hazard.widthMeters!)} m',
-          ),
-        if (hazard.depthMeters != null)
-          _infoRow(
-            'Depth',
-            '${_formatNumber(hazard.depthMeters!)} m',
-          ),
-        if (hazard.areaSquareMeters != null)
-          _infoRow(
-            'Area',
-            '${_formatNumber(hazard.areaSquareMeters!)} m²',
-          ),
-        if (hazard.volumeCubicMeters != null)
-          _infoRow(
-            'Volume',
-            '${_formatNumber(hazard.volumeCubicMeters!)} m³',
-          ),
-        if (hazard.runoutDistanceMeters != null)
-          _infoRow(
-            'Runout distance',
-            '${_formatNumber(hazard.runoutDistanceMeters!)} m',
-          ),
-        if (hazard.lengthMeters == null &&
-            hazard.widthMeters == null &&
-            hazard.depthMeters == null &&
-            hazard.areaSquareMeters == null &&
-            hazard.volumeCubicMeters == null &&
-            hazard.runoutDistanceMeters == null)
-          _emptyText(
-            'No dimensional information available.',
-          ),
+        if (hazard.lengthMeters != null) _infoRow('Length', '${_formatNumber(hazard.lengthMeters!)} m'),
+        if (hazard.widthMeters != null) _infoRow('Width', '${_formatNumber(hazard.widthMeters!)} m'),
+        if (hazard.depthMeters != null) _infoRow('Depth', '${_formatNumber(hazard.depthMeters!)} m'),
+        if (hazard.areaSquareMeters != null) _infoRow('Total Area', '${_formatNumber(hazard.areaSquareMeters!)} m²'),
+        if (hazard.volumeCubicMeters != null) _infoRow('Volume', '${_formatNumber(hazard.volumeCubicMeters!)} m³'),
+        if (hazard.runoutDistanceMeters != null) _infoRow('Runout Distance', '${_formatNumber(hazard.runoutDistanceMeters!)} m'),
+        if (!hasData) _emptyText('No dimensional measurements recorded for this site.'),
       ],
     );
   }
 
   Widget _buildTriggerSection() {
     return _section(
-      title: 'Triggering Information',
-      icon: Icons.cloud_outlined,
+      title: 'Triggering Factors',
+      icon: Icons.thunderstorm_outlined,
       children: [
-        _descriptionText(
-          hazard.triggering,
-          'No triggering information available.',
-        ),
+        _descriptionText(hazard.triggering, 'No primary triggering factor established in records.'),
       ],
     );
   }
 
   Widget _buildGeologySection() {
     return _section(
-      title: 'Geological Information',
+      title: 'Geological Context',
       icon: Icons.landscape_outlined,
       children: [
-        _descriptionText(
-          hazard.geology,
-          'No geological information available.',
-        ),
-        if (hazard.geoScientificCause != null &&
-            hazard.geoScientificCause!.trim().isNotEmpty) ...[
-          const SizedBox(height: 10),
-          const Text(
-            'Geo-scientific interpretation',
-            style: TextStyle(
-              fontSize: 13,
-              fontWeight: FontWeight.w700,
-              color: Color(0xFF173B3C),
-            ),
-          ),
-          const SizedBox(height: 5),
-          _descriptionText(
-            hazard.geoScientificCause,
-            'No additional interpretation available.',
-          ),
+        _infoRow('Formation', _displayValue(hazard.geology, 'Unknown Lithology')),
+        if (hazard.geoScientificCause != null) ...[
+          const SizedBox(height: 12),
+          const Text('Scientific Analysis', style: TextStyle(fontSize: 12, fontWeight: FontWeight.w800, color: Color(0xFF0F172A))),
+          const SizedBox(height: 6),
+          _descriptionText(hazard.geoScientificCause, ''),
         ],
       ],
     );
   }
 
   Widget _buildImpactSection() {
-    final bool hasInfrastructure =
-    _hasText(hazard.infrastructureImpact);
-
-    final bool hasPeople =
-    _hasText(hazard.peopleImpact);
-
-    final bool hasLivestock =
-    _hasText(hazard.livestockImpact);
+    final bool hasInfra = _hasText(hazard.infrastructureImpact);
+    final bool hasPeople = _hasText(hazard.peopleImpact);
+    final bool hasLive = _hasText(hazard.livestockImpact);
 
     return _section(
       title: 'Reported Impacts',
-      icon: Icons.warning_outlined,
+      icon: Icons.error_outline_rounded,
       children: [
-        if (hasInfrastructure)
-          _descriptionBlock(
-            'Infrastructure',
-            hazard.infrastructureImpact!,
-          ),
-        if (hasPeople)
-          _descriptionBlock(
-            'People',
-            hazard.peopleImpact!,
-          ),
-        if (hasLivestock)
-          _descriptionBlock(
-            'Livestock',
-            hazard.livestockImpact!,
-          ),
-        if (!hasInfrastructure &&
-            !hasPeople &&
-            !hasLivestock)
-          _emptyText(
-            'No impact information available.',
-          ),
+        if (hasInfra) _impactItem('Infrastructure', hazard.infrastructureImpact!, Icons.traffic_outlined),
+        if (hasPeople) _impactItem('Population', hazard.peopleImpact!, Icons.groups),
+        if (hasLive) _impactItem('Agriculture', hazard.livestockImpact!, Icons.agriculture),
+        if (!hasInfra && !hasPeople && !hasLive) _emptyText('No verified impact reports for this site.'),
       ],
     );
   }
 
   Widget _buildHistorySection() {
-    final bool hasInitiation =
-        hazard.initiationYear != null;
-
-    final bool hasReactivation =
-        hazard.reactivationYear != null;
-
     return _section(
-      title: 'Historical Information',
-      icon: Icons.history,
+      title: 'Historical Timeline',
+      icon: Icons.history_outlined,
       children: [
-        if (hasInitiation)
-          _infoRow(
-            'Initiation year',
-            hazard.initiationYear!.toString(),
-          ),
-        if (hasReactivation)
-          _infoRow(
-            'Reactivation year',
-            hazard.reactivationYear!.toString(),
-          ),
-        _infoRow(
-          'Historical event',
-          hazard.historicalEvent == true
-              ? 'Yes'
-              : 'Not established',
-        ),
+        _infoRow('Initiation Year', hazard.initiationYear?.toString() ?? 'Unknown'),
+        _infoRow('Latest Reactivation', hazard.reactivationYear?.toString() ?? 'None Recorded'),
+        _infoRow('Historical Record', hazard.historicalEvent == true ? 'Confirmed Historical Event' : 'Recent/Active Event'),
+        if (hazard.remarks != null) ...[
+          const SizedBox(height: 12),
+          const Text('Summary / Till Date', style: TextStyle(fontSize: 12, fontWeight: FontWeight.w800, color: Color(0xFF0F172A))),
+          const SizedBox(height: 6),
+          _descriptionText(hazard.remarks, ''),
+        ],
+      ],
+    );
+  }
+
+  Widget _buildTechnicalParametersSection() {
+    if (hazard.sourceProperties.isEmpty) return const SizedBox.shrink();
+    
+    return _section(
+      title: 'Raw Technical Data',
+      icon: Icons.code_rounded,
+      children: [
+        ...hazard.sourceProperties.entries.take(8).map((e) => _infoRow(e.key.toUpperCase(), e.value.toString())),
+        if (hazard.sourceProperties.length > 8) 
+          const Text('... Additional parameters stored in background.', style: TextStyle(fontSize: 10, fontStyle: FontStyle.italic)),
       ],
     );
   }
 
   Widget _buildSourceSection() {
-    final String source = _displayValue(
-      hazard.source,
-      'GSI',
-    );
-
     return _section(
       title: 'Data Provenance',
-      icon: Icons.verified_outlined,
+      icon: Icons.verified_user_outlined,
       children: [
-        _infoRow(
-          'Source',
-          source,
-          valueColor: const Color(0xFF0B5D5E),
-        ),
-        _infoRow(
-          'Record ID',
-          hazard.id,
-        ),
+        _infoRow('Primary Source', _displayValue(hazard.source, 'Geological Survey of India (GSI)')),
+        _infoRow('System Record ID', hazard.id),
       ],
     );
   }
 
-  Widget _section({
-    required String title,
-    required IconData icon,
-    required List<Widget> children,
-  }) {
+  Widget _section({required String title, required IconData icon, required List<Widget> children}) {
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: const Color(0xFFF5F8F8),
-        borderRadius: BorderRadius.circular(18),
-        border: Border.all(
-          color: const Color(0xFFE0E8E8),
-        ),
+        color: const Color(0xFFF8FAFC),
+        borderRadius: BorderRadius.circular(24),
+        border: Border.all(color: const Color(0xFFE2E8F0)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
-              Icon(
-                icon,
-                size: 20,
-                color: const Color(0xFF0B5D5E),
-              ),
-              const SizedBox(width: 8),
+              Icon(icon, size: 20, color: const Color(0xFF0D9488)),
+              const SizedBox(width: 10),
               Text(
-                title,
+                title.toUpperCase(),
                 style: const TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF173B3C),
+                  fontSize: 12,
+                  fontWeight: FontWeight.w900,
+                  color: Color(0xFF0F172A),
+                  letterSpacing: 1.0,
                 ),
               ),
             ],
           ),
-          const SizedBox(height: 12),
+          const SizedBox(height: 16),
           ...children,
         ],
       ),
     );
   }
 
-  Widget _infoRow(
-      String label,
-      String value, {
-        Color? valueColor,
-      }) {
+  Widget _infoRow(String label, String value, {Color? valueColor}) {
     return Padding(
-      padding: const EdgeInsets.only(
-        bottom: 8,
-      ),
+      padding: const EdgeInsets.only(bottom: 10),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
-            flex: 4,
-            child: Text(
-              label,
-              style: TextStyle(
-                fontSize: 12.5,
-                color: Colors.grey.shade600,
-              ),
-            ),
+            flex: 5,
+            child: Text(label, style: const TextStyle(fontSize: 13, color: Color(0xFF64748B), fontWeight: FontWeight.w500)),
           ),
           const SizedBox(width: 8),
           Expanded(
-            flex: 6,
+            flex: 5,
             child: Text(
               value,
               textAlign: TextAlign.right,
               style: TextStyle(
                 fontSize: 13,
-                fontWeight: FontWeight.w600,
-                color: valueColor ??
-                    const Color(0xFF263238),
+                fontWeight: FontWeight.w700,
+                color: valueColor ?? const Color(0xFF0F172A),
               ),
             ),
           ),
@@ -473,46 +344,22 @@ class LandslideInfoCard extends StatelessWidget {
     );
   }
 
-  Widget _descriptionText(
-      String? value,
-      String fallback,
-      ) {
-    return Text(
-      _displayValue(value, fallback),
-      style: const TextStyle(
-        fontSize: 13,
-        height: 1.5,
-        color: Color(0xFF37474F),
-      ),
-    );
-  }
-
-  Widget _descriptionBlock(
-      String title,
-      String value,
-      ) {
+  Widget _impactItem(String title, String value, IconData icon) {
     return Padding(
-      padding: const EdgeInsets.only(
-        bottom: 12,
-      ),
-      child: Column(
+      padding: const EdgeInsets.only(bottom: 12),
+      child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            title,
-            style: const TextStyle(
-              fontSize: 13,
-              fontWeight: FontWeight.w700,
-              color: Color(0xFF173B3C),
-            ),
-          ),
-          const SizedBox(height: 5),
-          Text(
-            value,
-            style: const TextStyle(
-              fontSize: 13,
-              height: 1.5,
-              color: Color(0xFF37474F),
+          Icon(icon, size: 16, color: const Color(0xFF64748B)),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(title, style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w800, color: Color(0xFF0F172A))),
+                const SizedBox(height: 2),
+                Text(value, style: const TextStyle(fontSize: 13, color: Color(0xFF475569), height: 1.4)),
+              ],
             ),
           ),
         ],
@@ -520,55 +367,26 @@ class LandslideInfoCard extends StatelessWidget {
     );
   }
 
-  Widget _emptyText(String text) {
+  Widget _descriptionText(String? value, String fallback) {
     return Text(
-      text,
-      style: TextStyle(
-        fontSize: 12.5,
-        color: Colors.grey.shade600,
-        fontStyle: FontStyle.italic,
-      ),
+      _displayValue(value, fallback),
+      style: const TextStyle(fontSize: 14, height: 1.5, color: Color(0xFF1E293B), fontWeight: FontWeight.w500),
     );
   }
 
-  String _displayValue(
-      String? value,
-      String fallback,
-      ) {
-    if (value == null ||
-        value.trim().isEmpty) {
-      return fallback;
-    }
+  Widget _emptyText(String text) {
+    return Text(text, style: const TextStyle(fontSize: 12, color: Color(0xFF94A3B8), fontStyle: FontStyle.italic));
+  }
 
+  String _displayValue(String? value, String fallback) {
+    if (value == null || value.trim().isEmpty) return fallback;
     return value.trim();
   }
 
-  bool _hasText(String? value) {
-    return value != null &&
-        value.trim().isNotEmpty;
-  }
-
-  Color _activityColor(String activity) {
-    final String normalized =
-    activity.toLowerCase();
-
-    if (normalized.contains('active')) {
-      return Colors.red;
-    }
-
-    if (normalized.contains('dormant') ||
-        normalized.contains('inactive')) {
-      return Colors.grey.shade700;
-    }
-
-    return const Color(0xFF0B5D5E);
-  }
+  bool _hasText(String? value) => value != null && value.trim().isNotEmpty;
 
   String _formatNumber(double value) {
-    if (value == value.roundToDouble()) {
-      return value.toInt().toString();
-    }
-
-    return value.toStringAsFixed(2);
+    if (value == value.roundToDouble()) return value.toInt().toString();
+    return value.toStringAsFixed(1);
   }
 }

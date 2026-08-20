@@ -11,6 +11,7 @@ class LandslidePolygon {
   final String? movementType;
   final String? geology;
   final String? remarks;
+  final String? history;
 
   final List<List<GeoLocation>> rings;
 
@@ -25,6 +26,7 @@ class LandslidePolygon {
     required this.movementType,
     required this.geology,
     required this.remarks,
+    this.history,
     required this.rings,
   });
 

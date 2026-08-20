@@ -129,6 +129,9 @@ class LandslidePolygonProvider {
       remarks: _stringValue(
         properties['remarks'],
       ),
+      history: _stringValue(
+        properties['history'],
+      ),
       rings: rings,
     );
   }

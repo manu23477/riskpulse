@@ -1,0 +1,117 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "poly-kotropi",
+        "slide_name": "Kotropi Landslide (Mandi)",
+        "source": "GSI / RiskPulse Archive",
+        "state": "Himachal Pradesh",
+        "district": "Mandi",
+        "activity": "Active / Chronic",
+        "movement_type": "Debris Flow / Slide",
+        "triggering": "Monsoon Rainfall",
+        "geology": "Phyllite and Schist",
+        "remarks": "One of the deadliest landslides in HP history, buried two buses on NH-154.",
+        "history": "August 13, 2017: A massive landslide occurred at Kotropi in Mandi district. Two HRTC buses were swept away, resulting in 46 fatalities. The slide completely blocked the Pathankot-Mandi highway. The zone remains highly unstable and is monitored as a chronic landslide area."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [76.8880, 31.9080],
+            [76.8920, 31.9080],
+            [76.8930, 31.9120],
+            [76.8890, 31.9130],
+            [76.8880, 31.9080]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "poly-nigulsari",
+        "slide_name": "Nigulsari Landslide (Kinnaur)",
+        "source": "GSI / News Archive",
+        "state": "Himachal Pradesh",
+        "district": "Kinnaur",
+        "activity": "Active",
+        "movement_type": "Rockfall and Slide",
+        "triggering": "Monsoon / Geological Instability",
+        "geology": "Gneiss and Schist",
+        "remarks": "Major slide on NH-5 (Hindustan-Tibet Road).",
+        "history": "August 11, 2021: A major landslide struck Nigulsari on NH-5. A state transport bus and several vehicles were buried under debris. 28 people lost their lives. The area has seen multiple reactivations since then, causing frequent blockades of the vital NH-5 supply line to the tribal areas."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [77.9180, 31.5280],
+            [77.9220, 31.5280],
+            [77.9230, 31.5320],
+            [77.9190, 31.5330],
+            [77.9180, 31.5280]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "poly-batseri",
+        "slide_name": "Batseri Rockfall (Kinnaur)",
+        "source": "Visual Archive",
+        "state": "Himachal Pradesh",
+        "district": "Kinnaur",
+        "activity": "Episodic",
+        "movement_type": "Rockfall",
+        "triggering": "Weathering / Rainfall",
+        "geology": "Granitic Gneiss",
+        "remarks": "Infamous for the bridge collapse caught on video.",
+        "history": "July 25, 2021: Massive boulders rolled down the hills of Batseri, Sangla valley. The rockfall destroyed a bridge and several vehicles. 9 tourists were killed. This event highlighted the extreme vulnerability of Kinnaur's steep slopes to sudden rockfall events during the monsoon."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [78.2580, 31.4280],
+            [78.2620, 31.4280],
+            [78.2630, 31.4320],
+            [78.2590, 31.4330],
+            [78.2580, 31.4280]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "poly-dhalli",
+        "slide_name": "Dhalli Landslide (Shimla)",
+        "source": "Local Records",
+        "state": "Himachal Pradesh",
+        "district": "Shimla",
+        "activity": "Stabilized / Monitored",
+        "movement_type": "Debris Slide",
+        "triggering": "Rainfall",
+        "geology": "Overburden / Saturated Soil",
+        "remarks": "Major slide near the Dhalli tunnel.",
+        "history": "September 2017: A landslide occurred near the Dhalli tunnel on the outskirts of Shimla city. The slide buried several vehicles and partially damaged buildings. It caused significant traffic disruption on the busy Shimla-Kufri road. Stabilization work was carried out following the event."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [77.1980, 31.1080],
+            [77.2020, 31.1080],
+            [77.2030, 31.1120],
+            [77.1990, 31.1130],
+            [77.1980, 31.1080]
+          ]
+        ]
+      }
+    }
+  ]
+}
