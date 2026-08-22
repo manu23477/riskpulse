@@ -1,0 +1,119 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "cb-mandi-dharampur-2015",
+        "name": "Dharampur Cloudburst",
+        "category": "Meteorological",
+        "intensity": 85,
+        "active": false,
+        "district": "Mandi",
+        "size": "Major",
+        "triggering": "Extreme Convective Rainfall",
+        "history": "August 2015: Intense cloudburst led to sudden flooding in Dharampur town. The bus stand was completely submerged, and several buses were washed away. Significant damage to property and local infrastructure.",
+        "remarks": "Highlighted the vulnerability of towns built near mountain streams."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [76.7125, 31.8152]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "cb-kullu-manikaran-2022",
+        "name": "Manikaran Cloudburst",
+        "category": "Meteorological",
+        "intensity": 90,
+        "active": false,
+        "district": "Kullu",
+        "size": "Major",
+        "triggering": "High-intensity localized rain",
+        "history": "July 6, 2022: Cloudburst in Chojh village near Manikaran. Several people were washed away as the Parvati river swelled suddenly. Multiple camping sites and bridges were destroyed.",
+        "remarks": "Affected the busy tourism circuit of Parvati Valley."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [77.3484, 32.0275]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "cb-shimla-samej-2024",
+        "name": "Samej Massive Cloudburst",
+        "category": "Meteorological",
+        "intensity": 99,
+        "active": true,
+        "district": "Shimla/Kullu Boundary",
+        "size": "Extreme",
+        "triggering": "Localized convective storm",
+        "history": "August 1, 2024: One of the worst cloudbursts in HP. Wiped out whole hamlets in Samej, Rampur. Over 30 people missing. Massive debris flow downstream.",
+        "remarks": "Caused catastrophic damage to both life and energy infrastructure (Malana II project)."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [77.6184, 31.4425]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "cb-chamba-thathri-2024",
+        "name": "Thathri Cloudburst",
+        "category": "Meteorological",
+        "intensity": 88,
+        "active": true,
+        "district": "Chamba",
+        "size": "Major",
+        "triggering": "Monsoon instability",
+        "history": "August 1, 2024: Occurred simultaneously with Samej. High intensity rain caused small streams to turn into raging torrents of mud and boulders.",
+        "remarks": "Remote village accessibility severely impacted."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [76.1245, 32.5510]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "cb-kullu-bagipul-2024",
+        "name": "Bagipul Cloudburst",
+        "category": "Meteorological",
+        "intensity": 92,
+        "active": true,
+        "district": "Kullu",
+        "size": "Major",
+        "triggering": "Cloudburst",
+        "history": "July 31, 2024: Sudden heavy rain in Nirmand area. Bagipul market saw massive debris inflow. Houses and shops were washed away.",
+        "remarks": "Critical road connectivity to Anni and Nirmand cut off."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [77.5852, 31.4285]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "cb-lahaul-jahalman-2021",
+        "name": "Jahalman Cloudburst",
+        "category": "Meteorological",
+        "intensity": 82,
+        "active": false,
+        "district": "Lahaul & Spiti",
+        "size": "Medium",
+        "triggering": "Localized storm",
+        "history": "July 2021: Cloudburst in Jahalman nallah in Lahaul valley. Caused blockage of Chandrabhaga river and damage to agriculture land.",
+        "remarks": "Rare high-intensity event in cold desert region."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [76.8524, 32.6512]
+      }
+    }
+  ]
+}

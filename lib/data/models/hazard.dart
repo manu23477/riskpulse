@@ -24,6 +24,7 @@ class Hazard {
   final String? peopleImpact;
   final String? livestockImpact;
   final String? remarks;
+  final String? history;
 
   // Landslide dimensions and impact measurements.
   final double? lengthMeters;
@@ -42,26 +43,6 @@ class Hazard {
   final Map<String, dynamic> sourceProperties;
 
   // Original GeoJSON geometry.
-  //
-  // Examples:
-  // {
-  //   "type": "Point",
-  //   "coordinates": [...]
-  // }
-  //
-  // or
-  //
-  // {
-  //   "type": "Polygon",
-  //   "coordinates": [...]
-  // }
-  //
-  // or
-  //
-  // {
-  //   "type": "MultiPolygon",
-  //   "coordinates": [...]
-  // }
   final Map<String, dynamic>? geometry;
 
   const Hazard({
@@ -86,6 +67,7 @@ class Hazard {
     this.peopleImpact,
     this.livestockImpact,
     this.remarks,
+    this.history,
     this.lengthMeters,
     this.widthMeters,
     this.depthMeters,

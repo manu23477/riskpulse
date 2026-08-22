@@ -15,8 +15,7 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   final WeatherService _weatherService = WeatherService();
   final List<String> _allDistricts = [
-    'Bilaspur', 'Chamba', 'Hamirpur', 'Kangra', 'Kinnaur', 'Kullu',
-    'Lahaul & Spiti', 'Mandi', 'Shimla', 'Sirmaur', 'Solan', 'Una'
+    'Chamoli', 'Kinnaur', 'Kullu', 'Leh', 'Mandi', 'Mangan', 'Ramban', 'Rudraprayag', 'Shimla', 'Uttarkashi'
   ];
 
   @override

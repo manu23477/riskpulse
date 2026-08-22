@@ -1,0 +1,153 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "fl-kangra-bhagsunag-2021",
+        "name": "Bhagsunag Flash Flood",
+        "category": "Hydrological",
+        "intensity": 92,
+        "active": true,
+        "district": "Kangra",
+        "size": "Major",
+        "triggering": "Cloudburst",
+        "history": "July 12, 2021: Intense cloudburst caused a massive flash flood in Bhagsunag area of McLeod Ganj. Numerous luxury cars were swept away and properties damaged.",
+        "remarks": "Urban drainage system overwhelmed by sudden discharge."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [76.3333, 32.2461]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "fl-mandi-beas-2023",
+        "name": "Beas River Flash Flood",
+        "category": "Hydrological",
+        "intensity": 98,
+        "active": true,
+        "district": "Mandi",
+        "size": "Major",
+        "triggering": "Extreme Rainfall / Dam Release",
+        "history": "July 2023: Beas river reached record levels in Mandi town. Historic Panchvaktra temple partially submerged. Mandi-Kullu highway washed away in multiple stretches.",
+        "remarks": "Highest flood level recorded in decades."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [76.9317, 31.7081]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "fl-kullu-kasol-2023",
+        "name": "Parvati Valley Flash Flood",
+        "category": "Hydrological",
+        "intensity": 95,
+        "active": true,
+        "district": "Kullu",
+        "size": "Major",
+        "triggering": "Cloudburst / Heavy Rainfall",
+        "history": "July 2023: Sudden rise in Parvati river levels. Several campsites in Kasol and Manikaran swept away. Major disruption to tourism infrastructure.",
+        "remarks": "Vulnerable riverbank settlements affected."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [77.3151, 32.0104]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "fl-shimla-samej-2024",
+        "name": "Samej Flash Flood",
+        "category": "Hydrological",
+        "intensity": 99,
+        "active": true,
+        "district": "Shimla/Kullu Boundary",
+        "size": "Major / Tragic",
+        "triggering": "Cloudburst",
+        "history": "August 1, 2024: Massive cloudburst at Samej Khud. Entire village hamlets wiped out. Over 30 people missing or dead. Hydel project infrastructure destroyed.",
+        "remarks": "Extremely high velocity debris-laden flood."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [77.6200, 31.4500]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "fl-lahaul-chandra-2023",
+        "name": "Chandra River Surge",
+        "category": "Hydrological",
+        "intensity": 85,
+        "active": true,
+        "district": "Lahaul & Spiti",
+        "size": "Medium",
+        "triggering": "Glacial Melt + Rain",
+        "history": "Summer 2023: Unusual flash floods in Lahaul valley due to combined effects of heavy rain and rapid snow melt. Blocked Atal Tunnel access roads.",
+        "remarks": "Cold desert hydrological event."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [77.2100, 32.5300]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "fl-chamba-ravi-2023",
+        "name": "Ravi River Flash Flood",
+        "category": "Hydrological",
+        "intensity": 88,
+        "active": true,
+        "district": "Chamba",
+        "size": "Major",
+        "triggering": "Sustained Intense Rain",
+        "history": "July 2023: Ravi river caused extensive damage to Chamba-Pathankot highway. Local bridges and hydro-power intakes damaged.",
+        "remarks": "Impact on strategic connectivity."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [76.1258, 32.5534]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "fl-mandi-nagwain-minor",
+        "name": "Nagwain Overflow",
+        "category": "Hydrological",
+        "intensity": 45,
+        "active": false,
+        "district": "Mandi",
+        "size": "Minor",
+        "remarks": "Minor localized flooding due to river backflow."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [77.1650, 31.7500]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "fl-una-swan-minor",
+        "name": "Swan River Spill",
+        "category": "Hydrological",
+        "intensity": 40,
+        "active": false,
+        "district": "Una",
+        "size": "Minor",
+        "remarks": "Seasonal overflow affecting low-lying agriculture fields."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [76.2500, 31.4500]
+      }
+    }
+  ]
+}

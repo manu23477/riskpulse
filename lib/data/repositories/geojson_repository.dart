@@ -25,4 +25,22 @@ class GeoJsonRepository {
 
     return provider.getHazardsFromAsset();
   }
+
+  Future<List<Hazard>> getFloodHazards() {
+    final provider =
+    GisProviderFactory.createGeoJsonProvider(
+      'lib/data/assets/hazards/flood.geojson',
+    );
+
+    return provider.getHazardsFromAsset();
+  }
+
+  Future<List<Hazard>> getCloudburstHazards() {
+    final provider =
+    GisProviderFactory.createGeoJsonProvider(
+      'lib/data/assets/hazards/cloudburst.geojson',
+    );
+
+    return provider.getHazardsFromAsset();
+  }
 }

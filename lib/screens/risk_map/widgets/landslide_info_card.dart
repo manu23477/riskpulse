@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../data/models/hazard.dart';
 
@@ -66,12 +67,30 @@ class LandslideInfoCard extends StatelessWidget {
                 width: double.infinity,
                 height: 56,
                 child: ElevatedButton.icon(
+                  onPressed: () => _launchGoogleEarth(context),
+                  icon: const Icon(Icons.public, color: Colors.white),
+                  label: const Text('Explore in 3D (Google Earth)', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF0D9488),
+                    foregroundColor: Colors.white,
+                    elevation: 4,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 12),
+              SizedBox(
+                width: double.infinity,
+                height: 50,
+                child: OutlinedButton.icon(
                   onPressed: () => Navigator.of(context).pop(),
                   icon: const Icon(Icons.close),
                   label: const Text('Close Intelligence Card', style: TextStyle(fontWeight: FontWeight.bold)),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF0F172A),
-                    foregroundColor: Colors.white,
+                  style: OutlinedButton.styleFrom(
+                    foregroundColor: const Color(0xFF64748B),
+                    side: const BorderSide(color: Color(0xFFE2E8F0)),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(16),
                     ),
@@ -83,6 +102,30 @@ class LandslideInfoCard extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Future<void> _launchGoogleEarth(BuildContext context) async {
+    // Construct the Google Earth Web URL with 3D view parameters
+    // Format: @lat,lon,altitude,distance,y,heading,tilt,roll
+    // tilt: 65 (for dramatic 3D perspective), range: 800 (close zoom)
+    final String lat = hazard.location.latitude.toString();
+    final String lon = hazard.location.longitude.toString();
+    
+    final Uri url = Uri.parse(
+      'https://earth.google.com/web/@$lat,$lon,2000a,800d,35y,0h,65t,0r'
+    );
+
+    try {
+      if (!await launchUrl(url, mode: LaunchMode.externalApplication)) {
+        if (context.mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Could not launch Google Earth. Please ensure it is installed.')),
+          );
+        }
+      }
+    } catch (e) {
+      debugPrint('Error launching Google Earth: $e');
+    }
   }
 
   Widget _buildHeader() {
@@ -144,6 +187,8 @@ class LandslideInfoCard extends StatelessWidget {
       icon: Icons.shield_outlined,
       children: [
         _infoRow('Category', hazard.category),
+        if (hazard.sourceProperties['size'] != null)
+          _infoRow('Event Size', hazard.sourceProperties['size'].toString()),
         _infoRow('Intensity Score', '${hazard.intensity.round()}/100'),
         _infoRow('Unit of Measure', hazard.unit),
         _infoRow('Monitoring Status', hazard.active ? 'Active / Live' : 'Stable / Historical', 
@@ -244,14 +289,14 @@ class LandslideInfoCard extends StatelessWidget {
       title: 'Historical Timeline',
       icon: Icons.history_outlined,
       children: [
-        _infoRow('Initiation Year', hazard.initiationYear?.toString() ?? 'Unknown'),
-        _infoRow('Latest Reactivation', hazard.reactivationYear?.toString() ?? 'None Recorded'),
+        if (hazard.initiationYear != null) _infoRow('Initiation Year', hazard.initiationYear!.toString()),
+        if (hazard.reactivationYear != null) _infoRow('Latest Reactivation', hazard.reactivationYear!.toString()),
         _infoRow('Historical Record', hazard.historicalEvent == true ? 'Confirmed Historical Event' : 'Recent/Active Event'),
-        if (hazard.remarks != null) ...[
+        if (hazard.history != null || hazard.remarks != null) ...[
           const SizedBox(height: 12),
-          const Text('Summary / Till Date', style: TextStyle(fontSize: 12, fontWeight: FontWeight.w800, color: Color(0xFF0F172A))),
+          const Text('Detailed History / Summary', style: TextStyle(fontSize: 12, fontWeight: FontWeight.w800, color: Color(0xFF0F172A))),
           const SizedBox(height: 6),
-          _descriptionText(hazard.remarks, ''),
+          _descriptionText(hazard.history ?? hazard.remarks, ''),
         ],
       ],
     );

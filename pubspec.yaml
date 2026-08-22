@@ -38,4 +38,7 @@ flutter:
   assets:
     - lib/data/assets/test_hazards.geojson
     - lib/data/assets/hazards/landslide.geojson
+    - lib/data/assets/hazards/flood.geojson
+    - lib/data/assets/hazards/cloudburst.geojson
+    - lib/data/assets/hazards/major_landslides_polygons.geojson
     - lib/data/assets/hazards/kotropi_polygon.geojson

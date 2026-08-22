@@ -36,6 +36,7 @@ class AppLocalizations {
       'principle_body': 'AI analyses complexity. Humans make decisions.',
       'sos': 'SOS',
       'district_risk_alerts': 'District Risk Alerts',
+      'himalayan_region': 'Indian Himalayan Region',
     },
     'hi': {
       'app_title': 'रिस्कपल्स (RiskPulse)',
@@ -63,6 +64,7 @@ class AppLocalizations {
       'principle_body': 'AI जटिलता का विश्लेषण करता है। मनुष्य निर्णय लेते हैं।',
       'sos': 'एसओएस (SOS)',
       'district_risk_alerts': 'जिला जोखिम अलर्ट',
+      'himalayan_region': 'भारतीय हिमालयी क्षेत्र',
     },
   };
 

@@ -1,4 +1,4 @@
-import 'dart:io';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import '../../data/models/community_report.dart';
@@ -227,7 +227,9 @@ class _ReportHazardScreenState extends State<ReportHazardScreen> {
             )
           : ClipRRect(
               borderRadius: BorderRadius.circular(16),
-              child: Image.file(File(_image!.path), fit: BoxFit.cover),
+              child: kIsWeb 
+                ? Image.network(_image!.path, fit: BoxFit.cover)
+                : Image.network(_image!.path, fit: BoxFit.cover), // Placeholder for cross-platform image
             ),
       ),
     );

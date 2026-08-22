@@ -12,9 +12,16 @@ class RiskLayerRepository {
       ),
       RiskLayer(
         id: 'layer-flood',
-        name: 'Flood',
+        name: 'Flash Floods',
         type: 'Hazard',
-        description: 'Flood hazard layer',
+        description: 'Flash flood and riverine flooding layer',
+        isActive: true,
+      ),
+      RiskLayer(
+        id: 'layer-cloudburst',
+        name: 'Cloud Bursts',
+        type: 'Hazard',
+        description: 'Cloud burst incidents and hotspots',
         isActive: true,
       ),
       RiskLayer(
