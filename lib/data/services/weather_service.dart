@@ -1,4 +1,5 @@
 import 'dart:math';
+import '../models/weather_alert.dart';
 
 class WeatherService {
   // Simulated rainfall data for Himachal Pradesh districts
@@ -18,8 +19,30 @@ class WeatherService {
   };
 
   Map<String, double> getDistrictRainfall() {
-    // In a real app, this would be an API call
     return _districtRainfall;
+  }
+
+  List<WeatherAlert> getActiveAlerts() {
+    return [
+      WeatherAlert(
+        id: 'alert-imd-001',
+        title: 'Heavy Rainfall Warning',
+        description: 'Isolated heavy to very heavy rainfall likely in Mandi and Kinnaur districts over the next 24 hours.',
+        severity: AlertSeverity.orange,
+        affectedDistricts: ['Mandi', 'Kinnaur'],
+        issuedAt: DateTime.now().subtract(const Duration(hours: 2)),
+        expiresAt: DateTime.now().add(const Duration(hours: 22)),
+      ),
+      WeatherAlert(
+        id: 'alert-imd-002',
+        title: 'Flash Flood Risk',
+        description: 'High probability of sudden cloudburst activity in Kullu valley. Avoid camping near river banks.',
+        severity: AlertSeverity.red,
+        affectedDistricts: ['Kullu'],
+        issuedAt: DateTime.now().subtract(const Duration(minutes: 45)),
+        expiresAt: DateTime.now().add(const Duration(hours: 6)),
+      ),
+    ];
   }
 
   // Helper to simulate "live" updates by slightly varying data

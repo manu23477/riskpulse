@@ -16,18 +16,18 @@ class DistrictRiskFeed extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 4),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 4),
           child: Row(
             children: [
-              Icon(Icons.notification_important_outlined, color: Color(0xFFF59E0B), size: 20),
-              SizedBox(width: 8),
+              const Icon(Icons.notification_important_outlined, color: Color(0xFFF59E0B), size: 20),
+              const SizedBox(width: 8),
               Text(
                 'District Risk Alerts',
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w800,
-                  color: Color(0xFF0F172A),
+                  color: Theme.of(context).colorScheme.onSurface,
                   letterSpacing: -0.5,
                 ),
               ),
@@ -66,7 +66,7 @@ class _DistrictAlertCard extends StatelessWidget {
       margin: const EdgeInsets.only(right: 14, bottom: 8),
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).colorScheme.surface,
         borderRadius: BorderRadius.circular(24),
         border: Border.all(color: color.withValues(alpha: 0.2), width: 1.5),
         boxShadow: [
@@ -82,7 +82,7 @@ class _DistrictAlertCard extends StatelessWidget {
         children: [
           Text(
             risk.name,
-            style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 16, color: Color(0xFF0F172A)),
+            style: TextStyle(fontWeight: FontWeight.w800, fontSize: 16, color: Theme.of(context).colorScheme.onSurface),
           ),
           const SizedBox(height: 6),
           Row(
@@ -102,7 +102,7 @@ class _DistrictAlertCard extends StatelessWidget {
               const Icon(Icons.water_drop, size: 14, color: Color(0xFF3B82F6)),
               Text(
                 ' ${risk.rainfallMm.round()}mm',
-                style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w700, color: Color(0xFF0F172A)),
+                style: TextStyle(fontSize: 12, fontWeight: FontWeight.w700, color: Theme.of(context).colorScheme.onSurface),
               ),
             ],
           ),
@@ -111,7 +111,7 @@ class _DistrictAlertCard extends StatelessWidget {
             risk.recommendation,
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
-            style: const TextStyle(fontSize: 11, color: Color(0xFF64748B), height: 1.3, fontWeight: FontWeight.w500),
+            style: TextStyle(fontSize: 11, color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6), height: 1.3, fontWeight: FontWeight.w500),
           ),
         ],
       ),

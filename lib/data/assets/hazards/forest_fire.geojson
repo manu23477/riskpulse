@@ -1,0 +1,40 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ff-shimla-tara-devi",
+        "name": "Tara Devi Pine Forest",
+        "category": "Meteorological",
+        "intensity": 75,
+        "active": true,
+        "district": "Shimla",
+        "size": "High Susceptibility",
+        "remarks": "Dense chir-pine forest. Frequent fires during April-June dry season."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [77.1250, 31.0650]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ff-solan-kasauli-range",
+        "name": "Kasauli Hill Range Fire",
+        "category": "Meteorological",
+        "intensity": 82,
+        "active": true,
+        "district": "Solan",
+        "size": "High Risk",
+        "history": "Frequent forest fires threatening tourist infrastructure and local biodiversity.",
+        "remarks": "Human activity and dry pine needles increase risk."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [76.9650, 30.8950]
+      }
+    }
+  ]
+}

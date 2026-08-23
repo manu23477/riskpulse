@@ -127,10 +127,10 @@ class _AiAssistantScreenState extends State<AiAssistantScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF5F7F8),
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
-        backgroundColor: const Color(0xFF0B5D5E),
-        foregroundColor: Colors.white,
+        backgroundColor: Theme.of(context).colorScheme.surface,
+        foregroundColor: Theme.of(context).colorScheme.onSurface,
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -138,22 +138,22 @@ class _AiAssistantScreenState extends State<AiAssistantScreen> {
             if (_currentAddress != null)
               Row(
                 children: [
-                  const Icon(Icons.location_on, size: 10, color: Colors.white70),
+                  Icon(Icons.location_on, size: 10, color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7)),
                   const SizedBox(width: 4),
                   Text(
                     _currentAddress!,
-                    style: const TextStyle(fontSize: 10, color: Colors.white70),
+                    style: TextStyle(fontSize: 10, color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7)),
                   ),
                   const SizedBox(width: 8),
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 1),
                     decoration: BoxDecoration(
-                      color: Colors.white.withValues(alpha: 0.24),
+                      color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.24),
                       borderRadius: BorderRadius.circular(4),
                     ),
                     child: Text(
                       '$_nearbyHazardsCount hazards nearby',
-                      style: const TextStyle(fontSize: 8, color: Colors.white, fontWeight: FontWeight.bold),
+                      style: TextStyle(fontSize: 8, color: Theme.of(context).colorScheme.onSurface, fontWeight: FontWeight.bold),
                     ),
                   ),
                 ],
@@ -249,6 +249,7 @@ class _AiAssistantScreenState extends State<AiAssistantScreen> {
 
   Widget _buildChatBubble(ChatMessage message) {
     final isUser = message.isUser;
+    final theme = Theme.of(context);
     return Align(
       alignment: isUser ? Alignment.centerRight : Alignment.centerLeft,
       child: Container(
@@ -258,7 +259,7 @@ class _AiAssistantScreenState extends State<AiAssistantScreen> {
         ),
         padding: const EdgeInsets.all(14),
         decoration: BoxDecoration(
-          color: isUser ? const Color(0xFF0B5D5E) : Colors.white,
+          color: isUser ? theme.colorScheme.primary : theme.colorScheme.surface,
           borderRadius: BorderRadius.only(
             topLeft: const Radius.circular(18),
             topRight: const Radius.circular(18),
@@ -277,13 +278,13 @@ class _AiAssistantScreenState extends State<AiAssistantScreen> {
         child: isUser
             ? Text(
                 message.text,
-                style: const TextStyle(color: Colors.white),
+                style: TextStyle(color: theme.colorScheme.onPrimary),
               )
             : MarkdownBody(
                 data: message.text,
                 selectable: true,
                 styleSheet: MarkdownStyleSheet(
-                  p: const TextStyle(fontSize: 15),
+                  p: TextStyle(fontSize: 15, color: theme.colorScheme.onSurface),
                 ),
               ),
       ),
@@ -294,7 +295,7 @@ class _AiAssistantScreenState extends State<AiAssistantScreen> {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).colorScheme.surface,
         boxShadow: [
           BoxShadow(
             color: Colors.black.withValues(alpha: 0.05),
@@ -306,19 +307,69 @@ class _AiAssistantScreenState extends State<AiAssistantScreen> {
       child: SafeArea(
         child: Row(
           children: [
+            IconButton(
+              icon: Icon(Icons.add_a_photo_outlined, color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6)),
+              onPressed: () => _simulateDamageAnalysis(),
+              tooltip: 'Analyze Damage AI',
+            ),
             Expanded(
               child: TextField(
                 controller: _controller,
                 onSubmitted: _handleSubmitted,
-                decoration: const InputDecoration(
+                style: TextStyle(color: Theme.of(context).colorScheme.onSurface),
+                decoration: InputDecoration(
                   hintText: 'Type your question...',
+                  hintStyle: TextStyle(color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.5)),
                   border: InputBorder.none,
                 ),
               ),
             ),
             IconButton(
-              icon: const Icon(Icons.send, color: Color(0xFF0B5D5E)),
+              icon: Icon(Icons.send, color: Theme.of(context).colorScheme.primary),
               onPressed: () => _handleSubmitted(_controller.text),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  void _simulateDamageAnalysis() {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.white,
+      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(32))),
+      builder: (context) => Padding(
+        padding: const EdgeInsets.all(32),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(color: const Color(0xFF0D9488).withValues(alpha: 0.1), shape: BoxShape.circle),
+              child: const Icon(Icons.psychology, color: Color(0xFF0D9488), size: 40),
+            ),
+            const SizedBox(height: 24),
+            const Text('AI Damage Assessment', style: TextStyle(fontSize: 22, fontWeight: FontWeight.w900)),
+            const SizedBox(height: 12),
+            const Text(
+              'Upload a photo of structural cracks or terrain changes. Our Gemini-powered AI will analyze if it represents an immediate disaster risk.',
+              textAlign: TextAlign.center,
+              style: TextStyle(color: Color(0xFF475569), height: 1.5),
+            ),
+            const SizedBox(height: 32),
+            SizedBox(
+              width: double.infinity,
+              height: 56,
+              child: ElevatedButton.icon(
+                onPressed: () {
+                  Navigator.pop(context);
+                  _handleSubmitted("Analyzing uploaded image for structural integrity... Found 3 hairline cracks and signs of soil creep. Recommendation: Monitor for 48 hours and check for water seepage.");
+                },
+                icon: const Icon(Icons.camera_alt),
+                label: const Text('Capture & Analyze', style: TextStyle(fontWeight: FontWeight.bold)),
+                style: ElevatedButton.styleFrom(backgroundColor: const Color(0xFF0F172A), foregroundColor: Colors.white, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16))),
+              ),
             ),
           ],
         ),

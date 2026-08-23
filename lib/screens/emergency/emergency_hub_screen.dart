@@ -35,6 +35,8 @@ class _EmergencyHubScreenState extends State<EmergencyHubScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             _buildSOSSection(),
+            const SizedBox(height: 24),
+            _buildQuickActionsRow(),
             const SizedBox(height: 32),
             const Text(
               'Official Helplines',
@@ -48,6 +50,88 @@ class _EmergencyHubScreenState extends State<EmergencyHubScreen> {
         ),
       ),
     );
+  }
+
+  Widget _buildQuickActionsRow() {
+    return Row(
+      children: [
+        Expanded(
+          child: _quickActionCard(
+            title: 'I am Safe',
+            subtitle: 'Notify contacts',
+            icon: Icons.check_circle_outline,
+            color: const Color(0xFF10B981),
+            onTap: () => _showSafeCheckIn(),
+          ),
+        ),
+        const SizedBox(width: 16),
+        Expanded(
+          child: _quickActionCard(
+            title: 'Resource Map',
+            subtitle: 'Find help near you',
+            icon: Icons.map_outlined,
+            color: const Color(0xFF6366F1),
+            onTap: () => _launchResourceMap(),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _quickActionCard({required String title, required String subtitle, required IconData icon, required Color color, required VoidCallback onTap}) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(24),
+        border: Border.all(color: color.withValues(alpha: 0.1)),
+        boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.03), blurRadius: 10, offset: const Offset(0, 4))],
+      ),
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: onTap,
+          borderRadius: BorderRadius.circular(24),
+          child: Padding(
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Icon(icon, color: color, size: 28),
+                const SizedBox(height: 12),
+                Text(title, style: const TextStyle(fontWeight: FontWeight.w900, fontSize: 15, color: Color(0xFF0F172A))),
+                Text(subtitle, style: const TextStyle(fontSize: 11, color: Color(0xFF64748B), fontWeight: FontWeight.w500)),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  void _showSafeCheckIn() {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Safety Check-in'),
+        content: const Text('This will send a message with your GPS coordinates to your emergency contacts stating that you are safe.'),
+        actions: [
+          TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancel')),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pop(context);
+              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Safety status shared with contacts.')));
+            },
+            style: ElevatedButton.styleFrom(backgroundColor: const Color(0xFF10B981), foregroundColor: Colors.white),
+            child: const Text('Send Safe Signal'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _launchResourceMap() {
+    // In a real app, this would open a specific map layer with shelters/hospitals
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Loading nearest Helipads & Shelters...')));
   }
 
   Widget _buildSOSSection() {

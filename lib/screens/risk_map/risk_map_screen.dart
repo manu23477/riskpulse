@@ -15,6 +15,7 @@ import '../../data/repositories/map_repository.dart';
 import '../../data/repositories/risk_layer_repository.dart';
 import '../../data/services/gis_data_service.dart';
 import '../../data/services/community_report_service.dart';
+import '../../data/services/forest_fire_service.dart';
 import '../../data/services/risk_engine.dart';
 import 'widgets/landslide_info_card.dart';
 
@@ -27,6 +28,7 @@ class RiskMapScreen extends StatefulWidget {
 
 class _RiskMapScreenState extends State<RiskMapScreen> {
   final GisDataService _gisDataService = GisDataService();
+  final ForestFireService _fireService = ForestFireService();
   final MapRepository _mapRepository = MapRepository();
   final RiskLayerRepository _riskLayerRepository = RiskLayerRepository();
   final LandslidePolygonRepository _landslidePolygonRepository = LandslidePolygonRepository(
@@ -45,6 +47,10 @@ class _RiskMapScreenState extends State<RiskMapScreen> {
   List<Hazard> landslideHazards = [];
   List<Hazard> floodHazards = [];
   List<Hazard> cloudburstHazards = [];
+  List<Hazard> earthquakeHazards = [];
+  List<Hazard> forestFireHazards = [];
+  List<Hazard> liveFireIncidents = [];
+  List<Hazard> avalancheHazards = [];
   List<LandslidePolygon> landslidePolygons = [];
   bool isLoadingGeoJson = true;
   bool isLoadingPolygons = true;
@@ -68,12 +74,21 @@ class _RiskMapScreenState extends State<RiskMapScreen> {
       final loadedLandslides = await _gisDataService.getLandslideHazards();
       final loadedFloods = await _gisDataService.getFloodHazards();
       final loadedCloudbursts = await _gisDataService.getCloudburstHazards();
+      final loadedEarthquakes = await _gisDataService.getEarthquakeHazards();
+      final loadedFires = await _gisDataService.getForestFireHazards();
+      final liveFires = await _fireService.fetchLiveFireIncidents();
+      final loadedAvalanches = await _gisDataService.getAvalancheHazards();
+
       if (!mounted) return;
       setState(() {
         geoJsonHazards = loadedHazards;
         landslideHazards = loadedLandslides;
         floodHazards = loadedFloods;
         cloudburstHazards = loadedCloudbursts;
+        earthquakeHazards = loadedEarthquakes;
+        forestFireHazards = loadedFires;
+        liveFireIncidents = liveFires;
+        avalancheHazards = loadedAvalanches;
         isLoadingGeoJson = false;
       });
     } catch (_) {
@@ -106,6 +121,12 @@ class _RiskMapScreenState extends State<RiskMapScreen> {
       markers = _createHazardMarkers(floodHazards);
     } else if (layer == 'Cloud Bursts') {
       markers = _createHazardMarkers(cloudburstHazards);
+    } else if (layer == 'Earthquake') {
+      markers = _createHazardMarkers(earthquakeHazards);
+    } else if (layer == 'Live Forest Fires') {
+      markers = _createHazardMarkers(liveFireIncidents);
+    } else if (layer == 'Avalanches') {
+      markers = _createHazardMarkers(avalancheHazards);
     } else if (layer == 'Live Landslides') {
       if (landslideHazards.isNotEmpty) markers.addAll(_createHazardMarkers(landslideHazards));
       markers.addAll(_createPolygonCentroidMarkers());
@@ -246,6 +267,8 @@ class _RiskMapScreenState extends State<RiskMapScreen> {
     if (lower.contains('flood')) return Icons.water;
     if (lower.contains('cloudburst')) return Icons.thunderstorm;
     if (lower.contains('earthquake')) return Icons.vibration;
+    if (lower.contains('forest')) return Icons.local_fire_department;
+    if (lower.contains('avalanche')) return Icons.ac_unit;
     return Icons.warning_rounded;
   }
 
@@ -255,6 +278,8 @@ class _RiskMapScreenState extends State<RiskMapScreen> {
     if (lower.contains('flood')) return const Color(0xFF3B82F6);
     if (lower.contains('cloudburst')) return Colors.deepPurpleAccent;
     if (lower.contains('earthquake')) return const Color(0xFF8B5CF6);
+    if (lower.contains('forest')) return Colors.deepOrange;
+    if (lower.contains('avalanche')) return Colors.lightBlueAccent;
     return const Color(0xFFE11D48);
   }
 
@@ -289,6 +314,113 @@ class _RiskMapScreenState extends State<RiskMapScreen> {
     );
   }
 
+  Widget _buildFloatingSearch() => Positioned(top: 16, left: 16, right: 16, child: IgnorePointer(ignoring: _isSimulationMode, child: AnimatedOpacity(opacity: _isSimulationMode ? 0.0 : 1.0, duration: const Duration(milliseconds: 200), child: Container(height: 50, decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(15), boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.1), blurRadius: 10, offset: const Offset(0, 4))]), child: const TextField(decoration: InputDecoration(hintText: 'Search landslides or districts...', hintStyle: TextStyle(fontSize: 14, color: Colors.black38), prefixIcon: Icon(Icons.search), border: InputBorder.none, contentPadding: EdgeInsets.symmetric(vertical: 15)))))));
+
+  Widget _buildMapLegend() => Positioned(right: 16, top: 80, child: Container(width: 150, padding: const EdgeInsets.all(16), decoration: BoxDecoration(color: Colors.white.withValues(alpha: 0.95), borderRadius: BorderRadius.circular(20), boxShadow: const [BoxShadow(color: Colors.black12, blurRadius: 10)]), child: Column(mainAxisSize: MainAxisSize.min, crossAxisAlignment: CrossAxisAlignment.start, children: [
+    const Text('Map Legend', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13)),
+    const SizedBox(height: 12),
+    _legendItem(const Color(0xFFE11D48), 'High Risk'),
+    _legendItem(const Color(0xFFF59E0B), 'Moderate Risk'),
+    _legendItem(const Color(0xFF10B981), 'Low Risk'),
+    _legendItem(Colors.deepPurpleAccent, 'Cloud Burst'),
+    _legendItem(const Color(0xFF8B5CF6), 'Earthquake'),
+    _legendItem(Colors.deepOrange, 'Live Forest Fire'),
+    _legendItem(Colors.lightBlueAccent, 'Avalanche'),
+    _legendItem(const Color(0xFF6366F1), 'Community'),
+    _legendItem(const Color(0xFFF59E0B).withValues(alpha: 0.4), 'Hazard Area'),
+  ])));
+
+  Widget _legendItem(Color c, String l) => Padding(padding: const EdgeInsets.only(bottom: 6), child: Row(children: [Container(width: 12, height: 12, decoration: BoxDecoration(color: c, shape: BoxShape.circle)), const SizedBox(width: 8), Text(l, style: const TextStyle(fontSize: 11, fontWeight: FontWeight.w500))]));
+
+  Widget _buildLayerSelector() => Container(padding: const EdgeInsets.fromLTRB(16, 20, 16, 24), decoration: BoxDecoration(color: Colors.white, borderRadius: const BorderRadius.vertical(top: Radius.circular(32)), boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.05), blurRadius: 10, offset: const Offset(0, -5))]), child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+    const Text('Intelligence Layers', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w900, color: Color(0xFF0F172A))),
+    const SizedBox(height: 16),
+    SingleChildScrollView(scrollDirection: Axis.horizontal, child: Row(children: layers.map((l) => _layerButton(icon: _getLayerIcon(l.name), layer: l)).toList())),
+  ]));
+
+  Widget _buildSimulationControls() {
+    return Positioned(
+      top: 16,
+      left: 16,
+      right: 16,
+      child: Container(
+        padding: const EdgeInsets.all(20),
+        decoration: BoxDecoration(
+          color: Colors.white.withValues(alpha: 0.98),
+          borderRadius: BorderRadius.circular(24),
+          boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.1), blurRadius: 20, offset: const Offset(0, 10))],
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Row(
+              children: [
+                Icon(Icons.auto_graph, color: Color(0xFFE11D48), size: 20),
+                SizedBox(width: 8),
+                Text('Scenario Parameters', style: TextStyle(fontWeight: FontWeight.w900, fontSize: 16)),
+              ],
+            ),
+            const SizedBox(height: 16),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  _scenarioPreset('Normal Monsoon', 45, 50, 40),
+                  _scenarioPreset('Cloudburst Event', 95, 65, 55),
+                  _scenarioPreset('Glacial Melt', 30, 40, 70),
+                ],
+              ),
+            ),
+            const SizedBox(height: 16),
+            _simSlider('Rainfall Intensity', _simRainfall, (v) => setState(() => _simRainfall = v)),
+            _simSlider('Community Exposure', _simExposure, (v) => setState(() => _simExposure = v)),
+            _simSlider('Social Vulnerability', _simVulnerability, (v) => setState(() => _simVulnerability = v)),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _scenarioPreset(String label, double rain, double exp, double vuln) {
+    return Container(
+      margin: const EdgeInsets.only(right: 8),
+      child: ActionChip(
+        label: Text(label, style: const TextStyle(fontSize: 10, fontWeight: FontWeight.bold)),
+        onPressed: () => setState(() {
+          _simRainfall = rain;
+          _simExposure = exp;
+          _simVulnerability = vuln;
+        }),
+        backgroundColor: const Color(0xFFF1F5F9),
+        side: BorderSide.none,
+        padding: EdgeInsets.zero,
+      ),
+    );
+  }
+
+  Widget _simSlider(String l, double v, ValueChanged<double> o) => Column(children: [Row(children: [Text(l, style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w600)), const Spacer(), Text('${v.round()}%', style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w900))]), Slider(value: v, min: 0, max: 100, activeColor: const Color(0xFF0D9488), onChanged: o)]);
+
+  Widget _layerButton({required IconData icon, required RiskLayer layer}) {
+    final bool isSelected = selectedLayer == layer.name;
+    return Container(margin: const EdgeInsets.only(right: 12), child: InkWell(borderRadius: BorderRadius.circular(16), onTap: () => setState(() => selectedLayer = layer.name), child: AnimatedContainer(duration: const Duration(milliseconds: 200), padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 20), decoration: BoxDecoration(color: isSelected ? const Color(0xFF0F172A) : const Color(0xFFF1F5F9), borderRadius: BorderRadius.circular(16)), child: Row(children: [Icon(icon, color: isSelected ? Colors.white : const Color(0xFF64748B), size: 18), const SizedBox(width: 8), Text(layer.name, style: TextStyle(fontSize: 13, fontWeight: FontWeight.w700, color: isSelected ? Colors.white : const Color(0xFF64748B)))]))));
+  }
+
+  IconData _getLayerIcon(String n) {
+    switch (n) {
+      case 'Community Reports': return Icons.group;
+      case 'Live Landslides': return Icons.terrain;
+      case 'Flash Floods': return Icons.water;
+      case 'Cloud Bursts': return Icons.thunderstorm;
+      case 'Earthquake': return Icons.vibration;
+      case 'Live Forest Fires': return Icons.local_fire_department;
+      case 'Avalanches': return Icons.ac_unit;
+      case 'Exposure': return Icons.people;
+      case 'Risk': return Icons.warning_amber_rounded;
+      default: return Icons.layers;
+    }
+  }
+
   Widget _build3DToggle() {
     return Positioned(
       right: 16,
@@ -308,55 +440,6 @@ class _RiskMapScreenState extends State<RiskMapScreen> {
       'https://earth.google.com/web/@31.1048,77.1734,2500a,50000d,35y,0h,45t,0r'
     );
     await launchUrl(url, mode: LaunchMode.externalApplication);
-  }
-
-  Widget _buildFloatingSearch() => Positioned(top: 16, left: 16, right: 16, child: IgnorePointer(ignoring: _isSimulationMode, child: AnimatedOpacity(opacity: _isSimulationMode ? 0.0 : 1.0, duration: const Duration(milliseconds: 200), child: Container(height: 50, decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(15), boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.1), blurRadius: 10, offset: const Offset(0, 4))]), child: const TextField(decoration: InputDecoration(hintText: 'Search landslides or districts...', hintStyle: TextStyle(fontSize: 14, color: Colors.black38), prefixIcon: Icon(Icons.search), border: InputBorder.none, contentPadding: EdgeInsets.symmetric(vertical: 15)))))));
-
-  Widget _buildMapLegend() => Positioned(right: 16, top: 80, child: Container(width: 150, padding: const EdgeInsets.all(16), decoration: BoxDecoration(color: Colors.white.withValues(alpha: 0.95), borderRadius: BorderRadius.circular(20), boxShadow: const [BoxShadow(color: Colors.black12, blurRadius: 10)]), child: Column(mainAxisSize: MainAxisSize.min, crossAxisAlignment: CrossAxisAlignment.start, children: [
-    const Text('Map Legend', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13)),
-    const SizedBox(height: 12),
-    _legendItem(const Color(0xFFE11D48), 'High Risk'),
-    _legendItem(const Color(0xFFF59E0B), 'Moderate Risk'),
-    _legendItem(const Color(0xFF10B981), 'Low Risk'),
-    _legendItem(Colors.deepPurpleAccent, 'Cloud Burst'),
-    _legendItem(const Color(0xFF6366F1), 'Community'),
-    _legendItem(const Color(0xFFF59E0B).withValues(alpha: 0.4), 'Hazard Area'),
-  ])));
-
-  Widget _legendItem(Color c, String l) => Padding(padding: const EdgeInsets.only(bottom: 6), child: Row(children: [Container(width: 12, height: 12, decoration: BoxDecoration(color: c, shape: BoxShape.circle)), const SizedBox(width: 8), Text(l, style: const TextStyle(fontSize: 11, fontWeight: FontWeight.w500))]));
-
-  Widget _buildLayerSelector() => Container(padding: const EdgeInsets.fromLTRB(16, 20, 16, 24), decoration: BoxDecoration(color: Colors.white, borderRadius: const BorderRadius.vertical(top: Radius.circular(32)), boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.05), blurRadius: 10, offset: const Offset(0, -5))]), child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-    const Text('Intelligence Layers', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w900, color: Color(0xFF0F172A))),
-    const SizedBox(height: 16),
-    SingleChildScrollView(scrollDirection: Axis.horizontal, child: Row(children: layers.map((l) => _layerButton(icon: _getLayerIcon(l.name), layer: l)).toList())),
-  ]));
-
-  Widget _buildSimulationControls() => Positioned(top: 16, left: 16, right: 16, child: Container(padding: const EdgeInsets.all(20), decoration: BoxDecoration(color: Colors.white.withValues(alpha: 0.98), borderRadius: BorderRadius.circular(24), boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.1), blurRadius: 20, offset: const Offset(0, 10))]), child: Column(mainAxisSize: MainAxisSize.min, crossAxisAlignment: CrossAxisAlignment.start, children: [
-    const Row(children: [Icon(Icons.auto_graph, color: Color(0xFFE11D48), size: 20), SizedBox(width: 8), Text('Scenario Parameters', style: TextStyle(fontWeight: FontWeight.w900, fontSize: 16))]),
-    const SizedBox(height: 16),
-    _simSlider('Rainfall Intensity', _simRainfall, (v) => setState(() => _simRainfall = v)),
-    _simSlider('Community Exposure', _simExposure, (v) => setState(() => _simExposure = v)),
-    _simSlider('Social Vulnerability', _simVulnerability, (v) => setState(() => _simVulnerability = v)),
-  ])));
-
-  Widget _simSlider(String l, double v, ValueChanged<double> o) => Column(children: [Row(children: [Text(l, style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w600)), const Spacer(), Text('${v.round()}%', style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w900))]), Slider(value: v, min: 0, max: 100, activeColor: const Color(0xFF0D9488), onChanged: o)]);
-
-  Widget _layerButton({required IconData icon, required RiskLayer layer}) {
-    final bool isSelected = selectedLayer == layer.name;
-    return Container(margin: const EdgeInsets.only(right: 12), child: InkWell(borderRadius: BorderRadius.circular(16), onTap: () => setState(() => selectedLayer = layer.name), child: AnimatedContainer(duration: const Duration(milliseconds: 200), padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 20), decoration: BoxDecoration(color: isSelected ? const Color(0xFF0F172A) : const Color(0xFFF1F5F9), borderRadius: BorderRadius.circular(16)), child: Row(children: [Icon(icon, color: isSelected ? Colors.white : const Color(0xFF64748B), size: 18), const SizedBox(width: 8), Text(layer.name, style: TextStyle(fontSize: 13, fontWeight: FontWeight.w700, color: isSelected ? Colors.white : const Color(0xFF64748B)))]))));
-  }
-
-  IconData _getLayerIcon(String n) {
-    switch (n) {
-      case 'Community Reports': return Icons.group;
-      case 'Live Landslides': return Icons.terrain;
-      case 'Flash Floods': return Icons.water;
-      case 'Cloud Bursts': return Icons.thunderstorm;
-      case 'Earthquake': return Icons.vibration;
-      case 'Exposure': return Icons.people;
-      case 'Risk': return Icons.warning_amber_rounded;
-      default: return Icons.layers;
-    }
   }
 }
 

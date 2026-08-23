@@ -1,0 +1,39 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "av-lahaul-sissu",
+        "name": "Sissu Avalanche Zone",
+        "category": "Cryospheric",
+        "intensity": 90,
+        "active": true,
+        "district": "Lahaul & Spiti",
+        "size": "Major Zone",
+        "remarks": "Active during winter (Dec-April). Near the north portal of Atal Tunnel."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [77.1235, 32.4812]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "av-kinnaur-rakcham",
+        "name": "Rakcham Slide Path",
+        "category": "Cryospheric",
+        "intensity": 88,
+        "active": true,
+        "district": "Kinnaur",
+        "size": "High Frequency",
+        "remarks": "Seasonal avalanche risk affecting Sangla Valley connectivity."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [78.3650, 31.3850]
+      }
+    }
+  ]
+}

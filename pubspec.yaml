@@ -25,20 +25,33 @@ dependencies:
   url_launcher: ^6.3.0
   share_plus: ^10.0.2
   provider: ^6.1.2
+  http: ^1.2.1
+  audioplayers: ^6.0.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
   flutter_lints: ^6.0.0
+  flutter_launcher_icons: ^0.13.1
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/logo.png"
+  min_sdk_android: 21
 
 flutter:
   uses-material-design: true
 
   assets:
+    - assets/images/logo.png
     - lib/data/assets/test_hazards.geojson
     - lib/data/assets/hazards/landslide.geojson
     - lib/data/assets/hazards/flood.geojson
     - lib/data/assets/hazards/cloudburst.geojson
+    - lib/data/assets/hazards/earthquake.geojson
+    - lib/data/assets/hazards/forest_fire.geojson
+    - lib/data/assets/hazards/avalanche.geojson
     - lib/data/assets/hazards/major_landslides_polygons.geojson
     - lib/data/assets/hazards/kotropi_polygon.geojson

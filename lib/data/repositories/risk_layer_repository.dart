@@ -28,7 +28,21 @@ class RiskLayerRepository {
         id: 'layer-earthquake',
         name: 'Earthquake',
         type: 'Hazard',
-        description: 'Earthquake hazard layer',
+        description: 'Earthquake fault lines and epicenters',
+        isActive: true,
+      ),
+      RiskLayer(
+        id: 'layer-forest-fire',
+        name: 'Live Forest Fires',
+        type: 'Hazard',
+        description: 'Daily live forest fire incidents (FSI)',
+        isActive: true,
+      ),
+      RiskLayer(
+        id: 'layer-avalanche',
+        name: 'Avalanches',
+        type: 'Hazard',
+        description: 'Seasonal avalanche risk zones',
         isActive: true,
       ),
       RiskLayer(

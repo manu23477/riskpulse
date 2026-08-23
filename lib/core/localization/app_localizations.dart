@@ -37,6 +37,8 @@ class AppLocalizations {
       'sos': 'SOS',
       'district_risk_alerts': 'District Risk Alerts',
       'himalayan_region': 'Indian Himalayan Region',
+      'tourist_safety': 'Safe Route',
+      'global_feed': 'Global Alerts',
     },
     'hi': {
       'app_title': 'रिस्कपल्स (RiskPulse)',
@@ -65,6 +67,7 @@ class AppLocalizations {
       'sos': 'एसओएस (SOS)',
       'district_risk_alerts': 'जिला जोखिम अलर्ट',
       'himalayan_region': 'भारतीय हिमालयी क्षेत्र',
+      'global_feed': 'वैश्विक अलर्ट',
     },
   };
 

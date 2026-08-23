@@ -43,6 +43,18 @@ class GisDataService {
     return _geoJsonRepository.getCloudburstHazards();
   }
 
+  Future<List<Hazard>> getEarthquakeHazards() {
+    return _geoJsonRepository.getEarthquakeHazards();
+  }
+
+  Future<List<Hazard>> getForestFireHazards() {
+    return _geoJsonRepository.getForestFireHazards();
+  }
+
+  Future<List<Hazard>> getAvalancheHazards() {
+    return _geoJsonRepository.getAvalancheHazards();
+  }
+
   List<Exposure> getExposure() {
     return _provider.getExposure();
   }

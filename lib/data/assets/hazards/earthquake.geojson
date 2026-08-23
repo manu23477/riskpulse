@@ -1,0 +1,58 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "eq-kangra-1905",
+        "name": "1905 Kangra Earthquake Epicenter",
+        "category": "Seismic",
+        "intensity": 100,
+        "active": false,
+        "district": "Kangra",
+        "size": "8.0 Magnitude",
+        "history": "April 4, 1905: Most devastating earthquake in HP history. Over 20,000 deaths. Kangra town and Dharamshala were completely leveled.",
+        "remarks": "Region remains in high-risk Seismic Zone V."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [76.2627, 32.0904]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "eq-mandi-fault-line",
+        "name": "Mandi-Kullu Fault Zone",
+        "category": "Seismic",
+        "intensity": 85,
+        "active": true,
+        "district": "Mandi/Kullu",
+        "size": "High Risk Zone",
+        "remarks": "Part of the Main Boundary Thrust (MBT). Active monitoring area."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [77.1000, 31.8000]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "eq-kinnaur-kaurik",
+        "name": "Kaurik Fault (Leo Pargial)",
+        "category": "Seismic",
+        "intensity": 92,
+        "active": true,
+        "district": "Kinnaur",
+        "size": "Major Fault",
+        "history": "1975 Kinnaur Earthquake epicenter. Caused significant damage to monasteries and high-altitude villages.",
+        "remarks": "Fastest moving fault line in the region."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [78.5100, 31.9500]
+      }
+    }
+  ]
+}
