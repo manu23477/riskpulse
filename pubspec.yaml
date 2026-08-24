@@ -45,7 +45,7 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/images/logo.png
+    # - assets/images/logo.png
     - lib/data/assets/test_hazards.geojson
     - lib/data/assets/hazards/landslide.geojson
     - lib/data/assets/hazards/flood.geojson

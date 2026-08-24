@@ -1,4 +1,5 @@
 import 'package:geolocator/geolocator.dart';
+import 'package:latlong2/latlong.dart';
 import '../models/risk_assessment.dart';
 import '../models/hazard.dart';
 
@@ -19,6 +20,21 @@ class RiskEngine {
     'Bilaspur': 30.0,
     'Hamirpur': 25.0,
     'Una': 15.0,
+  };
+
+  static const Map<String, LatLng> districtCoordinates = {
+    'Mandi': LatLng(31.7081, 76.9317),
+    'Kinnaur': LatLng(31.5300, 78.1800),
+    'Shimla': LatLng(31.1048, 77.1734),
+    'Kullu': LatLng(31.9579, 77.1095),
+    'Chamba': LatLng(32.5534, 76.1258),
+    'Lahaul & Spiti': LatLng(32.2461, 77.1892),
+    'Kangra': LatLng(32.0998, 76.2691),
+    'Solan': LatLng(30.9033, 77.0967),
+    'Sirmaur': LatLng(30.5599, 77.2955),
+    'Bilaspur': LatLng(31.3300, 76.7600),
+    'Hamirpur': LatLng(31.6800, 76.5200),
+    'Una': LatLng(31.4700, 76.2700),
   };
 
   static RiskAssessment calculateRisk({

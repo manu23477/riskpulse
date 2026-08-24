@@ -20,7 +20,8 @@ import '../../data/services/risk_engine.dart';
 import 'widgets/landslide_info_card.dart';
 
 class RiskMapScreen extends StatefulWidget {
-  const RiskMapScreen({super.key});
+  final List<String>? highlightDistricts;
+  const RiskMapScreen({super.key, this.highlightDistricts});
 
   @override
   State<RiskMapScreen> createState() => _RiskMapScreenState();
@@ -66,6 +67,25 @@ class _RiskMapScreenState extends State<RiskMapScreen> {
     super.initState();
     _loadGeoJsonData();
     _loadLandslidePolygons();
+    _handleInitialHighlight();
+  }
+
+  void _handleInitialHighlight() {
+    if (widget.highlightDistricts != null && widget.highlightDistricts!.isNotEmpty) {
+      final district = widget.highlightDistricts!.first;
+      if (RiskEngine.districtCoordinates.containsKey(district)) {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          _mapController.move(RiskEngine.districtCoordinates[district]!, 10.5);
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('Focusing on IMD Alert area: $district'),
+              backgroundColor: const Color(0xFF0F172A),
+              behavior: SnackBarBehavior.floating,
+            ),
+          );
+        });
+      }
+    }
   }
 
   Future<void> _loadGeoJsonData() async {
@@ -300,7 +320,10 @@ class _RiskMapScreenState extends State<RiskMapScreen> {
       body: Stack(children: [
         Column(children: [
           Expanded(child: FlutterMap(mapController: _mapController, options: const MapOptions(initialCenter: LatLng(31.1048, 77.1734), initialZoom: 8.5), children: [
-            TileLayer(urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png', userAgentPackageName: 'com.example.riskpulse'),
+            TileLayer(
+              urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+              userAgentPackageName: 'in.gov.hp.riskpulse.app',
+            ),
             PolygonLayer(polygons: _getLandslidePolygons(selectedLayer)),
             MarkerLayer(markers: _getMarkersForLayer(selectedLayer)),
           ])),

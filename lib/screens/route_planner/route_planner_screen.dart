@@ -15,6 +15,7 @@ class _RoutePlannerScreenState extends State<RoutePlannerScreen> {
   final GisDataService _gisDataService = GisDataService();
   final TextEditingController _startController = TextEditingController(text: 'Chandigarh');
   final TextEditingController _endController = TextEditingController(text: 'Manali');
+  final MapController _mapController = MapController();
   
   bool _isAnalyzing = false;
   List<Hazard> _relevantHazards = [];
@@ -22,26 +23,60 @@ class _RoutePlannerScreenState extends State<RoutePlannerScreen> {
 
   void _analyzeRoute() async {
     if (!mounted) return;
+    final destination = _endController.text.toLowerCase();
+    
     setState(() {
       _isAnalyzing = true;
       _relevantHazards = [];
     });
 
+    // Simulate route analysis delay
     await Future.delayed(const Duration(seconds: 2));
 
     final allHazards = await _gisDataService.getLandslideHazards();
-    final nh21Hazards = allHazards.where((h) => 
-      h.district == 'Mandi' || h.district == 'Kullu'
-    ).toList();
+    List<Hazard> routeHazards = [];
+    String recommendationText = '';
+    LatLng mapCenter = const LatLng(31.5, 77.0);
+    double zoom = 7.5;
+
+    if (destination.contains('manali') || destination.contains('kullu')) {
+      // NH-21 Corridor: Mandi -> Kullu
+      routeHazards = allHazards.where((h) => 
+        h.district == 'Mandi' || h.district == 'Kullu'
+      ).toList();
+      recommendationText = routeHazards.any((h) => h.intensity > 80) 
+          ? 'Avoid Hanogi to Aut stretch due to active sliding.'
+          : 'NH-21 is relatively stable. Watch for minor slips near Pandoh.';
+      mapCenter = const LatLng(31.7, 77.1);
+      zoom = 9.0;
+    } else if (destination.contains('rampur') || destination.contains('kinnaur') || destination.contains('shimla')) {
+      // NH-5 Corridor: Shimla -> Rampur -> Kinnaur
+      routeHazards = allHazards.where((h) => 
+        h.district == 'Shimla' || h.district == 'Kinnaur'
+      ).toList();
+      recommendationText = routeHazards.any((h) => h.intensity > 85)
+          ? 'High risk near Nigulsari and Urni Dhank (NH-5). Use caution.'
+          : 'Isolated slips reported near Shogi and Jeori. Drive carefully.';
+      mapCenter = const LatLng(31.3, 77.5);
+      zoom = 9.0;
+    } else {
+      // Generic search / Other routes
+      routeHazards = allHazards.take(5).toList();
+      recommendationText = 'Check local weather status before proceeding to high-altitude areas.';
+    }
 
     if (mounted) {
       setState(() {
         _isAnalyzing = false;
-        _relevantHazards = nh21Hazards;
-        _routeRiskScore = nh21Hazards.any((h) => h.intensity > 80) ? 85 : 45;
+        _relevantHazards = routeHazards;
+        _routeRiskScore = routeHazards.isEmpty ? 20 : (routeHazards.any((h) => h.intensity > 85) ? 92 : 55);
+        _recommendationOverride = recommendationText;
       });
+      _mapController.move(mapCenter, zoom);
     }
   }
+
+  String _recommendationOverride = '';
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +96,7 @@ class _RoutePlannerScreenState extends State<RoutePlannerScreen> {
               children: [
                 _buildMiniMap(),
                 if (_isAnalyzing) _buildLoadingOverlay(theme),
-                if (!_isAnalyzing && _relevantHazards.isNotEmpty) _buildAnalysisResult(theme),
+                if (!_isAnalyzing && (_relevantHazards.isNotEmpty || _routeRiskScore > 0)) _buildAnalysisResult(theme),
               ],
             ),
           ),
@@ -119,12 +154,16 @@ class _RoutePlannerScreenState extends State<RoutePlannerScreen> {
 
   Widget _buildMiniMap() {
     return FlutterMap(
+      mapController: _mapController,
       options: const MapOptions(
         initialCenter: LatLng(31.5, 77.0),
         initialZoom: 7.5,
       ),
       children: [
-        TileLayer(urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png'),
+        TileLayer(
+          urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+          userAgentPackageName: 'in.gov.hp.riskpulse.app',
+        ),
         MarkerLayer(
           markers: _relevantHazards.map((h) => Marker(
             point: LatLng(h.location.latitude, h.location.longitude),
@@ -185,7 +224,7 @@ class _RoutePlannerScreenState extends State<RoutePlannerScreen> {
             const SizedBox(height: 16),
             Text('Recommendations:', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14, color: theme.colorScheme.onSurface)),
             const SizedBox(height: 8),
-            _recItem(isHighRisk ? 'Avoid Hanogi to Aut stretch due to active sliding.' : 'Light rain detected near Pandoh. Proceed slowly.', theme),
+            _recItem(_recommendationOverride.isNotEmpty ? _recommendationOverride : (isHighRisk ? 'Extreme caution advised on hill slopes.' : 'Moderate rain detected. Proceed slowly.'), theme),
             _recItem('Avoid night travel. Check local police updates.', theme),
           ],
         ),
