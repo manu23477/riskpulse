@@ -2,20 +2,22 @@ import 'dart:math';
 import '../models/weather_alert.dart';
 
 class WeatherService {
-  // Simulated rainfall data for Himachal Pradesh districts
+  // Simulated rainfall data for HP & UK districts
   final Map<String, double> _districtRainfall = {
+    // Himachal
     'Mandi': 78.5,
     'Kinnaur': 92.0,
     'Shimla': 45.2,
     'Kullu': 62.8,
     'Chamba': 35.0,
-    'Lahaul & Spiti': 12.5,
     'Kangra': 55.0,
-    'Solan': 28.4,
-    'Sirmaur': 40.1,
-    'Bilaspur': 15.2,
-    'Hamirpur': 10.0,
-    'Una': 8.5,
+    // Uttarakhand
+    'Uttarkashi': 65.5,
+    'Chamoli': 88.4,
+    'Rudraprayag': 72.1,
+    'Pithoragarh': 95.2,
+    'Nainital': 52.8,
+    'Tehri Garhwal': 68.2,
   };
 
   Map<String, double> getDistrictRainfall() {
@@ -25,20 +27,20 @@ class WeatherService {
   List<WeatherAlert> getActiveAlerts() {
     return [
       WeatherAlert(
-        id: 'alert-imd-001',
-        title: 'Heavy Rainfall Warning',
-        description: 'Isolated heavy to very heavy rainfall likely in Mandi and Kinnaur districts over the next 24 hours.',
+        id: 'alert-imd-hp-001',
+        title: 'Heavy Rainfall (HP)',
+        description: 'Heavy rainfall likely in Mandi and Kinnaur districts.',
         severity: AlertSeverity.orange,
         affectedDistricts: ['Mandi', 'Kinnaur'],
         issuedAt: DateTime.now().subtract(const Duration(hours: 2)),
         expiresAt: DateTime.now().add(const Duration(hours: 22)),
       ),
       WeatherAlert(
-        id: 'alert-imd-002',
-        title: 'Flash Flood Risk',
-        description: 'High probability of sudden cloudburst activity in Kullu valley. Avoid camping near river banks.',
+        id: 'alert-imd-uk-001',
+        title: 'Flash Flood Risk (UK)',
+        description: 'High probability of sudden surge in Alaknanda near Rudraprayag.',
         severity: AlertSeverity.red,
-        affectedDistricts: ['Kullu'],
+        affectedDistricts: ['Rudraprayag', 'Chamoli'],
         issuedAt: DateTime.now().subtract(const Duration(minutes: 45)),
         expiresAt: DateTime.now().add(const Duration(hours: 6)),
       ),

@@ -4,532 +4,390 @@
     {
       "type": "Feature",
       "properties": {
-        "id": "ls-mandi-kotropi-2017",
+        "id": "ls-hp-mandi-kotropi-2017",
         "name": "Kotropi Massive Landslide",
-        "category": "Geological",
-        "intensity": 98,
-        "active": true,
+        "category": "Landslide",
+        "state": "Himachal Pradesh",
         "district": "Mandi",
-        "size": "Major",
+        "tehsil": "Padhar",
+        "date": "13 August 2017",
+        "year": 2017,
+        "intensity": 98,
+        "active": false,
         "movement_type": "Debris Flow",
-        "triggering": "Cloudburst / Heavy Rainfall",
-        "history": "Aug 13, 2017: Deadliest landslide in recent HP history. Buried 250m of NH-154 and swept away two HRTC buses. 46 deaths.",
+        "triggering": "Heavy Rainfall",
+        "casualties": "46 fatalities",
+        "infrastructureImpact": "NH-154 buried for 250m; Two HRTC buses swept away.",
         "geology": "Phyllite and Schist (Highly weathered)",
-        "remarks": "Chronic zone. Permanent stabilization works ongoing."
+        "source": "GSI / HPSDMA",
+        "verificationStatus": "verified",
+        "historicalEvent": true
       },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [76.8906, 31.9104]
-      }
+      "geometry": { "type": "Point", "coordinates": [76.8906, 31.9104] }
     },
     {
       "type": "Feature",
       "properties": {
-        "id": "ls-kinnaur-nigulsari-2021",
+        "id": "ls-hp-mandi-thunag-2025",
+        "name": "Thunag Bazaar Debris Flow",
+        "category": "Landslide",
+        "state": "Himachal Pradesh",
+        "district": "Mandi",
+        "tehsil": "Thunag",
+        "date": "30 June 2025",
+        "year": 2025,
+        "intensity": 96,
+        "active": true,
+        "movement_type": "Flash Flood / Debris Flow",
+        "triggering": "Cloudburst",
+        "infrastructureImpact": "Shops and bazaar area destroyed by tons of debris and logs.",
+        "history": "Part of the 2025 Mandi disaster sequence.",
+        "source": "HPSDMA",
+        "verificationStatus": "verified",
+        "lastUpdated": "2025-07-10T00:00:00Z"
+      },
+      "geometry": { "type": "Point", "coordinates": [77.1631, 31.5492] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ls-hp-kinnaur-nigulsari-2021",
         "name": "Nigulsari NH-5 Disaster",
-        "category": "Geological",
+        "category": "Landslide",
+        "state": "Himachal Pradesh",
+        "district": "Kinnaur",
+        "tehsil": "Nichar",
+        "date": "11 August 2021",
+        "year": 2021,
         "intensity": 95,
         "active": true,
-        "district": "Kinnaur",
-        "size": "Major",
         "movement_type": "Rockfall and Slide",
         "triggering": "Monsoon Saturation",
-        "history": "Aug 11, 2021: Massive landslide on Hindustan-Tibet Road. A bus and several vehicles buried. 28 fatalities. Supply line to tribal areas cut for weeks.",
-        "geology": "Gneiss and Quartzite (Jointed)",
-        "remarks": "Strategically critical point for border supply."
+        "casualties": "28 fatalities",
+        "infrastructureImpact": "Hindustan-Tibet Road (NH-5) blocked; Bus buried.",
+        "source": "GSI / News Archive",
+        "verificationStatus": "verified"
       },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [77.9200, 31.5300]
-      }
+      "geometry": { "type": "Point", "coordinates": [77.9200, 31.5300] }
     },
     {
       "type": "Feature",
       "properties": {
-        "id": "ls-kinnaur-batseri-2021",
-        "name": "Batseri Deadly Rockfall",
-        "category": "Geological",
+        "id": "ls-uk-chamoli-joshimath-2023",
+        "name": "Joshimath Sinking Crisis",
+        "category": "Landslide",
+        "state": "Uttarakhand",
+        "district": "Chamoli",
+        "locationName": "Joshimath Town",
+        "year": 2023,
+        "intensity": 98,
+        "active": true,
+        "movement_type": "Land Subsidence",
+        "triggering": "Hydro-geological / Construction",
+        "housesAffected": "800+ houses with cracks",
+        "history": "Large-scale evacuations in early 2023.",
+        "source": "USDMA / NGRI",
+        "verificationStatus": "verified"
+      },
+      "geometry": { "type": "Point", "coordinates": [79.5667, 30.5500] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ls-uk-pithoragarh-malpa-1998",
+        "name": "Malpa Tragic Landslide",
+        "category": "Landslide",
+        "state": "Uttarakhand",
+        "district": "Pithoragarh",
+        "date": "18 August 1998",
+        "year": 1998,
+        "intensity": 100,
+        "active": false,
+        "movement_type": "Rock Avalanche",
+        "casualties": "255 fatalities",
+        "history": "Wiped out the entire Malpa village, including 55 pilgrims.",
+        "source": "DMMC Uttarakhand",
+        "verificationStatus": "verified",
+        "historicalEvent": true
+      },
+      "geometry": { "type": "Point", "coordinates": [80.7500, 30.0100] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ls-hp-shimla-summerhill-2023",
+        "name": "Summer Hill Railway Slide",
+        "category": "Landslide",
+        "state": "Himachal Pradesh",
+        "district": "Shimla",
+        "date": "14 August 2023",
+        "year": 2023,
+        "intensity": 92,
+        "active": false,
+        "movement_type": "Debris Flow",
+        "casualties": "20 fatalities",
+        "infrastructureImpact": "Kalka-Shimla Heritage Railway track suspended; Temple destroyed.",
+        "source": "HPSDMA",
+        "verificationStatus": "verified"
+      },
+      "geometry": { "type": "Point", "coordinates": [77.1400, 31.1100] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ls-hp-kullu-ani-2023",
+        "name": "Ani Multi-Building Collapse",
+        "category": "Landslide",
+        "state": "Himachal Pradesh",
+        "district": "Kullu",
+        "date": "24 August 2023",
+        "year": 2023,
+        "intensity": 88,
+        "active": true,
+        "movement_type": "Structural Failure / Slide",
+        "infrastructureImpact": "8 multi-story commercial buildings collapsed in seconds.",
+        "source": "Local Administration / Media",
+        "verificationStatus": "verified"
+      },
+      "geometry": { "type": "Point", "coordinates": [77.4300, 31.3500] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ls-uk-uttarkashi-varunavat-2003",
+        "name": "Varunavat Parvat Landslide",
+        "category": "Landslide",
+        "state": "Uttarakhand",
+        "district": "Uttarkashi",
+        "date": "September 2003",
+        "year": 2003,
+        "intensity": 95,
+        "active": false,
+        "movement_type": "Debris Slide",
+        "history": "Massive slide overlooking Uttarkashi town; thousands evacuated.",
+        "source": "USDMA",
+        "verificationStatus": "verified",
+        "historicalEvent": true
+      },
+      "geometry": { "type": "Point", "coordinates": [78.4354, 30.7268] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ls-hp-kinnaur-batseri-2021",
+        "name": "Batseri Bridge Rockfall",
+        "category": "Landslide",
+        "state": "Himachal Pradesh",
+        "district": "Kinnaur",
+        "date": "25 July 2021",
+        "year": 2021,
         "intensity": 90,
         "active": true,
-        "district": "Kinnaur",
-        "size": "Major",
         "movement_type": "Rockfall",
-        "triggering": "Weathering / High Slope Angle",
-        "history": "July 25, 2021: Boulders rolled down the hill destroying a bridge over Baspa river. 9 tourists killed in a van. Caught on viral video.",
-        "remarks": "High-velocity rockfall zone. Frequent during monsoon."
+        "casualties": "9 fatalities (Tourists)",
+        "infrastructureImpact": "Iron bridge over Baspa river destroyed.",
+        "source": "HPSDMA",
+        "verificationStatus": "verified"
       },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [78.2600, 31.4300]
-      }
+      "geometry": { "type": "Point", "coordinates": [78.2600, 31.4300] }
     },
     {
       "type": "Feature",
       "properties": {
-        "id": "ls-shimla-dhalli-2017",
-        "name": "Dhalli Tunnel Landslide",
-        "category": "Geological",
-        "intensity": 75,
-        "active": false,
-        "district": "Shimla",
-        "size": "Medium",
-        "movement_type": "Debris Slide",
-        "triggering": "Heavy Rain",
-        "history": "Sept 2017: Huge landslide near Dhalli tunnel. Several vehicles buried. No fatalities due to early warning.",
-        "remarks": "Urban outskirts. Now has retaining walls but still needs monitoring."
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [77.2000, 31.1100]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": "ls-mandi-hanogi",
-        "name": "Hanogi Chronic Zone",
-        "category": "Geological",
+        "id": "ls-uk-nainital-balianala",
+        "name": "Balia Nala Sinking Zone",
+        "category": "Landslide",
+        "state": "Uttarakhand",
+        "district": "Nainital",
         "intensity": 85,
         "active": true,
-        "district": "Mandi",
-        "size": "Major",
-        "movement_type": "Rockfall / Shooting Stones",
-        "triggering": "Seepage / Monsoon",
-        "history": "Frequent blockages of NH-21 near Hanogi Temple. Tunnel construction initiated due to this danger.",
-        "geology": "Hard Rock / Sedimentary",
-        "remarks": "Dangerous 'shooting stone' area during even mild rain."
+        "movement_type": "Creep / Sinking",
+        "remarks": "Chronic instability threatening the southern slope of Nainital.",
+        "source": "USDMA",
+        "verificationStatus": "verified"
       },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [77.1900, 31.7300]
-      }
+      "geometry": { "type": "Point", "coordinates": [79.4633, 29.3845] }
     },
     {
       "type": "Feature",
       "properties": {
-        "id": "ls-kullu-aut",
-        "name": "Aut Tunnel Slide",
-        "category": "Geological",
+        "id": "ls-hp-chamba-pangi-2023",
+        "name": "Pangi Mindhal Debris Flow",
+        "category": "Landslide",
+        "state": "Himachal Pradesh",
+        "district": "Chamba",
+        "tehsil": "Pangi",
+        "date": "14 August 2023",
+        "year": 2023,
+        "intensity": 85,
+        "active": false,
+        "movement_type": "Debris Flow",
+        "triggering": "Monsoon Rain",
+        "source": "HPSDMA",
+        "verificationStatus": "verified"
+      },
+      "geometry": { "type": "Point", "coordinates": [76.5100, 32.9500] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ls-hp-kullu-raison-2023",
+        "name": "Raison NH-3 Slide",
+        "category": "Landslide",
+        "state": "Himachal Pradesh",
+        "district": "Kullu",
+        "date": "July 2023",
+        "year": 2023,
         "intensity": 80,
         "active": true,
-        "district": "Kullu",
-        "size": "Medium",
-        "movement_type": "Debris Flow",
-        "triggering": "Rain / River Erosion",
-        "remarks": "Active during heavy discharge in Beas river."
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [77.2100, 31.7400]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": "ls-kangra-mcleod-sinking",
-        "name": "McLeod Ganj Sinking Zone",
-        "category": "Geological",
-        "intensity": 65,
-        "active": true,
-        "district": "Kangra",
-        "size": "Minor / Sinking",
-        "movement_type": "Soil Creep",
-        "triggering": "Drainage Issues / Construction",
-        "history": "Continuous sinking of area near Forsythe Ganj and main road. Multiple hotels damaged over 5 years.",
-        "remarks": "Slow moving but high cumulative damage."
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [76.3234, 32.2390]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": "ls-solan-kumarhatti",
-        "name": "Kumarhatti Highway Slips",
-        "category": "Geological",
-        "intensity": 55,
-        "active": true,
-        "district": "Solan",
-        "size": "Minor",
-        "movement_type": "Slope Failure",
-        "triggering": "Road Cutting / Rainfall",
-        "remarks": "Recent highway widening has increased susceptibility."
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [77.0600, 30.9100]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": "ls-chamba-surangani",
-        "name": "Surangani Active Slide",
-        "category": "Geological",
-        "intensity": 70,
-        "active": true,
-        "district": "Chamba",
-        "size": "Medium",
-        "movement_type": "Rotational Slide",
-        "remarks": "Affects rural connectivity to remote valleys."
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [76.1500, 32.7500]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": "ls-lahaul-sissu",
-        "name": "Sissu Avalanche/Slide Path",
-        "category": "Geological",
-        "intensity": 60,
-        "active": true,
-        "district": "Lahaul & Spiti",
-        "size": "Medium",
-        "movement_type": "Mixed / Debris",
-        "triggering": "Snow Melt / High Rainfall",
-        "remarks": "Near Atal Tunnel exit. Seasonally active."
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [77.1200, 32.4800]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": "ls-kinnaur-urni-dhank",
-        "name": "Urni Dhank Blockade",
-        "category": "Geological",
-        "intensity": 88,
-        "active": true,
-        "district": "Kinnaur",
-        "size": "Major",
-        "movement_type": "Large Scale Rock Slide",
-        "triggering": "Tectonic / Blasting / Rain",
-        "history": "Massive slide that blocked the main NH-5 route for years, forcing bypass through Urni village.",
-        "remarks": "One of the most technically challenging slides to fix."
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [78.1800, 31.5300]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": "ls-shimla-sanjauli-sinking",
-        "name": "Sanjauli Urban Sinking",
-        "category": "Geological",
-        "intensity": 50,
-        "active": true,
-        "district": "Shimla",
-        "size": "Minor",
-        "movement_type": "Land Subsidence",
-        "triggering": "Over-construction / Poor Drainage",
-        "remarks": "High population density increases the risk impact."
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [77.1900, 31.1000]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": "ls-sirmaur-nahan-outskirts",
-        "name": "Nahan-Kala Amb Slips",
-        "category": "Geological",
-        "intensity": 45,
-        "active": false,
-        "district": "Sirmaur",
-        "size": "Small",
-        "movement_type": "Surface Slip",
-        "remarks": "Common on newly cut bypass roads."
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [77.3000, 30.5600]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": "ls-bilaspur-swarghat-nh",
-        "name": "Swarghat S-Curves Slips",
-        "category": "Geological",
-        "intensity": 55,
-        "active": true,
-        "district": "Bilaspur",
-        "size": "Small / Recurring",
-        "movement_type": "Loose Soil Slip",
-        "triggering": "Monsoon Rain",
-        "remarks": "Frequent minor blockages on Kiratpur-Manali highway."
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [76.7100, 31.2300]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": "ls-mandi-thalout",
-        "name": "Thalout Dam-Side Slide",
-        "category": "Geological",
-        "intensity": 78,
-        "active": true,
-        "district": "Mandi",
-        "size": "Medium",
-        "movement_type": "Wedge Failure",
-        "remarks": "Near Larji dam. Dangerous for reservoir safety."
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [77.2000, 31.7100]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": "ls-kinnaur-karcham",
-        "name": "Karcham Dam Face Rockfall",
-        "category": "Geological",
-        "intensity": 82,
-        "active": true,
-        "district": "Kinnaur",
-        "size": "Major",
         "movement_type": "Rockfall",
-        "remarks": "Critical for Karcham-Wangtoo hydroelectric project."
+        "source": "HPSDMA",
+        "verificationStatus": "verified"
       },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [78.1700, 31.5000]
-      }
+      "geometry": { "type": "Point", "coordinates": [77.1200, 32.0500] }
     },
     {
       "type": "Feature",
       "properties": {
-        "id": "ls-shimla-summers-hill-2023",
-        "name": "Summer Hill Railway Bridge Slide",
-        "category": "Geological",
+        "id": "ls-hp-mandi-hanogi-2014",
+        "name": "Hanogi Rockfall",
+        "category": "Landslide",
+        "state": "Himachal Pradesh",
+        "district": "Mandi",
+        "date": "August 2014",
+        "year": 2014,
+        "intensity": 75,
+        "active": false,
+        "movement_type": "Rockfall",
+        "infrastructureImpact": "Damage to Hanogi Mata temple and NH-21.",
+        "source": "GSI",
+        "verificationStatus": "verified"
+      },
+      "geometry": { "type": "Point", "coordinates": [77.1630, 31.7240] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ls-hp-kinnaur-jhakri-2021",
+        "name": "Jhakri NH-5 Blockage",
+        "category": "Landslide",
+        "state": "Himachal Pradesh",
+        "district": "Kinnaur",
+        "date": "August 2021",
+        "year": 2021,
+        "intensity": 82,
+        "active": false,
+        "movement_type": "Debris Slide",
+        "source": "NHAI",
+        "verificationStatus": "verified"
+      },
+      "geometry": { "type": "Point", "coordinates": [77.6800, 31.5100] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ls-uk-rudraprayag-sirobagarh",
+        "name": "Sirobagarh Chronic Slide",
+        "category": "Landslide",
+        "state": "Uttarakhand",
+        "district": "Rudraprayag",
         "intensity": 90,
         "active": true,
-        "district": "Shimla",
-        "size": "Major",
-        "movement_type": "Debris Flow",
-        "triggering": "Extreme Rainfall (Aug 2023)",
-        "history": "Aug 2023: Heavy rains led to a massive slide destroying a heritage railway bridge and a temple. 20 deaths.",
-        "remarks": "Recent high-impact urban landslide."
+        "movement_type": "Complex Slide",
+        "remarks": "Highly sensitive zone on Rishikesh-Badrinath NH-58.",
+        "source": "USDMA",
+        "verificationStatus": "verified"
       },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [77.1400, 31.1100]
-      }
+      "geometry": { "type": "Point", "coordinates": [78.8900, 30.2400] }
     },
     {
       "type": "Feature",
       "properties": {
-        "id": "ls-kullu-ani-2023",
-        "name": "Ani Multi-Building Collapse",
-        "category": "Geological",
+        "id": "ls-uk-chamoli-lambagarh",
+        "name": "Lambagarh Slide Zone",
+        "category": "Landslide",
+        "state": "Uttarakhand",
+        "district": "Chamoli",
         "intensity": 88,
         "active": true,
-        "district": "Kullu",
-        "size": "Major / Urban",
-        "movement_type": "Foundation Failure / Slide",
-        "triggering": "Uncontrolled Runoff / Rainfall",
-        "history": "Aug 24, 2023: Dramatic collapse of 8 multi-story buildings in Ani town caught on camera. No casualties due to prior evacuation.",
-        "remarks": "Signifies extreme urban vulnerability in Kullu."
+        "movement_type": "Debris Flow / Rockfall",
+        "remarks": "Major bottleneck near Joshimath-Badrinath stretch.",
+        "source": "USDMA",
+        "verificationStatus": "verified"
       },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [77.4300, 31.3500]
-      }
+      "geometry": { "type": "Point", "coordinates": [79.5200, 30.6400] }
     },
     {
       "type": "Feature",
       "properties": {
-        "id": "ls-solan-shogi",
-        "name": "Shogi Road Cut Slips",
-        "category": "Geological",
-        "intensity": 48,
-        "active": true,
-        "district": "Solan",
-        "size": "Small",
-        "movement_type": "Debris Slip",
-        "remarks": "Minor instability affecting NH-5 near Shimla boundary."
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [77.1200, 31.0200]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": "ls-hamirpur-sujanpur",
-        "name": "Sujanpur River Erosion",
-        "category": "Geological",
-        "intensity": 35,
-        "active": false,
-        "district": "Hamirpur",
-        "size": "Small",
-        "movement_type": "Bank Failure",
-        "remarks": "River-bank erosion affecting local agriculture land."
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [76.5000, 31.8300]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": "ls-una-bangana",
-        "name": "Bangana Terrace Failures",
-        "category": "Geological",
-        "intensity": 30,
-        "active": false,
-        "district": "Una",
-        "size": "Small",
-        "movement_type": "Earth Flow",
-        "remarks": "Localized soil flow in Shivalik hills."
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [76.3800, 31.5000]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": "ls-chamba-dalhousie",
-        "name": "Dalhousie Bypass Slip",
-        "category": "Geological",
-        "intensity": 62,
-        "active": true,
-        "district": "Chamba",
-        "size": "Medium",
-        "movement_type": "Debris Slide",
-        "remarks": "Frequent during tourist season monsoon."
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [75.9700, 32.5300]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": "ls-mandi-balh",
-        "name": "Balh Valley Edge Slips",
-        "category": "Geological",
-        "intensity": 42,
-        "active": true,
-        "district": "Mandi",
-        "size": "Small",
-        "movement_type": "Soil Creep",
-        "remarks": "Affects valley-margin farm lands."
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [76.9200, 31.6000]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": "ls-kullu-manali-nh",
-        "name": "Beas Valley Highway Slips",
-        "category": "Geological",
-        "intensity": 72,
-        "active": true,
-        "district": "Kullu",
-        "size": "Medium",
-        "movement_type": "Debris Flow",
-        "remarks": "Multiple small points between Kullu and Manali."
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [77.1800, 32.1200]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": "ls-kinnaur-sangla",
-        "name": "Sangla Valley Rockfall",
-        "category": "Geological",
+        "id": "ls-uk-tehri-totaghati",
+        "name": "Totaghati Rockfall Zone",
+        "category": "Landslide",
+        "state": "Uttarakhand",
+        "district": "Tehri Garhwal",
         "intensity": 85,
         "active": true,
-        "district": "Kinnaur",
-        "size": "Major",
         "movement_type": "Rockfall",
-        "remarks": "Vulnerable link road to Sangla valley."
+        "source": "USDMA",
+        "verificationStatus": "verified"
       },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [78.2500, 31.4200]
-      }
+      "geometry": { "type": "Point", "coordinates": [78.4700, 30.0500] }
     },
     {
       "type": "Feature",
       "properties": {
-        "id": "ls-kangra-dharamshala-cantt",
-        "name": "Cantt Road Sinking",
-        "category": "Geological",
-        "intensity": 58,
-        "active": true,
-        "district": "Kangra",
-        "size": "Minor",
-        "movement_type": "Land Subsidence",
-        "remarks": "Strategic road stretch showing signs of distress."
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [76.3100, 32.2200]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": "ls-sirmaur-renuka",
-        "name": "Renuka Lake Catchment Slide",
-        "category": "Geological",
-        "intensity": 68,
-        "active": true,
+        "id": "ls-hp-sirmaur-kalikhan-2021",
+        "name": "Kali Khan Road Collapse",
+        "category": "Landslide",
+        "state": "Himachal Pradesh",
         "district": "Sirmaur",
-        "size": "Medium",
-        "movement_type": "Debris Slide",
-        "remarks": "Impacts lake siltation levels."
+        "date": "30 July 2021",
+        "year": 2021,
+        "intensity": 92,
+        "active": false,
+        "movement_type": "Rotational Slide",
+        "infrastructureImpact": "Entire section of Paonta-Shillai road caved in.",
+        "source": "HPSDMA",
+        "verificationStatus": "verified"
       },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [77.4500, 30.6200]
-      }
+      "geometry": { "type": "Point", "coordinates": [77.6300, 30.6100] }
     },
     {
       "type": "Feature",
       "properties": {
-        "id": "ls-bilaspur-naina-devi",
-        "name": "Naina Devi Hill Slips",
-        "category": "Geological",
-        "intensity": 52,
-        "active": true,
-        "district": "Bilaspur",
-        "size": "Small",
-        "movement_type": "Slope Failure",
-        "remarks": "Dangerous for pilgrimage traffic during monsoon."
+        "id": "ls-hp-solan-chakkimod-2023",
+        "name": "Chakki Mod NH-5 Sinkage",
+        "category": "Landslide",
+        "state": "Himachal Pradesh",
+        "district": "Solan",
+        "date": "August 2023",
+        "year": 2023,
+        "intensity": 94,
+        "active": false,
+        "movement_type": "Subsidence / Slide",
+        "infrastructureImpact": "Major portion of Parwanoo-Solan 4-lane washed away.",
+        "source": "NHAI",
+        "verificationStatus": "verified"
       },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [76.5400, 31.3000]
-      }
+      "geometry": { "type": "Point", "coordinates": [77.0100, 30.8700] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ls-uk-pithoragarh-dharchula-2021",
+        "name": "Dharchula Cloudburst Slides",
+        "category": "Landslide",
+        "state": "Uttarakhand",
+        "district": "Pithoragarh",
+        "date": "August 2021",
+        "year": 2021,
+        "intensity": 86,
+        "active": false,
+        "triggering": "Cloudburst",
+        "source": "USDMA",
+        "verificationStatus": "verified"
+      },
+      "geometry": { "type": "Point", "coordinates": [80.5300, 29.8500] }
     }
   ]
 }

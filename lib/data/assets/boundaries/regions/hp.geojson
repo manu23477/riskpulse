@@ -1,0 +1,10 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": { "name": "Himachal Pradesh", "type": "State" },
+      "geometry": { "type": "Polygon", "coordinates": [[[75.6, 33.3], [79.1, 33.3], [79.1, 30.3], [75.6, 30.3], [75.6, 33.3]]] }
+    }
+  ]
+}

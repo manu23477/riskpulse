@@ -1,32 +1,57 @@
 import 'geo_location.dart';
 
+enum VerificationStatus { verified, partiallyVerified, approximate, unverified }
+
 class Hazard {
   final String id;
   final String name;
-  final String category;
+  final String category; // Hazard type: Landslide, Earthquake, etc.
   final double intensity;
   final String unit;
   final bool active;
   final GeoLocation location;
 
-  // Detailed source information.
-  final String? source;
+  // Geographic hierarchy
   final String? state;
   final String? district;
-  final String? slideName;
-  final String? activity;
+  final String? tehsil;
+  final String? village;
+  final String? locationName;
+
+  // Temporal information
+  final String? date;
+  final String? time;
+  final int? year;
+
+  // Seismological/Hydrological specifics
+  final double? magnitude;
+  final String? magnitudeType;
+  final double? depth; // Depth in km for EQ
+  final String? epicentralLocation;
   final String? triggering;
+
+  // Impact and Damage
+  final String? casualties;
+  final String? missing;
+  final String? injured;
+  final String? housesAffected;
+  final String? infrastructureImpact;
+  final String? roadDamage;
+  final String? bridgeDamage;
+  final String? livestockImpact;
+  final String? economicLoss;
+  final String? environmentalImpact;
+  final String? response;
+
+  // Scientific/Geological Details
+  final String? geology;
   final String? movementType;
   final String? movementRate;
-  final String? geology;
   final String? geoScientificCause;
-  final String? infrastructureImpact;
-  final String? peopleImpact;
-  final String? livestockImpact;
   final String? remarks;
   final String? history;
 
-  // Landslide dimensions and impact measurements.
+  // Physical Dimensions
   final double? lengthMeters;
   final double? widthMeters;
   final double? depthMeters;
@@ -34,15 +59,22 @@ class Hazard {
   final double? volumeCubicMeters;
   final double? runoutDistanceMeters;
 
-  // Historical information.
-  final int? initiationYear;
-  final int? reactivationYear;
+  // Authenticity & Transparency fields
+  final VerificationStatus verificationStatus;
+  final String? source;
+  final String? sourceUrl;
+  final String? sourceType;
+  final String? explanationQuick;
+  final String? explanationDetailed;
+  final DateTime? lastUpdated;
+  final bool isAiGenerated;
+  final bool isPrediction;
+  final bool locationIsApproximate;
+  final String? locationAccuracy;
+
+  // Metadata
   final bool? historicalEvent;
-
-  // Original GSI/source properties.
   final Map<String, dynamic> sourceProperties;
-
-  // Original GeoJSON geometry.
   final Map<String, dynamic>? geometry;
 
   const Hazard({
@@ -53,19 +85,34 @@ class Hazard {
     required this.unit,
     required this.active,
     required this.location,
-    this.source,
     this.state,
     this.district,
-    this.slideName,
-    this.activity,
+    this.tehsil,
+    this.village,
+    this.locationName,
+    this.date,
+    this.time,
+    this.year,
+    this.magnitude,
+    this.magnitudeType,
+    this.depth,
+    this.epicentralLocation,
     this.triggering,
+    this.casualties,
+    this.missing,
+    this.injured,
+    this.housesAffected,
+    this.infrastructureImpact,
+    this.roadDamage,
+    this.bridgeDamage,
+    this.livestockImpact,
+    this.economicLoss,
+    this.environmentalImpact,
+    this.response,
+    this.geology,
     this.movementType,
     this.movementRate,
-    this.geology,
     this.geoScientificCause,
-    this.infrastructureImpact,
-    this.peopleImpact,
-    this.livestockImpact,
     this.remarks,
     this.history,
     this.lengthMeters,
@@ -74,8 +121,17 @@ class Hazard {
     this.areaSquareMeters,
     this.volumeCubicMeters,
     this.runoutDistanceMeters,
-    this.initiationYear,
-    this.reactivationYear,
+    this.verificationStatus = VerificationStatus.unverified,
+    this.source,
+    this.sourceUrl,
+    this.sourceType,
+    this.explanationQuick,
+    this.explanationDetailed,
+    this.lastUpdated,
+    this.isAiGenerated = false,
+    this.isPrediction = false,
+    this.locationIsApproximate = false,
+    this.locationAccuracy,
     this.historicalEvent,
     this.sourceProperties = const {},
     this.geometry,

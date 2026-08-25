@@ -27,6 +27,7 @@ dependencies:
   provider: ^6.1.2
   http: ^1.2.1
   audioplayers: ^6.0.0
+  intl: ^0.20.2
 
 dev_dependencies:
   flutter_test:
@@ -45,7 +46,7 @@ flutter:
   uses-material-design: true
 
   assets:
-    # - assets/images/logo.png
+    - assets/images/riskpulse logo.png
     - lib/data/assets/test_hazards.geojson
     - lib/data/assets/hazards/landslide.geojson
     - lib/data/assets/hazards/flood.geojson
@@ -55,3 +56,8 @@ flutter:
     - lib/data/assets/hazards/avalanche.geojson
     - lib/data/assets/hazards/major_landslides_polygons.geojson
     - lib/data/assets/hazards/kotropi_polygon.geojson
+    - lib/data/assets/boundaries/hp_districts.geojson
+    - lib/data/assets/boundaries/uk_districts.geojson
+    - lib/data/assets/boundaries/states.geojson
+    - lib/data/assets/boundaries/regions/hp.geojson
+    - lib/data/assets/boundaries/regions/uk.geojson

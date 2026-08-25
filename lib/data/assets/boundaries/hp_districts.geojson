@@ -1,0 +1,40 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": { "name": "Chamba" },
+      "geometry": { "type": "Polygon", "coordinates": [[[75.8, 33.2], [76.5, 33.2], [76.8, 32.5], [76.0, 32.2], [75.8, 33.2]]] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Kangra" },
+      "geometry": { "type": "Polygon", "coordinates": [[[75.8, 32.2], [76.5, 32.5], [76.8, 32.0], [76.2, 31.8], [75.8, 32.2]]] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Lahaul & Spiti" },
+      "geometry": { "type": "Polygon", "coordinates": [[[76.5, 33.2], [78.2, 33.2], [78.5, 32.0], [76.8, 32.5], [76.5, 33.2]]] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Kullu" },
+      "geometry": { "type": "Polygon", "coordinates": [[[76.8, 32.5], [77.5, 32.4], [77.8, 31.5], [77.0, 31.6], [76.8, 32.5]]] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Mandi" },
+      "geometry": { "type": "Polygon", "coordinates": [[[76.5, 32.0], [77.2, 32.0], [77.3, 31.4], [76.6, 31.4], [76.5, 32.0]]] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Shimla" },
+      "geometry": { "type": "Polygon", "coordinates": [[[77.2, 31.5], [78.1, 31.5], [78.2, 30.8], [77.3, 30.9], [77.2, 31.5]]] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Kinnaur" },
+      "geometry": { "type": "Polygon", "coordinates": [[[77.8, 32.0], [78.9, 32.2], [79.0, 31.2], [78.1, 31.5], [77.8, 32.0]]] }
+    }
+  ]
+}

@@ -39,6 +39,11 @@ class AppLocalizations {
       'himalayan_region': 'Indian Himalayan Region',
       'tourist_safety': 'Safe Route',
       'global_feed': 'Global Alerts',
+      'hello_state': 'Hello Himalayan Citizen',
+      'current_region': 'Western Himalayan Region',
+      'yatra_status': 'Yatra Status',
+      'yatra_bulletin': 'Char Dham Live Bulletin',
+      'risk_reports': 'Risk Reports',
     },
     'hi': {
       'app_title': 'रिस्कपल्स (RiskPulse)',
@@ -68,6 +73,11 @@ class AppLocalizations {
       'district_risk_alerts': 'जिला जोखिम अलर्ट',
       'himalayan_region': 'भारतीय हिमालयी क्षेत्र',
       'global_feed': 'वैश्विक अलर्ट',
+      'hello_state': 'नमस्ते हिमालयी नागरिक',
+      'current_region': 'पश्चिमी हिमालयी क्षेत्र',
+      'yatra_status': 'यात्रा की स्थिति',
+      'yatra_bulletin': 'चार धाम लाइव बुलेटिन',
+      'risk_reports': 'जोखिम रिपोर्ट',
     },
   };
 

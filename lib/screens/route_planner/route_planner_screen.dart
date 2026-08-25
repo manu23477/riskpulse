@@ -3,6 +3,7 @@ import 'package:latlong2/latlong.dart';
 import 'package:flutter_map/flutter_map.dart';
 import '../../data/models/hazard.dart';
 import '../../data/services/gis_data_service.dart';
+import '../../data/services/state_service.dart';
 
 class RoutePlannerScreen extends StatefulWidget {
   const RoutePlannerScreen({super.key});
@@ -13,13 +14,26 @@ class RoutePlannerScreen extends StatefulWidget {
 
 class _RoutePlannerScreenState extends State<RoutePlannerScreen> {
   final GisDataService _gisDataService = GisDataService();
-  final TextEditingController _startController = TextEditingController(text: 'Chandigarh');
-  final TextEditingController _endController = TextEditingController(text: 'Manali');
+  final StateService _stateService = StateService();
+  late TextEditingController _startController;
+  late TextEditingController _endController;
   final MapController _mapController = MapController();
   
   bool _isAnalyzing = false;
   List<Hazard> _relevantHazards = [];
   double _routeRiskScore = 0;
+  String _recommendationOverride = '';
+
+  @override
+  void initState() {
+    super.initState();
+    _startController = TextEditingController(
+      text: _stateService.selectedState == HimalayanState.himachal ? 'Chandigarh' : 'Dehradun'
+    );
+    _endController = TextEditingController(
+      text: _stateService.selectedState == HimalayanState.himachal ? 'Manali' : 'Badrinath'
+    );
+  }
 
   void _analyzeRoute() async {
     if (!mounted) return;
@@ -30,53 +44,51 @@ class _RoutePlannerScreenState extends State<RoutePlannerScreen> {
       _relevantHazards = [];
     });
 
-    // Simulate route analysis delay
     await Future.delayed(const Duration(seconds: 2));
 
     final allHazards = await _gisDataService.getLandslideHazards();
+    final stateHazards = allHazards.where((h) => h.state == _stateService.stateName).toList();
     List<Hazard> routeHazards = [];
     String recommendationText = '';
-    LatLng mapCenter = const LatLng(31.5, 77.0);
+    LatLng mapCenter = _stateService.selectedState == HimalayanState.himachal ? const LatLng(31.5, 77.0) : const LatLng(30.3, 79.0);
     double zoom = 7.5;
 
-    if (destination.contains('manali') || destination.contains('kullu')) {
-      // NH-21 Corridor: Mandi -> Kullu
-      routeHazards = allHazards.where((h) => 
-        h.district == 'Mandi' || h.district == 'Kullu'
-      ).toList();
-      recommendationText = routeHazards.any((h) => h.intensity > 80) 
-          ? 'Avoid Hanogi to Aut stretch due to active sliding.'
-          : 'NH-21 is relatively stable. Watch for minor slips near Pandoh.';
-      mapCenter = const LatLng(31.7, 77.1);
-      zoom = 9.0;
-    } else if (destination.contains('rampur') || destination.contains('kinnaur') || destination.contains('shimla')) {
-      // NH-5 Corridor: Shimla -> Rampur -> Kinnaur
-      routeHazards = allHazards.where((h) => 
-        h.district == 'Shimla' || h.district == 'Kinnaur'
-      ).toList();
-      recommendationText = routeHazards.any((h) => h.intensity > 85)
-          ? 'High risk near Nigulsari and Urni Dhank (NH-5). Use caution.'
-          : 'Isolated slips reported near Shogi and Jeori. Drive carefully.';
-      mapCenter = const LatLng(31.3, 77.5);
-      zoom = 9.0;
+    if (_stateService.selectedState == HimalayanState.himachal) {
+      if (destination.contains('manali') || destination.contains('kullu')) {
+        routeHazards = stateHazards.where((h) => h.district == 'Mandi' || h.district == 'Kullu').toList();
+        recommendationText = routeHazards.any((h) => h.intensity > 80) ? 'Avoid Hanogi to Aut stretch due to active sliding.' : 'NH-21 is relatively stable.';
+        mapCenter = const LatLng(31.7, 77.1);
+        zoom = 9.0;
+      } else if (destination.contains('rampur')) {
+        routeHazards = stateHazards.where((h) => h.district == 'Shimla').toList();
+        recommendationText = 'Check conditions near Jeori on NH-5.';
+        mapCenter = const LatLng(31.4, 77.6);
+        zoom = 9.0;
+      }
     } else {
-      // Generic search / Other routes
-      routeHazards = allHazards.take(5).toList();
-      recommendationText = 'Check local weather status before proceeding to high-altitude areas.';
+      if (destination.contains('badrinath')) {
+        routeHazards = stateHazards.where((h) => h.district == 'Chamoli').toList();
+        recommendationText = 'High risk near Joshimath sinking zone on NH-58.';
+        mapCenter = const LatLng(30.55, 79.56);
+        zoom = 9.0;
+      } else if (destination.contains('kedarnath')) {
+        routeHazards = stateHazards.where((h) => h.district == 'Rudraprayag').toList();
+        recommendationText = 'Extreme risk in Mandakini valley near NH-107.';
+        mapCenter = const LatLng(30.73, 79.06);
+        zoom = 9.5;
+      }
     }
 
     if (mounted) {
       setState(() {
         _isAnalyzing = false;
         _relevantHazards = routeHazards;
-        _routeRiskScore = routeHazards.isEmpty ? 20 : (routeHazards.any((h) => h.intensity > 85) ? 92 : 55);
+        _routeRiskScore = routeHazards.isEmpty ? 20 : (routeHazards.any((h) => h.intensity > 85) ? 94 : 58);
         _recommendationOverride = recommendationText;
       });
       _mapController.move(mapCenter, zoom);
     }
   }
-
-  String _recommendationOverride = '';
 
   @override
   Widget build(BuildContext context) {
@@ -114,10 +126,13 @@ class _RoutePlannerScreenState extends State<RoutePlannerScreen> {
         boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.1), blurRadius: 10)],
       ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _routeInput(label: 'Starting From', controller: _startController, icon: Icons.location_on_outlined, theme: theme),
           const SizedBox(height: 16),
           _routeInput(label: 'Destination', controller: _endController, icon: Icons.flag_outlined, theme: theme),
+          const SizedBox(height: 16),
+          _buildQuickPresets(theme),
           const SizedBox(height: 24),
           SizedBox(
             width: double.infinity,
@@ -133,6 +148,59 @@ class _RoutePlannerScreenState extends State<RoutePlannerScreen> {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _buildQuickPresets(ThemeData theme) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          _stateService.selectedState == HimalayanState.himachal ? 'Quick Selection (HP):' : 'Quick Selection (Char Dham):', 
+          style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: theme.colorScheme.onSurface.withValues(alpha: 0.7))
+        ),
+        const SizedBox(height: 8),
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            children: _stateService.selectedState == HimalayanState.himachal 
+              ? [
+                  _presetChip('Manali', theme),
+                  _presetChip('Kullu', theme),
+                  _presetChip('Rampur', theme),
+                  _presetChip('Shimla', theme),
+                ]
+              : [
+                  _presetChip('Yamunotri', theme),
+                  _presetChip('Gangotri', theme),
+                  _presetChip('Kedarnath', theme),
+                  _presetChip('Badrinath', theme),
+                  _presetChip('Nainital', theme),
+                ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _presetChip(String label, ThemeData theme) {
+    return Padding(
+      padding: const EdgeInsets.only(right: 8),
+      child: ActionChip(
+        label: Text(label, style: const TextStyle(fontSize: 11, fontWeight: FontWeight.bold)),
+        onPressed: () {
+          if (_stateService.selectedState == HimalayanState.himachal) {
+            _startController.text = label == 'Shimla' ? 'Chandigarh' : 'Mandi';
+          } else {
+            _startController.text = 'Dehradun';
+          }
+          _endController.text = label;
+          _analyzeRoute();
+        },
+        backgroundColor: theme.scaffoldBackgroundColor,
+        side: BorderSide(color: theme.dividerColor.withValues(alpha: 0.1)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       ),
     );
   }
@@ -155,8 +223,8 @@ class _RoutePlannerScreenState extends State<RoutePlannerScreen> {
   Widget _buildMiniMap() {
     return FlutterMap(
       mapController: _mapController,
-      options: const MapOptions(
-        initialCenter: LatLng(31.5, 77.0),
+      options: MapOptions(
+        initialCenter: _stateService.selectedState == HimalayanState.himachal ? const LatLng(31.5, 77.0) : const LatLng(30.3, 79.0),
         initialZoom: 7.5,
       ),
       children: [

@@ -70,4 +70,13 @@ class GeoJsonRepository {
 
     return provider.getHazardsFromAsset();
   }
+
+  Future<List<Hazard>> getGlofHazards() {
+    final provider =
+    GisProviderFactory.createGeoJsonProvider(
+      'lib/data/assets/hazards/glof.geojson',
+    );
+
+    return provider.getHazardsFromAsset();
+  }
 }

@@ -72,8 +72,58 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 );
                 return _buildWatchedDistrictCard(risk, profileService);
               }),
+            const SizedBox(height: 40),
+            _buildAppBranding(),
+            const SizedBox(height: 20),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildAppBranding() {
+    return Center(
+      child: Column(
+        children: [
+          Container(
+            padding: const EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(32),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withValues(alpha: 0.05),
+                  blurRadius: 20,
+                  offset: const Offset(0, 10),
+                ),
+              ],
+            ),
+            child: Image.asset(
+              'assets/images/riskpulse logo.png',
+              width: 120,
+              height: 120,
+              fit: BoxFit.contain,
+            ),
+          ),
+          const SizedBox(height: 16),
+          const Text(
+            'RiskPulse Intelligence',
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w900,
+              color: Color(0xFF0F172A),
+              letterSpacing: 0.5,
+            ),
+          ),
+          const Text(
+            'Version 1.0.0+1',
+            style: TextStyle(
+              fontSize: 12,
+              color: Colors.black38,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ],
       ),
     );
   }

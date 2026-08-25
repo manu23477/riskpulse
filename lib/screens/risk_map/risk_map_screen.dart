@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../data/models/exposure.dart';
@@ -10,12 +11,14 @@ import '../../data/models/landslide_polygon.dart';
 import '../../data/models/risk_assessment.dart';
 import '../../data/models/risk_layer.dart';
 import '../../data/models/community_report.dart';
+import '../../data/models/geo_location.dart';
 import '../../data/repositories/landslide_polygon_repository.dart';
 import '../../data/repositories/map_repository.dart';
 import '../../data/repositories/risk_layer_repository.dart';
 import '../../data/services/gis_data_service.dart';
 import '../../data/services/community_report_service.dart';
 import '../../data/services/forest_fire_service.dart';
+import '../../data/services/state_service.dart';
 import '../../data/services/risk_engine.dart';
 import 'widgets/landslide_info_card.dart';
 
@@ -30,6 +33,7 @@ class RiskMapScreen extends StatefulWidget {
 class _RiskMapScreenState extends State<RiskMapScreen> {
   final GisDataService _gisDataService = GisDataService();
   final ForestFireService _fireService = ForestFireService();
+  final StateService _stateService = StateService();
   final MapRepository _mapRepository = MapRepository();
   final RiskLayerRepository _riskLayerRepository = RiskLayerRepository();
   final LandslidePolygonRepository _landslidePolygonRepository = LandslidePolygonRepository(
@@ -37,6 +41,7 @@ class _RiskMapScreenState extends State<RiskMapScreen> {
   );
   final CommunityReportService _reportService = CommunityReportService();
   final MapController _mapController = MapController();
+  final TextEditingController _searchController = TextEditingController();
 
   bool _isSimulationMode = false;
   double _simRainfall = 50.0;
@@ -44,6 +49,13 @@ class _RiskMapScreenState extends State<RiskMapScreen> {
   double _simVulnerability = 50.0;
 
   String selectedLayer = 'Risk';
+  String _searchQuery = '';
+  String _selectedStatusFilter = 'All';
+  String _selectedDistrictFilter = 'All Districts';
+  double _minMagnitude = 0;
+  int _startYear = 1900;
+  int _endYear = 2026;
+
   List<Hazard> geoJsonHazards = [];
   List<Hazard> landslideHazards = [];
   List<Hazard> floodHazards = [];
@@ -52,7 +64,10 @@ class _RiskMapScreenState extends State<RiskMapScreen> {
   List<Hazard> forestFireHazards = [];
   List<Hazard> liveFireIncidents = [];
   List<Hazard> avalancheHazards = [];
+  List<Hazard> glofHazards = [];
   List<LandslidePolygon> landslidePolygons = [];
+  List<LandslidePolygon> boundaryPolygons = [];
+  List<LandslidePolygon> stateBoundaries = [];
   bool isLoadingGeoJson = true;
   bool isLoadingPolygons = true;
   bool _showLegend = false;
@@ -65,26 +80,78 @@ class _RiskMapScreenState extends State<RiskMapScreen> {
   @override
   void initState() {
     super.initState();
+    _stateService.addListener(_onStateChanged);
     _loadGeoJsonData();
     _loadLandslidePolygons();
+    _loadStateBoundaries();
     _handleInitialHighlight();
   }
 
-  void _handleInitialHighlight() {
-    if (widget.highlightDistricts != null && widget.highlightDistricts!.isNotEmpty) {
-      final district = widget.highlightDistricts!.first;
-      if (RiskEngine.districtCoordinates.containsKey(district)) {
-        WidgetsBinding.instance.addPostFrameCallback((_) {
-          _mapController.move(RiskEngine.districtCoordinates[district]!, 10.5);
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text('Focusing on IMD Alert area: $district'),
-              backgroundColor: const Color(0xFF0F172A),
-              behavior: SnackBarBehavior.floating,
-            ),
-          );
-        });
-      }
+  @override
+  void dispose() {
+    _stateService.removeListener(_onStateChanged);
+    _searchController.dispose();
+    super.dispose();
+  }
+
+  void _onStateChanged() {
+    if (mounted) {
+      setState(() {
+        isLoadingGeoJson = true;
+      });
+      _loadGeoJsonData();
+      _loadLandslidePolygons();
+      _loadStateBoundaries();
+      
+      final newCenter = _stateService.selectedState == HimalayanState.himachal 
+          ? const LatLng(31.1048, 77.1734) 
+          : const LatLng(30.3, 79.0);
+      _mapController.move(newCenter, 8.5);
+    }
+  }
+
+  Future<void> _loadStateBoundaries() async {
+    try {
+      final boundaryRepo = LandslidePolygonRepository(assetPath: 'lib/data/assets/boundaries/states.geojson');
+      final allStates = await boundaryRepo.getLandslidePolygons();
+      if (!mounted) return;
+      setState(() {
+        stateBoundaries = allStates.where((s) => s.name == _stateService.stateName).toList();
+      });
+    } catch (_) {}
+  }
+
+  void _handleInitialHighlight() async {
+    final district = widget.highlightDistricts?.first;
+    
+    final assetPath = _stateService.selectedState == HimalayanState.himachal 
+        ? 'lib/data/assets/boundaries/hp_districts.geojson' 
+        : 'lib/data/assets/boundaries/uk_districts.geojson';
+
+    final boundaryRepo = LandslidePolygonRepository(assetPath: assetPath);
+    final allBoundaries = await boundaryRepo.getLandslidePolygons();
+    
+    if (mounted) {
+      setState(() {
+        if (district != null) {
+          boundaryPolygons = allBoundaries.where((b) => b.name == district).toList();
+        } else {
+          boundaryPolygons = [];
+        }
+      });
+    }
+
+    if (district != null && RiskEngine.districtCoordinates.containsKey(district)) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        _mapController.move(RiskEngine.districtCoordinates[district]!, 10.5);
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Focusing on IMD Alert area: $district'),
+            backgroundColor: const Color(0xFF0F172A),
+            behavior: SnackBarBehavior.floating,
+          ),
+        );
+      });
     }
   }
 
@@ -98,6 +165,7 @@ class _RiskMapScreenState extends State<RiskMapScreen> {
       final loadedFires = await _gisDataService.getForestFireHazards();
       final liveFires = await _fireService.fetchLiveFireIncidents();
       final loadedAvalanches = await _gisDataService.getAvalancheHazards();
+      final loadedGlofs = await _gisDataService.getGlofHazards();
 
       if (!mounted) return;
       setState(() {
@@ -109,6 +177,7 @@ class _RiskMapScreenState extends State<RiskMapScreen> {
         forestFireHazards = loadedFires;
         liveFireIncidents = liveFires;
         avalancheHazards = loadedAvalanches;
+        glofHazards = loadedGlofs;
         isLoadingGeoJson = false;
       });
     } catch (_) {
@@ -121,7 +190,7 @@ class _RiskMapScreenState extends State<RiskMapScreen> {
       final loadedPolygons = await _landslidePolygonRepository.getLandslidePolygons();
       if (!mounted) return;
       setState(() {
-        landslidePolygons = loadedPolygons;
+        landslidePolygons = loadedPolygons.where((p) => p.state == _stateService.stateName).toList();
         isLoadingPolygons = false;
       });
     } catch (_) {
@@ -137,74 +206,157 @@ class _RiskMapScreenState extends State<RiskMapScreen> {
       markers = _getRiskMarkers();
     } else if (layer == 'Community Reports') {
       markers = _getCommunityMarkers();
-    } else if (layer == 'Flash Floods') {
-      markers = _createHazardMarkers(floodHazards);
-    } else if (layer == 'Cloud Bursts') {
-      markers = _createHazardMarkers(cloudburstHazards);
-    } else if (layer == 'Earthquake') {
-      markers = _createHazardMarkers(earthquakeHazards);
-    } else if (layer == 'Live Forest Fires') {
-      markers = _createHazardMarkers(liveFireIncidents);
-    } else if (layer == 'Avalanches') {
-      markers = _createHazardMarkers(avalancheHazards);
-    } else if (layer == 'Live Landslides') {
-      if (landslideHazards.isNotEmpty) markers.addAll(_createHazardMarkers(landslideHazards));
-      markers.addAll(_createPolygonCentroidMarkers());
     } else {
-      final selected = geoJsonHazards.where((h) => h.name == layer).toList();
-      markers = _createHazardMarkers(selected.isEmpty ? hazards.where((h) => h.name == layer).toList() : selected);
+      List<Hazard> sourceList = [];
+      if (layer == 'Flash Floods') sourceList = floodHazards;
+      else if (layer == 'Cloud Bursts') sourceList = cloudburstHazards;
+      else if (layer == 'Earthquake') sourceList = earthquakeHazards;
+      else if (layer == 'Live Forest Fires') sourceList = liveFireIncidents;
+      else if (layer == 'Avalanches') sourceList = avalancheHazards;
+      else if (layer == 'GLOFs') sourceList = glofHazards;
+      else if (layer == 'Live Landslides') {
+        sourceList = landslideHazards;
+        markers.addAll(_createPolygonCentroidMarkers());
+      } else {
+        final selected = geoJsonHazards.where((h) => h.name == layer).toList();
+        sourceList = selected.isEmpty ? hazards.where((h) => h.name == layer).toList() : selected;
+      }
+      markers.addAll(_createHazardMarkers(_filterHazards(sourceList)));
     }
     return markers;
   }
 
-  List<Marker> _createPolygonCentroidMarkers() {
-    return landslidePolygons.map((lp) {
-      if (lp.rings.isEmpty || lp.rings[0].isEmpty) return null;
-      double lat = 0, lon = 0;
-      for (var p in lp.rings[0]) { lat += p.latitude; lon += p.longitude; }
-      return Marker(
-        point: LatLng(lat / lp.rings[0].length, lon / lp.rings[0].length),
-        width: 60, height: 60,
-        child: GestureDetector(
-          onTap: () => _showLandslideInformation(_convertPolygonToHazard(lp)),
-          child: Container(
-            decoration: BoxDecoration(color: Colors.white.withValues(alpha: 0.8), shape: BoxShape.circle, border: Border.all(color: Colors.orange, width: 2)),
-            child: const Icon(Icons.terrain, color: Colors.orange, size: 28),
-          ),
-        ),
-      );
-    }).whereType<Marker>().toList();
-  }
+  List<Hazard> _filterHazards(List<Hazard> list) {
+    return list.where((h) {
+      final matchesSearch = h.name.toLowerCase().contains(_searchQuery.toLowerCase()) ||
+          (h.district?.toLowerCase().contains(_searchQuery.toLowerCase()) ?? false) ||
+          (h.locationName?.toLowerCase().contains(_searchQuery.toLowerCase()) ?? false) ||
+          (h.year?.toString().contains(_searchQuery) ?? false) ||
+          (h.magnitude?.toString().contains(_searchQuery) ?? false);
+      
+      final matchesStatus = _selectedStatusFilter == 'All' ||
+          (_selectedStatusFilter == 'Live' && h.active) ||
+          (_selectedStatusFilter == 'Historical' && h.historicalEvent == true) ||
+          (_selectedStatusFilter == 'Recent' && !h.active && h.historicalEvent != true);
 
-  Hazard _convertPolygonToHazard(LandslidePolygon lp) {
-    return Hazard(
-      id: lp.id, name: lp.name, category: 'Geological', intensity: 85, unit: 'Score',
-      active: lp.activity?.toLowerCase().contains('active') ?? true,
-      location: lp.rings[0][0], district: lp.district, state: lp.state,
-      movementType: lp.movementType, triggering: lp.triggering, geology: lp.geology,
-      remarks: lp.remarks, history: lp.history,
-    );
+      final matchesDistrict = _selectedDistrictFilter == 'All Districts' ||
+          h.district == _selectedDistrictFilter;
+
+      final matchesMagnitude = h.category.toLowerCase().contains('earthquake') 
+          ? (h.magnitude ?? 0) >= _minMagnitude 
+          : true;
+
+      final matchesYear = h.year == null || (h.year! >= _startYear && h.year! <= _endYear);
+
+      return matchesSearch && matchesStatus && matchesDistrict && matchesMagnitude && matchesYear;
+    }).toList();
   }
 
   List<Marker> _createHazardMarkers(List<Hazard> list) {
     return list.map((h) {
       final sizeStr = h.sourceProperties['size']?.toString().toLowerCase() ?? 'medium';
       double iconSize = sizeStr.contains('major') ? 46 : (sizeStr.contains('minor') ? 34 : 24);
+      
+      if (h.category.toLowerCase().contains('earthquake') && h.magnitude != null) {
+        iconSize = 20 + (h.magnitude! * 5); 
+      }
+
+      final color = _getHazardColor(h.name.isEmpty ? h.category : h.name);
+      
+      final bool isLive = h.active;
+      final bool isRecent = !h.active && h.historicalEvent != true;
+      final bool isHistorical = h.historicalEvent == true;
+
       return Marker(
         point: LatLng(h.location.latitude, h.location.longitude),
-        width: 70, height: 70,
+        width: iconSize + 40, height: iconSize + 40,
         child: GestureDetector(
           onTap: () => _showLandslideInformation(h),
           child: Stack(
             alignment: Alignment.center,
             children: [
-              Icon(_getHazardIcon(h.name), color: _getHazardColor(h.name), size: iconSize),
-              if (h.active) Positioned(top: 0, right: 0, child: _liveBadge()),
+              if (isLive) _SimulationPulse(color: color),
+              
+              if (isRecent)
+                Container(
+                  width: iconSize + 16,
+                  height: iconSize + 16,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(color: color.withValues(alpha: 0.6), width: 2),
+                    color: color.withValues(alpha: 0.15),
+                  ),
+                ),
+
+              if (h.sourceProperties['size'] == 'Major' || h.intensity > 90 || (h.magnitude != null && h.magnitude! > 7))
+                Container(
+                  width: iconSize + 10,
+                  height: iconSize + 10,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: color.withValues(alpha: 0.1),
+                  ),
+                ),
+
+              Icon(
+                _getHazardIcon(h.name.isEmpty ? h.category : h.name), 
+                color: isHistorical ? color.withValues(alpha: 0.6) : color, 
+                size: iconSize
+              ),
+              
+              if (isLive) Positioned(top: 0, right: 0, child: _liveBadge()),
             ],
           ),
         ),
       );
     }).toList();
+  }
+
+  List<Marker> _createPolygonCentroidMarkers() {
+    final List<Hazard> converted = landslidePolygons.map((p) => _convertPolygonToHazard(p)).toList();
+    return _createHazardMarkers(_filterHazards(converted));
+  }
+
+  Hazard _convertPolygonToHazard(LandslidePolygon p) {
+    double totalLat = 0;
+    double totalLng = 0;
+    int pointCount = 0;
+    
+    for (var ring in p.rings) {
+      for (var point in ring) {
+        totalLat += point.latitude;
+        totalLng += point.longitude;
+        pointCount++;
+      }
+    }
+    
+    final centroid = GeoLocation(
+      latitude: pointCount > 0 ? totalLat / pointCount : 0,
+      longitude: pointCount > 0 ? totalLng / pointCount : 0,
+    );
+
+    return Hazard(
+      id: p.id,
+      name: p.name,
+      category: 'Landslide',
+      intensity: 50,
+      unit: 'Scale',
+      active: p.activity?.toLowerCase().contains('active') ?? false,
+      location: centroid,
+      district: p.district,
+      state: p.state,
+      locationName: p.name,
+      triggering: p.triggering,
+      movementType: p.movementType,
+      geology: p.geology,
+      remarks: p.remarks,
+      history: p.history,
+      source: p.source,
+      sourceProperties: {
+        'size': 'Medium',
+        'activity': p.activity,
+      },
+    );
   }
 
   Widget _liveBadge() => Container(
@@ -272,23 +424,55 @@ class _RiskMapScreenState extends State<RiskMapScreen> {
   Color _getRiskColor(double s) => s >= 70 ? const Color(0xFFE11D48) : (s >= 40 ? const Color(0xFFF59E0B) : const Color(0xFF10B981));
 
   List<Polygon> _getLandslidePolygons(String layer) {
-    if (layer != 'Live Landslides' && layer != 'Risk') return [];
-    return landslidePolygons.expand((lp) => lp.rings.map((ring) => Polygon(
+    final List<Polygon> polygons = [];
+
+    for (final s in stateBoundaries) {
+      for (final ring in s.rings) {
+        polygons.add(
+          Polygon(
+            points: ring.map((p) => LatLng(p.latitude, p.longitude)).toList(),
+            color: Colors.transparent,
+            borderColor: const Color(0xFF0F172A).withValues(alpha: 0.5),
+            borderStrokeWidth: 4,
+          ),
+        );
+      }
+    }
+
+    for (final b in boundaryPolygons) {
+      for (final ring in b.rings) {
+        polygons.add(
+          Polygon(
+            points: ring.map((p) => LatLng(p.latitude, p.longitude)).toList(),
+            color: const Color(0xFFE11D48).withValues(alpha: 0.1),
+            borderColor: const Color(0xFFE11D48).withValues(alpha: 0.4),
+            borderStrokeWidth: 2,
+          ),
+        );
+      }
+    }
+
+    if (layer != 'Live Landslides' && layer != 'Risk') return polygons;
+    
+    polygons.addAll(landslidePolygons.expand((lp) => lp.rings.map((ring) => Polygon(
       points: ring.map((p) => LatLng(p.latitude, p.longitude)).toList(),
       color: const Color(0xFFF59E0B).withValues(alpha: 0.3),
       borderColor: const Color(0xFFF59E0B),
       borderStrokeWidth: 3,
-    ))).toList();
+    ))));
+
+    return polygons;
   }
 
   IconData _getHazardIcon(String n) {
     final lower = n.toLowerCase();
     if (lower.contains('landslide')) return Icons.terrain;
     if (lower.contains('flood')) return Icons.water;
-    if (lower.contains('cloudburst')) return Icons.thunderstorm;
-    if (lower.contains('earthquake')) return Icons.vibration;
+    if (lower.contains('cloudburst') || lower.contains('cloud burst')) return Icons.thunderstorm;
+    if (lower.contains('earthquake') || lower.contains('seismic')) return Icons.vibration;
     if (lower.contains('forest')) return Icons.local_fire_department;
     if (lower.contains('avalanche')) return Icons.ac_unit;
+    if (lower.contains('glof')) return Icons.ac_unit_rounded;
     return Icons.warning_rounded;
   }
 
@@ -296,30 +480,54 @@ class _RiskMapScreenState extends State<RiskMapScreen> {
     final lower = n.toLowerCase();
     if (lower.contains('landslide')) return const Color(0xFFF59E0B);
     if (lower.contains('flood')) return const Color(0xFF3B82F6);
-    if (lower.contains('cloudburst')) return Colors.deepPurpleAccent;
-    if (lower.contains('earthquake')) return const Color(0xFF8B5CF6);
+    if (lower.contains('cloudburst') || lower.contains('cloud burst')) return Colors.deepPurpleAccent;
+    if (lower.contains('earthquake') || lower.contains('seismic')) return const Color(0xFF8B5CF6);
     if (lower.contains('forest')) return Colors.deepOrange;
     if (lower.contains('avalanche')) return Colors.lightBlueAccent;
+    if (lower.contains('glof')) return Colors.cyan;
     return const Color(0xFFE11D48);
   }
 
   @override
   Widget build(BuildContext context) {
+    final stateService = Provider.of<StateService>(context);
+    
     return Scaffold(
       backgroundColor: const Color(0xFFF8FAFC),
       appBar: AppBar(
         backgroundColor: _isSimulationMode ? const Color(0xFFE11D48) : Colors.white,
         foregroundColor: _isSimulationMode ? Colors.white : const Color(0xFF0F172A),
-        title: Text(_isSimulationMode ? 'Scenario Simulator' : 'Risk Map'),
+        title: _isSimulationMode 
+          ? const Text('Scenario Simulator') 
+          : _buildStateDropdown(stateService),
         actions: [
-          IconButton(onPressed: () => setState(() { _isSimulationMode = !_isSimulationMode; if (_isSimulationMode) selectedLayer = 'Risk'; }), icon: Icon(_isSimulationMode ? Icons.layers_clear : Icons.analytics_outlined)),
-          IconButton(onPressed: () => setState(() => _showLegend = !_showLegend), icon: Icon(_showLegend ? Icons.info : Icons.info_outline)),
+          IconButton(
+            onPressed: () {
+              setState(() {
+                _isSimulationMode = !_isSimulationMode;
+                if (_isSimulationMode) selectedLayer = 'Risk';
+              });
+            },
+            icon: Icon(_isSimulationMode ? Icons.layers_clear : Icons.analytics_outlined),
+          ),
+          IconButton(
+            onPressed: () => setState(() => _showLegend = !_showLegend),
+            icon: Icon(_showLegend ? Icons.info : Icons.info_outline),
+          ),
           const SizedBox(width: 8),
         ],
       ),
       body: Stack(children: [
         Column(children: [
-          Expanded(child: FlutterMap(mapController: _mapController, options: const MapOptions(initialCenter: LatLng(31.1048, 77.1734), initialZoom: 8.5), children: [
+          Expanded(child: FlutterMap(
+            mapController: _mapController, 
+            options: MapOptions(
+              initialCenter: _stateService.selectedState == HimalayanState.himachal 
+                  ? const LatLng(31.1048, 77.1734) 
+                  : const LatLng(30.3, 79.0), 
+              initialZoom: 8.5
+            ), 
+            children: [
             TileLayer(
               urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
               userAgentPackageName: 'in.gov.hp.riskpulse.app',
@@ -337,7 +545,199 @@ class _RiskMapScreenState extends State<RiskMapScreen> {
     );
   }
 
-  Widget _buildFloatingSearch() => Positioned(top: 16, left: 16, right: 16, child: IgnorePointer(ignoring: _isSimulationMode, child: AnimatedOpacity(opacity: _isSimulationMode ? 0.0 : 1.0, duration: const Duration(milliseconds: 200), child: Container(height: 50, decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(15), boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.1), blurRadius: 10, offset: const Offset(0, 4))]), child: const TextField(decoration: InputDecoration(hintText: 'Search landslides or districts...', hintStyle: TextStyle(fontSize: 14, color: Colors.black38), prefixIcon: Icon(Icons.search), border: InputBorder.none, contentPadding: EdgeInsets.symmetric(vertical: 15)))))));
+  Widget _buildStateDropdown(StateService stateService) {
+    return DropdownButtonHideUnderline(
+      child: DropdownButton<HimalayanState>(
+        value: stateService.selectedState,
+        icon: Icon(Icons.keyboard_arrow_down, size: 18, color: _isSimulationMode ? Colors.white : const Color(0xFF0F172A)),
+        elevation: 16,
+        style: TextStyle(
+          color: _isSimulationMode ? Colors.white : const Color(0xFF0F172A),
+          fontWeight: FontWeight.w900,
+          fontSize: 18,
+          letterSpacing: -0.5,
+        ),
+        onChanged: (HimalayanState? newValue) {
+          if (newValue != null) {
+            stateService.setState(newValue);
+          }
+        },
+        items: [
+          DropdownMenuItem<HimalayanState>(
+            value: HimalayanState.himachal,
+            child: const Text('Himachal Pradesh'),
+          ),
+          DropdownMenuItem<HimalayanState>(
+            value: HimalayanState.uttarakhand,
+            child: const Text('Uttarakhand'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildFloatingSearch() => Positioned(
+    top: 16, left: 16, right: 16, 
+    child: Column(
+      children: [
+        IgnorePointer(
+          ignoring: _isSimulationMode, 
+          child: AnimatedOpacity(
+            opacity: _isSimulationMode ? 0.0 : 1.0, 
+            duration: const Duration(milliseconds: 200), 
+            child: Container(
+              height: 50, 
+              decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(15), boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.1), blurRadius: 10, offset: const Offset(0, 4))]), 
+              child: TextField(
+                controller: _searchController,
+                onChanged: (value) => setState(() => _searchQuery = value),
+                decoration: InputDecoration(
+                  hintText: 'Search disasters or districts...', 
+                  hintStyle: const TextStyle(fontSize: 14, color: Colors.black38), 
+                  prefixIcon: const Icon(Icons.search), 
+                  suffixIcon: IconButton(
+                    icon: const Icon(Icons.tune_rounded, size: 20, color: Color(0xFF0F172A)),
+                    onPressed: () => _showFilterOptions(),
+                  ),
+                  border: InputBorder.none, 
+                  contentPadding: const EdgeInsets.symmetric(vertical: 15)
+                )
+              )
+            )
+          )
+        ),
+        if (!_isSimulationMode) ...[
+          const SizedBox(height: 12),
+          _buildFilterChips(),
+        ],
+      ],
+    )
+  );
+
+  Widget _buildFilterChips() {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        children: [
+          _filterChip('All'),
+          _filterChip('Live'),
+          _filterChip('Recent'),
+          _filterChip('Historical'),
+          const SizedBox(width: 8),
+          _districtFilterChip(),
+        ],
+      ),
+    );
+  }
+
+  Widget _filterChip(String label) {
+    final isSelected = _selectedStatusFilter == label;
+    return Padding(
+      padding: const EdgeInsets.only(right: 8),
+      child: FilterChip(
+        label: Text(label, style: TextStyle(fontSize: 12, color: isSelected ? Colors.white : Colors.black87, fontWeight: FontWeight.bold)),
+        selected: isSelected,
+        onSelected: (selected) => setState(() => _selectedStatusFilter = label),
+        backgroundColor: Colors.white,
+        selectedColor: const Color(0xFF0F172A),
+        checkmarkColor: Colors.white,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+      ),
+    );
+  }
+
+  Widget _districtFilterChip() {
+    final districts = _stateService.selectedState == HimalayanState.himachal
+        ? ['Mandi', 'Shimla', 'Kullu', 'Kinnaur', 'Chamba', 'Kangra', 'Solan', 'Sirmaur', 'Una', 'Hamirpur', 'Bilaspur', 'Lahaul & Spiti']
+        : ['Dehradun', 'Haridwar', 'Tehri', 'Pauri', 'Uttarkashi', 'Chamoli', 'Rudraprayag', 'Almora', 'Nainital', 'Pithoragarh', 'Bageshwar', 'Champawat', 'Udham Singh Nagar'];
+
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12),
+      decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(20), boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.05), blurRadius: 5)]),
+      child: DropdownButton<String>(
+        value: _selectedDistrictFilter,
+        underline: const SizedBox(),
+        style: const TextStyle(fontSize: 12, color: Colors.black87, fontWeight: FontWeight.bold),
+        onChanged: (v) => setState(() => _selectedDistrictFilter = v!),
+        items: ['All Districts', ...districts].map((d) => DropdownMenuItem(value: d, child: Text(d))).toList(),
+      ),
+    );
+  }
+
+  void _showFilterOptions() {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.white,
+      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(32))),
+      builder: (context) => StatefulBuilder(
+        builder: (context, setModalState) => Padding(
+          padding: const EdgeInsets.all(32),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text('Advanced Filters', style: TextStyle(fontSize: 22, fontWeight: FontWeight.w900)),
+              const SizedBox(height: 24),
+              
+              const Text('Minimum Magnitude (Earthquakes)', style: TextStyle(fontWeight: FontWeight.bold)),
+              Slider(
+                value: _minMagnitude,
+                min: 0, max: 9,
+                divisions: 18,
+                label: _minMagnitude.toString(),
+                onChanged: (v) {
+                  setModalState(() => _minMagnitude = v);
+                  setState(() => _minMagnitude = v);
+                },
+              ),
+              
+              const SizedBox(height: 16),
+              const Text('Time Period (Year)', style: TextStyle(fontWeight: FontWeight.bold)),
+              RangeSlider(
+                values: RangeValues(_startYear.toDouble(), _endYear.toDouble()),
+                min: 1900, max: 2026,
+                divisions: 126,
+                labels: RangeLabels(_startYear.toString(), _endYear.toString()),
+                onChanged: (v) {
+                  setModalState(() {
+                    _startYear = v.start.toInt();
+                    _endYear = v.end.toInt();
+                  });
+                  setState(() {
+                    _startYear = v.start.toInt();
+                    _endYear = v.end.toInt();
+                  });
+                },
+              ),
+              
+              const SizedBox(height: 32),
+              SizedBox(
+                width: double.infinity,
+                height: 56,
+                child: ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      _minMagnitude = 0;
+                      _startYear = 1900;
+                      _endYear = 2026;
+                    });
+                    Navigator.pop(context);
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFFF1F5F9),
+                    foregroundColor: const Color(0xFF0F172A),
+                    elevation: 0,
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                  ),
+                  child: const Text('Reset All Filters', style: TextStyle(fontWeight: FontWeight.bold)),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 
   Widget _buildMapLegend() => Positioned(right: 16, top: 80, child: Container(width: 150, padding: const EdgeInsets.all(16), decoration: BoxDecoration(color: Colors.white.withValues(alpha: 0.95), borderRadius: BorderRadius.circular(20), boxShadow: const [BoxShadow(color: Colors.black12, blurRadius: 10)]), child: Column(mainAxisSize: MainAxisSize.min, crossAxisAlignment: CrossAxisAlignment.start, children: [
     const Text('Map Legend', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13)),
@@ -350,6 +750,7 @@ class _RiskMapScreenState extends State<RiskMapScreen> {
     _legendItem(Colors.deepOrange, 'Live Forest Fire'),
     _legendItem(Colors.lightBlueAccent, 'Avalanche'),
     _legendItem(const Color(0xFF6366F1), 'Community'),
+    _legendItem(Colors.cyan, 'GLOF Event'),
     _legendItem(const Color(0xFFF59E0B).withValues(alpha: 0.4), 'Hazard Area'),
   ])));
 
@@ -438,6 +839,7 @@ class _RiskMapScreenState extends State<RiskMapScreen> {
       case 'Earthquake': return Icons.vibration;
       case 'Live Forest Fires': return Icons.local_fire_department;
       case 'Avalanches': return Icons.ac_unit;
+      case 'GLOFs': return Icons.ac_unit_rounded;
       case 'Exposure': return Icons.people;
       case 'Risk': return Icons.warning_amber_rounded;
       default: return Icons.layers;

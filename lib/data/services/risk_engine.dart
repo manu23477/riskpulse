@@ -6,8 +6,9 @@ import '../models/hazard.dart';
 import '../models/district_risk.dart';
 
 class RiskEngine {
-  // Static susceptibility scores based on historical landslide frequency
+  // Static susceptibility scores for HP & UK districts
   static const Map<String, double> _districtSusceptibility = {
+    // Himachal
     'Kinnaur': 85.0,
     'Mandi': 80.0,
     'Kullu': 75.0,
@@ -20,9 +21,24 @@ class RiskEngine {
     'Bilaspur': 30.0,
     'Hamirpur': 25.0,
     'Una': 15.0,
+    // Uttarakhand
+    'Uttarkashi': 88.0,
+    'Chamoli': 92.0,
+    'Rudraprayag': 85.0,
+    'Pithoragarh': 90.0,
+    'Bageshwar': 75.0,
+    'Champawat': 70.0,
+    'Nainital': 80.0,
+    'Almora': 65.0,
+    'Pauri Garhwal': 60.0,
+    'Tehri Garhwal': 82.0,
+    'Dehradun': 55.0,
+    'Haridwar': 20.0,
+    'Udham Singh Nagar': 15.0,
   };
 
   static const Map<String, LatLng> districtCoordinates = {
+    // Himachal
     'Mandi': LatLng(31.7081, 76.9317),
     'Kinnaur': LatLng(31.5300, 78.1800),
     'Shimla': LatLng(31.1048, 77.1734),
@@ -35,6 +51,20 @@ class RiskEngine {
     'Bilaspur': LatLng(31.3300, 76.7600),
     'Hamirpur': LatLng(31.6800, 76.5200),
     'Una': LatLng(31.4700, 76.2700),
+    // Uttarakhand
+    'Uttarkashi': LatLng(30.7268, 78.4354),
+    'Chamoli': LatLng(30.4856, 79.7346),
+    'Rudraprayag': LatLng(30.2844, 78.9811),
+    'Pithoragarh': LatLng(29.5829, 80.2182),
+    'Bageshwar': LatLng(29.8404, 79.7694),
+    'Champawat': LatLng(29.3368, 80.0950),
+    'Nainital': LatLng(29.3919, 79.4542),
+    'Almora': LatLng(29.5892, 79.6467),
+    'Pauri Garhwal': LatLng(29.8661, 78.8373),
+    'Tehri Garhwal': LatLng(30.3804, 78.4831),
+    'Dehradun': LatLng(30.3165, 78.0322),
+    'Haridwar': LatLng(29.9457, 78.1642),
+    'Udham Singh Nagar': LatLng(28.9861, 79.4000),
   };
 
   static RiskAssessment calculateRisk({

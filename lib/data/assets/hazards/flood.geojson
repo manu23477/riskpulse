@@ -4,150 +4,274 @@
     {
       "type": "Feature",
       "properties": {
-        "id": "fl-kangra-bhagsunag-2021",
-        "name": "Bhagsunag Flash Flood",
-        "category": "Hydrological",
-        "intensity": 92,
-        "active": true,
-        "district": "Kangra",
-        "size": "Major",
-        "triggering": "Cloudburst",
-        "history": "July 12, 2021: Intense cloudburst caused a massive flash flood in Bhagsunag area of McLeod Ganj. Numerous luxury cars were swept away and properties damaged.",
-        "remarks": "Urban drainage system overwhelmed by sudden discharge."
+        "id": "fl-uk-rudraprayag-kedarnath-2013",
+        "name": "Kedarnath Himalayan Tsunami",
+        "category": "Flash Flood",
+        "state": "Uttarakhand",
+        "district": "Rudraprayag",
+        "date": "16 June 2013",
+        "year": 2013,
+        "intensity": 100,
+        "active": false,
+        "triggering": "Chorabari Lake Burst / Cloudburst",
+        "history": "Worst disaster in modern Indian history. Mandakini river flooded. Over 5000 dead/missing.",
+        "source": "USDMA",
+        "verificationStatus": "verified",
+        "historicalEvent": true
       },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [76.3333, 32.2461]
-      }
+      "geometry": { "type": "Point", "coordinates": [79.0669, 30.7346] }
     },
     {
       "type": "Feature",
       "properties": {
-        "id": "fl-mandi-beas-2023",
-        "name": "Beas River Flash Flood",
-        "category": "Hydrological",
+        "id": "fl-hp-mandi-beas-2023",
+        "name": "Beas River Surge",
+        "category": "Flash Flood",
+        "state": "Himachal Pradesh",
+        "district": "Mandi",
+        "date": "09 July 2023",
+        "year": 2023,
         "intensity": 98,
         "active": true,
-        "district": "Mandi",
-        "size": "Major",
         "triggering": "Extreme Rainfall / Dam Release",
-        "history": "July 2023: Beas river reached record levels in Mandi town. Historic Panchvaktra temple partially submerged. Mandi-Kullu highway washed away in multiple stretches.",
-        "remarks": "Highest flood level recorded in decades."
+        "history": "Beas river reached record levels in Mandi town. Historic Panchvaktra temple partially submerged.",
+        "source": "HPSDMA",
+        "verificationStatus": "verified"
       },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [76.9317, 31.7081]
-      }
+      "geometry": { "type": "Point", "coordinates": [76.9317, 31.7081] }
     },
     {
       "type": "Feature",
       "properties": {
-        "id": "fl-kullu-kasol-2023",
-        "name": "Parvati Valley Flash Flood",
-        "category": "Hydrological",
-        "intensity": 95,
-        "active": true,
-        "district": "Kullu",
-        "size": "Major",
-        "triggering": "Cloudburst / Heavy Rainfall",
-        "history": "July 2023: Sudden rise in Parvati river levels. Several campsites in Kasol and Manikaran swept away. Major disruption to tourism infrastructure.",
-        "remarks": "Vulnerable riverbank settlements affected."
+        "id": "fl-uk-chamoli-rishiganga-2021",
+        "name": "Rishiganga Disaster",
+        "category": "Flash Flood",
+        "state": "Uttarakhand",
+        "district": "Chamoli",
+        "date": "07 February 2021",
+        "year": 2021,
+        "intensity": 98,
+        "active": false,
+        "triggering": "Rock/Ice Fall related surge",
+        "history": "Sudden flood in Rishiganga/Dhauliganga. Destroyed Tapovan Vishnugad hydel project. Over 200 fatalities.",
+        "source": "USDMA",
+        "verificationStatus": "verified"
       },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [77.3151, 32.0104]
-      }
+      "geometry": { "type": "Point", "coordinates": [79.7346, 30.4856] }
     },
     {
       "type": "Feature",
       "properties": {
-        "id": "fl-shimla-samej-2024",
-        "name": "Samej Flash Flood",
-        "category": "Hydrological",
-        "intensity": 99,
+        "id": "fl-hp-kangra-bhagsunag-2021",
+        "name": "Bhagsunag Flash Flood",
+        "category": "Flash Flood",
+        "state": "Himachal Pradesh",
+        "district": "Kangra",
+        "date": "12 July 2021",
+        "year": 2021,
+        "intensity": 92,
         "active": true,
-        "district": "Shimla/Kullu Boundary",
-        "size": "Major / Tragic",
         "triggering": "Cloudburst",
-        "history": "August 1, 2024: Massive cloudburst at Samej Khud. Entire village hamlets wiped out. Over 30 people missing or dead. Hydel project infrastructure destroyed.",
-        "remarks": "Extremely high velocity debris-laden flood."
+        "history": "Intense cloudburst caused a massive flash flood in Bhagsunag area of McLeod Ganj.",
+        "source": "HPSDMA",
+        "verificationStatus": "verified"
       },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [77.6200, 31.4500]
-      }
+      "geometry": { "type": "Point", "coordinates": [76.3333, 32.2461] }
     },
     {
       "type": "Feature",
       "properties": {
-        "id": "fl-lahaul-chandra-2023",
-        "name": "Chandra River Surge",
-        "category": "Hydrological",
-        "intensity": 85,
-        "active": true,
+        "id": "fl-hp-kullu-beas-2023",
+        "name": "Manali NH Washout",
+        "category": "Flash Flood",
+        "state": "Himachal Pradesh",
+        "district": "Kullu",
+        "year": 2023,
+        "intensity": 96,
+        "active": false,
+        "history": "Large sections of the Manali-Chandigarh National Highway were washed away by the Beas river.",
+        "source": "NHAI / HPSDMA",
+        "verificationStatus": "verified"
+      },
+      "geometry": { "type": "Point", "coordinates": [77.1800, 32.2400] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "fl-uk-pauri-alakhnanda-2013",
+        "name": "Srinagar Inundation",
+        "category": "Flash Flood",
+        "state": "Uttarakhand",
+        "district": "Pauri Garhwal",
+        "year": 2013,
+        "intensity": 94,
+        "active": false,
+        "history": "Major flooding in Srinagar town area as Alakhnanda river breached the banks.",
+        "source": "USDMA",
+        "verificationStatus": "verified",
+        "historicalEvent": true
+      },
+      "geometry": { "type": "Point", "coordinates": [78.7800, 30.2200] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "fl-hp-lahaul-udaipur-2021",
+        "name": "Tozing Nallah Flash Flood",
+        "category": "Flash Flood",
+        "state": "Himachal Pradesh",
         "district": "Lahaul & Spiti",
-        "size": "Medium",
-        "triggering": "Glacial Melt + Rain",
-        "history": "Summer 2023: Unusual flash floods in Lahaul valley due to combined effects of heavy rain and rapid snow melt. Blocked Atal Tunnel access roads.",
-        "remarks": "Cold desert hydrological event."
+        "date": "July 2021",
+        "year": 2021,
+        "intensity": 90,
+        "active": false,
+        "history": "Sudden flood in Tozing nallah near Udaipur washed away several people and vehicles.",
+        "source": "HPSDMA",
+        "verificationStatus": "verified"
       },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [77.2100, 32.5300]
-      }
+      "geometry": { "type": "Point", "coordinates": [76.6700, 32.7300] }
     },
     {
       "type": "Feature",
       "properties": {
-        "id": "fl-chamba-ravi-2023",
-        "name": "Ravi River Flash Flood",
-        "category": "Hydrological",
-        "intensity": 88,
-        "active": true,
+        "id": "fl-hp-chamba-town-2023",
+        "name": "Ravi River Flood",
+        "category": "Riverine Flood",
+        "state": "Himachal Pradesh",
         "district": "Chamba",
-        "size": "Major",
-        "triggering": "Sustained Intense Rain",
-        "history": "July 2023: Ravi river caused extensive damage to Chamba-Pathankot highway. Local bridges and hydro-power intakes damaged.",
-        "remarks": "Impact on strategic connectivity."
+        "date": "July 2023",
+        "year": 2023,
+        "intensity": 85,
+        "active": false,
+        "history": "Heavy discharge in Ravi river inundated low-lying areas of Chamba town and damaged bridges.",
+        "source": "HPSDMA",
+        "verificationStatus": "verified"
       },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [76.1258, 32.5534]
-      }
+      "geometry": { "type": "Point", "coordinates": [76.1300, 32.5500] }
     },
     {
       "type": "Feature",
       "properties": {
-        "id": "fl-mandi-nagwain-minor",
-        "name": "Nagwain Overflow",
-        "category": "Hydrological",
-        "intensity": 45,
+        "id": "fl-uk-haridwar-ganga-2023",
+        "name": "Haridwar Ganga Surge",
+        "category": "Riverine Flood",
+        "state": "Uttarakhand",
+        "district": "Haridwar",
+        "date": "July 2023",
+        "year": 2023,
+        "intensity": 82,
         "active": false,
-        "district": "Mandi",
-        "size": "Minor",
-        "remarks": "Minor localized flooding due to river backflow."
+        "history": "Ganga river crossed the danger mark at Har Ki Pauri, affecting nearby ghats and colonies.",
+        "source": "USDMA",
+        "verificationStatus": "verified"
       },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [77.1650, 31.7500]
-      }
+      "geometry": { "type": "Point", "coordinates": [78.1600, 29.9400] }
     },
     {
       "type": "Feature",
       "properties": {
-        "id": "fl-una-swan-minor",
-        "name": "Swan River Spill",
-        "category": "Hydrological",
-        "intensity": 40,
-        "active": false,
+        "id": "fl-hp-una-swan-2023",
+        "name": "Swan River Inundation",
+        "category": "Riverine Flood",
+        "state": "Himachal Pradesh",
         "district": "Una",
-        "size": "Minor",
-        "remarks": "Seasonal overflow affecting low-lying agriculture fields."
+        "year": 2023,
+        "intensity": 80,
+        "active": false,
+        "history": "Seasonal flooding in the Swan river 'River of Sorrow' affected agricultural land in Una district.",
+        "source": "HPSDMA",
+        "verificationStatus": "verified"
       },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [76.2500, 31.4500]
-      }
+      "geometry": { "type": "Point", "coordinates": [76.2700, 31.4700] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "fl-hp-kullu-kasol-2022",
+        "name": "Parvati Valley Surge",
+        "category": "Flash Flood",
+        "state": "Himachal Pradesh",
+        "district": "Kullu",
+        "date": "July 2022",
+        "year": 2022,
+        "intensity": 88,
+        "active": false,
+        "history": "Flash flood in seasonal streams in Kasol and Manikaran areas washed away tents and vehicles.",
+        "source": "HPSDMA",
+        "verificationStatus": "verified"
+      },
+      "geometry": { "type": "Point", "coordinates": [77.3100, 32.0100] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "fl-uk-kathgodam-gaula-2021",
+        "name": "Gaula River Bridge Washout",
+        "category": "Riverine Flood",
+        "state": "Uttarakhand",
+        "district": "Nainital",
+        "date": "October 2021",
+        "year": 2021,
+        "intensity": 92,
+        "active": false,
+        "history": "A major approach road and part of the Gaula river bridge in Kathgodam were washed away.",
+        "source": "USDMA",
+        "verificationStatus": "verified"
+      },
+      "geometry": { "type": "Point", "coordinates": [79.5400, 29.2600] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "fl-hp-shimla-rampur-2023",
+        "name": "Satluj River High Discharge",
+        "category": "Riverine Flood",
+        "state": "Himachal Pradesh",
+        "district": "Shimla",
+        "year": 2023,
+        "intensity": 84,
+        "active": false,
+        "history": "Record water levels in Satluj river affected SJVN's Nathpa Jhakri project and Rampur town.",
+        "source": "HPSDMA",
+        "verificationStatus": "verified"
+      },
+      "geometry": { "type": "Point", "coordinates": [77.6300, 31.4400] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "fl-uk-almora-kosi-2021",
+        "name": "Kosi River Flooding",
+        "category": "Riverine Flood",
+        "state": "Uttarakhand",
+        "district": "Almora",
+        "date": "October 2021",
+        "year": 2021,
+        "intensity": 86,
+        "active": false,
+        "history": "The Kosi river in Almora overflowed its banks due to extreme rainfall, damaging resorts and fields.",
+        "source": "USDMA",
+        "verificationStatus": "verified"
+      },
+      "geometry": { "type": "Point", "coordinates": [79.6400, 29.6100] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "fl-hp-kinnaur-sangla-2023",
+        "name": "Sangla Baspa Flash Flood",
+        "category": "Flash Flood",
+        "state": "Himachal Pradesh",
+        "district": "Kinnaur",
+        "date": "July 2023",
+        "year": 2023,
+        "intensity": 90,
+        "active": false,
+        "history": "Flash flood in Baspa river damaged the strategic road and irrigation channels in Sangla valley.",
+        "source": "HPSDMA",
+        "verificationStatus": "verified"
+      },
+      "geometry": { "type": "Point", "coordinates": [78.2600, 31.4200] }
     }
   ]
 }

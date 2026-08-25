@@ -5,6 +5,7 @@ import '../screens/splash/splash_screen.dart';
 import '../core/localization/app_localizations.dart';
 import '../core/theme/theme_provider.dart';
 import '../data/services/profile_service.dart';
+import '../data/services/state_service.dart';
 
 class RiskPulseApp extends StatelessWidget {
   const RiskPulseApp({super.key});
@@ -16,6 +17,7 @@ class RiskPulseApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
         ChangeNotifierProvider(create: (_) => LanguageProvider()),
         ChangeNotifierProvider(create: (_) => ProfileService()),
+        ChangeNotifierProvider(create: (_) => StateService()),
       ],
       child: Consumer2<ThemeProvider, LanguageProvider>(
         builder: (context, themeProvider, languageProvider, child) {

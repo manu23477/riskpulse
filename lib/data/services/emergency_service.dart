@@ -1,12 +1,52 @@
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'location_service.dart';
+import 'state_service.dart';
 import '../models/emergency_contact.dart';
 
 class EmergencyService {
   final LocationService _locationService = LocationService();
 
-  List<EmergencyContact> getOfficialHelplines() {
+  List<EmergencyContact> getOfficialHelplines(HimalayanState state) {
+    if (state == HimalayanState.uttarakhand) {
+      return const [
+        EmergencyContact(
+          id: 'uk-seoc',
+          name: 'UK State Emergency Ops',
+          phoneNumber: '1070',
+          isOfficial: true,
+          subtitle: 'State Emergency Operation Centre',
+        ),
+        EmergencyContact(
+          id: 'uk-deoc',
+          name: 'District Emergency Ops',
+          phoneNumber: '1077',
+          isOfficial: true,
+          subtitle: 'District Emergency Operation Centre',
+        ),
+        EmergencyContact(
+          id: 'uk-police',
+          name: 'Uttarakhand Police',
+          phoneNumber: '112',
+          isOfficial: true,
+          subtitle: 'Emergency Response System',
+        ),
+        EmergencyContact(
+          id: 'uk-ambulance',
+          name: 'Ambulance',
+          phoneNumber: '108',
+          isOfficial: true,
+          subtitle: 'Health Emergencies',
+        ),
+        EmergencyContact(
+          id: 'uk-fire',
+          name: 'Fire Department',
+          phoneNumber: '101',
+          isOfficial: true,
+        ),
+      ];
+    }
+
     return const [
       EmergencyContact(
         id: 'hp-sdma',

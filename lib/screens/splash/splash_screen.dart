@@ -1,6 +1,5 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
-import '../home/home_screen.dart';
+import '../home/state_selection_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -9,124 +8,184 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-  late Animation<double> _opacityAnimation;
-  late Animation<double> _scaleAnimation;
+class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMixin {
+  late AnimationController _mainController;
+  
+  late Animation<double> _logoOpacity;
+  late Animation<double> _logoScale;
+  late Animation<double> _contentOpacity;
+  late Animation<double> _screenOpacity;
 
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(
+
+    // Main sequence controller (4 seconds total)
+    _mainController = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 1500),
+      duration: const Duration(seconds: 4),
     );
 
-    _opacityAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
-      CurvedAnimation(parent: _controller, curve: const Interval(0.0, 0.5, curve: Curves.easeIn)),
+    // 0.0 - 1.0s: Logo fade-in and scale-in
+    _logoOpacity = Tween<double>(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(
+        parent: _mainController,
+        curve: const Interval(0.0, 0.25, curve: Curves.easeIn),
+      ),
+    );
+    
+    _logoScale = Tween<double>(begin: 0.9, end: 1.0).animate(
+      CurvedAnimation(
+        parent: _mainController,
+        curve: const Interval(0.0, 0.25, curve: Curves.easeOut),
+      ),
     );
 
-    _scaleAnimation = Tween<double>(begin: 0.8, end: 1.0).animate(
-      CurvedAnimation(parent: _controller, curve: const Interval(0.0, 0.5, curve: Curves.easeOutBack)),
+    // 0.5 - 1.5s: Academic info fade in
+    _contentOpacity = Tween<double>(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(
+        parent: _mainController,
+        curve: const Interval(0.125, 0.375, curve: Curves.easeIn),
+      ),
     );
 
-    _controller.forward();
+    // 3.5 - 4.0s: Splash screen gently fades out
+    _screenOpacity = Tween<double>(begin: 1.0, end: 0.0).animate(
+      CurvedAnimation(
+        parent: _mainController,
+        curve: const Interval(0.875, 1.0, curve: Curves.easeInOut),
+      ),
+    );
 
-    Timer(const Duration(seconds: 5), () {
-      if (mounted) {
-        Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => const RiskPulseHome()),
-        );
+    _mainController.forward();
+
+    _mainController.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        _navigateToHome();
       }
     });
   }
 
+  void _navigateToHome() {
+    if (mounted) {
+      Navigator.of(context).pushReplacement(
+        PageRouteBuilder(
+          pageBuilder: (context, animation, secondaryAnimation) => const StateSelectionScreen(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return FadeTransition(opacity: animation, child: child);
+          },
+          transitionDuration: const Duration(milliseconds: 800),
+        ),
+      );
+    }
+  }
+
   @override
   void dispose() {
-    _controller.dispose();
+    _mainController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF0F172A),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+      backgroundColor: const Color(0xFFF8FAFC),
+      body: AnimatedBuilder(
+        animation: _mainController,
+        builder: (context, child) {
+          return Opacity(
+            opacity: _screenOpacity.value,
+            child: child,
+          );
+        },
+        child: Stack(
           children: [
-            AnimatedBuilder(
-              animation: _controller,
-              builder: (context, child) {
-                return Opacity(
-                  opacity: _opacityAnimation.value,
-                  child: Transform.scale(
-                    scale: _scaleAnimation.value,
-                    child: child,
-                  ),
-                );
-              },
-              child: Image.asset(
-                'assets/images/logo.png',
-                width: 200,
-                height: 200,
-                errorBuilder: (context, error, stackTrace) => const Icon(
-                  Icons.shield_outlined,
-                  size: 100,
-                  color: Color(0xFF22D3EE),
-                ),
-              ),
-            ),
-            const SizedBox(height: 40),
-            FadeTransition(
-              opacity: _opacityAnimation,
-              child: const Column(
+            Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    'Developed By',
-                    style: TextStyle(
-                      color: Colors.white54,
-                      fontSize: 12,
-                      letterSpacing: 1.2,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  SizedBox(height: 8),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 40),
-                    child: Text(
-                      'Kuldeep Singh',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                        fontWeight: FontWeight.w900,
+                  AnimatedBuilder(
+                    animation: _mainController,
+                    builder: (context, child) {
+                      return Opacity(
+                        opacity: _logoOpacity.value,
+                        child: Transform.scale(
+                          scale: _logoScale.value,
+                          child: child,
+                        ),
+                      );
+                    },
+                    child: Container(
+                      width: 280,
+                      height: 280,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        boxShadow: [
+                          BoxShadow(
+                            color: const Color(0xFF0F172A).withValues(alpha: 0.05),
+                            blurRadius: 40,
+                            spreadRadius: 10,
+                          ),
+                        ],
                       ),
-                    ),
-                  ),
-                  Text(
-                    'Research Officer/Coordinator PGDD&DM',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Color(0xFF22D3EE),
-                      fontSize: 13,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  SizedBox(height: 12),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 30),
-                    child: Text(
-                      'Department of Interdisciplinary Studies\nHimachal Pradesh University, Summer Hill Shimla-5',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.white70,
-                        fontSize: 11,
-                        height: 1.4,
+                      child: Image.asset(
+                        'assets/images/riskpulse logo.png',
+                        width: 280,
+                        height: 280,
+                        fit: BoxFit.contain,
+                        errorBuilder: (context, error, stackTrace) => const Icon(
+                          Icons.security,
+                          size: 100,
+                          color: Color(0xFF0F172A),
+                        ),
                       ),
                     ),
                   ),
                 ],
+              ),
+            ),
+            
+            // Academic Identification (Bottom)
+            Positioned(
+              bottom: 80,
+              left: 0,
+              right: 0,
+              child: FadeTransition(
+                opacity: _contentOpacity,
+                child: const Column(
+                  children: [
+                    Text(
+                      'Kuldeep Singh',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Color(0xFF0F172A),
+                        fontSize: 22,
+                        fontWeight: FontWeight.w900,
+                        letterSpacing: 1.0,
+                      ),
+                    ),
+                    SizedBox(height: 8),
+                    Text(
+                      'Faculty, Environmental Science and Disaster Management',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Color(0xFF64748B),
+                        fontSize: 14,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    SizedBox(height: 4),
+                    Text(
+                      'DIS-IIHS, Himachal Pradesh University',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Color(0xFF94A3B8),
+                        fontSize: 12,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ],

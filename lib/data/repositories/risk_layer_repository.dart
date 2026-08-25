@@ -46,6 +46,13 @@ class RiskLayerRepository {
         isActive: true,
       ),
       RiskLayer(
+        id: 'layer-glof',
+        name: 'GLOFs',
+        type: 'Hazard',
+        description: 'Glacial Lake Outburst Flood hazards',
+        isActive: true,
+      ),
+      RiskLayer(
         id: 'layer-exposure',
         name: 'Exposure',
         type: 'Exposure',

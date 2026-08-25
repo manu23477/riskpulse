@@ -1,0 +1,164 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "glof-hp-kinnaur-parichu-2004",
+        "name": "Pareechu Lake Outburst",
+        "category": "GLOF",
+        "state": "Himachal Pradesh",
+        "district": "Kinnaur",
+        "locationName": "Pareechu River",
+        "date": "July 2004",
+        "year": 2004,
+        "intensity": 95,
+        "active": false,
+        "triggering": "Landslide Dam Burst (Tibet)",
+        "history": "Artificial lake burst in Tibet caused massive flooding in Sutlej basin. NH-22 washed away in several sections. Strategic bridges destroyed.",
+        "source": "CWC / HPSDMA",
+        "verificationStatus": "verified",
+        "historicalEvent": true
+      },
+      "geometry": { "type": "Point", "coordinates": [78.6000, 32.2000] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "glof-hp-spiti-gepanggath-2023",
+        "name": "Gepang Gath Monitoring",
+        "category": "GLOF",
+        "state": "Himachal Pradesh",
+        "district": "Lahaul & Spiti",
+        "locationName": "Chandra Basin",
+        "year": 2023,
+        "intensity": 75,
+        "active": true,
+        "remarks": "One of the largest potentially dangerous glacial lakes in HP. Constant satellite monitoring by ISRO/NRSC.",
+        "source": "ISRO / NRSC / HPSDMA",
+        "verificationStatus": "verified"
+      },
+      "geometry": { "type": "Point", "coordinates": [77.1000, 32.5500] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "glof-uk-rudraprayag-chorabari-2013",
+        "name": "Chorabari Lake Outburst",
+        "category": "GLOF",
+        "state": "Uttarakhand",
+        "district": "Rudraprayag",
+        "locationName": "Kedarnath",
+        "date": "17 June 2013",
+        "year": 2013,
+        "intensity": 100,
+        "active": false,
+        "history": "Sudden breach of the Chorabari (Gandhi Sarovar) lake following extreme rain, causing the Kedarnath disaster.",
+        "source": "USDMA",
+        "verificationStatus": "verified",
+        "historicalEvent": true
+      },
+      "geometry": { "type": "Point", "coordinates": [79.0669, 30.7425] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "glof-hp-kullu-samudratapu",
+        "name": "Samudra Tapu Lake",
+        "category": "GLOF",
+        "state": "Himachal Pradesh",
+        "district": "Lahaul & Spiti",
+        "locationName": "Chandra Basin",
+        "intensity": 80,
+        "active": true,
+        "remarks": "Large moraine-dammed lake with high expansion rate. Classified as high-risk by HPSDMA.",
+        "source": "HPSDMA / ISRO",
+        "verificationStatus": "verified"
+      },
+      "geometry": { "type": "Point", "coordinates": [77.5300, 32.4800] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "glof-uk-chamoli-vasudhara",
+        "name": "Vasudhara Tal",
+        "category": "GLOF",
+        "state": "Uttarakhand",
+        "district": "Chamoli",
+        "intensity": 70,
+        "active": true,
+        "remarks": "Glacial lake being monitored for potential outburst in the Alaknanda catchment.",
+        "source": "USDMA",
+        "verificationStatus": "verified"
+      },
+      "geometry": { "type": "Point", "coordinates": [79.4100, 30.7700] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "glof-hp-chamba-gandhari",
+        "name": "Gandhari Glacier Lake",
+        "category": "GLOF",
+        "state": "Himachal Pradesh",
+        "district": "Chamba",
+        "locationName": "Pangi Valley",
+        "intensity": 75,
+        "active": true,
+        "remarks": "Potential GLOF threat to the Gandhari valley settlements.",
+        "source": "HPSDMA",
+        "verificationStatus": "verified"
+      },
+      "geometry": { "type": "Point", "coordinates": [76.4500, 32.9200] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "glof-hp-lahaul-barashigri",
+        "name": "Bara Shigri Lake A",
+        "category": "GLOF",
+        "state": "Himachal Pradesh",
+        "district": "Lahaul & Spiti",
+        "intensity": 65,
+        "active": true,
+        "remarks": "One of several proglacial lakes forming near the Bara Shigri glacier.",
+        "source": "HPSDMA",
+        "verificationStatus": "verified"
+      },
+      "geometry": { "type": "Point", "coordinates": [77.6200, 32.2800] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "glof-uk-chamoli-arwa-1932",
+        "name": "Arwa Tal Outburst",
+        "category": "GLOF",
+        "state": "Uttarakhand",
+        "district": "Chamoli",
+        "year": 1932,
+        "intensity": 90,
+        "active": false,
+        "history": "Historical GLOF event that caused significant flooding in the Saraswati river.",
+        "source": "USDMA / Historical Records",
+        "verificationStatus": "verified",
+        "historicalEvent": true
+      },
+      "geometry": { "type": "Point", "coordinates": [79.4300, 30.8200] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "glof-uk-pithoragarh-lemthang",
+        "name": "Lemthang Tsho",
+        "category": "GLOF",
+        "state": "Uttarakhand",
+        "district": "Pithoragarh",
+        "intensity": 72,
+        "active": true,
+        "remarks": "Potential GLOF risk in the Darma valley.",
+        "source": "USDMA",
+        "verificationStatus": "verified"
+      },
+      "geometry": { "type": "Point", "coordinates": [80.3500, 30.2500] }
+    }
+  ]
+}

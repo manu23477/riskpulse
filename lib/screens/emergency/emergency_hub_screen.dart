@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../../data/models/emergency_contact.dart';
 import '../../data/services/emergency_service.dart';
+import '../../data/services/state_service.dart';
 import '../safety/playbook_list_screen.dart';
 
 class EmergencyHubScreen extends StatefulWidget {
@@ -17,17 +19,22 @@ class _EmergencyHubScreenState extends State<EmergencyHubScreen> {
   @override
   void initState() {
     super.initState();
-    _officialHelplines = _emergencyService.getOfficialHelplines();
+    final stateService = Provider.of<StateService>(context, listen: false);
+    _officialHelplines = _emergencyService.getOfficialHelplines(stateService.selectedState);
   }
 
   @override
   Widget build(BuildContext context) {
+    final stateService = Provider.of<StateService>(context);
+    final String stateName = stateService.selectedState == HimalayanState.himachal ? 'HIMACHAL PRADESH' : 'UTTARAKHAND';
+    
     return Scaffold(
       backgroundColor: const Color(0xFFF8FAFC),
       appBar: AppBar(
         backgroundColor: const Color(0xFFE11D48),
         foregroundColor: Colors.white,
-        title: const Text('Emergency Hub'),
+        title: Text('$stateName SOS HUB'),
+        centerTitle: true,
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),

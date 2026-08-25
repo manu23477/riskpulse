@@ -12,11 +12,14 @@ import '../../data/services/risk_engine.dart';
 import '../../data/models/hazard.dart';
 import '../../data/models/district_risk.dart';
 import '../../data/models/weather_alert.dart';
+import '../../data/models/yatra_status.dart';
 import '../emergency/emergency_hub_screen.dart';
 import '../profile/profile_screen.dart';
-import '../global_alerts/global_alerts_screen.dart';
+import '../reports/report_generator_screen.dart';
 import '../../data/services/profile_service.dart';
 import '../../data/services/forest_fire_service.dart';
+import '../../data/services/yatra_service.dart';
+import '../../data/services/state_service.dart';
 import '../../core/theme/theme_provider.dart';
 import '../../core/localization/app_localizations.dart';
 
@@ -31,9 +34,12 @@ class _RiskPulseHomeState extends State<RiskPulseHome> {
   int _selectedIndex = 0;
   final WeatherService _weatherService = WeatherService();
   final ForestFireService _fireService = ForestFireService();
+  final YatraService _yatraService = YatraService();
+  final StateService _stateService = StateService();
   List<DistrictRisk> _districtRisks = [];
   List<WeatherAlert> _activeAlerts = [];
   List<Hazard> _liveFires = [];
+  List<YatraStatus> _yatraStatuses = [];
 
   // Weather Animation States
   String _currentWeather = 'sunshine'; // rain, haze, sunshine, fog
@@ -42,10 +48,86 @@ class _RiskPulseHomeState extends State<RiskPulseHome> {
   @override
   void initState() {
     super.initState();
+    _stateService.addListener(_onStateChanged);
+    _loadData();
+    _updateDiurnalStatus();
+  }
+
+  @override
+  void dispose() {
+    _stateService.removeListener(_onStateChanged);
+    super.dispose();
+  }
+
+  void _onStateChanged() {
+    if (mounted) {
+      _loadData();
+    }
+  }
+
+  void _loadData() {
     _loadDistrictRisks();
     _loadWeatherAlerts();
     _loadLiveFires();
-    _updateDiurnalStatus();
+    _loadYatraStatus();
+  }
+
+  void _loadDistrictRisks() {
+    final rainfall = _weatherService.getDistrictRainfall();
+    final allRisks = RiskEngine.calculateAllDistrictsRisk(rainfall);
+    
+    // Filter risks by districts relevant to the current state
+    final stateDistricts = RiskEngine.districtCoordinates.keys
+        .where((d) => _isDistrictInCurrentState(d))
+        .toList();
+
+    setState(() {
+      _districtRisks = allRisks.where((r) => stateDistricts.contains(r.name)).toList();
+    });
+  }
+
+  bool _isDistrictInCurrentState(String district) {
+    const hpDistricts = ['Mandi', 'Kinnaur', 'Shimla', 'Kullu', 'Chamba', 'Lahaul & Spiti', 'Kangra', 'Solan', 'Sirmaur', 'Bilaspur', 'Hamirpur', 'Una'];
+    const ukDistricts = ['Uttarkashi', 'Chamoli', 'Rudraprayag', 'Pithoragarh', 'Bageshwar', 'Champawat', 'Nainital', 'Almora', 'Pauri Garhwal', 'Tehri Garhwal', 'Dehradun', 'Haridwar', 'Udham Singh Nagar'];
+    
+    if (_stateService.selectedState == HimalayanState.himachal) {
+      return hpDistricts.contains(district);
+    } else {
+      return ukDistricts.contains(district);
+    }
+  }
+
+  void _loadWeatherAlerts() {
+    final allAlerts = _weatherService.getActiveAlerts();
+    setState(() {
+      _activeAlerts = allAlerts.where((alert) => 
+        alert.affectedDistricts.any((d) => _isDistrictInCurrentState(d))
+      ).toList();
+    });
+  }
+
+  void _loadLiveFires() async {
+    final fires = await _fireService.fetchLiveFireIncidents();
+    if (mounted) {
+      setState(() {
+        _liveFires = fires.where((f) => f.state == _stateService.stateName).toList();
+      });
+    }
+  }
+
+  void _loadYatraStatus() async {
+    if (_stateService.selectedState == HimalayanState.uttarakhand) {
+      final statuses = await _yatraService.getCharDhamStatus();
+      if (mounted) {
+        setState(() {
+          _yatraStatuses = statuses;
+        });
+      }
+    } else {
+      setState(() {
+        _yatraStatuses = [];
+      });
+    }
   }
 
   void _updateDiurnalStatus() {
@@ -61,28 +143,6 @@ class _RiskPulseHomeState extends State<RiskPulseHome> {
         _currentWeather = 'sunshine';
       }
     });
-  }
-
-  void _loadDistrictRisks() {
-    final rainfall = _weatherService.getDistrictRainfall();
-    setState(() {
-      _districtRisks = RiskEngine.calculateAllDistrictsRisk(rainfall);
-    });
-  }
-
-  void _loadWeatherAlerts() {
-    setState(() {
-      _activeAlerts = _weatherService.getActiveAlerts();
-    });
-  }
-
-  void _loadLiveFires() async {
-    final fires = await _fireService.fetchLiveFireIncidents();
-    if (mounted) {
-      setState(() {
-        _liveFires = fires;
-      });
-    }
   }
 
   void _onNavigationSelected(int index) {
@@ -146,6 +206,10 @@ class _RiskPulseHomeState extends State<RiskPulseHome> {
                     _buildWeatherAlertsSection(),
                     const SizedBox(height: 28),
                   ],
+                  if (_yatraStatuses.isNotEmpty) ...[
+                    _buildYatraStatusSection(l10n),
+                    const SizedBox(height: 28),
+                  ],
                   if (_liveFires.isNotEmpty) ...[
                     _buildLiveFiresSection(),
                     const SizedBox(height: 28),
@@ -178,6 +242,8 @@ class _RiskPulseHomeState extends State<RiskPulseHome> {
   }
 
   Widget _buildHeader(AppLocalizations l10n, LanguageProvider lang, ThemeProvider theme, ProfileService profile) {
+    final stateService = Provider.of<StateService>(context);
+    
     return Row(
       children: [
         const _ShineFlipLogo(),
@@ -186,19 +252,13 @@ class _RiskPulseHomeState extends State<RiskPulseHome> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Hello, ${profile.profile.name.split(' ')[0]}',
+              stateService.selectedState == HimalayanState.himachal 
+                  ? 'Hello Himachal' 
+                  : 'Hello Uttarakhand',
               style: TextStyle(color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6), fontSize: 14, fontWeight: FontWeight.w600),
             ),
             const SizedBox(height: 2),
-            Text(
-              l10n.translate('app_title'),
-              style: TextStyle(
-                color: Theme.of(context).colorScheme.onSurface,
-                fontWeight: FontWeight.w900,
-                fontSize: 28,
-                letterSpacing: -1,
-              ),
-            ),
+            _buildStateDropdown(stateService),
           ],
         ),
         const Spacer(),
@@ -210,6 +270,37 @@ class _RiskPulseHomeState extends State<RiskPulseHome> {
           Navigator.push(context, MaterialPageRoute(builder: (context) => const EmergencyHubScreen()));
         }),
       ],
+    );
+  }
+
+  Widget _buildStateDropdown(StateService stateService) {
+    return DropdownButtonHideUnderline(
+      child: DropdownButton<HimalayanState>(
+        value: stateService.selectedState,
+        icon: const Icon(Icons.keyboard_arrow_down, size: 18),
+        elevation: 16,
+        style: TextStyle(
+          color: Theme.of(context).colorScheme.onSurface,
+          fontWeight: FontWeight.w900,
+          fontSize: 22,
+          letterSpacing: -1,
+        ),
+        onChanged: (HimalayanState? newValue) {
+          if (newValue != null) {
+            stateService.setState(newValue);
+          }
+        },
+        items: [
+          DropdownMenuItem<HimalayanState>(
+            value: HimalayanState.himachal,
+            child: const Text('Himachal Pradesh'),
+          ),
+          DropdownMenuItem<HimalayanState>(
+            value: HimalayanState.uttarakhand,
+            child: const Text('Uttarakhand'),
+          ),
+        ],
+      ),
     );
   }
 
@@ -244,7 +335,7 @@ class _RiskPulseHomeState extends State<RiskPulseHome> {
           const SizedBox(width: 12),
           Expanded(
             child: Text(
-              l10n.translate('himalayan_region'),
+              l10n.translate('current_region'),
               style: TextStyle(fontWeight: FontWeight.w800, color: Theme.of(context).colorScheme.onSurface, fontSize: 15),
             ),
           ),
@@ -341,23 +432,6 @@ class _RiskPulseHomeState extends State<RiskPulseHome> {
     );
   }
 
-  Widget _buildWeatherAnimationLayer() {
-    switch (_currentWeather) {
-      case 'rain': return const _RainAnimation();
-      case 'fog': return const _FogAnimation();
-      case 'haze': return const _HazeAnimation();
-      case 'sunshine': return const _SunbeamAnimation();
-      default: return const SizedBox.shrink();
-    }
-  }
-
-  IconData _getWeatherIcon() {
-    if (_currentWeather == 'rain') return Icons.umbrella;
-    if (_currentWeather == 'fog') return Icons.cloudy_snowing;
-    if (_currentWeather == 'haze') return Icons.waves;
-    return _isDaytime ? Icons.wb_sunny : Icons.nightlight_round;
-  }
-
   Widget _buildCircularHUD() {
     return Container(
       width: 90,
@@ -412,6 +486,95 @@ class _RiskPulseHomeState extends State<RiskPulseHome> {
           ),
         ],
       ),
+    );
+  }
+
+  Widget _buildYatraStatusSection(AppLocalizations l10n) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            Text(
+              l10n.translate('yatra_bulletin'),
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w900, color: Theme.of(context).colorScheme.onSurface, letterSpacing: -0.5),
+            ),
+            const Spacer(),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+              decoration: BoxDecoration(color: const Color(0xFF10B981).withValues(alpha: 0.1), borderRadius: BorderRadius.circular(8)),
+              child: const Text('REAL-TIME', style: TextStyle(color: Color(0xFF10B981), fontSize: 10, fontWeight: FontWeight.w900)),
+            ),
+          ],
+        ),
+        const SizedBox(height: 16),
+        SizedBox(
+          height: 140,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: _yatraStatuses.length,
+            physics: const BouncingScrollPhysics(),
+            itemBuilder: (context, index) {
+              final status = _yatraStatuses[index];
+              return InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const RoutePlannerScreen(),
+                    ),
+                  );
+                },
+                borderRadius: BorderRadius.circular(24),
+                child: Container(
+                  width: 200,
+                  margin: const EdgeInsets.only(right: 14),
+                  padding: const EdgeInsets.all(18),
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).colorScheme.surface,
+                    borderRadius: BorderRadius.circular(24),
+                    border: Border.all(color: status.statusColor.withValues(alpha: 0.2), width: 1.5),
+                    boxShadow: [
+                      BoxShadow(color: Colors.black.withValues(alpha: 0.02), blurRadius: 10, offset: const Offset(0, 4)),
+                    ],
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            status.shrineName,
+                            style: const TextStyle(fontWeight: FontWeight.w900, fontSize: 16),
+                          ),
+                          Icon(Icons.wb_cloudy_outlined, size: 14, color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.5)),
+                        ],
+                      ),
+                      const SizedBox(height: 10),
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                        decoration: BoxDecoration(color: status.statusColor.withValues(alpha: 0.1), borderRadius: BorderRadius.circular(8)),
+                        child: Text(
+                          status.statusLabel.toUpperCase(),
+                          style: TextStyle(color: status.statusColor, fontSize: 9, fontWeight: FontWeight.w900),
+                        ),
+                      ),
+                      const Spacer(),
+                      Text(
+                        status.note,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(fontSize: 11, color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6), height: 1.3),
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            },
+          ),
+        ),
+      ],
     );
   }
 
@@ -617,8 +780,8 @@ class _RiskPulseHomeState extends State<RiskPulseHome> {
           () => Navigator.push(context, MaterialPageRoute(builder: (context) => const ReportHazardScreen()))),
         _fancyGridCard(l10n.translate('tourist_safety'), Icons.directions_car_rounded, const Color(0xFFF97316), 
           () => Navigator.push(context, MaterialPageRoute(builder: (context) => const RoutePlannerScreen()))),
-        _fancyGridCard(l10n.translate('global_feed'), Icons.public_rounded, const Color(0xFF0D9488), 
-          () => Navigator.push(context, MaterialPageRoute(builder: (context) => const GlobalAlertsScreen()))),
+        _fancyGridCard(l10n.translate('risk_reports'), Icons.analytics_rounded, const Color(0xFF6366F1), 
+          () => Navigator.push(context, MaterialPageRoute(builder: (context) => const ReportGeneratorScreen()))),
         _fancyGridCard(l10n.translate('my_risk'), Icons.location_searching_rounded, const Color(0xFFF59E0B), 
           () => Navigator.push(context, MaterialPageRoute(builder: (context) => const MyRiskScreen()))),
       ],
@@ -830,7 +993,7 @@ class _ShineFlipLogoState extends State<_ShineFlipLogo> with SingleTickerProvide
               ),
               child: ClipOval(
                 child: Image.asset(
-                  'assets/images/logo.png',
+                  'assets/images/riskpulse logo.png',
                   fit: BoxFit.cover,
                   errorBuilder: (context, error, stackTrace) => Icon(
                     Icons.shield,
