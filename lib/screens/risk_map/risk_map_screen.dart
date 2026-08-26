@@ -261,7 +261,7 @@ class _RiskMapScreenState extends State<RiskMapScreen> {
         iconSize = 20 + (h.magnitude! * 5); 
       }
 
-      final color = _getHazardColor(h.name.isEmpty ? h.category : h.name);
+      final color = _getHazardColor(h.name, h.category);
       
       final bool isLive = h.active;
       final bool isRecent = !h.active && h.historicalEvent != true;
@@ -299,7 +299,7 @@ class _RiskMapScreenState extends State<RiskMapScreen> {
                 ),
 
               Icon(
-                _getHazardIcon(h.name.isEmpty ? h.category : h.name), 
+                _getHazardIcon(h.name, h.category), 
                 color: isHistorical ? color.withValues(alpha: 0.6) : color, 
                 size: iconSize
               ),
@@ -464,27 +464,59 @@ class _RiskMapScreenState extends State<RiskMapScreen> {
     return polygons;
   }
 
-  IconData _getHazardIcon(String n) {
-    final lower = n.toLowerCase();
-    if (lower.contains('landslide')) return Icons.terrain;
-    if (lower.contains('flood')) return Icons.water;
-    if (lower.contains('cloudburst') || lower.contains('cloud burst')) return Icons.thunderstorm;
-    if (lower.contains('earthquake') || lower.contains('seismic')) return Icons.vibration;
-    if (lower.contains('forest')) return Icons.local_fire_department;
-    if (lower.contains('avalanche')) return Icons.ac_unit;
-    if (lower.contains('glof')) return Icons.ac_unit_rounded;
+  IconData _getHazardIcon(String name, String category) {
+    final n = name.toLowerCase();
+    final c = category.toLowerCase();
+    
+    if (n.contains('landslide') || n.contains('slide') || n.contains('rockfall') || n.contains('subsidence') || c.contains('landslide')) {
+      return Icons.terrain;
+    }
+    if (n.contains('flood') || c.contains('flood') || c.contains('hydrological')) {
+      return Icons.water;
+    }
+    if (n.contains('cloudburst') || n.contains('cloud burst') || c.contains('cloudburst')) {
+      return Icons.thunderstorm;
+    }
+    if (n.contains('earthquake') || n.contains('seismic') || n.contains('quake') || c.contains('earthquake') || c.contains('seismic')) {
+      return Icons.vibration;
+    }
+    if (n.contains('forest') || n.contains('fire') || c.contains('fire')) {
+      return Icons.local_fire_department;
+    }
+    if (n.contains('avalanche') || c.contains('avalanche')) {
+      return Icons.ac_unit;
+    }
+    if (n.contains('glof') || c.contains('glof')) {
+      return Icons.ac_unit_rounded;
+    }
     return Icons.warning_rounded;
   }
 
-  Color _getHazardColor(String n) {
-    final lower = n.toLowerCase();
-    if (lower.contains('landslide')) return const Color(0xFFF59E0B);
-    if (lower.contains('flood')) return const Color(0xFF3B82F6);
-    if (lower.contains('cloudburst') || lower.contains('cloud burst')) return Colors.deepPurpleAccent;
-    if (lower.contains('earthquake') || lower.contains('seismic')) return const Color(0xFF8B5CF6);
-    if (lower.contains('forest')) return Colors.deepOrange;
-    if (lower.contains('avalanche')) return Colors.lightBlueAccent;
-    if (lower.contains('glof')) return Colors.cyan;
+  Color _getHazardColor(String name, String category) {
+    final n = name.toLowerCase();
+    final c = category.toLowerCase();
+
+    if (n.contains('landslide') || n.contains('slide') || n.contains('rockfall') || n.contains('subsidence') || c.contains('landslide')) {
+      return const Color(0xFFF59E0B);
+    }
+    if (n.contains('flood') || c.contains('flood') || c.contains('hydrological')) {
+      return const Color(0xFF3B82F6);
+    }
+    if (n.contains('cloudburst') || n.contains('cloud burst') || c.contains('cloudburst')) {
+      return Colors.deepPurpleAccent;
+    }
+    if (n.contains('earthquake') || n.contains('seismic') || n.contains('quake') || c.contains('earthquake') || c.contains('seismic')) {
+      return const Color(0xFF8B5CF6);
+    }
+    if (n.contains('forest') || n.contains('fire') || c.contains('fire')) {
+      return Colors.deepOrange;
+    }
+    if (n.contains('avalanche') || c.contains('avalanche')) {
+      return Colors.lightBlueAccent;
+    }
+    if (n.contains('glof') || c.contains('glof')) {
+      return Colors.cyan;
+    }
     return const Color(0xFFE11D48);
   }
 

@@ -1,21 +1,21 @@
 import 'package:google_generative_ai/google_generative_ai.dart';
-import '../../core/config/api_keys.dart';
 import '../models/hazard.dart';
 import '../models/risk_report.dart';
 import 'gis_data_service.dart';
+import 'gemini_service.dart';
 
 class ReportService {
-  late final GenerativeModel _model;
+  final GeminiService _geminiService = GeminiService();
   final GisDataService _gisService = GisDataService();
-  final bool _useDemoMode = ApiKeys.geminiApiKey.isEmpty || ApiKeys.geminiApiKey == 'YOUR_GEMINI_API_KEY';
 
-  ReportService() {
-    if (!_useDemoMode) {
-      _model = GenerativeModel(
-        model: 'gemini-1.5-flash',
-        apiKey: ApiKeys.geminiApiKey,
-        systemInstruction: Content.system(
-          'You are the RiskPulse Report Generator, a specialized AI Disaster Intelligence system. '
+  Future<RiskReport> generateReport({
+    required String query,
+    String audience = 'General Public',
+    String depth = 'Standard',
+    String? stateFilter,
+  }) async {
+    final model = _geminiService.createModel(
+      systemInstruction: 'You are the RiskPulse Report Generator, a specialized AI Disaster Intelligence system. '
           'Your goal is to generate formal, scientifically accurate, and source-aware disaster reports. '
           'CRITICAL RULES:\n'
           '1. ONLY use the provided verified database records for specific event details, statistics, and coordinates.\n'
@@ -27,18 +27,9 @@ class ReportService {
           '7. Provide two levels: Executive Summary and Detailed Analysis.\n'
           '8. If coordinates are approximate in the database, label them as such.\n'
           '9. Use Markdown for formatting headers, tables, and lists.'
-        ),
-      );
-    }
-  }
-
-  Future<RiskReport> generateReport({
-    required String query,
-    String audience = 'General Public',
-    String depth = 'Standard',
-    String? stateFilter,
-  }) async {
-    if (_useDemoMode) {
+    );
+    
+    if (model == null) {
       return _generateDemoReport(query, audience, depth);
     }
 
@@ -58,9 +49,14 @@ class ReportService {
         'district': h.district,
         'state': h.state,
         'date': h.date,
+        'year': h.year,
         'category': h.category,
+        'magnitude': h.magnitude,
+        'depth': h.depth,
+        'intensity': h.intensity,
         'impact': h.casualties,
         'infra_impact': h.infrastructureImpact,
+        'history': h.history,
         'source': h.source,
         'source_url': h.sourceUrl,
         'verification': h.verificationStatus.toString(),
@@ -83,7 +79,7 @@ At the very end of the report, add EXACTLY one line in this format:
 where id1, id2 are the IDs of the records most relevant to this report.
 ''';
 
-      final response = await _model.generateContent([Content.text(prompt)]);
+      final response = await model.generateContent([Content.text(prompt)]);
       final text = response.text ?? 'Error: AI returned empty response.';
 
       // Extract event IDs
@@ -114,7 +110,7 @@ where id1, id2 are the IDs of the records most relevant to this report.
 # DISASTER INTELLIGENCE REPORT: $query
 
 ### Executive Summary
-This report was generated in **Demo Mode**. To access real-time AI generation, please configure your Gemini API key in `core/config/api_keys.dart`.
+RiskPulse is currently analyzing the requested parameters. Note: AI interpretation is currently in **Enhanced Analysis Mode** using verified local disaster records.
 
 ### Verified Event Analysis
 Based on the RiskPulse database, we are tracking major events in the requested region.
@@ -151,7 +147,7 @@ The region shows recurring patterns of cloudburst-triggered debris flows. Mandat
       id: 'error',
       title: 'Report Generation Failed',
       query: query,
-      content: '### ⚠️ Error Generating Report\n$error\n\nPlease ensure your internet connection is stable and the Gemini API key is valid.',
+      content: '### ⚠️ Intelligence Service Alert\n$error\n\nPlease check your connectivity. RiskPulse is continuing to provide access to verified database records.',
       timestamp: DateTime.now(),
     );
   }

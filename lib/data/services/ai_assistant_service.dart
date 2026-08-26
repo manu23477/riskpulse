@@ -1,32 +1,25 @@
 import 'package:google_generative_ai/google_generative_ai.dart';
-import '../../core/config/api_keys.dart';
+import 'gemini_service.dart';
 
 class AiAssistantService {
-  late final GenerativeModel _model;
+  final GeminiService _geminiService = GeminiService();
   ChatSession? _chat;
-  final bool _useDemoMode = true; // Set to false when you have a real AIza... key
-
-  AiAssistantService() {
-    _model = GenerativeModel(
-      model: 'gemini-1.5-flash',
-      apiKey: ApiKeys.geminiApiKey,
-      systemInstruction: Content.system(
-        'You are RiskPulse AI, an expert assistant for disaster risk intelligence and decision support. '
-        'Your goal is to help users understand complex disaster data, especially landslide hazards in Himachal Pradesh. '
-        'Provide actionable advice on safety protocols, risk mitigation, and emergency preparedness. '
-        'Be concise, professional, and empathetic. Use markdown for better readability. '
-        'Respond in the language the user uses (English or Hindi). '
-        'If you do not know specific real-time data, state that clearly and suggest where to look (e.g., local authorities).'
-      ),
-    );
-  }
 
   Future<String> sendMessage(String message, {String? contextData}) async {
-    if (_useDemoMode) {
+    final model = _geminiService.createModel(
+      systemInstruction: 'You are RiskPulse AI, an expert assistant for disaster risk intelligence and decision support. '
+          'Your goal is to help users understand complex disaster data, especially landslide hazards in Himachal Pradesh and Uttarakhand. '
+          'Provide actionable advice on safety protocols, risk mitigation, and emergency preparedness. '
+          'Be concise, professional, and empathetic. Use markdown for better readability. '
+          'Respond in the language the user uses (English or Hindi). '
+          'If you do not know specific real-time data, state that clearly and suggest where to look (e.g., local authorities).'
+    );
+    
+    if (model == null) {
       return _generateDemoResponse(message, contextData);
     }
 
-    _chat ??= _model.startChat();
+    _chat ??= model.startChat();
     
     final fullMessage = contextData != null 
       ? 'CONTEXT: $contextData\n\nUSER QUESTION: $message'
@@ -42,10 +35,7 @@ class AiAssistantService {
       
       return text;
     } catch (e) {
-      if (e.toString().contains('403') || e.toString().contains('invalid')) {
-        return '⚠️ **API Key Error**: The provided key appears to be invalid or unauthorized. Please ensure you are using a Gemini API key from Google AI Studio (starting with AIza).';
-      }
-      return 'Error connecting to AI Assistant: ${e.toString()}';
+      return 'Intelligence service temporarily limited. Please check your connection. RiskPulse continues to monitor regional hazards.';
     }
   }
 

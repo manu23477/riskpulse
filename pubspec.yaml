@@ -54,6 +54,7 @@ flutter:
     - lib/data/assets/hazards/earthquake.geojson
     - lib/data/assets/hazards/forest_fire.geojson
     - lib/data/assets/hazards/avalanche.geojson
+    - lib/data/assets/hazards/glof.geojson
     - lib/data/assets/hazards/major_landslides_polygons.geojson
     - lib/data/assets/hazards/kotropi_polygon.geojson
     - lib/data/assets/boundaries/hp_districts.geojson

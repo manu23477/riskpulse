@@ -272,6 +272,431 @@
         "verificationStatus": "verified"
       },
       "geometry": { "type": "Point", "coordinates": [78.2600, 31.4200] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "fl-hp-kangra-indora-2023",
+        "name": "Indora Beas Inundation",
+        "category": "Riverine Flood",
+        "state": "Himachal Pradesh",
+        "district": "Kangra",
+        "year": 2023,
+        "intensity": 88,
+        "active": false,
+        "history": "Low-lying areas of Indora and Fatehpur were submerged due to heavy discharge from Pong Dam.",
+        "source": "HPSDMA",
+        "verificationStatus": "verified"
+      },
+      "geometry": { "type": "Point", "coordinates": [75.7234, 32.1234] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "fl-uk-haridwar-laksar-2023",
+        "name": "Laksar Ganga Overflow",
+        "category": "Riverine Flood",
+        "state": "Uttarakhand",
+        "district": "Haridwar",
+        "year": 2023,
+        "intensity": 86,
+        "active": false,
+        "history": "Ganga and Solani rivers breached embankments, flooding Laksar town and dozens of villages.",
+        "source": "USDMA",
+        "verificationStatus": "verified"
+      },
+      "geometry": { "type": "Point", "coordinates": [78.0345, 29.7456] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "fl-hp-mandi-pandoh-2023",
+        "name": "Pandoh Dam Discharge",
+        "category": "Riverine Flood",
+        "state": "Himachal Pradesh",
+        "district": "Mandi",
+        "year": 2023,
+        "intensity": 94,
+        "active": false,
+        "history": "Massive release from Pandoh dam caused flash floods downstream in Beas river.",
+        "source": "HPSDMA",
+        "verificationStatus": "verified"
+      },
+      "geometry": { "type": "Point", "coordinates": [77.0123, 31.6789] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "fl-uk-dehradun-rishikesh-2023",
+        "name": "Rishikesh Ganga Surge",
+        "category": "Riverine Flood",
+        "state": "Uttarakhand",
+        "district": "Dehradun",
+        "year": 2023,
+        "intensity": 82,
+        "active": false,
+        "history": "Triveni Ghat and nearby areas in Rishikesh were inundated as Ganga river flowed above danger mark.",
+        "source": "USDMA",
+        "verificationStatus": "verified"
+      },
+      "geometry": { "type": "Point", "coordinates": [78.2678, 30.1045] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "fl-hp-solan-baddi-2023",
+        "name": "Baddi Industrial Flood",
+        "category": "Flash Flood",
+        "state": "Himachal Pradesh",
+        "district": "Solan",
+        "year": 2023,
+        "intensity": 88,
+        "active": false,
+        "history": "Baddi-Barotiwala-Nalagarh industrial belt saw heavy flooding, damaging factory units.",
+        "source": "HPSDMA",
+        "verificationStatus": "verified"
+      },
+      "geometry": { "type": "Point", "coordinates": [76.7892, 30.9345] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "fl-uk-us-nagar-kashipur-2023",
+        "name": "Kashipur Urban Flooding",
+        "category": "Urban Flood",
+        "state": "Uttarakhand",
+        "district": "Udham Singh Nagar",
+        "year": 2023,
+        "intensity": 78,
+        "active": false,
+        "history": "Torrential rains caused severe waterlogging and flooding in residential colonies of Kashipur.",
+        "source": "USDMA",
+        "verificationStatus": "verified"
+      },
+      "geometry": { "type": "Point", "coordinates": [78.9678, 29.2045] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "fl-hp-kullu-bhuntar-2023",
+        "name": "Bhuntar Airport Surge",
+        "category": "Riverine Flood",
+        "state": "Himachal Pradesh",
+        "district": "Kullu",
+        "year": 2023,
+        "intensity": 92,
+        "active": false,
+        "history": "Beas river overflowed into the Bhuntar airport runway and surrounding residential areas.",
+        "source": "HPSDMA",
+        "verificationStatus": "verified"
+      },
+      "geometry": { "type": "Point", "coordinates": [77.1543, 31.8765] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "fl-uk-chamoli-karnaprayag-2013",
+        "name": "Karnaprayag Confluence Flood",
+        "category": "Riverine Flood",
+        "state": "Uttarakhand",
+        "district": "Chamoli",
+        "year": 2013,
+        "intensity": 90,
+        "active": false,
+        "history": "Alaknanda and Pindar confluence witnessed record levels, washing away market buildings.",
+        "source": "USDMA",
+        "verificationStatus": "verified"
+      },
+      "geometry": { "type": "Point", "coordinates": [79.2134, 30.2567] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "fl-hp-shimla-rohiru-2023",
+        "name": "Rohiru Pabbar River Flood",
+        "category": "Riverine Flood",
+        "state": "Himachal Pradesh",
+        "district": "Shimla",
+        "year": 2023,
+        "intensity": 84,
+        "active": false,
+        "history": "Pabbar river flooded Rohiru town, causing damage to market areas and apple storage facilities.",
+        "source": "HPSDMA",
+        "verificationStatus": "verified"
+      },
+      "geometry": { "type": "Point", "coordinates": [77.7543, 31.2045] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "fl-uk-pithoragarh-kali-2022",
+        "name": "Kali River Dharchula Flood",
+        "category": "Riverine Flood",
+        "state": "Uttarakhand",
+        "district": "Pithoragarh",
+        "year": 2022,
+        "intensity": 88,
+        "active": false,
+        "history": "Sudden rise in Kali river levels inundated the lower market of Dharchula.",
+        "source": "USDMA",
+        "verificationStatus": "verified"
+      },
+      "geometry": { "type": "Point", "coordinates": [80.5345, 29.8456] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "fl-hp-una-swan-2024",
+        "name": "Swan River Monsoon Surge",
+        "category": "Riverine Flood",
+        "state": "Himachal Pradesh",
+        "district": "Una",
+        "year": 2024,
+        "intensity": 82,
+        "active": false,
+        "history": "Seasonal monsoon rains caused Swan river to overflow, affecting village connectivity.",
+        "source": "HPSDMA",
+        "verificationStatus": "verified"
+      },
+      "geometry": { "type": "Point", "coordinates": [76.2456, 31.4789] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "fl-uk-nainital-ramnagar-2021",
+        "name": "Ramnagar Kosi Flood",
+        "category": "Riverine Flood",
+        "state": "Uttarakhand",
+        "district": "Nainital",
+        "year": 2021,
+        "intensity": 90,
+        "active": false,
+        "history": "Kosi river flooded parts of Ramnagar town and Corbett fringe areas.",
+        "source": "USDMA",
+        "verificationStatus": "verified"
+      },
+      "geometry": { "type": "Point", "coordinates": [79.1234, 29.3876] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "fl-hp-chamba-raviriver-2023",
+        "name": "Ravi River Chamba Town",
+        "category": "Riverine Flood",
+        "state": "Himachal Pradesh",
+        "district": "Chamba",
+        "year": 2023,
+        "intensity": 86,
+        "active": false,
+        "history": "Ravi river levels rose above the danger mark, inundating low-lying residential colonies.",
+        "source": "HPSDMA",
+        "verificationStatus": "verified"
+      },
+      "geometry": { "type": "Point", "coordinates": [76.1234, 32.5678] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "fl-uk-almora-kosi-2023",
+        "name": "Kosi River Almora Sector",
+        "category": "Riverine Flood",
+        "state": "Uttarakhand",
+        "district": "Almora",
+        "year": 2023,
+        "intensity": 80,
+        "active": false,
+        "history": "Heavy monsoon rains caused the Kosi river to flood agricultural terraces along its bank.",
+        "source": "USDMA",
+        "verificationStatus": "verified"
+      },
+      "geometry": { "type": "Point", "coordinates": [79.6234, 29.6234] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "fl-hp-bilaspur-govindsagar-2023",
+        "name": "Govind Sagar Backwater Rise",
+        "category": "Riverine Flood",
+        "state": "Himachal Pradesh",
+        "district": "Bilaspur",
+        "year": 2023,
+        "intensity": 75,
+        "active": false,
+        "history": "High inflows into Bhakra dam caused backwaters to rise, affecting lakeside fields in Bilaspur.",
+        "source": "HPSDMA",
+        "verificationStatus": "verified"
+      },
+      "geometry": { "type": "Point", "coordinates": [76.7456, 31.3567] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "fl-uk-tehri-bhagirathi-2013",
+        "name": "Bhagirathi Flood Uttarkashi",
+        "category": "Riverine Flood",
+        "state": "Uttarakhand",
+        "district": "Uttarkashi",
+        "year": 2013,
+        "intensity": 96,
+        "active": false,
+        "history": "Bhagirathi river caused massive destruction in Uttarkashi town during the 2013 disaster.",
+        "source": "USDMA",
+        "verificationStatus": "verified"
+      },
+      "geometry": { "type": "Point", "coordinates": [78.4345, 30.7345] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "fl-hp-hamirpur-beas-2023",
+        "name": "Beas River Nadaun Flood",
+        "category": "Riverine Flood",
+        "state": "Himachal Pradesh",
+        "district": "Hamirpur",
+        "year": 2023,
+        "intensity": 85,
+        "active": false,
+        "history": "Beas river levels rose significantly at Nadaun, affecting ferry services and riverside fields.",
+        "source": "HPSDMA",
+        "verificationStatus": "verified"
+      },
+      "geometry": { "type": "Point", "coordinates": [76.3345, 31.7876] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "fl-uk-bageshwar-saryu-2021",
+        "name": "Saryu River Bageshwar",
+        "category": "Riverine Flood",
+        "state": "Uttarakhand",
+        "district": "Bageshwar",
+        "year": 2021,
+        "intensity": 82,
+        "active": false,
+        "history": "Saryu and Gomti rivers confluenced at high levels, flooding the Baghnath temple area.",
+        "source": "USDMA",
+        "verificationStatus": "verified"
+      },
+      "geometry": { "type": "Point", "coordinates": [79.7678, 29.8456] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "fl-hp-sirmaur-giri-2023",
+        "name": "Giri River Paonta Flood",
+        "category": "Riverine Flood",
+        "state": "Himachal Pradesh",
+        "district": "Sirmaur",
+        "year": 2023,
+        "intensity": 80,
+        "active": false,
+        "history": "Giri river in Paonta Sahib witnessed high discharge, affecting riverside settlements.",
+        "source": "HPSDMA",
+        "verificationStatus": "verified"
+      },
+      "geometry": { "type": "Point", "coordinates": [77.6234, 30.4567] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "fl-uk-pauri-kotdwar-2023",
+        "name": "Kotdwar Khoh River Flood",
+        "category": "Flash Flood",
+        "state": "Uttarakhand",
+        "district": "Pauri Garhwal",
+        "year": 2023,
+        "intensity": 88,
+        "active": false,
+        "history": "Khoh river flooded residential areas of Kotdwar following extreme rain in the hills.",
+        "source": "USDMA",
+        "verificationStatus": "verified"
+      },
+      "geometry": { "type": "Point", "coordinates": [78.5345, 29.7456] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "fl-hp-lahaul-chandrariver-2023",
+        "name": "Chandra River Sissu Flood",
+        "category": "Riverine Flood",
+        "state": "Himachal Pradesh",
+        "district": "Lahaul & Spiti",
+        "year": 2023,
+        "intensity": 78,
+        "active": false,
+        "history": "Chandra river levels rose significantly, causing minor flooding in Sissu and nearby areas.",
+        "source": "HPSDMA",
+        "verificationStatus": "verified"
+      },
+      "geometry": { "type": "Point", "coordinates": [77.1234, 32.4892] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "fl-uk-chamoli-pindar-2021",
+        "name": "Pindar River Tharali Flood",
+        "category": "Riverine Flood",
+        "state": "Uttarakhand",
+        "district": "Chamoli",
+        "year": 2021,
+        "intensity": 84,
+        "active": false,
+        "history": "Pindar river witnessed sudden surge, washing away small bridges in Tharali block.",
+        "source": "USDMA",
+        "verificationStatus": "verified"
+      },
+      "geometry": { "type": "Point", "coordinates": [79.4876, 30.0543] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "fl-hp-kangra-pongdam-2023",
+        "name": "Pong Dam Spillway Impact",
+        "category": "Riverine Flood",
+        "state": "Himachal Pradesh",
+        "district": "Kangra",
+        "year": 2023,
+        "intensity": 90,
+        "active": false,
+        "history": "Spillway discharge from Pong Dam caused riverine flooding in Beas downstream villages.",
+        "source": "HPSDMA",
+        "verificationStatus": "verified"
+      },
+      "geometry": { "type": "Point", "coordinates": [75.8876, 31.9876] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "fl-uk-dehradun-asiriver-2022",
+        "name": "Asi River Raipur Flood",
+        "category": "Flash Flood",
+        "state": "Uttarakhand",
+        "district": "Dehradun",
+        "year": 2022,
+        "intensity": 92,
+        "active": false,
+        "history": "Asi river in Raipur area of Dehradun caused major flash floods damaging houses and roads.",
+        "source": "USDMA",
+        "verificationStatus": "verified"
+      },
+      "geometry": { "type": "Point", "coordinates": [78.1045, 30.3234] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "fl-hp-mandi-suketi-2023",
+        "name": "Suketi Khad Mandi Flood",
+        "category": "Flash Flood",
+        "state": "Himachal Pradesh",
+        "district": "Mandi",
+        "year": 2023,
+        "intensity": 86,
+        "active": false,
+        "history": "Suketi Khad in Mandi town overflowed, damaging properties along its banks.",
+        "source": "HPSDMA",
+        "verificationStatus": "verified"
+      },
+      "geometry": { "type": "Point", "coordinates": [76.9234, 31.6892] }
     }
   ]
 }

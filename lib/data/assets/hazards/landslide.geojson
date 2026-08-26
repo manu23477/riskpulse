@@ -388,6 +388,380 @@
         "verificationStatus": "verified"
       },
       "geometry": { "type": "Point", "coordinates": [80.5300, 29.8500] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ls-hp-kangra-dharamshala-2021",
+        "name": "McLeod Ganj Road Slide",
+        "category": "Landslide",
+        "state": "Himachal Pradesh",
+        "district": "Kangra",
+        "year": 2021,
+        "intensity": 88,
+        "active": false,
+        "movement_type": "Debris Slide",
+        "source": "HPSDMA",
+        "verificationStatus": "verified"
+      },
+      "geometry": { "type": "Point", "coordinates": [76.3245, 32.2396] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ls-uk-dehradun-mussoorie-2023",
+        "name": "Mussoorie Library Road Slide",
+        "category": "Landslide",
+        "state": "Uttarakhand",
+        "district": "Dehradun",
+        "year": 2023,
+        "intensity": 82,
+        "active": true,
+        "movement_type": "Rockfall",
+        "source": "USDMA",
+        "verificationStatus": "verified"
+      },
+      "geometry": { "type": "Point", "coordinates": [78.0667, 30.4599] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ls-hp-mandi-aut-2023",
+        "name": "Aut Tunnel Sector Blockage",
+        "category": "Landslide",
+        "state": "Himachal Pradesh",
+        "district": "Mandi",
+        "year": 2023,
+        "intensity": 90,
+        "active": false,
+        "movement_type": "Major Slide",
+        "source": "NHAI",
+        "verificationStatus": "verified"
+      },
+      "geometry": { "type": "Point", "coordinates": [77.2031, 31.7454] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ls-uk-chamoli-helang-2023",
+        "name": "Helang Building Collapse",
+        "category": "Landslide",
+        "state": "Uttarakhand",
+        "district": "Chamoli",
+        "year": 2023,
+        "intensity": 85,
+        "active": false,
+        "movement_type": "Structural Slide",
+        "source": "USDMA",
+        "verificationStatus": "verified"
+      },
+      "geometry": { "type": "Point", "coordinates": [79.5021, 30.5284] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ls-hp-solan-kumarhatti-2019",
+        "name": "Kumarhatti Building Disaster",
+        "category": "Landslide",
+        "state": "Himachal Pradesh",
+        "district": "Solan",
+        "year": 2019,
+        "intensity": 92,
+        "active": false,
+        "movement_type": "Debris Slide",
+        "source": "HPSDMA",
+        "verificationStatus": "verified"
+      },
+      "geometry": { "type": "Point", "coordinates": [77.0521, 30.8842] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ls-uk-nainital-jeolikot-2021",
+        "name": "Jeolikot Highway Block",
+        "category": "Landslide",
+        "state": "Uttarakhand",
+        "district": "Nainital",
+        "year": 2021,
+        "intensity": 80,
+        "active": false,
+        "movement_type": "Rockfall",
+        "source": "USDMA",
+        "verificationStatus": "verified"
+      },
+      "geometry": { "type": "Point", "coordinates": [79.4892, 29.3456] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ls-hp-kinnaur-urmi-2016",
+        "name": "Urmi Village Slide",
+        "category": "Landslide",
+        "state": "Himachal Pradesh",
+        "district": "Kinnaur",
+        "year": 2016,
+        "intensity": 84,
+        "active": false,
+        "movement_type": "Debris Flow",
+        "source": "GSI",
+        "verificationStatus": "verified"
+      },
+      "geometry": { "type": "Point", "coordinates": [78.1245, 31.5432] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ls-uk-pithoragarh-pangla-2022",
+        "name": "Pangla Rockfall Zone",
+        "category": "Landslide",
+        "state": "Uttarakhand",
+        "district": "Pithoragarh",
+        "year": 2022,
+        "intensity": 86,
+        "active": true,
+        "movement_type": "Rockfall",
+        "source": "USDMA",
+        "verificationStatus": "verified"
+      },
+      "geometry": { "type": "Point", "coordinates": [80.6543, 29.9876] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ls-hp-shimla-sanjauli-2023",
+        "name": "Sanjauli Dhalli Slide",
+        "category": "Landslide",
+        "state": "Himachal Pradesh",
+        "district": "Shimla",
+        "year": 2023,
+        "intensity": 88,
+        "active": false,
+        "movement_type": "Debris Slide",
+        "source": "HPSDMA",
+        "verificationStatus": "verified"
+      },
+      "geometry": { "type": "Point", "coordinates": [77.1892, 31.1043] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ls-uk-tehri-chamba-2023",
+        "name": "Chamba Tunnel Area Slide",
+        "category": "Landslide",
+        "state": "Uttarakhand",
+        "district": "Tehri Garhwal",
+        "year": 2023,
+        "intensity": 82,
+        "active": false,
+        "movement_type": "Debris Slide",
+        "source": "USDMA",
+        "verificationStatus": "verified"
+      },
+      "geometry": { "type": "Point", "coordinates": [78.3892, 30.3456] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ls-hp-sirmaur-nahan-2021",
+        "name": "Nahan-Paonta Road Slide",
+        "category": "Landslide",
+        "state": "Himachal Pradesh",
+        "district": "Sirmaur",
+        "year": 2021,
+        "intensity": 78,
+        "active": false,
+        "movement_type": "Rockfall",
+        "source": "HPSDMA",
+        "verificationStatus": "verified"
+      },
+      "geometry": { "type": "Point", "coordinates": [77.3456, 30.5678] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ls-hp-mandi-balichowki-2024",
+        "name": "Bali Chowki Road Block",
+        "category": "Landslide",
+        "state": "Himachal Pradesh",
+        "district": "Mandi",
+        "year": 2024,
+        "intensity": 85,
+        "active": true,
+        "movement_type": "Debris Flow",
+        "source": "HPSDMA",
+        "verificationStatus": "verified"
+      },
+      "geometry": { "type": "Point", "coordinates": [77.2134, 31.5876] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ls-uk-rudraprayag-sonprayag-2024",
+        "name": "Sonprayag Debris Flow",
+        "category": "Landslide",
+        "state": "Uttarakhand",
+        "district": "Rudraprayag",
+        "year": 2024,
+        "intensity": 94,
+        "active": true,
+        "movement_type": "Debris Flow",
+        "source": "USDMA",
+        "verificationStatus": "verified"
+      },
+      "geometry": { "type": "Point", "coordinates": [79.0045, 30.6342] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ls-hp-chamba-dalhousie-2023",
+        "name": "Dalhousie Panchpula Slide",
+        "category": "Landslide",
+        "state": "Himachal Pradesh",
+        "district": "Chamba",
+        "year": 2023,
+        "intensity": 80,
+        "active": false,
+        "movement_type": "Rockfall",
+        "source": "HPSDMA",
+        "verificationStatus": "verified"
+      },
+      "geometry": { "type": "Point", "coordinates": [75.9876, 32.5432] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ls-uk-bageshwar-kapkot-2021",
+        "name": "Kapkot Village Slide",
+        "category": "Landslide",
+        "state": "Uttarakhand",
+        "district": "Bageshwar",
+        "year": 2021,
+        "intensity": 75,
+        "active": false,
+        "movement_type": "Debris Slide",
+        "source": "USDMA",
+        "verificationStatus": "verified"
+      },
+      "geometry": { "type": "Point", "coordinates": [79.9045, 29.9342] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ls-hp-bilaspur-swarghat-2023",
+        "name": "Swarghat NH Blockage",
+        "category": "Landslide",
+        "state": "Himachal Pradesh",
+        "district": "Bilaspur",
+        "year": 2023,
+        "intensity": 88,
+        "active": false,
+        "movement_type": "Major Slide",
+        "source": "NHAI",
+        "verificationStatus": "verified"
+      },
+      "geometry": { "type": "Point", "coordinates": [76.7234, 31.2345] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ls-uk-pauri-lansdowne-2021",
+        "name": "Lansdowne Road Breach",
+        "category": "Landslide",
+        "state": "Uttarakhand",
+        "district": "Pauri Garhwal",
+        "year": 2021,
+        "intensity": 72,
+        "active": false,
+        "movement_type": "Debris Slide",
+        "source": "USDMA",
+        "verificationStatus": "verified"
+      },
+      "geometry": { "type": "Point", "coordinates": [78.6876, 29.8432] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ls-hp-hamirpur-nadaun-2023",
+        "name": "Nadaun Bank Slide",
+        "category": "Landslide",
+        "state": "Himachal Pradesh",
+        "district": "Hamirpur",
+        "year": 2023,
+        "intensity": 70,
+        "active": false,
+        "movement_type": "Bank Erosion Slide",
+        "source": "HPSDMA",
+        "verificationStatus": "verified"
+      },
+      "geometry": { "type": "Point", "coordinates": [76.3456, 31.7892] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ls-uk-almora-ranikhet-2021",
+        "name": "Ranikhet Forest Slide",
+        "category": "Landslide",
+        "state": "Uttarakhand",
+        "district": "Almora",
+        "year": 2021,
+        "intensity": 65,
+        "active": false,
+        "movement_type": "Creep",
+        "source": "USDMA",
+        "verificationStatus": "verified"
+      },
+      "geometry": { "type": "Point", "coordinates": [79.4345, 29.6456] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ls-hp-una-lathiani-2023",
+        "name": "Lathiani Hill Slide",
+        "category": "Landslide",
+        "state": "Himachal Pradesh",
+        "district": "Una",
+        "year": 2023,
+        "intensity": 74,
+        "active": false,
+        "movement_type": "Rockfall",
+        "source": "HPSDMA",
+        "verificationStatus": "verified"
+      },
+      "geometry": { "type": "Point", "coordinates": [76.4567, 31.4567] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ls-uk-champawat-tanakpur-2021",
+        "name": "Tanakpur Ghat Road",
+        "category": "Landslide",
+        "state": "Uttarakhand",
+        "district": "Champawat",
+        "year": 2021,
+        "intensity": 82,
+        "active": false,
+        "movement_type": "Rockfall",
+        "source": "USDMA",
+        "verificationStatus": "verified"
+      },
+      "geometry": { "type": "Point", "coordinates": [80.1234, 29.1234] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ls-hp-kinnaur-karcham-2023",
+        "name": "Karcham Dam Road Slide",
+        "category": "Landslide",
+        "state": "Himachal Pradesh",
+        "district": "Kinnaur",
+        "year": 2023,
+        "intensity": 86,
+        "active": false,
+        "movement_type": "Major Slide",
+        "source": "NHAI",
+        "verificationStatus": "verified"
+      },
+      "geometry": { "type": "Point", "coordinates": [78.1876, 31.5043] }
     }
   ]
 }
