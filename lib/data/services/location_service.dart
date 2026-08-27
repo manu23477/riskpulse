@@ -1,72 +1,42 @@
 import 'package:geolocator/geolocator.dart';
-import 'package:geocoding/geocoding.dart';
+import '../models/user_location.dart';
 
 class LocationService {
-  final Geocoding _geocoding = Geocoding();
-
+  /// Legacy support for existing RiskPulse components.
+  /// Obtains raw coordinates using native Android location services.
+  /// NO API KEY REQUIRED.
   Future<Position> getCurrentPosition() async {
-    bool serviceEnabled;
-    LocationPermission permission;
+    bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) return Future.error('Location services are disabled.');
 
-    serviceEnabled = await Geolocator.isLocationServiceEnabled();
-
-    if (!serviceEnabled) {
-      return Future.error(
-        'Location services are disabled.',
-      );
-    }
-
-    permission = await Geolocator.checkPermission();
-
+    LocationPermission permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
-
-      if (permission == LocationPermission.denied) {
-        return Future.error(
-          'Location permissions are denied',
-        );
-      }
+      if (permission == LocationPermission.denied) return Future.error('Location permission denied.');
     }
+    if (permission == LocationPermission.deniedForever) return Future.error('Location permission permanently denied.');
 
-    if (permission == LocationPermission.deniedForever) {
-      return Future.error(
-        'Location permissions are permanently denied, '
-            'we cannot request permissions.',
-      );
-    }
-
-    return Geolocator.getCurrentPosition();
+    return await Geolocator.getCurrentPosition(
+      desiredAccuracy: LocationAccuracy.medium,
+    );
   }
 
-  Future<String> getAddressFromLatLng(
-      Position position,
-      ) async {
-    try {
-      final List<Placemark> placemarks =
-      await _geocoding.placemarkFromCoordinates(
-        position.latitude,
-        position.longitude,
-      );
+  /// New production method for LIVE TEMPERATURE feature.
+  /// Obtains UserLocation (Coordinates) using native GPS.
+  /// NO API KEYS REQUIRED.
+  Future<UserLocation> getCurrentLocation() async {
+    final Position position = await getCurrentPosition();
 
-      if (placemarks.isNotEmpty) {
-        final Placemark place = placemarks.first;
+    // The location name resolution is handled by the WeatherService API
+    // to ensure GPS acquisition remains entirely local and dependency-free.
+    return UserLocation(
+      latitude: position.latitude,
+      longitude: position.longitude,
+    );
+  }
 
-        return [
-          place.subLocality,
-          place.locality,
-          place.administrativeArea,
-        ]
-            .where(
-              (value) =>
-          value != null &&
-              value.trim().isNotEmpty,
-        )
-            .join(', ');
-      }
-
-      return 'Unknown Location';
-    } catch (e) {
-      return 'Unknown Location';
-    }
+  /// Legacy support for address resolution.
+  Future<String> getAddressFromLatLng(Position position) async {
+    return 'Current Location';
   }
 }

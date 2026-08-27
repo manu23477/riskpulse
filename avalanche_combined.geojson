@@ -1,0 +1,390 @@
+﻿{
+    "type":  "FeatureCollection",
+    "features":  [
+                     {
+                         "type":  "Feature",
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              79.735,
+                                                              30.485
+                                                          ]
+                                      },
+                         "properties":  {
+                                            "id":  "AVL_UK_001",
+                                            "name":  "Rishi Ganga Valley Disaster",
+                                            "category":  "Glacial/Avalanche",
+                                            "intensity":  "High",
+                                            "active":  false,
+                                            "state":  "Uttarakhand",
+                                            "district":  "Chamoli",
+                                            "size":  "Massive",
+                                            "triggering":  "Natural (Glacial break)",
+                                            "history":  "Feb 7, 2021; caused massive flooding in Rishi Ganga and Dhauliganga.",
+                                            "remarks":  "Impacted Tapovan Vishnugad Hydropower Plant; significant loss of life."
+                                        }
+                     },
+                     {
+                         "type":  "Feature",
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              78.852,
+                                                              30.878
+                                                          ]
+                                      },
+                         "properties":  {
+                                            "id":  "AVL_UK_002",
+                                            "name":  "Draupadi Ka Danda II Avalanche",
+                                            "category":  "Slab Avalanche",
+                                            "intensity":  "High",
+                                            "active":  false,
+                                            "state":  "Uttarakhand",
+                                            "district":  "Uttarkashi",
+                                            "size":  "Large",
+                                            "triggering":  "Natural/Weather",
+                                            "history":  "Oct 4, 2022; struck a team from Nehru Institute of Mountaineering (NIM).",
+                                            "remarks":  "Resulted in 29 fatalities; one of the worst mountaineering disasters in India."
+                                        }
+                     },
+                     {
+                         "type":  "Feature",
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              79.065,
+                                                              30.758
+                                                          ]
+                                      },
+                         "properties":  {
+                                            "id":  "AVL_UK_003",
+                                            "name":  "Chorabari Glacier Avalanche",
+                                            "category":  "Powder Avalanche",
+                                            "intensity":  "Moderate",
+                                            "active":  false,
+                                            "state":  "Uttarakhand",
+                                            "district":  "Rudraprayag",
+                                            "size":  "Medium",
+                                            "triggering":  "Natural",
+                                            "history":  "Oct 2022 and June 2013; multiple occurrences above Kedarnath.",
+                                            "remarks":  "Visible from Kedarnath temple; frequent activity during peak winter and spring."
+                                        }
+                     },
+                     {
+                         "type":  "Feature",
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              79.914,
+                                                              30.742
+                                                          ]
+                                      },
+                         "properties":  {
+                                            "id":  "AVL_UK_004",
+                                            "name":  "Sumna Avalanche",
+                                            "category":  "Wet Snow Avalanche",
+                                            "intensity":  "High",
+                                            "active":  false,
+                                            "state":  "Uttarakhand",
+                                            "district":  "Chamoli",
+                                            "size":  "Large",
+                                            "triggering":  "Heavy Snowfall",
+                                            "history":  "April 23, 2021; buried a Border Roads Organization (BRO) labor camp.",
+                                            "remarks":  "Located near the Indo-China border; rescue operations conducted by Indian Army."
+                                        }
+                     },
+                     {
+                         "type":  "Feature",
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              77.125,
+                                                              32.482
+                                                          ]
+                                      },
+                         "properties":  {
+                                            "id":  "AVL_HP_001",
+                                            "name":  "Sissu Avalanche Zone",
+                                            "category":  "Slab Avalanche",
+                                            "intensity":  "Moderate",
+                                            "active":  false,
+                                            "state":  "Himachal Pradesh",
+                                            "district":  "Lahaul \u0026 Spiti",
+                                            "size":  "Medium",
+                                            "triggering":  "Heavy Snowfall",
+                                            "history":  "March 2024; triggered by extreme snowfall, briefly blocked Chenab river.",
+                                            "remarks":  "Highly active zone near the North Portal of the Atal Tunnel."
+                                        }
+                     },
+                     {
+                         "type":  "Feature",
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              78.584,
+                                                              31.758
+                                                          ]
+                                      },
+                         "properties":  {
+                                            "id":  "AVL_HP_002",
+                                            "name":  "Pooh-Khab Sector",
+                                            "category":  "Natural Slab",
+                                            "intensity":  "High",
+                                            "active":  false,
+                                            "state":  "Himachal Pradesh",
+                                            "district":  "Kinnaur",
+                                            "size":  "Large",
+                                            "triggering":  "Snow accumulation",
+                                            "history":  "Feb 2019; caused trapping of ITBP personnel and blocked NH-5.",
+                                            "remarks":  "Strategic border road sector; prone to large volume slab avalanches."
+                                        }
+                     },
+                     {
+                         "type":  "Feature",
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              76.972,
+                                                              32.552
+                                                          ]
+                                      },
+                         "properties":  {
+                                            "id":  "AVL_HP_003",
+                                            "name":  "Tandi-Keylong Slope",
+                                            "category":  "Sluffing/Small Slab",
+                                            "intensity":  "Low-Moderate",
+                                            "active":  false,
+                                            "state":  "Himachal Pradesh",
+                                            "district":  "Lahaul \u0026 Spiti",
+                                            "size":  "Small",
+                                            "triggering":  "Natural",
+                                            "history":  "Jan 2024; blocked local connectivity between Keylong and Udaipur.",
+                                            "remarks":  "Common localized events that frequently disrupt winter traffic."
+                                        }
+                     },
+                     {
+                         "type":  "Feature",
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              78.745,
+                                                              31.815
+                                                          ]
+                                      },
+                         "properties":  {
+                                            "id":  "AVL_HP_004",
+                                            "name":  "Shipki La Pass Avalanche",
+                                            "category":  "High Altitude Avalanche",
+                                            "intensity":  "High",
+                                            "active":  false,
+                                            "state":  "Himachal Pradesh",
+                                            "district":  "Kinnaur",
+                                            "size":  "Large",
+                                            "triggering":  "Wind loading",
+                                            "history":  "Feb 2019; Dogra Scouts affected during routine patrol.",
+                                            "remarks":  "Extreme altitude (over 4,000m); very high wind speeds contribute to slab formation."
+                                        }
+                     },
+                     {
+                         "type":  "Feature",
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              77.246,
+                                                              32.371
+                                                          ]
+                                      },
+                         "properties":  {
+                                            "id":  "AVL_HP_005",
+                                            "name":  "Rohtang South Slope",
+                                            "category":  "Mixed Avalanche",
+                                            "intensity":  "Moderate",
+                                            "active":  false,
+                                            "state":  "Himachal Pradesh",
+                                            "district":  "Lahaul \u0026 Spiti",
+                                            "size":  "Medium",
+                                            "triggering":  "Human-triggered / Natural",
+                                            "history":  "Frequent annual incidents prior to the opening of Atal Tunnel.",
+                                            "remarks":  "Legacy hazard zone for the Manali-Leh highway; still active on old pass road."
+                                        }
+                     },
+                     {
+                         "type":  "Feature",
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              79.112,
+                                                              30.932
+                                                          ]
+                                      },
+                         "properties":  {
+                                            "id":  "AVL_UK_005",
+                                            "name":  "Gaumukh Glacier Sector",
+                                            "category":  "Ice/Snow Avalanche",
+                                            "intensity":  "Moderate",
+                                            "active":  false,
+                                            "state":  "Uttarakhand",
+                                            "district":  "Uttarkashi",
+                                            "size":  "Medium",
+                                            "triggering":  "Serac fall",
+                                            "history":  "Recurring serac collapses triggering secondary snow avalanches.",
+                                            "remarks":  "Danger zone for pilgrims and researchers visiting the source of the Ganga."
+                                        }
+                     },
+                     {
+                         "type":  "Feature",
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              79.312,
+                                                              31.065
+                                                          ]
+                                      },
+                         "properties":  {
+                                            "id":  "AVL_UK_006",
+                                            "name":  "Mana Pass Approach",
+                                            "category":  "Dry Snow Avalanche",
+                                            "intensity":  "High",
+                                            "active":  false,
+                                            "state":  "Uttarakhand",
+                                            "district":  "Chamoli",
+                                            "size":  "Large",
+                                            "triggering":  "Natural",
+                                            "history":  "Historical records of military convoys being hit in deep winter.",
+                                            "remarks":  "Remote high-altitude pass; strictly regulated military zone."
+                                        }
+                     },
+                     {
+                         "type":  "Feature",
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              77.642,
+                                                              32.395
+                                                          ]
+                                      },
+                         "properties":  {
+                                            "id":  "AVL_HP_006",
+                                            "name":  "Kunzum Pass Zone",
+                                            "category":  "Slab Avalanche",
+                                            "intensity":  "Moderate",
+                                            "active":  false,
+                                            "state":  "Himachal Pradesh",
+                                            "district":  "Lahaul \u0026 Spiti",
+                                            "size":  "Large",
+                                            "triggering":  "Natural",
+                                            "history":  "Annual large-scale slab releases that keep Spiti valley isolated.",
+                                            "remarks":  "Major blockage point between Kaza and Manali."
+                                        }
+                     },
+                     {
+                         "type":  "Feature",
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              79.614,
+                                                              30.702
+                                                          ]
+                                      },
+                         "properties":  {
+                                            "id":  "AVL_UK_007",
+                                            "name":  "Hemkund Sahib Trek Path",
+                                            "category":  "Wet Snow Avalanche",
+                                            "intensity":  "Moderate",
+                                            "active":  false,
+                                            "state":  "Uttarakhand",
+                                            "district":  "Chamoli",
+                                            "size":  "Medium",
+                                            "triggering":  "Natural",
+                                            "history":  "Recurring annual events in May/June that delay shrine opening.",
+                                            "remarks":  "Army regularly deployed to clear over 10-15 feet of avalanche debris."
+                                        }
+                     },
+                     {
+                         "type":  "Feature",
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              78.332,
+                                                              31.431
+                                                          ]
+                                      },
+                         "properties":  {
+                                            "id":  "AVL_HP_007",
+                                            "name":  "Sangla Valley Slopes",
+                                            "category":  "Rock/Snow Mix",
+                                            "intensity":  "High",
+                                            "active":  false,
+                                            "state":  "Himachal Pradesh",
+                                            "district":  "Kinnaur",
+                                            "size":  "Large",
+                                            "triggering":  "Natural",
+                                            "history":  "Severe 2021 incidents involving rockfall and snow slides.",
+                                            "remarks":  "Complex terrain where snow avalanches often trigger rockfall; high risk to villages."
+                                        }
+                     },
+                     {
+                         "type":  "Feature",
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              79.489,
+                                                              30.745
+                                                          ]
+                                      },
+                         "properties":  {
+                                            "id":  "AVL_UK_008",
+                                            "name":  "Nar Parvat Avalanche",
+                                            "category":  "Powder Avalanche",
+                                            "intensity":  "Moderate",
+                                            "active":  false,
+                                            "state":  "Uttarakhand",
+                                            "district":  "Chamoli",
+                                            "size":  "Medium",
+                                            "triggering":  "Natural",
+                                            "history":  "Seasonal activity on slopes overlooking Badrinath town.",
+                                            "remarks":  "Direct threat to the township infrastructure and Badrinath-Mana road."
+                                        }
+                     },
+                     {
+                         "type":  "Feature",
+                         "properties":  {
+                                            "id":  "av-lahaul-sissu",
+                                            "name":  "Sissu Avalanche Zone",
+                                            "category":  "Cryospheric",
+                                            "intensity":  90,
+                                            "active":  true,
+                                            "district":  "Lahaul \u0026 Spiti",
+                                            "size":  "Major Zone",
+                                            "remarks":  "Active during winter (Dec-April). Near the north portal of Atal Tunnel."
+                                        },
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              77.1235,
+                                                              32.4812
+                                                          ]
+                                      }
+                     },
+                     {
+                         "type":  "Feature",
+                         "properties":  {
+                                            "id":  "av-kinnaur-rakcham",
+                                            "name":  "Rakcham Slide Path",
+                                            "category":  "Cryospheric",
+                                            "intensity":  88,
+                                            "active":  true,
+                                            "district":  "Kinnaur",
+                                            "size":  "High Frequency",
+                                            "remarks":  "Seasonal avalanche risk affecting Sangla Valley connectivity."
+                                        },
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              78.3650,
+                                                              31.3850
+                                                          ]
+                                      }
+                     }
+                 ]
+}

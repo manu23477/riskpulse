@@ -1,0 +1,1077 @@
+﻿{
+    "type":  "FeatureCollection",
+    "features":  [
+                     {
+                         "type":  "Feature",
+                         "properties":  {
+                                            "id":  "cb-hp-mandi-thunag-2025",
+                                            "name":  "Thunag Cloudburst 2025",
+                                            "category":  "Cloudburst",
+                                            "state":  "Himachal Pradesh",
+                                            "district":  "Mandi",
+                                            "tehsil":  "Thunag",
+                                            "date":  "30 June 2025",
+                                            "year":  2025,
+                                            "intensity":  100,
+                                            "active":  false,
+                                            "triggering":  "Extreme Convective Rainfall",
+                                            "history":  "Catastrophic event that triggered major debris flows and flash floods in Seraj valley.",
+                                            "source":  "HPSDMA",
+                                            "verificationStatus":  "verified",
+                                            "historicalEvent":  true
+                                        },
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              77.1685,
+                                                              31.5492
+                                                          ]
+                                      }
+                     },
+                     {
+                         "type":  "Feature",
+                         "properties":  {
+                                            "id":  "cb-uk-rudraprayag-kedarnath-2013",
+                                            "name":  "Kedarnath Mega Cloudburst",
+                                            "category":  "Cloudburst",
+                                            "state":  "Uttarakhand",
+                                            "district":  "Rudraprayag",
+                                            "locationName":  "Kedarnath Valley",
+                                            "date":  "16 June 2013",
+                                            "year":  2013,
+                                            "intensity":  100,
+                                            "active":  false,
+                                            "triggering":  "GLOF / Cloudburst",
+                                            "casualties":  "5000+ estimated dead/missing",
+                                            "history":  "Extreme rainfall and glacial lake outburst devastated the Mandakini valley.",
+                                            "source":  "USDMA",
+                                            "verificationStatus":  "verified",
+                                            "historicalEvent":  true
+                                        },
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              79.0669,
+                                                              30.7352
+                                                          ]
+                                      }
+                     },
+                     {
+                         "type":  "Feature",
+                         "properties":  {
+                                            "id":  "cb-hp-shimla-samej-2024",
+                                            "name":  "Samej Flash Flood Event",
+                                            "category":  "Cloudburst",
+                                            "state":  "Himachal Pradesh",
+                                            "district":  "Shimla",
+                                            "tehsil":  "Rampur",
+                                            "date":  "01 August 2024",
+                                            "year":  2024,
+                                            "intensity":  98,
+                                            "active":  false,
+                                            "triggering":  "High-intensity Cloudburst",
+                                            "history":  "Washed away entire hamlets in Samej village and damaged SJVN infrastructure.",
+                                            "source":  "HPSDMA",
+                                            "verificationStatus":  "verified"
+                                        },
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              77.6184,
+                                                              31.4425
+                                                          ]
+                                      }
+                     },
+                     {
+                         "type":  "Feature",
+                         "properties":  {
+                                            "id":  "cb-uk-uttarkashi-2012",
+                                            "name":  "Asi Ganga Cloudburst",
+                                            "category":  "Cloudburst",
+                                            "state":  "Uttarakhand",
+                                            "district":  "Uttarkashi",
+                                            "date":  "03 August 2012",
+                                            "year":  2012,
+                                            "intensity":  90,
+                                            "active":  false,
+                                            "history":  "Multiple fatalities and major destruction in the Asi Ganga river basin.",
+                                            "source":  "USDMA / DMMC",
+                                            "verificationStatus":  "verified",
+                                            "historicalEvent":  true
+                                        },
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              78.4433,
+                                                              30.7322
+                                                          ]
+                                      }
+                     },
+                     {
+                         "type":  "Feature",
+                         "properties":  {
+                                            "id":  "cb-hp-kullu-chojh-2022",
+                                            "name":  "Chojh (Manikaran) Cloudburst",
+                                            "category":  "Cloudburst",
+                                            "state":  "Himachal Pradesh",
+                                            "district":  "Kullu",
+                                            "date":  "06 July 2022",
+                                            "year":  2022,
+                                            "intensity":  85,
+                                            "active":  false,
+                                            "history":  "Sudden flood in a seasonal stream washed away tourism infrastructure and people.",
+                                            "source":  "HPSDMA",
+                                            "verificationStatus":  "verified"
+                                        },
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              77.3484,
+                                                              32.0275
+                                                          ]
+                                      }
+                     },
+                     {
+                         "type":  "Feature",
+                         "properties":  {
+                                            "id":  "cb-hp-mandi-dharampur-2015",
+                                            "name":  "Dharampur Bus Stand Flood",
+                                            "category":  "Cloudburst",
+                                            "state":  "Himachal Pradesh",
+                                            "district":  "Mandi",
+                                            "year":  2015,
+                                            "intensity":  82,
+                                            "active":  false,
+                                            "history":  "Intense rain in the Son river catchment inundated the Dharampur market area.",
+                                            "source":  "HPSDMA",
+                                            "verificationStatus":  "verified"
+                                        },
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              76.7700,
+                                                              31.8100
+                                                          ]
+                                      }
+                     },
+                     {
+                         "type":  "Feature",
+                         "properties":  {
+                                            "id":  "cb-uk-pithoragarh-bastadi-2016",
+                                            "name":  "Bastadi Cloudburst Disaster",
+                                            "category":  "Cloudburst",
+                                            "state":  "Uttarakhand",
+                                            "district":  "Pithoragarh",
+                                            "year":  2016,
+                                            "intensity":  95,
+                                            "active":  false,
+                                            "history":  "Cloudburst in Didihat area caused massive debris flow and fatalities in Bastadi village.",
+                                            "source":  "USDMA",
+                                            "verificationStatus":  "verified"
+                                        },
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              80.2200,
+                                                              29.6200
+                                                          ]
+                                      }
+                     },
+                     {
+                         "type":  "Feature",
+                         "properties":  {
+                                            "id":  "cb-hp-chamba-bharmour-2023",
+                                            "name":  "Bharmour Flash Flood",
+                                            "category":  "Cloudburst",
+                                            "state":  "Himachal Pradesh",
+                                            "district":  "Chamba",
+                                            "year":  2023,
+                                            "intensity":  88,
+                                            "active":  false,
+                                            "history":  "Washouts on Mani Mahesh route during heavy monsoon rain.",
+                                            "source":  "HPSDMA",
+                                            "verificationStatus":  "verified"
+                                        },
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              76.5300,
+                                                              32.4400
+                                                          ]
+                                      }
+                     },
+                     {
+                         "type":  "Feature",
+                         "properties":  {
+                                            "id":  "cb-uk-chamoli-ghat-2021",
+                                            "name":  "Ghat Valley Cloudburst",
+                                            "category":  "Cloudburst",
+                                            "state":  "Uttarakhand",
+                                            "district":  "Chamoli",
+                                            "year":  2021,
+                                            "intensity":  84,
+                                            "active":  false,
+                                            "history":  "Several shops and bridges were washed away in the Ghat market area.",
+                                            "source":  "USDMA",
+                                            "verificationStatus":  "verified"
+                                        },
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              79.4800,
+                                                              30.2500
+                                                          ]
+                                      }
+                     },
+                     {
+                         "type":  "Feature",
+                         "properties":  {
+                                            "id":  "cb-hp-solan-parwanoo-2023",
+                                            "name":  "Parwanoo NH Washout",
+                                            "category":  "Cloudburst",
+                                            "state":  "Himachal Pradesh",
+                                            "district":  "Solan",
+                                            "year":  2023,
+                                            "intensity":  90,
+                                            "active":  false,
+                                            "history":  "Triggered massive landslides on NH-5; multiple sections of the road collapsed.",
+                                            "source":  "HPSDMA / NHAI",
+                                            "verificationStatus":  "verified"
+                                        },
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              76.9900,
+                                                              30.8400
+                                                          ]
+                                      }
+                     },
+                     {
+                         "type":  "Feature",
+                         "properties":  {
+                                            "id":  "cb-hp-kullu-malana-2024",
+                                            "name":  "Malana Dam Breach Cloudburst",
+                                            "category":  "Cloudburst",
+                                            "state":  "Himachal Pradesh",
+                                            "district":  "Kullu",
+                                            "date":  "01 August 2024",
+                                            "year":  2024,
+                                            "intensity":  98,
+                                            "active":  false,
+                                            "history":  "Burst of Malana Dam-II following a cloudburst, causing heavy damage downstream.",
+                                            "source":  "HPSDMA",
+                                            "verificationStatus":  "verified"
+                                        },
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              77.2700,
+                                                              32.0600
+                                                          ]
+                                      }
+                     },
+                     {
+                         "type":  "Feature",
+                         "properties":  {
+                                            "id":  "cb-hp-mandi-sambhal-2023",
+                                            "name":  "Sambhal (Pandoh) Cloudburst",
+                                            "category":  "Cloudburst",
+                                            "state":  "Himachal Pradesh",
+                                            "district":  "Mandi",
+                                            "date":  "August 2023",
+                                            "year":  2023,
+                                            "intensity":  92,
+                                            "active":  false,
+                                            "history":  "Flash flood in a seasonal stream swept away several houses and vehicles near Pandoh.",
+                                            "source":  "HPSDMA",
+                                            "verificationStatus":  "verified"
+                                        },
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              77.0200,
+                                                              31.6800
+                                                          ]
+                                      }
+                     },
+                     {
+                         "type":  "Feature",
+                         "properties":  {
+                                            "id":  "cb-uk-tehri-devprayag-2021",
+                                            "name":  "Devprayag Cloudburst",
+                                            "category":  "Cloudburst",
+                                            "state":  "Uttarakhand",
+                                            "district":  "Tehri Garhwal",
+                                            "date":  "May 2021",
+                                            "year":  2021,
+                                            "intensity":  85,
+                                            "active":  false,
+                                            "history":  "Multiple buildings including a vocational training center were destroyed.",
+                                            "source":  "USDMA",
+                                            "verificationStatus":  "verified"
+                                        },
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              78.5900,
+                                                              30.1400
+                                                          ]
+                                      }
+                     },
+                     {
+                         "type":  "Feature",
+                         "properties":  {
+                                            "id":  "cb-uk-nainital-ramgarh-2021",
+                                            "name":  "Ramgarh Debris Flow",
+                                            "category":  "Cloudburst",
+                                            "state":  "Uttarakhand",
+                                            "district":  "Nainital",
+                                            "date":  "October 2021",
+                                            "year":  2021,
+                                            "intensity":  94,
+                                            "active":  false,
+                                            "history":  "Unexpected late monsoon cloudburst caused massive damage in the fruit-growing belt of Ramgarh.",
+                                            "source":  "USDMA",
+                                            "verificationStatus":  "verified"
+                                        },
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              79.5500,
+                                                              29.4500
+                                                          ]
+                                      }
+                     },
+                     {
+                         "type":  "Feature",
+                         "properties":  {
+                                            "id":  "cb-hp-lahaul-jhalman-2021",
+                                            "name":  "Jhalman Nallah Flood",
+                                            "category":  "Cloudburst",
+                                            "state":  "Himachal Pradesh",
+                                            "district":  "Lahaul \u0026 Spiti",
+                                            "date":  "July 2021",
+                                            "year":  2021,
+                                            "intensity":  88,
+                                            "active":  false,
+                                            "history":  "Cloudburst in the upper reaches of Jhalman nallah caused flash floods in the Chenab valley.",
+                                            "source":  "HPSDMA",
+                                            "verificationStatus":  "verified"
+                                        },
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              76.8500,
+                                                              32.6400
+                                                          ]
+                                      }
+                     },
+                     {
+                         "type":  "Feature",
+                         "properties":  {
+                                            "id":  "cb-hp-kullu-brahamganga-2021",
+                                            "name":  "Brahamganga Manikaran Cloudburst",
+                                            "category":  "Cloudburst",
+                                            "state":  "Himachal Pradesh",
+                                            "district":  "Kullu",
+                                            "year":  2021,
+                                            "intensity":  90,
+                                            "active":  false,
+                                            "history":  "Flash flood in Brahamganga stream near Manikaran washed away several people.",
+                                            "source":  "HPSDMA",
+                                            "verificationStatus":  "verified"
+                                        },
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              77.3567,
+                                                              32.0345
+                                                          ]
+                                      }
+                     },
+                     {
+                         "type":  "Feature",
+                         "properties":  {
+                                            "id":  "cb-uk-dehradun-raipur-2022",
+                                            "name":  "Raipur Sarkhet Cloudburst",
+                                            "category":  "Cloudburst",
+                                            "state":  "Uttarakhand",
+                                            "district":  "Dehradun",
+                                            "year":  2022,
+                                            "intensity":  96,
+                                            "active":  false,
+                                            "history":  "Extreme rainfall in Raipur area caused flash floods in Song river and debris flows in Sarkhet village.",
+                                            "source":  "USDMA",
+                                            "verificationStatus":  "verified"
+                                        },
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              78.1234,
+                                                              30.3456
+                                                          ]
+                                      }
+                     },
+                     {
+                         "type":  "Feature",
+                         "properties":  {
+                                            "id":  "cb-hp-mandi-parashar-2024",
+                                            "name":  "Parashar Lake Area Cloudburst",
+                                            "category":  "Cloudburst",
+                                            "state":  "Himachal Pradesh",
+                                            "district":  "Mandi",
+                                            "year":  2024,
+                                            "intensity":  88,
+                                            "active":  false,
+                                            "history":  "Sudden heavy rain caused damage to road infrastructure leading to Parashar lake.",
+                                            "source":  "HPSDMA",
+                                            "verificationStatus":  "verified"
+                                        },
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              77.1021,
+                                                              31.8543
+                                                          ]
+                                      }
+                     },
+                     {
+                         "type":  "Feature",
+                         "properties":  {
+                                            "id":  "cb-uk-uttarkashi-mori-2019",
+                                            "name":  "Mori Arakot Disaster",
+                                            "category":  "Cloudburst",
+                                            "state":  "Uttarakhand",
+                                            "district":  "Uttarkashi",
+                                            "year":  2019,
+                                            "intensity":  98,
+                                            "active":  false,
+                                            "history":  "Multiple cloudbursts in Mori tehsil caused massive destruction in several villages and multiple fatalities.",
+                                            "source":  "USDMA",
+                                            "verificationStatus":  "verified"
+                                        },
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              77.9045,
+                                                              31.0342
+                                                          ]
+                                      }
+                     },
+                     {
+                         "type":  "Feature",
+                         "properties":  {
+                                            "id":  "cb-hp-shimla-jhakhri-2023",
+                                            "name":  "Jhakhri Power House Area",
+                                            "category":  "Cloudburst",
+                                            "state":  "Himachal Pradesh",
+                                            "district":  "Shimla",
+                                            "year":  2023,
+                                            "intensity":  85,
+                                            "active":  false,
+                                            "history":  "Intense rain triggered debris flows near the Nathpa Jhakri project site.",
+                                            "source":  "HPSDMA",
+                                            "verificationStatus":  "verified"
+                                        },
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              77.6892,
+                                                              31.5456
+                                                          ]
+                                      }
+                     },
+                     {
+                         "type":  "Feature",
+                         "properties":  {
+                                            "id":  "cb-uk-chamoli-tharali-2023",
+                                            "name":  "Tharali Pindar Valley",
+                                            "category":  "Cloudburst",
+                                            "state":  "Uttarakhand",
+                                            "district":  "Chamoli",
+                                            "year":  2023,
+                                            "intensity":  92,
+                                            "active":  false,
+                                            "history":  "Pindar river overflowed its banks due to a cloudburst in the upper reaches, damaging Tharali market.",
+                                            "source":  "USDMA",
+                                            "verificationStatus":  "verified"
+                                        },
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              79.4892,
+                                                              30.0456
+                                                          ]
+                                      }
+                     },
+                     {
+                         "type":  "Feature",
+                         "properties":  {
+                                            "id":  "cb-hp-kangra-bhagsunag-2021",
+                                            "name":  "Upper Bhagsu Flash Flood",
+                                            "category":  "Cloudburst",
+                                            "state":  "Himachal Pradesh",
+                                            "district":  "Kangra",
+                                            "year":  2021,
+                                            "intensity":  94,
+                                            "active":  false,
+                                            "history":  "Cloudburst in Dhauladhar range caused a massive surge in the Bhagsu stream, damaging luxury cars and shops.",
+                                            "source":  "HPSDMA",
+                                            "verificationStatus":  "verified"
+                                        },
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              76.3345,
+                                                              32.2456
+                                                          ]
+                                      }
+                     },
+                     {
+                         "type":  "Feature",
+                         "properties":  {
+                                            "id":  "cb-uk-pithoragarh-dharchula-2022",
+                                            "name":  "Dharchula Border Cloudburst",
+                                            "category":  "Cloudburst",
+                                            "state":  "Uttarakhand",
+                                            "district":  "Pithoragarh",
+                                            "year":  2022,
+                                            "intensity":  90,
+                                            "active":  false,
+                                            "history":  "Cloudburst in Nepal-India border area caused flash floods in Kali river and local streams.",
+                                            "source":  "USDMA",
+                                            "verificationStatus":  "verified"
+                                        },
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              80.5345,
+                                                              29.8543
+                                                          ]
+                                      }
+                     },
+                     {
+                         "type":  "Feature",
+                         "properties":  {
+                                            "id":  "cb-hp-chamba-salooni-2022",
+                                            "name":  "Salooni Sector Cloudburst",
+                                            "category":  "Cloudburst",
+                                            "state":  "Himachal Pradesh",
+                                            "district":  "Chamba",
+                                            "year":  2022,
+                                            "intensity":  86,
+                                            "active":  false,
+                                            "history":  "Sudden heavy rain in Salooni area caused damage to agriculture and local bridges.",
+                                            "source":  "HPSDMA",
+                                            "verificationStatus":  "verified"
+                                        },
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              76.0123,
+                                                              32.7456
+                                                          ]
+                                      }
+                     },
+                     {
+                         "type":  "Feature",
+                         "properties":  {
+                                            "id":  "cb-uk-rudraprayag-augustmuni-2021",
+                                            "name":  "Augustmuni Flash Flood",
+                                            "category":  "Cloudburst",
+                                            "state":  "Uttarakhand",
+                                            "district":  "Rudraprayag",
+                                            "year":  2021,
+                                            "intensity":  82,
+                                            "active":  false,
+                                            "history":  "Cloudburst in the Mandakini catchment caused a sudden rise in water levels, affecting riverside markets.",
+                                            "source":  "USDMA",
+                                            "verificationStatus":  "verified"
+                                        },
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              78.9876,
+                                                              30.3876
+                                                          ]
+                                      }
+                     },
+                     {
+                         "type":  "Feature",
+                         "properties":  {
+                                            "id":  "cb-hp-solan-kandaghat-2023",
+                                            "name":  "Kandaghat Railway Area",
+                                            "category":  "Cloudburst",
+                                            "state":  "Himachal Pradesh",
+                                            "district":  "Solan",
+                                            "year":  2023,
+                                            "intensity":  88,
+                                            "active":  false,
+                                            "history":  "Heavy rain triggered landslides and debris flow near the Kalka-Shimla heritage line.",
+                                            "source":  "HPSDMA",
+                                            "verificationStatus":  "verified"
+                                        },
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              77.1045,
+                                                              30.9678
+                                                          ]
+                                      }
+                     },
+                     {
+                         "type":  "Feature",
+                         "properties":  {
+                                            "id":  "cb-uk-tehri-ghansali-2016",
+                                            "name":  "Ghansali Balganga Flood",
+                                            "category":  "Cloudburst",
+                                            "state":  "Uttarakhand",
+                                            "district":  "Tehri Garhwal",
+                                            "year":  2016,
+                                            "intensity":  92,
+                                            "active":  false,
+                                            "history":  "Cloudburst in Balganga valley caused widespread destruction of property and livestock.",
+                                            "source":  "USDMA",
+                                            "verificationStatus":  "verified"
+                                        },
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              78.6543,
+                                                              30.4567
+                                                          ]
+                                      }
+                     },
+                     {
+                         "type":  "Feature",
+                         "properties":  {
+                                            "id":  "cb-hp-kinnaur-sangla-2021",
+                                            "name":  "Sangla Orchard Flash Flood",
+                                            "category":  "Cloudburst",
+                                            "state":  "Himachal Pradesh",
+                                            "district":  "Kinnaur",
+                                            "year":  2021,
+                                            "intensity":  84,
+                                            "active":  false,
+                                            "history":  "Unexpected heavy rainfall caused damage to apple orchards and link roads in Sangla valley.",
+                                            "source":  "HPSDMA",
+                                            "verificationStatus":  "verified"
+                                        },
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              78.2567,
+                                                              31.4234
+                                                          ]
+                                      }
+                     },
+                     {
+                         "type":  "Feature",
+                         "properties":  {
+                                            "id":  "cb-uk-bageshwar-kapkot-2023",
+                                            "name":  "Kapkot Saryu Valley",
+                                            "category":  "Cloudburst",
+                                            "state":  "Uttarakhand",
+                                            "district":  "Bageshwar",
+                                            "year":  2023,
+                                            "intensity":  80,
+                                            "active":  false,
+                                            "history":  "Local cloudburst triggered sudden floods in small tributaries of Saryu river.",
+                                            "source":  "USDMA",
+                                            "verificationStatus":  "verified"
+                                        },
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              79.9123,
+                                                              29.9456
+                                                          ]
+                                      }
+                     },
+                     {
+                         "type":  "Feature",
+                         "properties":  {
+                                            "id":  "cb-hp-lahaul-keylong-2023",
+                                            "name":  "Billing Nallah Keylong",
+                                            "category":  "Cloudburst",
+                                            "state":  "Himachal Pradesh",
+                                            "district":  "Lahaul \u0026 Spiti",
+                                            "year":  2023,
+                                            "intensity":  82,
+                                            "active":  false,
+                                            "history":  "Flash flood in Billing nallah temporarily blocked the Manali-Leh highway.",
+                                            "source":  "HPSDMA",
+                                            "verificationStatus":  "verified"
+                                        },
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              77.0345,
+                                                              32.5678
+                                                          ]
+                                      }
+                     },
+                     {
+                         "type":  "Feature",
+                         "properties":  {
+                                            "id":  "cb-uk-almora-bhikiyasain-2021",
+                                            "name":  "Bhikiyasain Ramganga Surge",
+                                            "category":  "Cloudburst",
+                                            "state":  "Uttarakhand",
+                                            "district":  "Almora",
+                                            "year":  2021,
+                                            "intensity":  78,
+                                            "active":  false,
+                                            "history":  "Ramganga river levels rose sharply following intense rain in the upper catchment.",
+                                            "source":  "USDMA",
+                                            "verificationStatus":  "verified"
+                                        },
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              79.2567,
+                                                              29.7456
+                                                          ]
+                                      }
+                     },
+                     {
+                         "type":  "Feature",
+                         "properties":  {
+                                            "id":  "cb-hp-mandi-tandi-2024",
+                                            "name":  "Tandi Bridge Flash Flood",
+                                            "category":  "Cloudburst",
+                                            "state":  "Himachal Pradesh",
+                                            "district":  "Mandi",
+                                            "year":  2024,
+                                            "intensity":  85,
+                                            "active":  false,
+                                            "history":  "Sudden flood in seasonal khad near Tandi caused damage to under-construction bridge.",
+                                            "source":  "HPSDMA",
+                                            "verificationStatus":  "verified"
+                                        },
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              77.1234,
+                                                              31.6456
+                                                          ]
+                                      }
+                     },
+                     {
+                         "type":  "Feature",
+                         "properties":  {
+                                            "id":  "cb-uk-chamoli-lambagarh-2019",
+                                            "name":  "Lambagarh Alaknanda Surge",
+                                            "category":  "Cloudburst",
+                                            "state":  "Uttarakhand",
+                                            "district":  "Chamoli",
+                                            "year":  2019,
+                                            "intensity":  90,
+                                            "active":  false,
+                                            "history":  "Cloudburst over Lambagarh caused a debris flow that temporarily dammed the Alaknanda river.",
+                                            "source":  "USDMA",
+                                            "verificationStatus":  "verified"
+                                        },
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              79.5123,
+                                                              30.6345
+                                                          ]
+                                      }
+                     },
+                     {
+                         "type":  "Feature",
+                         "properties":  {
+                                            "id":  "cb-hp-kullu-beas-2023",
+                                            "name":  "Beas Upper Valley Cloudburst",
+                                            "category":  "Cloudburst",
+                                            "state":  "Himachal Pradesh",
+                                            "district":  "Kullu",
+                                            "year":  2023,
+                                            "intensity":  94,
+                                            "active":  false,
+                                            "history":  "Extreme rain in the Solang valley area triggered record water levels in the Beas river.",
+                                            "source":  "HPSDMA",
+                                            "verificationStatus":  "verified"
+                                        },
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              77.1567,
+                                                              32.3234
+                                                          ]
+                                      }
+                     },
+                     {
+                         "type":  "Feature",
+                         "properties":  {
+                                            "id":  "cb-uk-nainital-haldwani-2021",
+                                            "name":  "Haldwani Gaula Catchment",
+                                            "category":  "Cloudburst",
+                                            "state":  "Uttarakhand",
+                                            "district":  "Nainital",
+                                            "year":  2021,
+                                            "intensity":  88,
+                                            "active":  false,
+                                            "history":  "Cloudburst in the Gaula river catchment caused record-breaking discharge and damage to barrages.",
+                                            "source":  "USDMA",
+                                            "verificationStatus":  "verified"
+                                        },
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              79.5345,
+                                                              29.2345
+                                                          ]
+                                      }
+                     },
+                     {
+                         "type":  "Feature",
+                         "properties":  {
+                                            "id":  "cb-hp-shimla-kotkhai-2023",
+                                            "name":  "Kotkhai Apple Belt Rain",
+                                            "category":  "Cloudburst",
+                                            "state":  "Himachal Pradesh",
+                                            "district":  "Shimla",
+                                            "year":  2023,
+                                            "intensity":  84,
+                                            "active":  false,
+                                            "history":  "Heavy cloudburst rain caused erosion and landslide in the Kotkhai apple growing region.",
+                                            "source":  "HPSDMA",
+                                            "verificationStatus":  "verified"
+                                        },
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              77.5345,
+                                                              31.1234
+                                                          ]
+                                      }
+                     },
+                     {
+                         "type":  "Feature",
+                         "properties":  {
+                                            "id":  "cb-uk-pauri-khirsu-2021",
+                                            "name":  "Khirsu Forest Zone Rain",
+                                            "category":  "Cloudburst",
+                                            "state":  "Uttarakhand",
+                                            "district":  "Pauri Garhwal",
+                                            "year":  2021,
+                                            "intensity":  76,
+                                            "active":  false,
+                                            "history":  "Intense local rain triggered small-scale debris flows in the Khirsu forest area.",
+                                            "source":  "USDMA",
+                                            "verificationStatus":  "verified"
+                                        },
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              78.8345,
+                                                              30.1567
+                                                          ]
+                                      }
+                     },
+                     {
+                         "type":  "Feature",
+                         "properties":  {
+                                            "id":  "cb-hp-kangra-palampur-2023",
+                                            "name":  "Palampur Neugal Surge",
+                                            "category":  "Cloudburst",
+                                            "state":  "Himachal Pradesh",
+                                            "district":  "Kangra",
+                                            "year":  2023,
+                                            "intensity":  80,
+                                            "active":  false,
+                                            "history":  "Neugal stream in Palampur witnessed a sudden surge following heavy rain in the Dhauladhars.",
+                                            "source":  "HPSDMA",
+                                            "verificationStatus":  "verified"
+                                        },
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              76.5345,
+                                                              32.1234
+                                                          ]
+                                      }
+                     },
+                     {
+                         "type":  "Feature",
+                         "properties":  {
+                                            "id":  "cb-uk-uttarkashi-gangotri-2021",
+                                            "name":  "Gangotri Highway Sector",
+                                            "category":  "Cloudburst",
+                                            "state":  "Uttarakhand",
+                                            "district":  "Uttarkashi",
+                                            "year":  2021,
+                                            "intensity":  82,
+                                            "active":  false,
+                                            "history":  "Heavy local rain caused rockfalls and temporary closure of the Gangotri National Highway.",
+                                            "source":  "USDMA",
+                                            "verificationStatus":  "verified"
+                                        },
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              78.6789,
+                                                              30.9876
+                                                          ]
+                                      }
+                     },
+                     {
+                         "type":  "Feature",
+                         "properties":  {
+                                            "id":  "cb-hp-mandi-janjehli-2023",
+                                            "name":  "Janjehli Valley Flood",
+                                            "category":  "Cloudburst",
+                                            "state":  "Himachal Pradesh",
+                                            "district":  "Mandi",
+                                            "year":  2023,
+                                            "intensity":  75,
+                                            "active":  false,
+                                            "history":  "Local streams in Janjehli valley overflowed, damaging village paths and retaining walls.",
+                                            "source":  "HPSDMA",
+                                            "verificationStatus":  "verified"
+                                        },
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              77.2345,
+                                                              31.4892
+                                                          ]
+                                      }
+                     },
+                     {
+                         "type":  "Feature",
+                         "properties":  {
+                                            "id":  "cb-mandi-dharampur-2015",
+                                            "name":  "Dharampur Cloudburst",
+                                            "category":  "Meteorological",
+                                            "intensity":  85,
+                                            "active":  false,
+                                            "district":  "Mandi",
+                                            "size":  "Major",
+                                            "triggering":  "Extreme Convective Rainfall",
+                                            "history":  "August 2015: Intense cloudburst led to sudden flooding in Dharampur town. The bus stand was completely submerged, and several buses were washed away. Significant damage to property and local infrastructure.",
+                                            "remarks":  "Highlighted the vulnerability of towns built near mountain streams."
+                                        },
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              76.7125,
+                                                              31.8152
+                                                          ]
+                                      }
+                     },
+                     {
+                         "type":  "Feature",
+                         "properties":  {
+                                            "id":  "cb-kullu-manikaran-2022",
+                                            "name":  "Manikaran Cloudburst",
+                                            "category":  "Meteorological",
+                                            "intensity":  90,
+                                            "active":  false,
+                                            "district":  "Kullu",
+                                            "size":  "Major",
+                                            "triggering":  "High-intensity localized rain",
+                                            "history":  "July 6, 2022: Cloudburst in Chojh village near Manikaran. Several people were washed away as the Parvati river swelled suddenly. Multiple camping sites and bridges were destroyed.",
+                                            "remarks":  "Affected the busy tourism circuit of Parvati Valley."
+                                        },
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              77.3484,
+                                                              32.0275
+                                                          ]
+                                      }
+                     },
+                     {
+                         "type":  "Feature",
+                         "properties":  {
+                                            "id":  "cb-shimla-samej-2024",
+                                            "name":  "Samej Massive Cloudburst",
+                                            "category":  "Meteorological",
+                                            "intensity":  99,
+                                            "active":  true,
+                                            "district":  "Shimla/Kullu Boundary",
+                                            "size":  "Extreme",
+                                            "triggering":  "Localized convective storm",
+                                            "history":  "August 1, 2024: One of the worst cloudbursts in HP. Wiped out whole hamlets in Samej, Rampur. Over 30 people missing. Massive debris flow downstream.",
+                                            "remarks":  "Caused catastrophic damage to both life and energy infrastructure (Malana II project)."
+                                        },
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              77.6184,
+                                                              31.4425
+                                                          ]
+                                      }
+                     },
+                     {
+                         "type":  "Feature",
+                         "properties":  {
+                                            "id":  "cb-chamba-thathri-2024",
+                                            "name":  "Thathri Cloudburst",
+                                            "category":  "Meteorological",
+                                            "intensity":  88,
+                                            "active":  true,
+                                            "district":  "Chamba",
+                                            "size":  "Major",
+                                            "triggering":  "Monsoon instability",
+                                            "history":  "August 1, 2024: Occurred simultaneously with Samej. High intensity rain caused small streams to turn into raging torrents of mud and boulders.",
+                                            "remarks":  "Remote village accessibility severely impacted."
+                                        },
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              76.1245,
+                                                              32.5510
+                                                          ]
+                                      }
+                     },
+                     {
+                         "type":  "Feature",
+                         "properties":  {
+                                            "id":  "cb-kullu-bagipul-2024",
+                                            "name":  "Bagipul Cloudburst",
+                                            "category":  "Meteorological",
+                                            "intensity":  92,
+                                            "active":  true,
+                                            "district":  "Kullu",
+                                            "size":  "Major",
+                                            "triggering":  "Cloudburst",
+                                            "history":  "July 31, 2024: Sudden heavy rain in Nirmand area. Bagipul market saw massive debris inflow. Houses and shops were washed away.",
+                                            "remarks":  "Critical road connectivity to Anni and Nirmand cut off."
+                                        },
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              77.5852,
+                                                              31.4285
+                                                          ]
+                                      }
+                     },
+                     {
+                         "type":  "Feature",
+                         "properties":  {
+                                            "id":  "cb-lahaul-jahalman-2021",
+                                            "name":  "Jahalman Cloudburst",
+                                            "category":  "Meteorological",
+                                            "intensity":  82,
+                                            "active":  false,
+                                            "district":  "Lahaul \u0026 Spiti",
+                                            "size":  "Medium",
+                                            "triggering":  "Localized storm",
+                                            "history":  "July 2021: Cloudburst in Jahalman nallah in Lahaul valley. Caused blockage of Chandrabhaga river and damage to agriculture land.",
+                                            "remarks":  "Rare high-intensity event in cold desert region."
+                                        },
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              76.8524,
+                                                              32.6512
+                                                          ]
+                                      }
+                     }
+                 ]
+}

@@ -1,0 +1,444 @@
+﻿{
+    "type":  "FeatureCollection",
+    "features":  [
+                     {
+                         "type":  "Feature",
+                         "properties":  {
+                                            "id":  "eq-hp-kangra-1905",
+                                            "name":  "Kangra Great Earthquake",
+                                            "category":  "Earthquake",
+                                            "state":  "Himachal Pradesh",
+                                            "district":  "Kangra",
+                                            "locationName":  "Kangra Valley",
+                                            "date":  "04 April 1905",
+                                            "time":  "06:11 AM",
+                                            "year":  1905,
+                                            "magnitude":  7.8,
+                                            "magnitudeType":  "Ms",
+                                            "intensity":  "X (Extreme)",
+                                            "casualties":  "20,000+",
+                                            "housesAffected":  "100,000+",
+                                            "geology":  "Main Boundary Thrust (MBT) region",
+                                            "history":  "One of the deadliest earthquakes in Indian history. Kangra town was completely destroyed. Significant damage in Dharamshala, Palampur, and Mandi. Felt across North India.",
+                                            "scientificInfo":  "Epicentral area located near Kangra. Fault length approximately 280km.",
+                                            "source":  "HPSDMA / GSI",
+                                            "sourceUrl":  "https://hpsdma.nic.in/Contents.aspx?langid=1\u0026lev=3\u0026lid=1180\u0026lsid=1184\u0026pid=70",
+                                            "verificationStatus":  "verified",
+                                            "explanationQuick":  "The 1905 Kangra earthquake was a catastrophic event that changed the landscape of the valley and led to modern seismic building codes.",
+                                            "historicalEvent":  true
+                                        },
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              76.27,
+                                                              32.10
+                                                          ]
+                                      }
+                     },
+                     {
+                         "type":  "Feature",
+                         "properties":  {
+                                            "id":  "eq-hp-chamba-1945",
+                                            "name":  "Chamba Earthquake 1945",
+                                            "category":  "Earthquake",
+                                            "state":  "Himachal Pradesh",
+                                            "district":  "Chamba",
+                                            "date":  "01 June 1945",
+                                            "year":  1945,
+                                            "magnitude":  6.5,
+                                            "magnitudeType":  "Mw",
+                                            "source":  "HPSDMA",
+                                            "verificationStatus":  "verified",
+                                            "historicalEvent":  true
+                                        },
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              76.10,
+                                                              32.50
+                                                          ]
+                                      }
+                     },
+                     {
+                         "type":  "Feature",
+                         "properties":  {
+                                            "id":  "eq-hp-kinnaur-1975",
+                                            "name":  "Kinnaur Earthquake 1975",
+                                            "category":  "Earthquake",
+                                            "state":  "Himachal Pradesh",
+                                            "district":  "Kinnaur",
+                                            "locationName":  "Kaurik / Leo Pargial",
+                                            "date":  "19 January 1975",
+                                            "time":  "13:32 IST",
+                                            "year":  1975,
+                                            "magnitude":  6.8,
+                                            "magnitudeType":  "Mw",
+                                            "depth":  33.0,
+                                            "casualties":  "60",
+                                            "remarks":  "Caused massive landslides and blocked several rivers. Historic monasteries in Spiti and Kinnaur were damaged.",
+                                            "source":  "GSI / IMD",
+                                            "verificationStatus":  "verified",
+                                            "historicalEvent":  true
+                                        },
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              78.50,
+                                                              32.40
+                                                          ]
+                                      }
+                     },
+                     {
+                         "type":  "Feature",
+                         "properties":  {
+                                            "id":  "eq-hp-dharamshala-1986",
+                                            "name":  "Dharamshala Earthquake 1986",
+                                            "category":  "Earthquake",
+                                            "state":  "Himachal Pradesh",
+                                            "district":  "Kangra",
+                                            "date":  "26 April 1986",
+                                            "year":  1986,
+                                            "magnitude":  5.7,
+                                            "magnitudeType":  "mb",
+                                            "casualties":  "6",
+                                            "remarks":  "Moderate magnitude but caused significant damage to stone-masonry houses in Dharamshala and McLeodganj.",
+                                            "source":  "HPSDMA",
+                                            "verificationStatus":  "verified",
+                                            "historicalEvent":  true
+                                        },
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              76.32,
+                                                              32.23
+                                                          ]
+                                      }
+                     },
+                     {
+                         "type":  "Feature",
+                         "properties":  {
+                                            "id":  "eq-hp-chamba-1994",
+                                            "name":  "Chamba Earthquake 1994",
+                                            "category":  "Earthquake",
+                                            "state":  "Himachal Pradesh",
+                                            "district":  "Chamba",
+                                            "date":  "01 April 1994",
+                                            "year":  1994,
+                                            "magnitude":  5.8,
+                                            "source":  "HPSDMA",
+                                            "verificationStatus":  "verified",
+                                            "historicalEvent":  true
+                                        },
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              76.15,
+                                                              32.55
+                                                          ]
+                                      }
+                     },
+                     {
+                         "type":  "Feature",
+                         "properties":  {
+                                            "id":  "eq-hp-chamba-1995",
+                                            "name":  "Chamba Earthquake 1995",
+                                            "category":  "Earthquake",
+                                            "state":  "Himachal Pradesh",
+                                            "district":  "Chamba",
+                                            "date":  "24 March 1995",
+                                            "year":  1995,
+                                            "magnitude":  4.9,
+                                            "source":  "HPSDMA",
+                                            "verificationStatus":  "verified",
+                                            "historicalEvent":  true
+                                        },
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              76.20,
+                                                              32.60
+                                                          ]
+                                      }
+                     },
+                     {
+                         "type":  "Feature",
+                         "properties":  {
+                                            "id":  "eq-hp-sundernagar-1997",
+                                            "name":  "Sundernagar Earthquake 1997",
+                                            "category":  "Earthquake",
+                                            "state":  "Himachal Pradesh",
+                                            "district":  "Mandi",
+                                            "date":  "29 July 1997",
+                                            "year":  1997,
+                                            "magnitude":  5.0,
+                                            "source":  "HPSDMA",
+                                            "verificationStatus":  "verified",
+                                            "historicalEvent":  true
+                                        },
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              76.90,
+                                                              31.50
+                                                          ]
+                                      }
+                     },
+                     {
+                         "type":  "Feature",
+                         "properties":  {
+                                            "id":  "eq-uk-uttarkashi-1991",
+                                            "name":  "Uttarkashi Earthquake",
+                                            "category":  "Earthquake",
+                                            "state":  "Uttarakhand",
+                                            "district":  "Uttarkashi",
+                                            "date":  "20 October 1991",
+                                            "time":  "02:53 AM",
+                                            "year":  1991,
+                                            "magnitude":  6.8,
+                                            "magnitudeType":  "Mw",
+                                            "depth":  10.0,
+                                            "casualties":  "768",
+                                            "housesAffected":  "42,000+",
+                                            "history":  "Major earthquake in the Garhwal Himalayas. Caused extensive damage to life and property in Uttarkashi, Chamoli and Tehri districts.",
+                                            "source":  "USDMA / DMMC",
+                                            "verificationStatus":  "verified",
+                                            "historicalEvent":  true
+                                        },
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              78.85,
+                                                              30.75
+                                                          ]
+                                      }
+                     },
+                     {
+                         "type":  "Feature",
+                         "properties":  {
+                                            "id":  "eq-uk-chamoli-1999",
+                                            "name":  "Chamoli Earthquake",
+                                            "category":  "Earthquake",
+                                            "state":  "Uttarakhand",
+                                            "district":  "Chamoli",
+                                            "date":  "29 March 1999",
+                                            "time":  "00:35 IST",
+                                            "year":  1999,
+                                            "magnitude":  6.6,
+                                            "magnitudeType":  "Mw",
+                                            "depth":  15.0,
+                                            "casualties":  "103",
+                                            "housesAffected":  "50,000+",
+                                            "history":  "Epicenter near Chamoli. Resulted in significant destruction of traditional stone-mud houses. Ground fissures and landslides were widely reported.",
+                                            "source":  "USDMA / DMMC",
+                                            "verificationStatus":  "verified",
+                                            "historicalEvent":  true
+                                        },
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              79.40,
+                                                              30.50
+                                                          ]
+                                      }
+                     },
+                     {
+                         "type":  "Feature",
+                         "properties":  {
+                                            "id":  "eq-hp-kullu-1906",
+                                            "name":  "Kullu Earthquake 1906",
+                                            "category":  "Earthquake",
+                                            "state":  "Himachal Pradesh",
+                                            "district":  "Kullu",
+                                            "year":  1906,
+                                            "magnitude":  6.4,
+                                            "source":  "Historical Records",
+                                            "verificationStatus":  "approximate",
+                                            "historicalEvent":  true
+                                        },
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              77.10,
+                                                              32.00
+                                                          ]
+                                      }
+                     },
+                     {
+                         "type":  "Feature",
+                         "properties":  {
+                                            "id":  "eq-uk-garhwal-1803",
+                                            "name":  "Great Garhwal Earthquake",
+                                            "category":  "Earthquake",
+                                            "state":  "Uttarakhand",
+                                            "district":  "Tehri Garhwal",
+                                            "year":  1803,
+                                            "magnitude":  7.7,
+                                            "magnitudeType":  "Mw",
+                                            "history":  "Historical mega-earthquake that caused widespread destruction from Kathmandu to Delhi. Significantly damaged the Badrinath temple.",
+                                            "source":  "USDMA / Historical Records",
+                                            "verificationStatus":  "verified",
+                                            "historicalEvent":  true
+                                        },
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              78.80,
+                                                              30.30
+                                                          ]
+                                      }
+                     },
+                     {
+                         "type":  "Feature",
+                         "properties":  {
+                                            "id":  "eq-hp-kashmir-border-1555",
+                                            "name":  "Kashmir-HP Border Earthquake",
+                                            "category":  "Earthquake",
+                                            "state":  "Himachal Pradesh",
+                                            "district":  "Chamba",
+                                            "year":  1555,
+                                            "magnitude":  7.6,
+                                            "remarks":  "Major historical event felt across the Northwest Himalayas.",
+                                            "source":  "Paleoseismic Data",
+                                            "verificationStatus":  "verified",
+                                            "historicalEvent":  true
+                                        },
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              76.00,
+                                                              33.00
+                                                          ]
+                                      }
+                     },
+                     {
+                         "type":  "Feature",
+                         "properties":  {
+                                            "id":  "eq-uk-dharchula-1980",
+                                            "name":  "Dharchula Earthquake 1980",
+                                            "category":  "Earthquake",
+                                            "state":  "Uttarakhand",
+                                            "district":  "Pithoragarh",
+                                            "date":  "29 July 1980",
+                                            "year":  1980,
+                                            "magnitude":  6.1,
+                                            "source":  "USDMA",
+                                            "verificationStatus":  "verified",
+                                            "historicalEvent":  true
+                                        },
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              80.60,
+                                                              29.70
+                                                          ]
+                                      }
+                     },
+                     {
+                         "type":  "Feature",
+                         "properties":  {
+                                            "id":  "eq-uk-nepal-border-2023",
+                                            "name":  "Nepal-UK Border Earthquake",
+                                            "category":  "Earthquake",
+                                            "state":  "Uttarakhand",
+                                            "district":  "Pithoragarh",
+                                            "date":  "03 October 2023",
+                                            "year":  2023,
+                                            "magnitude":  6.2,
+                                            "remarks":  "Centered in Nepal but caused significant tremors and minor damage in Pithoragarh and Almora.",
+                                            "source":  "IMD",
+                                            "verificationStatus":  "verified"
+                                        },
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              81.10,
+                                                              29.60
+                                                          ]
+                                      }
+                     },
+                     {
+                         "type":  "Feature",
+                         "properties":  {
+                                            "id":  "eq-uk-barkot-2023",
+                                            "name":  "Barkot Earthquake Swarm",
+                                            "category":  "Earthquake",
+                                            "state":  "Uttarakhand",
+                                            "district":  "Uttarkashi",
+                                            "year":  2023,
+                                            "magnitude":  4.5,
+                                            "remarks":  "Part of a series of tremors in the Yamuna valley area.",
+                                            "source":  "USDMA",
+                                            "verificationStatus":  "verified"
+                                        },
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              78.20,
+                                                              30.80
+                                                          ]
+                                      }
+                     },
+                     {
+                         "type":  "Feature",
+                         "properties":  {
+                                            "id":  "eq-kangra-1905",
+                                            "name":  "1905 Kangra Earthquake Epicenter",
+                                            "category":  "Seismic",
+                                            "intensity":  100,
+                                            "active":  false,
+                                            "district":  "Kangra",
+                                            "size":  "8.0 Magnitude",
+                                            "history":  "April 4, 1905: Most devastating earthquake in HP history. Over 20,000 deaths. Kangra town and Dharamshala were completely leveled.",
+                                            "remarks":  "Region remains in high-risk Seismic Zone V."
+                                        },
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              76.2627,
+                                                              32.0904
+                                                          ]
+                                      }
+                     },
+                     {
+                         "type":  "Feature",
+                         "properties":  {
+                                            "id":  "eq-mandi-fault-line",
+                                            "name":  "Mandi-Kullu Fault Zone",
+                                            "category":  "Seismic",
+                                            "intensity":  85,
+                                            "active":  true,
+                                            "district":  "Mandi/Kullu",
+                                            "size":  "High Risk Zone",
+                                            "remarks":  "Part of the Main Boundary Thrust (MBT). Active monitoring area."
+                                        },
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              77.1000,
+                                                              31.8000
+                                                          ]
+                                      }
+                     },
+                     {
+                         "type":  "Feature",
+                         "properties":  {
+                                            "id":  "eq-kinnaur-kaurik",
+                                            "name":  "Kaurik Fault (Leo Pargial)",
+                                            "category":  "Seismic",
+                                            "intensity":  92,
+                                            "active":  true,
+                                            "district":  "Kinnaur",
+                                            "size":  "Major Fault",
+                                            "history":  "1975 Kinnaur Earthquake epicenter. Caused significant damage to monasteries and high-altitude villages.",
+                                            "remarks":  "Fastest moving fault line in the region."
+                                        },
+                         "geometry":  {
+                                          "type":  "Point",
+                                          "coordinates":  [
+                                                              78.5100,
+                                                              31.9500
+                                                          ]
+                                      }
+                     }
+                 ]
+}

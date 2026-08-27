@@ -16,10 +16,13 @@ import '../../data/models/yatra_status.dart';
 import '../emergency/emergency_hub_screen.dart';
 import '../profile/profile_screen.dart';
 import '../reports/report_generator_screen.dart';
+import '../weather/weather_details_screen.dart';
+import './widgets/weather_card.dart';
 import '../../data/services/profile_service.dart';
 import '../../data/services/forest_fire_service.dart';
 import '../../data/services/yatra_service.dart';
 import '../../data/services/state_service.dart';
+import '../../data/providers/weather_provider.dart';
 import '../../core/theme/theme_provider.dart';
 import '../../core/localization/app_localizations.dart';
 
@@ -36,6 +39,7 @@ class _RiskPulseHomeState extends State<RiskPulseHome> {
   final ForestFireService _fireService = ForestFireService();
   final YatraService _yatraService = YatraService();
   final StateService _stateService = StateService();
+  
   List<DistrictRisk> _districtRisks = [];
   List<WeatherAlert> _activeAlerts = [];
   List<Hazard> _liveFires = [];
@@ -50,6 +54,9 @@ class _RiskPulseHomeState extends State<RiskPulseHome> {
     super.initState();
     _stateService.addListener(_onStateChanged);
     _loadData();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<WeatherProvider>().refreshLiveTemperature();
+    });
     _updateDiurnalStatus();
   }
 
@@ -62,6 +69,7 @@ class _RiskPulseHomeState extends State<RiskPulseHome> {
   void _onStateChanged() {
     if (mounted) {
       _loadData();
+      context.read<WeatherProvider>().refreshLiveTemperature();
     }
   }
 
@@ -174,6 +182,11 @@ class _RiskPulseHomeState extends State<RiskPulseHome> {
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: Stack(
         children: [
+          // Dynamic Weather Background
+          if (_currentWeather == 'rain') const _RainAnimation(),
+          if (_currentWeather == 'fog') const _FogAnimation(),
+          if (_currentWeather == 'sunshine') const _SunbeamAnimation(),
+          
           // Background "Intelligence" Glow
           Positioned(
             top: -100,
@@ -199,6 +212,8 @@ class _RiskPulseHomeState extends State<RiskPulseHome> {
                   _buildHeader(l10n, languageProvider, themeProvider, profileService),
                   const SizedBox(height: 28),
                   _buildLocationBar(l10n),
+                  const SizedBox(height: 24),
+                  _buildWeatherSection(),
                   const SizedBox(height: 24),
                   _buildMainDashboard(l10n),
                   const SizedBox(height: 28),
@@ -238,6 +253,34 @@ class _RiskPulseHomeState extends State<RiskPulseHome> {
       ),
       floatingActionButton: _buildSOSFab(l10n),
       bottomNavigationBar: _buildBottomNav(l10n),
+    );
+  }
+
+  Widget _buildWeatherSection() {
+    return Consumer<WeatherProvider>(
+      builder: (context, weatherProvider, child) {
+        return InkWell(
+          onTap: weatherProvider.weatherData != null ? () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => WeatherDetailsScreen(weather: weatherProvider.weatherData!),
+              ),
+            );
+          } : null,
+          borderRadius: BorderRadius.circular(28),
+          child: WeatherCard(
+            location: weatherProvider.userLocation,
+            weather: weatherProvider.weatherData,
+            isLoading: weatherProvider.isLoading,
+            locationError: weatherProvider.locationError,
+            weatherError: weatherProvider.weatherError,
+            permissionDenied: weatherProvider.permissionDenied,
+            onActionPressed: () => weatherProvider.refreshLiveTemperature(force: true),
+            onManualLocation: (city) => weatherProvider.setManualLocation(city),
+          ),
+        );
+      },
     );
   }
 
@@ -1093,13 +1136,6 @@ class _FogAnimationState extends State<_FogAnimation> with SingleTickerProviderS
   }
 }
 
-class _HazeAnimation extends StatelessWidget {
-  const _HazeAnimation();
-  @override
-  Widget build(BuildContext context) {
-    return Container(color: Colors.white.withValues(alpha: 0.05));
-  }
-}
 
 class _SunbeamAnimation extends StatefulWidget {
   const _SunbeamAnimation();

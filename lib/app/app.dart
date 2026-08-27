@@ -6,6 +6,7 @@ import '../core/localization/app_localizations.dart';
 import '../core/theme/theme_provider.dart';
 import '../data/services/profile_service.dart';
 import '../data/services/state_service.dart';
+import '../data/providers/weather_provider.dart';
 
 class RiskPulseApp extends StatelessWidget {
   const RiskPulseApp({super.key});
@@ -18,6 +19,7 @@ class RiskPulseApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => LanguageProvider()),
         ChangeNotifierProvider(create: (_) => ProfileService()),
         ChangeNotifierProvider(create: (_) => StateService()),
+        ChangeNotifierProvider(create: (_) => WeatherProvider()),
       ],
       child: Consumer2<ThemeProvider, LanguageProvider>(
         builder: (context, themeProvider, languageProvider, child) {
