@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:riskpulse/domain/risk/risk_assessment.dart';
-import '../../data/services/location_service.dart';
+import 'package:riskpulse/core/location/location_service.dart';
 import '../../data/services/risk_engine.dart';
 import '../../data/providers/geojson_data_provider.dart';
 

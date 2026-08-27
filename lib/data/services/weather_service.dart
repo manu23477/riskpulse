@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:riskpulse/data/models/weather_alert.dart';
 import 'package:riskpulse/domain/weather/weather_data.dart';
-import '../../core/config/api_keys.dart';
+import 'package:riskpulse/core/config/api_keys.dart';
 
 class WeatherService {
   static const String _baseUrl = 'https://api.openweathermap.org/data/2.5/weather';

@@ -24,7 +24,7 @@ import '../../data/services/yatra_service.dart';
 import '../../data/services/state_service.dart';
 import '../../data/providers/weather_provider.dart';
 import '../../core/theme/theme_provider.dart';
-import '../../core/localization/app_localizations.dart';
+import 'package:riskpulse/core/localization/app_localizations.dart';
 
 class RiskPulseHome extends StatefulWidget {
   const RiskPulseHome({super.key});

@@ -1,5 +1,5 @@
 import 'package:google_generative_ai/google_generative_ai.dart';
-import '../../core/config/api_keys.dart';
+import 'package:riskpulse/core/config/api_keys.dart';
 
 class GeminiService {
   static final GeminiService _instance = GeminiService._internal();

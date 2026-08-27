@@ -4,7 +4,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:riskpulse/domain/community/community_report.dart';
 import 'package:riskpulse/domain/location/geo_location.dart';
 import '../../data/services/community_report_service.dart';
-import '../../data/services/location_service.dart';
+import 'package:riskpulse/core/location/location_service.dart';
 
 class ReportHazardScreen extends StatefulWidget {
   const ReportHazardScreen({super.key});

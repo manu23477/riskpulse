@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import '../screens/splash/splash_screen.dart';
-import '../core/localization/app_localizations.dart';
+import 'package:riskpulse/core/localization/app_localizations.dart';
 import '../core/theme/theme_provider.dart';
 import '../data/services/profile_service.dart';
 import '../data/services/state_service.dart';

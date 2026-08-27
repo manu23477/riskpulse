@@ -3,7 +3,7 @@ import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:riskpulse/domain/chat/chat_message.dart';
 import '../../data/services/ai_assistant_service.dart';
-import '../../data/services/location_service.dart';
+import 'package:riskpulse/core/location/location_service.dart';
 import '../../data/services/gis_data_service.dart';
 import '../../data/services/community_report_service.dart';
 

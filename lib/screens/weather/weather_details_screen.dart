@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:riskpulse/domain/weather/weather_data.dart';
-import '../../core/localization/app_localizations.dart';
+import 'package:riskpulse/core/localization/app_localizations.dart';
 
 class WeatherDetailsScreen extends StatelessWidget {
   final WeatherData weather;
