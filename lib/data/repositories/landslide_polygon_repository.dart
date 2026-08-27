@@ -1,4 +1,4 @@
-import '../models/landslide_polygon.dart';
+import 'package:riskpulse/domain/hazard/landslide_polygon.dart';
 import '../providers/landslide_polygon_provider.dart';
 
 class LandslidePolygonRepository {

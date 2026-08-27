@@ -1,7 +1,7 @@
-import '../models/exposure.dart';
-import '../models/geo_location.dart';
-import '../models/hazard.dart';
-import '../models/vulnerability.dart';
+import 'package:riskpulse/domain/exposure/exposure.dart';
+import 'package:riskpulse/domain/location/geo_location.dart';
+import 'package:riskpulse/domain/hazard/hazard.dart';
+import 'package:riskpulse/domain/vulnerability/vulnerability.dart';
 import 'gis_data_provider.dart';
 
 class LocalGisDataProvider implements GisDataProvider {

@@ -1,4 +1,4 @@
-import '../models/community_report.dart';
+import 'package:riskpulse/domain/community/community_report.dart';
 
 class CommunityReportService {
   // Singleton pattern for easy access across screens

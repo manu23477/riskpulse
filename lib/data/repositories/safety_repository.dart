@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../models/safety_playbook.dart';
+import 'package:riskpulse/data/models/safety_playbook.dart';
 
 class SafetyRepository {
   List<SafetyPlaybook> getPlaybooks(String languageCode) {

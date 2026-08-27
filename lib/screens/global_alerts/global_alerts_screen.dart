@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../data/models/global_earthquake.dart';
+import 'package:riskpulse/domain/hazard/global_earthquake.dart';
 import '../../data/services/global_earthquake_service.dart';
 import 'package:url_launcher/url_launcher.dart';
 

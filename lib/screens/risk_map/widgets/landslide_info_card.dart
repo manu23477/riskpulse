@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../../data/models/hazard.dart';
+import 'package:riskpulse/domain/hazard/hazard.dart';
 
 import '../../reports/report_generator_screen.dart';
 

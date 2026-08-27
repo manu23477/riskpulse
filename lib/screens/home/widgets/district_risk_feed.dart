@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../data/models/district_risk.dart';
+import 'package:riskpulse/domain/risk/district_risk.dart';
 
 class DistrictRiskFeed extends StatelessWidget {
   final List<DistrictRisk> risks;

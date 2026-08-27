@@ -1,5 +1,5 @@
 import 'package:geolocator/geolocator.dart';
-import '../models/user_location.dart';
+import 'package:riskpulse/domain/location/user_location.dart';
 
 class LocationService {
   /// Legacy support for existing RiskPulse components.

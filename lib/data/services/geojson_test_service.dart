@@ -1,4 +1,4 @@
-import '../models/hazard.dart';
+import 'package:riskpulse/domain/hazard/hazard.dart';
 import '../repositories/geojson_repository.dart';
 
 class GeoJsonTestService {

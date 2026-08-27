@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../models/weather_data.dart';
-import '../models/user_location.dart';
+import 'package:riskpulse/domain/weather/weather_data.dart';
+import 'package:riskpulse/domain/location/user_location.dart';
 import '../services/weather_service.dart';
 import '../services/location_service.dart';
 

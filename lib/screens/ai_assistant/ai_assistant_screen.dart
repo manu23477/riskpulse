@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:geolocator/geolocator.dart';
-import '../../data/models/chat_message.dart';
+import 'package:riskpulse/domain/chat/chat_message.dart';
 import '../../data/services/ai_assistant_service.dart';
 import '../../data/services/location_service.dart';
 import '../../data/services/gis_data_service.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:flutter_map/flutter_map.dart';
-import '../../data/models/hazard.dart';
+import 'package:riskpulse/domain/hazard/hazard.dart';
 import '../../data/services/gis_data_service.dart';
 import '../../data/services/state_service.dart';
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../data/models/emergency_contact.dart';
+import 'package:riskpulse/domain/emergency/emergency_contact.dart';
 import '../../data/services/emergency_service.dart';
 import '../../data/services/state_service.dart';
 import '../safety/playbook_list_screen.dart';

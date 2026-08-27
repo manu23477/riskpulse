@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/services.dart';
 
-import '../models/geo_location.dart';
-import '../models/landslide_polygon.dart';
+import 'package:riskpulse/domain/location/geo_location.dart';
+import 'package:riskpulse/domain/hazard/landslide_polygon.dart';
 
 class LandslidePolygonProvider {
   final String assetPath;

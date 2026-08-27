@@ -2,7 +2,7 @@ import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'location_service.dart';
 import 'state_service.dart';
-import '../models/emergency_contact.dart';
+import 'package:riskpulse/domain/emergency/emergency_contact.dart';
 
 class EmergencyService {
   final LocationService _locationService = LocationService();

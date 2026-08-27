@@ -1,4 +1,4 @@
-import '../models/yatra_status.dart';
+import 'package:riskpulse/data/models/yatra_status.dart';
 
 class YatraService {
   Future<List<YatraStatus>> getCharDhamStatus() async {

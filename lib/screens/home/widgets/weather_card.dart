@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import '../../../data/models/weather_data.dart';
-import '../../../data/models/user_location.dart';
+import 'package:riskpulse/domain/weather/weather_data.dart';
+import 'package:riskpulse/domain/location/user_location.dart';
 import '../../../core/localization/app_localizations.dart';
 
 class WeatherCard extends StatelessWidget {

@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:audioplayers/audioplayers.dart';
-import '../models/global_earthquake.dart';
+import 'package:riskpulse/domain/hazard/global_earthquake.dart';
 
 class GlobalEarthquakeService {
   final AudioPlayer _audioPlayer = AudioPlayer();

@@ -1,6 +1,6 @@
 import 'package:google_generative_ai/google_generative_ai.dart';
-import '../models/hazard.dart';
-import '../models/risk_report.dart';
+import 'package:riskpulse/domain/hazard/hazard.dart';
+import 'package:riskpulse/domain/risk/risk_report.dart';
 import 'gis_data_service.dart';
 import 'gemini_service.dart';
 

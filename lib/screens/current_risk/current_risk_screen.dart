@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../data/models/risk_assessment.dart';
+import 'package:riskpulse/domain/risk/risk_assessment.dart';
 import '../../data/repositories/risk_repository.dart';
 
 class CurrentRiskScreen extends StatelessWidget {

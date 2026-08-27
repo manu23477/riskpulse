@@ -1,9 +1,9 @@
 import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
-import '../models/risk_assessment.dart';
-import '../models/hazard.dart';
+import 'package:riskpulse/domain/risk/risk_assessment.dart';
+import 'package:riskpulse/domain/hazard/hazard.dart';
 
-import '../models/district_risk.dart';
+import 'package:riskpulse/domain/risk/district_risk.dart';
 
 class RiskEngine {
   // Static susceptibility scores for HP & UK districts

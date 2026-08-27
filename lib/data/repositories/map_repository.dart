@@ -1,4 +1,4 @@
-import '../models/risk_assessment.dart';
+import 'package:riskpulse/domain/risk/risk_assessment.dart';
 import 'risk_repository.dart';
 
 class MapRepository {

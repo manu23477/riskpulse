@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../data/models/safety_playbook.dart';
+import 'package:riskpulse/data/models/safety_playbook.dart';
 import '../../data/repositories/safety_repository.dart';
 import 'playbook_detail_screen.dart';
 

@@ -1,4 +1,4 @@
-import '../models/hazard.dart';
+import 'package:riskpulse/domain/hazard/hazard.dart';
 import '../providers/gis_provider_factory.dart';
 
 class GeoJsonRepository {

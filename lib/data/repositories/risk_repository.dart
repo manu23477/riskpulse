@@ -1,4 +1,4 @@
-import '../models/risk_assessment.dart';
+import 'package:riskpulse/domain/risk/risk_assessment.dart';
 import '../services/gis_data_service.dart';
 import '../services/risk_engine.dart';
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../models/user_profile.dart';
+import 'package:riskpulse/domain/user/user_profile.dart';
 
 class ProfileService extends ChangeNotifier {
   static final ProfileService _instance = ProfileService._internal();

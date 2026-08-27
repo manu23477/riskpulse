@@ -1,4 +1,4 @@
-import '../models/risk_layer.dart';
+import 'package:riskpulse/domain/risk/risk_layer.dart';
 
 class RiskLayerRepository {
   List<RiskLayer> getLayers() {

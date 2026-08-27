@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import '../models/weather_alert.dart';
-import '../models/weather_data.dart';
+import 'package:riskpulse/data/models/weather_alert.dart';
+import 'package:riskpulse/domain/weather/weather_data.dart';
 import '../../core/config/api_keys.dart';
 
 class WeatherService {

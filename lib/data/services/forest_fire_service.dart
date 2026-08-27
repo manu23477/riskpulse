@@ -1,5 +1,5 @@
-import '../models/hazard.dart';
-import '../models/geo_location.dart';
+import 'package:riskpulse/domain/hazard/hazard.dart';
+import 'package:riskpulse/domain/location/geo_location.dart';
 
 class ForestFireService {
   // FSI Portal for reference: https://fsiforestfire.gov.in/FireAlertPoints

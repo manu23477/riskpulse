@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:share_plus/share_plus.dart';
-import '../../data/models/risk_report.dart';
+import 'package:riskpulse/domain/risk/risk_report.dart';
 import '../risk_map/risk_map_screen.dart';
 
 class ReportViewerScreen extends StatelessWidget {

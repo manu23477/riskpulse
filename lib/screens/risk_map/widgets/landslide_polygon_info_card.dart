@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../../data/models/landslide_polygon.dart';
+import 'package:riskpulse/domain/hazard/landslide_polygon.dart';
 
 class LandslidePolygonInfoCard extends StatelessWidget {
   final LandslidePolygon landslide;

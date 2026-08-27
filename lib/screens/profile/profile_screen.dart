@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import '../../data/services/profile_service.dart';
 import '../../data/services/risk_engine.dart';
 import '../../data/services/weather_service.dart';
-import '../../data/models/district_risk.dart';
+import 'package:riskpulse/domain/risk/district_risk.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});

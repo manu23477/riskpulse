@@ -1,4 +1,4 @@
-import 'geo_location.dart';
+import 'package:riskpulse/domain/location/geo_location.dart';
 
 class LandslidePolygon {
   final String id;

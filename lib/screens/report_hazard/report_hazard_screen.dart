@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import '../../data/models/community_report.dart';
-import '../../data/models/geo_location.dart';
+import 'package:riskpulse/domain/community/community_report.dart';
+import 'package:riskpulse/domain/location/geo_location.dart';
 import '../../data/services/community_report_service.dart';
 import '../../data/services/location_service.dart';
 
