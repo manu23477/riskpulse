@@ -14,10 +14,16 @@ enum GisLayerType {
   raster,
 }
 
+enum SpatialDataType {
+  vector,
+  raster,
+}
+
 class GisLayer {
   final String id;
   final String name;
   final GisLayerType type;
+  final SpatialDataType dataType;
   final DataSourceType dataSourceType;
   final bool isVisible;
   final double opacity;
@@ -29,6 +35,7 @@ class GisLayer {
     required this.id,
     required this.name,
     required this.type,
+    required this.dataType,
     required this.dataSourceType,
     this.isVisible = true,
     this.opacity = 1.0,
@@ -36,4 +43,7 @@ class GisLayer {
     this.style,
     this.metadata = const {},
   });
+
+  bool get isRaster => dataType == SpatialDataType.raster;
+  bool get isVector => dataType == SpatialDataType.vector;
 }
