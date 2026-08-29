@@ -10,12 +10,28 @@ class ProfileService extends ChangeNotifier {
     name: 'Himachal Citizen',
     email: 'user@riskpulse.hp.gov.in',
     watchedDistricts: ['Mandi', 'Kinnaur'],
+    category: UserCategory.generalPublic,
+    role: AccountRole.user,
+    verificationStatus: VerificationStatus.notRequired,
+    subscriptionPlan: SubscriptionPlan.communityFree,
   );
 
   UserProfile get profile => _profile;
 
   void updateName(String name) {
     _profile = _profile.copyWith(name: name);
+    notifyListeners();
+  }
+
+  void updateCategory(UserCategory category) {
+    // Reset verification status and plan if category changes
+    // (Logic for automatic plan/verification matching can go here later)
+    _profile = _profile.copyWith(
+      category: category,
+      verificationStatus: category == UserCategory.generalPublic
+          ? VerificationStatus.notRequired
+          : VerificationStatus.pending,
+    );
     notifyListeners();
   }
 

@@ -1,6 +1,8 @@
 import 'package:riskpulse/domain/risk/risk_layer.dart';
+import 'package:riskpulse/domain/risk/risk_layer_repository.dart';
 
-class RiskLayerRepository {
+class RiskLayerRepository implements IRiskLayerRepository {
+  @override
   List<RiskLayer> getLayers() {
     return const [
       RiskLayer(

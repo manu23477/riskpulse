@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:riskpulse/domain/risk/risk_assessment.dart';
+import 'package:riskpulse/domain/risk/risk_repository.dart';
 import '../../data/repositories/risk_repository.dart';
 
 class CurrentRiskScreen extends StatelessWidget {
@@ -7,7 +8,7 @@ class CurrentRiskScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final RiskRepository repository = RiskRepository();
+    final IRiskRepository repository = RiskRepository();
     final RiskAssessment assessment = repository.getCurrentRisk();
 
     return Scaffold(

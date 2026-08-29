@@ -17,9 +17,9 @@ class StateSelectionScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset(
-                'assets/images/riskpulse logo.png',
-                width: 150,
+                'assets/branding/riskpulse_logo.png',
                 height: 150,
+                fit: BoxFit.contain,
               ),
               const SizedBox(height: 40),
               const Text(

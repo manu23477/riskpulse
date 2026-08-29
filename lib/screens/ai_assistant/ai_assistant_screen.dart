@@ -4,6 +4,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:riskpulse/domain/chat/chat_message.dart';
 import '../../data/services/ai_assistant_service.dart';
 import 'package:riskpulse/core/location/location_service.dart';
+import '../../data/repositories/geojson_repository.dart';
 import '../../data/services/gis_data_service.dart';
 import '../../data/services/community_report_service.dart';
 
@@ -20,7 +21,11 @@ class _AiAssistantScreenState extends State<AiAssistantScreen> {
   final ScrollController _scrollController = ScrollController();
   final AiAssistantService _aiService = AiAssistantService();
   final LocationService _locationService = LocationService();
-  final GisDataService _gisService = GisDataService();
+  final GisDataService _gisService = GisDataService(
+    hazardRepository: GeoJsonRepository(
+      assetPath: 'lib/data/assets/hazards/landslide.geojson',
+    ),
+  );
   final CommunityReportService _reportService = CommunityReportService();
   
   bool _isLoading = false;

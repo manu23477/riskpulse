@@ -47,6 +47,8 @@ flutter:
   uses-material-design: true
 
   assets:
+    - assets/branding/riskpulse_startup.png
+    - assets/branding/riskpulse_logo.png
     - assets/images/riskpulse logo.png
     - lib/data/assets/test_hazards.geojson
     - lib/data/assets/hazards/landslide.geojson

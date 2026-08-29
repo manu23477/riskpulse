@@ -1,8 +1,9 @@
 import 'package:riskpulse/domain/hazard/hazard.dart';
+import 'package:riskpulse/domain/hazard/hazard_repository.dart';
 import '../repositories/geojson_repository.dart';
 
 class GeoJsonTestService {
-  final GeoJsonRepository _repository =
+  final IHazardRepository _repository =
   GeoJsonRepository(
     assetPath:
     'lib/data/assets/test_hazards.geojson',

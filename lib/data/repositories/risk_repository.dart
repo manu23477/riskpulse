@@ -1,10 +1,17 @@
 import 'package:riskpulse/domain/risk/risk_assessment.dart';
+import 'package:riskpulse/domain/risk/risk_repository.dart';
 import '../services/gis_data_service.dart';
 import '../services/risk_engine.dart';
+import 'geojson_repository.dart';
 
-class RiskRepository {
-  final GisDataService _gisDataService = GisDataService();
+class RiskRepository implements IRiskRepository {
+  final GisDataService _gisDataService = GisDataService(
+    hazardRepository: GeoJsonRepository(
+      assetPath: 'lib/data/assets/hazards/landslide.geojson',
+    ),
+  );
 
+  @override
   RiskAssessment getCurrentRisk() {
     final hazards = _gisDataService.getHazards();
     final exposure = _gisDataService.getExposure();

@@ -17,7 +17,6 @@ import '../emergency/emergency_hub_screen.dart';
 import '../profile/profile_screen.dart';
 import '../reports/report_generator_screen.dart';
 import '../weather/weather_details_screen.dart';
-import './widgets/weather_card.dart';
 import '../../data/services/profile_service.dart';
 import '../../data/services/forest_fire_service.dart';
 import '../../data/services/yatra_service.dart';
@@ -39,7 +38,7 @@ class _RiskPulseHomeState extends State<RiskPulseHome> {
   final ForestFireService _fireService = ForestFireService();
   final YatraService _yatraService = YatraService();
   final StateService _stateService = StateService();
-  
+
   List<DistrictRisk> _districtRisks = [];
   List<WeatherAlert> _activeAlerts = [];
   List<Hazard> _liveFires = [];
@@ -47,7 +46,6 @@ class _RiskPulseHomeState extends State<RiskPulseHome> {
 
   // Weather Animation States
   String _currentWeather = 'sunshine'; // rain, haze, sunshine, fog
-  bool _isDaytime = true;
 
   @override
   void initState() {
@@ -83,7 +81,7 @@ class _RiskPulseHomeState extends State<RiskPulseHome> {
   void _loadDistrictRisks() {
     final rainfall = _weatherService.getDistrictRainfall();
     final allRisks = RiskEngine.calculateAllDistrictsRisk(rainfall);
-    
+
     // Filter risks by districts relevant to the current state
     final stateDistricts = RiskEngine.districtCoordinates.keys
         .where((d) => _isDistrictInCurrentState(d))
@@ -97,7 +95,7 @@ class _RiskPulseHomeState extends State<RiskPulseHome> {
   bool _isDistrictInCurrentState(String district) {
     const hpDistricts = ['Mandi', 'Kinnaur', 'Shimla', 'Kullu', 'Chamba', 'Lahaul & Spiti', 'Kangra', 'Solan', 'Sirmaur', 'Bilaspur', 'Hamirpur', 'Una'];
     const ukDistricts = ['Uttarkashi', 'Chamoli', 'Rudraprayag', 'Pithoragarh', 'Bageshwar', 'Champawat', 'Nainital', 'Almora', 'Pauri Garhwal', 'Tehri Garhwal', 'Dehradun', 'Haridwar', 'Udham Singh Nagar'];
-    
+
     if (_stateService.selectedState == HimalayanState.himachal) {
       return hpDistricts.contains(district);
     } else {
@@ -108,7 +106,7 @@ class _RiskPulseHomeState extends State<RiskPulseHome> {
   void _loadWeatherAlerts() {
     final allAlerts = _weatherService.getActiveAlerts();
     setState(() {
-      _activeAlerts = allAlerts.where((alert) => 
+      _activeAlerts = allAlerts.where((alert) =>
         alert.affectedDistricts.any((d) => _isDistrictInCurrentState(d))
       ).toList();
     });
@@ -141,7 +139,6 @@ class _RiskPulseHomeState extends State<RiskPulseHome> {
   void _updateDiurnalStatus() {
     final hour = DateTime.now().hour;
     setState(() {
-      _isDaytime = hour >= 6 && hour < 18;
       // Cycle weather for simulation purposes if no real feed
       if (_districtRisks.isNotEmpty && _districtRisks[0].rainfallMm > 50) {
         _currentWeather = 'rain';
@@ -186,7 +183,7 @@ class _RiskPulseHomeState extends State<RiskPulseHome> {
           if (_currentWeather == 'rain') const _RainAnimation(),
           if (_currentWeather == 'fog') const _FogAnimation(),
           if (_currentWeather == 'sunshine') const _SunbeamAnimation(),
-          
+
           // Background "Intelligence" Glow
           Positioned(
             top: -100,
@@ -200,7 +197,7 @@ class _RiskPulseHomeState extends State<RiskPulseHome> {
               ),
             ),
           ),
-          
+
           SafeArea(
             child: SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
@@ -210,11 +207,7 @@ class _RiskPulseHomeState extends State<RiskPulseHome> {
                 children: [
                   const SizedBox(height: 20),
                   _buildHeader(l10n, languageProvider, themeProvider, profileService),
-                  const SizedBox(height: 28),
-                  _buildLocationBar(l10n),
-                  const SizedBox(height: 24),
-                  _buildWeatherSection(),
-                  const SizedBox(height: 24),
+                  const SizedBox(height: 32),
                   _buildMainDashboard(l10n),
                   const SizedBox(height: 28),
                   if (_activeAlerts.isNotEmpty) ...[
@@ -256,37 +249,10 @@ class _RiskPulseHomeState extends State<RiskPulseHome> {
     );
   }
 
-  Widget _buildWeatherSection() {
-    return Consumer<WeatherProvider>(
-      builder: (context, weatherProvider, child) {
-        return InkWell(
-          onTap: weatherProvider.weatherData != null ? () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => WeatherDetailsScreen(weather: weatherProvider.weatherData!),
-              ),
-            );
-          } : null,
-          borderRadius: BorderRadius.circular(28),
-          child: WeatherCard(
-            location: weatherProvider.userLocation,
-            weather: weatherProvider.weatherData,
-            isLoading: weatherProvider.isLoading,
-            locationError: weatherProvider.locationError,
-            weatherError: weatherProvider.weatherError,
-            permissionDenied: weatherProvider.permissionDenied,
-            onActionPressed: () => weatherProvider.refreshLiveTemperature(force: true),
-            onManualLocation: (city) => weatherProvider.setManualLocation(city),
-          ),
-        );
-      },
-    );
-  }
 
   Widget _buildHeader(AppLocalizations l10n, LanguageProvider lang, ThemeProvider theme, ProfileService profile) {
     final stateService = Provider.of<StateService>(context);
-    
+
     return Row(
       children: [
         const _ShineFlipLogo(),
@@ -295,8 +261,8 @@ class _RiskPulseHomeState extends State<RiskPulseHome> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              stateService.selectedState == HimalayanState.himachal 
-                  ? 'Hello Himachal' 
+              stateService.selectedState == HimalayanState.himachal
+                  ? 'Hello Himachal'
                   : 'Hello Uttarakhand',
               style: TextStyle(color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6), fontSize: 14, fontWeight: FontWeight.w600),
             ),
@@ -364,114 +330,142 @@ class _RiskPulseHomeState extends State<RiskPulseHome> {
     );
   }
 
-  Widget _buildLocationBar(AppLocalizations l10n) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-      decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.surface,
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: Theme.of(context).dividerColor.withValues(alpha: 0.1)),
-      ),
-      child: Row(
-        children: [
-          Icon(Icons.location_on, color: Theme.of(context).colorScheme.primary, size: 20),
-          const SizedBox(width: 12),
-          Expanded(
-            child: Text(
-              l10n.translate('current_region'),
-              style: TextStyle(fontWeight: FontWeight.w800, color: Theme.of(context).colorScheme.onSurface, fontSize: 15),
-            ),
-          ),
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-            decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.1),
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: Text(
-              'LIVE',
-              style: TextStyle(color: Theme.of(context).colorScheme.primary, fontSize: 10, fontWeight: FontWeight.w900),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
 
   Widget _buildMainDashboard(AppLocalizations l10n) {
-    return Container(
-      width: double.infinity,
-      decoration: BoxDecoration(
-        gradient: const LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [Color(0xFF0F172A), Color(0xFF334155)],
-        ),
-        borderRadius: BorderRadius.circular(32),
-        boxShadow: [
-          BoxShadow(
-            color: const Color(0xFF0F172A).withValues(alpha: 0.25),
-            blurRadius: 25,
-            offset: const Offset(0, 15),
-          ),
-        ],
-      ),
-      child: Stack(
-        children: [
-          // Subtle background decoration
-          Positioned(
-            right: -20,
-            bottom: -20,
-            child: Icon(Icons.security, size: 150, color: Colors.white.withValues(alpha: 0.03)),
-          ),
-          
-          // Large Animated Background Logo
-          Positioned(
-            right: -30,
-            bottom: -30,
-            child: Opacity(
-              opacity: 0.08,
-              child: const _ShineFlipLogo(size: 180),
-            ),
-          ),
+    return Consumer<WeatherProvider>(
+      builder: (context, weatherProvider, child) {
+        final locationName = weatherProvider.userLocation?.name ?? l10n.translate('current_region');
+        final temperature = weatherProvider.weatherData != null
+            ? '${weatherProvider.weatherData!.temperature.round()}°C'
+            : '--°C';
 
-          Padding(
-            padding: const EdgeInsets.all(28),
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        return Container(
+          width: double.infinity,
+          decoration: BoxDecoration(
+            gradient: const LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [Color(0xFF0F172A), Color(0xFF334155)],
+            ),
+            borderRadius: BorderRadius.circular(32),
+            boxShadow: [
+              BoxShadow(
+                color: const Color(0xFF0F172A).withValues(alpha: 0.25),
+                blurRadius: 25,
+                offset: const Offset(0, 15),
+              ),
+            ],
+          ),
+          child: Stack(
+            children: [
+              // Subtle background decoration
+              Positioned(
+                right: -20,
+                bottom: -20,
+                child: Icon(Icons.security, size: 150, color: Colors.white.withValues(alpha: 0.03)),
+              ),
+
+              // Large Animated Background Logo
+              Positioned(
+                right: -30,
+                bottom: -30,
+                child: Opacity(
+                  opacity: 0.08,
+                  child: const _ShineFlipLogo(size: 180),
+                ),
+              ),
+
+              Padding(
+                padding: const EdgeInsets.all(28),
+                child: Column(
                   children: [
-                    Column(
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          l10n.translate('current_risk_status'),
-                          style: TextStyle(color: Colors.white.withValues(alpha: 0.5), fontSize: 11, fontWeight: FontWeight.w800, letterSpacing: 1.5),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                l10n.translate('current_risk_status'),
+                                style: TextStyle(
+                                  color: Colors.white.withValues(alpha: 0.5),
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.w800,
+                                  letterSpacing: 1.5
+                                ),
+                              ),
+                              const SizedBox(height: 8),
+                              GestureDetector(
+                                onTap: weatherProvider.weatherData != null ? () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => WeatherDetailsScreen(weather: weatherProvider.weatherData!),
+                                    ),
+                                  );
+                                } : null,
+                                child: Row(
+                                  children: [
+                                    const Icon(Icons.location_on, color: Colors.white70, size: 14),
+                                    const SizedBox(width: 6),
+                                    Flexible(
+                                      child: Text(
+                                        locationName,
+                                        style: const TextStyle(
+                                          color: Colors.white70,
+                                          fontSize: 13,
+                                          fontWeight: FontWeight.w600
+                                        ),
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ),
+                                    const SizedBox(width: 12),
+                                    Container(
+                                      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                                      decoration: BoxDecoration(
+                                        color: Colors.white.withValues(alpha: 0.1),
+                                        borderRadius: BorderRadius.circular(6),
+                                      ),
+                                      child: Text(
+                                        temperature,
+                                        style: const TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 11,
+                                          fontWeight: FontWeight.w900
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              const SizedBox(height: 12),
+                              Text(
+                                l10n.translate('moderate'),
+                                style: const TextStyle(color: Colors.white, fontSize: 36, fontWeight: FontWeight.w900),
+                              ),
+                            ],
+                          ),
                         ),
-                        const SizedBox(height: 8),
-                        Text(
-                          l10n.translate('moderate'),
-                          style: const TextStyle(color: Colors.white, fontSize: 36, fontWeight: FontWeight.w900),
-                        ),
+                        _buildCircularHUD(),
                       ],
                     ),
-                    _buildCircularHUD(),
+                    const SizedBox(height: 32),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        _hudMetric(l10n.translate('trend'), l10n.translate('increasing'), Icons.trending_up, const Color(0xFFF59E0B)),
+                        _hudMetric(l10n.translate('confidence'), '81%', Icons.verified, const Color(0xFF10B981)),
+                      ],
+                    ),
                   ],
                 ),
-                const SizedBox(height: 32),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    _hudMetric(l10n.translate('trend'), l10n.translate('increasing'), Icons.trending_up, const Color(0xFFF59E0B)),
-                    _hudMetric(l10n.translate('confidence'), '81%', Icons.verified, const Color(0xFF10B981)),
-                  ],
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 
@@ -815,17 +809,17 @@ class _RiskPulseHomeState extends State<RiskPulseHome> {
       crossAxisSpacing: 12,
       childAspectRatio: 1.6, // Aspect ratio changed to make cards shorter
       children: [
-        _fancyGridCard(l10n.translate('risk_map'), Icons.map_rounded, const Color(0xFF6366F1), 
+        _fancyGridCard(l10n.translate('risk_map'), Icons.map_rounded, const Color(0xFF6366F1),
           () => Navigator.push(context, MaterialPageRoute(builder: (context) => const RiskMapScreen()))),
-        _fancyGridCard(l10n.translate('ai_assistant'), Icons.psychology_rounded, const Color(0xFF8B5CF6), 
+        _fancyGridCard(l10n.translate('ai_assistant'), Icons.psychology_rounded, const Color(0xFF8B5CF6),
           () => Navigator.push(context, MaterialPageRoute(builder: (context) => const AiAssistantScreen()))),
-        _fancyGridCard(l10n.translate('report_hazard'), Icons.add_a_photo_rounded, const Color(0xFF0D9488), 
+        _fancyGridCard(l10n.translate('report_hazard'), Icons.add_a_photo_rounded, const Color(0xFF0D9488),
           () => Navigator.push(context, MaterialPageRoute(builder: (context) => const ReportHazardScreen()))),
-        _fancyGridCard(l10n.translate('tourist_safety'), Icons.directions_car_rounded, const Color(0xFFF97316), 
+        _fancyGridCard(l10n.translate('tourist_safety'), Icons.directions_car_rounded, const Color(0xFFF97316),
           () => Navigator.push(context, MaterialPageRoute(builder: (context) => const RoutePlannerScreen()))),
-        _fancyGridCard(l10n.translate('risk_reports'), Icons.analytics_rounded, const Color(0xFF6366F1), 
+        _fancyGridCard(l10n.translate('risk_reports'), Icons.analytics_rounded, const Color(0xFF6366F1),
           () => Navigator.push(context, MaterialPageRoute(builder: (context) => const ReportGeneratorScreen()))),
-        _fancyGridCard(l10n.translate('my_risk'), Icons.location_searching_rounded, const Color(0xFFF59E0B), 
+        _fancyGridCard(l10n.translate('my_risk'), Icons.location_searching_rounded, const Color(0xFFF59E0B),
           () => Navigator.push(context, MaterialPageRoute(builder: (context) => const MyRiskScreen()))),
       ],
     );
@@ -1035,13 +1029,16 @@ class _ShineFlipLogoState extends State<_ShineFlipLogo> with SingleTickerProvide
                 ],
               ),
               child: ClipOval(
-                child: Image.asset(
-                  'assets/images/riskpulse logo.png',
-                  fit: BoxFit.cover,
-                  errorBuilder: (context, error, stackTrace) => Icon(
-                    Icons.shield,
-                    color: Theme.of(context).colorScheme.primary,
-                    size: widget.size * 0.6,
+                child: Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Image.asset(
+                    'assets/branding/riskpulse_logo.png',
+                    fit: BoxFit.contain,
+                    errorBuilder: (context, error, stackTrace) => Icon(
+                      Icons.shield,
+                      color: Theme.of(context).colorScheme.primary,
+                      size: widget.size * 0.6,
+                    ),
                   ),
                 ),
               ),

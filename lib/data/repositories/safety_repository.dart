@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:riskpulse/data/models/safety_playbook.dart';
+import 'package:riskpulse/domain/safety/safety_repository.dart';
 
-class SafetyRepository {
+class SafetyRepository implements ISafetyRepository {
+  @override
   List<SafetyPlaybook> getPlaybooks(String languageCode) {
     if (languageCode == 'hi') {
       return _getHindiPlaybooks();
@@ -65,7 +67,7 @@ class SafetyRepository {
         title: 'भूस्खलन सुरक्षा',
         description: 'मलबे के प्रवाह और चट्टान गिरने के लिए उत्तरजीविता मार्गदर्शिका।',
         icon: Icons.terrain,
-        essentialItems: ['टॉर्च', 'सीटी', 'प्राथमिक चिकित्सा किट', 'पानी'],
+        essentialItems: ['टॉसर्च', 'सीटी', 'प्राथमिक चिकित्सा किट', 'पानी'],
         steps: [
           SafetyStep(
             title: 'सतर्क रहें',

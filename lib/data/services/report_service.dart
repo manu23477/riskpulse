@@ -1,12 +1,17 @@
 import 'package:google_generative_ai/google_generative_ai.dart';
 import 'package:riskpulse/domain/hazard/hazard.dart';
 import 'package:riskpulse/domain/risk/risk_report.dart';
+import '../repositories/geojson_repository.dart';
 import 'gis_data_service.dart';
 import 'gemini_service.dart';
 
 class ReportService {
   final GeminiService _geminiService = GeminiService();
-  final GisDataService _gisService = GisDataService();
+  final GisDataService _gisService = GisDataService(
+    hazardRepository: GeoJsonRepository(
+      assetPath: 'lib/data/assets/hazards/landslide.geojson',
+    ),
+  );
 
   Future<RiskReport> generateReport({
     required String query,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:riskpulse/data/models/safety_playbook.dart';
+import 'package:riskpulse/domain/safety/safety_repository.dart';
 import '../../data/repositories/safety_repository.dart';
 import 'playbook_detail_screen.dart';
 
@@ -9,7 +10,8 @@ class PlaybookListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final languageCode = Localizations.localeOf(context).languageCode;
-    final playbooks = SafetyRepository().getPlaybooks(languageCode);
+    final ISafetyRepository repository = SafetyRepository();
+    final playbooks = repository.getPlaybooks(languageCode);
 
     return Scaffold(
       backgroundColor: const Color(0xFFF5F7F8),

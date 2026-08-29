@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:riskpulse/domain/hazard/hazard.dart';
+import '../../data/repositories/geojson_repository.dart';
 import '../../data/services/gis_data_service.dart';
 import '../../data/services/state_service.dart';
 
@@ -13,7 +14,7 @@ class RoutePlannerScreen extends StatefulWidget {
 }
 
 class _RoutePlannerScreenState extends State<RoutePlannerScreen> {
-  final GisDataService _gisDataService = GisDataService();
+  late final GisDataService _gisDataService;
   final StateService _stateService = StateService();
   late TextEditingController _startController;
   late TextEditingController _endController;
@@ -27,6 +28,11 @@ class _RoutePlannerScreenState extends State<RoutePlannerScreen> {
   @override
   void initState() {
     super.initState();
+    _gisDataService = GisDataService(
+      hazardRepository: GeoJsonRepository(
+        assetPath: 'lib/data/assets/hazards/landslide.geojson',
+      ),
+    );
     _startController = TextEditingController(
       text: _stateService.selectedState == HimalayanState.himachal ? 'Chandigarh' : 'Dehradun'
     );

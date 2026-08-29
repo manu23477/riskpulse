@@ -8,10 +8,14 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:riskpulse/domain/exposure/exposure.dart';
 import 'package:riskpulse/domain/hazard/hazard.dart';
 import 'package:riskpulse/domain/hazard/landslide_polygon.dart';
+import 'package:riskpulse/domain/hazard/landslide_polygon_repository.dart';
 import 'package:riskpulse/domain/risk/risk_assessment.dart';
 import 'package:riskpulse/domain/risk/risk_layer.dart';
+import 'package:riskpulse/domain/risk/risk_layer_repository.dart';
+import 'package:riskpulse/domain/risk/map_repository.dart';
 import 'package:riskpulse/domain/community/community_report.dart';
 import 'package:riskpulse/domain/location/geo_location.dart';
+import '../../data/repositories/geojson_repository.dart';
 import '../../data/repositories/landslide_polygon_repository.dart';
 import '../../data/repositories/map_repository.dart';
 import '../../data/repositories/risk_layer_repository.dart';
@@ -31,12 +35,12 @@ class RiskMapScreen extends StatefulWidget {
 }
 
 class _RiskMapScreenState extends State<RiskMapScreen> {
-  final GisDataService _gisDataService = GisDataService();
+  late final GisDataService _gisDataService;
   final ForestFireService _fireService = ForestFireService();
   final StateService _stateService = StateService();
-  final MapRepository _mapRepository = MapRepository();
-  final RiskLayerRepository _riskLayerRepository = RiskLayerRepository();
-  final LandslidePolygonRepository _landslidePolygonRepository = LandslidePolygonRepository(
+  final IMapRepository _mapRepository = MapRepository();
+  final IRiskLayerRepository _riskLayerRepository = RiskLayerRepository();
+  final ILandslidePolygonRepository _landslidePolygonRepository = LandslidePolygonRepository(
     assetPath: 'lib/data/assets/hazards/major_landslides_polygons.geojson',
   );
   final CommunityReportService _reportService = CommunityReportService();
@@ -80,6 +84,12 @@ class _RiskMapScreenState extends State<RiskMapScreen> {
   @override
   void initState() {
     super.initState();
+    _gisDataService = GisDataService(
+      hazardRepository: GeoJsonRepository(
+        assetPath: 'lib/data/assets/hazards/landslide.geojson',
+      ),
+      polygonRepository: _landslidePolygonRepository,
+    );
     _stateService.addListener(_onStateChanged);
     _loadGeoJsonData();
     _loadLandslidePolygons();
@@ -112,7 +122,7 @@ class _RiskMapScreenState extends State<RiskMapScreen> {
 
   Future<void> _loadStateBoundaries() async {
     try {
-      final boundaryRepo = LandslidePolygonRepository(assetPath: 'lib/data/assets/boundaries/states.geojson');
+      final ILandslidePolygonRepository boundaryRepo = LandslidePolygonRepository(assetPath: 'lib/data/assets/boundaries/states.geojson');
       final allStates = await boundaryRepo.getLandslidePolygons();
       if (!mounted) return;
       setState(() {
@@ -128,7 +138,7 @@ class _RiskMapScreenState extends State<RiskMapScreen> {
         ? 'lib/data/assets/boundaries/hp_districts.geojson' 
         : 'lib/data/assets/boundaries/uk_districts.geojson';
 
-    final boundaryRepo = LandslidePolygonRepository(assetPath: assetPath);
+    final ILandslidePolygonRepository boundaryRepo = LandslidePolygonRepository(assetPath: assetPath);
     final allBoundaries = await boundaryRepo.getLandslidePolygons();
     
     if (mounted) {
@@ -187,10 +197,10 @@ class _RiskMapScreenState extends State<RiskMapScreen> {
 
   Future<void> _loadLandslidePolygons() async {
     try {
-      final loadedPolygons = await _landslidePolygonRepository.getLandslidePolygons();
+      final loadedPolygons = await _gisDataService.getLandslidePolygons();
       if (!mounted) return;
       setState(() {
-        landslidePolygons = loadedPolygons.where((p) => p.state == _stateService.stateName).toList();
+        landslidePolygons = loadedPolygons;
         isLoadingPolygons = false;
       });
     } catch (_) {

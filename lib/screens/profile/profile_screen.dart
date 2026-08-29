@@ -4,6 +4,7 @@ import '../../data/services/profile_service.dart';
 import '../../data/services/risk_engine.dart';
 import '../../data/services/weather_service.dart';
 import 'package:riskpulse/domain/risk/district_risk.dart';
+import 'package:riskpulse/domain/user/user_profile.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -39,6 +40,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             _buildUserHeader(profile.name, profile.email),
+            const SizedBox(height: 32),
+            _buildCategorySection(profile, profileService),
             const SizedBox(height: 32),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -81,6 +84,101 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
+  Widget _buildCategorySection(UserProfile profile, ProfileService service) {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(24),
+        border: Border.all(color: Colors.black12),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            'How do you use RiskPulse?',
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w800, color: Color(0xFF0F172A)),
+          ),
+          const SizedBox(height: 8),
+          const Text(
+            'Selecting a category helps us tailor disaster intelligence for your specific needs.',
+            style: TextStyle(fontSize: 12, color: Colors.black54),
+          ),
+          const SizedBox(height: 20),
+          InkWell(
+            onTap: () => _showCategorySelectionDialog(context, service),
+            borderRadius: BorderRadius.circular(12),
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+              decoration: BoxDecoration(
+                color: const Color(0xFFF1F5F9),
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(color: Colors.black12),
+              ),
+              child: Row(
+                children: [
+                  const Icon(Icons.category_outlined, size: 20, color: Color(0xFF0B5D5E)),
+                  const SizedBox(width: 12),
+                  Text(
+                    profile.categoryLabel,
+                    style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+                  ),
+                  const Spacer(),
+                  const Icon(Icons.arrow_drop_down, color: Colors.black45),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _showCategorySelectionDialog(BuildContext context, ProfileService service) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text('Select Your Category'),
+          content: SizedBox(
+            width: double.maxFinite,
+            child: ListView(
+              shrinkWrap: true,
+              children: UserCategory.values.map((cat) {
+                final isSelected = service.profile.category == cat;
+                return ListTile(
+                  title: Text(_getCategoryLabel(cat)),
+                  trailing: isSelected ? const Icon(Icons.check, color: Color(0xFF0B5D5E)) : null,
+                  onTap: () {
+                    service.updateCategory(cat);
+                    Navigator.pop(context);
+                  },
+                );
+              }).toList(),
+            ),
+          ),
+          actions: [
+            TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancel')),
+          ],
+        );
+      },
+    );
+  }
+
+  String _getCategoryLabel(UserCategory cat) {
+    switch (cat) {
+      case UserCategory.generalPublic: return 'General Public';
+      case UserCategory.student: return 'Student';
+      case UserCategory.teacherEducator: return 'Teacher / Educator';
+      case UserCategory.researcherAcademic: return 'Researcher / Academic';
+      case UserCategory.ngoNonProfit: return 'NGO / Non-profit';
+      case UserCategory.governmentPublicAuthority: return 'Government / Public Authority';
+      case UserCategory.professionalOrganization: return 'Professional / Organization';
+      case UserCategory.universityInstitution: return 'University / Institution';
+    }
+  }
+
   Widget _buildAppBranding() {
     return Center(
       child: Column(
@@ -99,8 +197,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ],
             ),
             child: Image.asset(
-              'assets/images/riskpulse logo.png',
-              width: 120,
+              'assets/branding/riskpulse_logo.png',
               height: 120,
               fit: BoxFit.contain,
             ),
