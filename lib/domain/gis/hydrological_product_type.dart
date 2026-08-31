@@ -6,4 +6,5 @@ enum HydrologicalProductType {
   strahlerOrder,
   shreveMagnitude,
   drainageDensity,
+  watershedIdRaster,
 }
