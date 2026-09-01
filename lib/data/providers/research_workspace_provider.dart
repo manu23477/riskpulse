@@ -6,8 +6,11 @@ import 'package:riskpulse/domain/gis/spatial_concepts.dart';
 import 'package:riskpulse/domain/gis/identify_result.dart';
 import 'package:riskpulse/domain/location/geo_location.dart';
 
+import 'package:riskpulse/domain/gis/map_composition.dart';
+
 class ResearchWorkspaceProvider extends ChangeNotifier {
   ResearchSession? _currentSession;
+  MapComposition? _activeComposition;
   ProcessingState _processingState = ProcessingState.idle();
 
   // Interactive Tool State
@@ -17,6 +20,7 @@ class ResearchWorkspaceProvider extends ChangeNotifier {
   GeoLocation? _snappedPourPoint;
 
   ResearchSession? get currentSession => _currentSession;
+  MapComposition? get activeComposition => _activeComposition;
   ProcessingState get processingState => _processingState;
 
   GeoLocation? get lastIdentifyPoint => _lastIdentifyPoint;
@@ -31,6 +35,20 @@ class ResearchWorkspaceProvider extends ChangeNotifier {
       extent: extent,
       createdAt: DateTime.now(),
     );
+
+    // Initialize default composition
+    _activeComposition = MapComposition(
+      id: 'comp-${_currentSession!.id}',
+      title: title,
+      layers: [],
+      extent: extent,
+    );
+
+    notifyListeners();
+  }
+
+  void updateComposition(MapComposition composition) {
+    _activeComposition = composition;
     notifyListeners();
   }
 

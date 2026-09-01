@@ -4,6 +4,7 @@ import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
 import '../../data/providers/research_workspace_provider.dart';
 import '../../data/services/state_service.dart';
+import '../../data/services/cartographic_service.dart';
 import '../../data/services/watershed_analysis_service.dart';
 import '../../domain/gis/identify_result.dart';
 import '../../domain/gis/research_session.dart';
@@ -13,6 +14,9 @@ import '../../domain/location/geo_location.dart';
 import 'widgets/processing_hud.dart';
 import 'widgets/layer_manager.dart';
 import 'widgets/info_panel.dart';
+import 'widgets/cartography/scale_bar_widget.dart';
+import 'widgets/cartography/north_arrow_widget.dart';
+import 'widgets/cartography/coordinate_grid_overlay.dart';
 
 enum ResearchTool { identify, pourPoint }
 
@@ -26,6 +30,7 @@ class ResearchGisScreen extends StatefulWidget {
 class _ResearchGisScreenState extends State<ResearchGisScreen> {
   final MapController _researchMapController = MapController();
   final WatershedAnalysisService _watershedService = WatershedAnalysisService();
+  final CartographicService _cartoService = CartographicService();
   ResearchTool _activeTool = ResearchTool.identify;
 
   void _handleMapTap(LatLng point) {
@@ -168,6 +173,9 @@ class _ResearchGisScreenState extends State<ResearchGisScreen> {
                               : const LatLng(30.3, 79.0),
                           initialZoom: 10,
                           onTap: (tapPos, point) => _handleMapTap(point),
+                          onMapEvent: (event) {
+                            if (mounted) setState(() {});
+                          },
                         ),
                         children: [
                           TileLayer(
@@ -221,6 +229,26 @@ class _ResearchGisScreenState extends State<ResearchGisScreen> {
             child: ProcessingHud(),
           ),
 
+          // Cartographic Overlays
+          if (workspace.activeComposition != null)
+            LayoutBuilder(
+              builder: (context, constraints) {
+                Map<String, dynamic>? scaleMetadata;
+                try {
+                  final bounds = _researchMapController.camera.visibleBounds;
+                  final extent = MapExtent(
+                    southWest: GeoLocation(latitude: bounds.southWest.latitude, longitude: bounds.southWest.longitude),
+                    northEast: GeoLocation(latitude: bounds.northEast.latitude, longitude: bounds.northEast.longitude),
+                  );
+                  scaleMetadata = _cartoService.calculateScaleMetadata(extent, constraints.maxWidth);
+                } catch (_) {
+                  // Map camera not ready
+                }
+
+                return _buildCartographicOverlays(workspace, scaleMetadata);
+              },
+            ),
+
           if (!isDesktop)
             Positioned(
               left: 16,
@@ -254,6 +282,72 @@ class _ResearchGisScreenState extends State<ResearchGisScreen> {
         height: 400,
         child: ResearchLayerPanel(),
       ),
+    );
+  }
+
+  Widget _buildCartographicOverlays(ResearchWorkspaceProvider workspace, Map<String, dynamic>? scaleMetadata) {
+    final comp = workspace.activeComposition!;
+
+    return Stack(
+      children: [
+        // Coordinate Grid (Background of overlays)
+        if (comp.grid.isVisible)
+          CoordinateGridOverlay(config: comp.grid),
+
+        // North Arrow
+        if (comp.northArrow.isVisible)
+          _positionOverlay(
+            comp.northArrow.position,
+            NorthArrowWidget(
+              config: comp.northArrow,
+              rotationDegrees: 0, // In future link to map rotation
+            ),
+          ),
+
+        // Scale Bar
+        if (comp.scaleBar.isVisible && scaleMetadata != null)
+          _positionOverlay(
+            comp.scaleBar.position,
+            ScaleBarWidget(
+              config: comp.scaleBar,
+              pixelsPerKilometer: scaleMetadata['segment_pixels'],
+              label: scaleMetadata['label'],
+            ),
+          ),
+      ],
+    );
+  }
+
+  Widget _positionOverlay(String position, Widget child) {
+    double? top, left, right, bottom;
+    const margin = 20.0;
+
+    switch (position) {
+      case 'top-left':
+        top = margin + 80; // Below HUD
+        left = margin;
+        break;
+      case 'top-right':
+        top = margin + 80;
+        right = margin;
+        break;
+      case 'bottom-left':
+        bottom = margin;
+        left = margin;
+        break;
+      case 'bottom-right':
+      default:
+        bottom = margin;
+        right = margin;
+        break;
+    }
+
+    return Positioned(
+      top: top,
+      left: left,
+      right: right,
+      bottom: bottom,
+      child: IgnorePointer(child: child),
     );
   }
 }
