@@ -48,6 +48,27 @@ class RasterData {
     return values[y * width + x];
   }
 
+  /// Returns the (x, y) grid coordinates for a given geographic location.
+  /// Returns null if the location is outside the raster extent.
+  ({int x, int y})? getGridCoordinates(GeoLocation loc) {
+    final double dx = loc.longitude - origin.longitude;
+    final double dy = origin.latitude - loc.latitude;
+
+    final int x = (dx / cellWidth).floor();
+    final int y = (dy / cellHeight).floor();
+
+    if (x < 0 || x >= width || y < 0 || y >= height) return null;
+    return (x: x, y: y);
+  }
+
+  /// Returns the geographic location of the center of cell (x, y).
+  GeoLocation getCenterLocation(int x, int y) {
+    return GeoLocation(
+      longitude: origin.longitude + (x * cellWidth) + (cellWidth / 2.0),
+      latitude: origin.latitude - (y * cellHeight) - (cellHeight / 2.0),
+    );
+  }
+
   bool isNoData(double value) => value == noDataValue;
 
   MapExtent get extent {

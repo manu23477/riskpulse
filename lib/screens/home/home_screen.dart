@@ -14,6 +14,7 @@ import 'package:riskpulse/domain/risk/district_risk.dart';
 import 'package:riskpulse/data/models/weather_alert.dart';
 import 'package:riskpulse/data/models/yatra_status.dart';
 import '../global_alerts/global_alerts_screen.dart';
+import '../research_gis/research_gis_screen.dart';
 import '../emergency/emergency_hub_screen.dart';
 import '../profile/profile_screen.dart';
 import '../reports/report_generator_screen.dart';
@@ -824,6 +825,8 @@ class _RiskPulseHomeState extends State<RiskPulseHome> {
           () => Navigator.push(context, MaterialPageRoute(builder: (context) => const MyRiskScreen()))),
         _fancyGridCard(l10n.translate('global_feed'), Icons.public_rounded, const Color(0xFF8B5CF6),
           () => Navigator.push(context, MaterialPageRoute(builder: (context) => const GlobalAlertsScreen()))),
+        _fancyGridCard('Research GIS', Icons.science_rounded, const Color(0xFF0F172A),
+          () => Navigator.push(context, MaterialPageRoute(builder: (context) => const ResearchGisScreen()))),
       ],
     );
   }
