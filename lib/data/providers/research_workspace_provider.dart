@@ -4,6 +4,7 @@ import 'package:riskpulse/domain/gis/spatial_concepts.dart';
 import 'package:riskpulse/domain/gis/identify_result.dart';
 import 'package:riskpulse/domain/location/geo_location.dart';
 import 'package:riskpulse/domain/gis/map_composition.dart';
+import 'package:riskpulse/domain/gis/gis_layer.dart';
 import 'package:riskpulse/domain/gis/research_workspace_state.dart';
 import 'package:riskpulse/domain/gis/processing_state.dart';
 import 'package:riskpulse/data/services/research_workflow_orchestrator.dart';
@@ -146,6 +147,31 @@ class ResearchWorkspaceProvider extends ChangeNotifier {
     final lastSession = currentSession;
     _state = WorkspaceFailed(error: error, lastKnownSession: lastSession);
     notifyListeners();
+  }
+
+  void toggleLayerVisibility(String layerId) {
+    if (_state is WorkspaceReady) {
+      final readyState = _state as WorkspaceReady;
+      final updatedLayers = readyState.composition.layers.map((l) {
+        if (l.id == layerId) {
+          return GisLayer(
+            id: l.id,
+            name: l.name,
+            type: l.type,
+            dataType: l.dataType,
+            dataSourceType: l.dataSourceType,
+            isVisible: !l.isVisible,
+            opacity: l.opacity,
+            zIndex: l.zIndex,
+            style: l.style,
+            metadata: l.metadata,
+          );
+        }
+        return l;
+      }).toList();
+
+      updateComposition(readyState.composition.copyWith(layers: updatedLayers));
+    }
   }
 
   void updateComposition(MapComposition composition) {

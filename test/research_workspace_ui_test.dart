@@ -29,7 +29,9 @@ void main() {
 
     await tester.pumpWidget(createTestWidget());
     expect(find.text('Research GIS Workspace'), findsOneWidget);
-    expect(find.byType(Checkbox), findsWidgets); 
+
+    // In Initial state, it should show the empty layers message
+    expect(find.textContaining('No research layers available'), findsOneWidget);
 
     addTearDown(tester.view.resetPhysicalSize);
   });

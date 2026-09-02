@@ -244,24 +244,26 @@ class _ResearchGisScreenState extends State<ResearchGisScreen> {
           ),
 
           if (workspace.activeComposition != null)
-            LayoutBuilder(
-              builder: (context, constraints) {
-                Map<String, dynamic>? scaleMetadata;
-                CoordinateGridData? gridData;
-                try {
-                  final bounds = _researchMapController.camera.visibleBounds;
-                  final extent = MapExtent(
-                    southWest: GeoLocation(latitude: bounds.southWest.latitude, longitude: bounds.southWest.longitude),
-                    northEast: GeoLocation(latitude: bounds.northEast.latitude, longitude: bounds.northEast.longitude),
-                  );
-                  scaleMetadata = _cartoService.calculateScaleMetadata(extent, constraints.maxWidth);
-                  
-                  if (workspace.activeComposition!.grid.isVisible) {
-                    gridData = _gridEngine.generateGrid(extent: extent, config: workspace.activeComposition!.grid);
-                  }
-                } catch (_) {}
-                return _buildCartographicOverlays(workspace, scaleMetadata, gridData);
-              },
+            IgnorePointer(
+              child: LayoutBuilder(
+                builder: (context, constraints) {
+                  Map<String, dynamic>? scaleMetadata;
+                  CoordinateGridData? gridData;
+                  try {
+                    final bounds = _researchMapController.camera.visibleBounds;
+                    final extent = MapExtent(
+                      southWest: GeoLocation(latitude: bounds.southWest.latitude, longitude: bounds.southWest.longitude),
+                      northEast: GeoLocation(latitude: bounds.northEast.latitude, longitude: bounds.northEast.longitude),
+                    );
+                    scaleMetadata = _cartoService.calculateScaleMetadata(extent, constraints.maxWidth);
+
+                    if (workspace.activeComposition!.grid.isVisible) {
+                      gridData = _gridEngine.generateGrid(extent: extent, config: workspace.activeComposition!.grid);
+                    }
+                  } catch (_) {}
+                  return _buildCartographicOverlays(workspace, scaleMetadata, gridData);
+                },
+              ),
             ),
 
           if (!isDesktop)
