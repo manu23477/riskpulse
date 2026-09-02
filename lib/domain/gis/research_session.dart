@@ -3,6 +3,8 @@ import 'gis_layer.dart';
 import 'drainage_network.dart';
 import 'watershed.dart';
 import 'morphometric_result.dart';
+import 'data_source_record.dart';
+import 'analytical_step.dart';
 
 /// Domain model representing an active Research GIS session.
 ///
@@ -14,8 +16,9 @@ class ResearchSession {
   final MapExtent extent;
   final CoordinateReferenceSystem crs;
 
-  /// Metadata about the source DEM (e.g., "Copernicus 30m")
-  final Map<String, dynamic> demMetadata;
+  /// Provenance and Workflow tracking
+  final List<DataSourceRecord> dataSources;
+  final List<AnalyticalStep> workflowSteps;
 
   /// List of active analytical layers (Slope, Aspect, Flow, etc.)
   final List<GisLayer> layers;
@@ -33,7 +36,8 @@ class ResearchSession {
     required this.title,
     required this.extent,
     this.crs = CoordinateReferenceSystem.wgs84,
-    this.demMetadata = const {},
+    this.dataSources = const [],
+    this.workflowSteps = const [],
     this.layers = const [],
     this.drainageNetwork,
     this.activeWatershed,
@@ -45,6 +49,8 @@ class ResearchSession {
   ResearchSession copyWith({
     String? title,
     MapExtent? extent,
+    List<DataSourceRecord>? dataSources,
+    List<AnalyticalStep>? workflowSteps,
     List<GisLayer>? layers,
     DrainageNetwork? drainageNetwork,
     Watershed? activeWatershed,
@@ -56,7 +62,8 @@ class ResearchSession {
       title: title ?? this.title,
       extent: extent ?? this.extent,
       crs: crs,
-      demMetadata: demMetadata,
+      dataSources: dataSources ?? this.dataSources,
+      workflowSteps: workflowSteps ?? this.workflowSteps,
       layers: layers ?? this.layers,
       drainageNetwork: drainageNetwork ?? this.drainageNetwork,
       activeWatershed: activeWatershed ?? this.activeWatershed,

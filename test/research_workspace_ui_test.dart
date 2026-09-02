@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:riskpulse/data/providers/research_workspace_provider.dart';
 import 'package:riskpulse/data/services/state_service.dart';
 import 'package:riskpulse/domain/gis/spatial_concepts.dart';
+import 'package:riskpulse/domain/gis/research_session.dart';
 import 'package:riskpulse/domain/location/geo_location.dart';
 import 'package:riskpulse/screens/research_gis/research_gis_screen.dart';
 import 'package:riskpulse/screens/research_gis/widgets/cartography/scale_bar_widget.dart';
@@ -28,7 +29,7 @@ void main() {
 
     await tester.pumpWidget(createTestWidget());
     expect(find.text('Research GIS Workspace'), findsOneWidget);
-    expect(find.byType(Checkbox), findsWidgets);
+    expect(find.byType(Checkbox), findsWidgets); 
 
     addTearDown(tester.view.resetPhysicalSize);
   });
@@ -36,18 +37,41 @@ void main() {
   testWidgets('ResearchGisScreen should show cartographic overlays when active', (tester) async {
     final provider = ResearchWorkspaceProvider();
     final extent = MapExtent(
-      southWest: GeoLocation(latitude: 30, longitude: 70),
-      northEast: GeoLocation(latitude: 35, longitude: 80),
+      southWest: const GeoLocation(latitude: 30, longitude: 70),
+      northEast: const GeoLocation(latitude: 35, longitude: 80),
     );
-    provider.initializeSession('Test Map', extent);
-
+    
+    // Put provider in Ready state to show overlays
+    final session = ResearchSession(
+      id: 's1', title: 'Test Map', extent: extent, createdAt: DateTime.now(),
+    );
+    provider.completeAnalysis(session);
+    
     await tester.pumpWidget(createTestWidget(provider: provider));
-    // Wait for map to layout and trigger the onMapEvent or just second frame
-    await tester.pumpAndSettle(const Duration(seconds: 1));
-
-    // Scale bar and North arrow should be visible by default in MapComposition
+    await tester.pumpAndSettle();
+    
     expect(find.byType(ScaleBarWidget), findsOneWidget);
     expect(find.byType(NorthArrowWidget), findsOneWidget);
+  });
+
+  testWidgets('ResearchGisScreen should render Research Summary and Metadata', (tester) async {
+    final provider = ResearchWorkspaceProvider();
+    final extent = MapExtent(
+      southWest: const GeoLocation(latitude: 30, longitude: 70),
+      northEast: const GeoLocation(latitude: 35, longitude: 80),
+    );
+    
+    final session = ResearchSession(
+      id: 's1', title: 'Himalayan Research', extent: extent, createdAt: DateTime.now(),
+    );
+    provider.completeAnalysis(session);
+
+    await tester.pumpWidget(createTestWidget(provider: provider));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Research Summary'), findsOneWidget);
+    expect(find.textContaining('Himalayan Research'), findsWidgets);
+    expect(find.text('Analytical Workflow'), findsOneWidget);
   });
 
   testWidgets('ResearchGisScreen should show empty state in info panel', (tester) async {

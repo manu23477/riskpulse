@@ -6,12 +6,20 @@ import 'package:riskpulse/domain/gis/gis_style.dart';
 /// visualization-ready structures.
 class RasterVisualizationService {
 
-  /// Prepares metadata for rendering a continuous raster.
-  /// Does not perform UI rendering, only the numerical mapping.
-  Map<String, dynamic> prepareContinuousVisualization(
+  /// Prepares metadata for rendering a continuous or classified raster.
+  Map<String, dynamic> prepareVisualizationMetadata(
     RasterData raster,
     RasterStyle style,
   ) {
+    if (style.isClassified) {
+      return {
+        'type': 'classified',
+        'method': style.classificationScheme!.method.name,
+        'breaks': style.classificationScheme!.breaks.length,
+        'opacity': style.opacity,
+      };
+    }
+
     if (style.colorRamp == null) return {};
 
     final double min = style.minValue ?? _calculateMin(raster);
@@ -29,8 +37,25 @@ class RasterVisualizationService {
   }
 
   /// Maps a specific raster value to a hex color based on style.
+  ///
+  /// Supports both continuous interpolation and discrete thematic classification.
   String mapValueToColor(double value, RasterData raster, RasterStyle style) {
-    if (raster.isNoData(value) || style.colorRamp == null) return 'transparent';
+    if (raster.isNoData(value) || value.isNaN) return 'transparent';
+
+    // 1. Classified/Thematic Path
+    if (style.classificationScheme != null) {
+      final breaks = style.classificationScheme!.breaks;
+      for (int i = 0; i < breaks.length; i++) {
+        final bool isLast = (i == breaks.length - 1);
+        if (breaks[i].contains(value, isLast: isLast)) {
+          return breaks[i].colorHex;
+        }
+      }
+      return 'transparent'; // Deterministic out-of-range fallback
+    }
+
+    // 2. Continuous Path (Existing)
+    if (style.colorRamp == null) return 'transparent';
 
     final double min = style.minValue ?? _calculateMin(raster);
     final double max = style.maxValue ?? _calculateMax(raster);
@@ -39,11 +64,9 @@ class RasterVisualizationService {
     double normalized = (value - min) / (max - min);
     normalized = normalized.clamp(0.0, 1.0);
 
-    // Find interpolation stops
     final stops = style.colorRamp!.stops;
     if (stops.isEmpty) return '#000000';
 
-    // Exact match for the very last stop
     if (normalized >= stops.last.value) return stops.last.colorHex;
 
     for (int i = 0; i < stops.length - 1; i++) {
@@ -57,13 +80,13 @@ class RasterVisualizationService {
 
   double _calculateMin(RasterData raster) {
     return raster.values
-        .where((v) => !raster.isNoData(v))
+        .where((v) => !raster.isNoData(v) && !v.isNaN)
         .fold(double.maxFinite, math.min);
   }
 
   double _calculateMax(RasterData raster) {
     return raster.values
-        .where((v) => !raster.isNoData(v))
+        .where((v) => !raster.isNoData(v) && !v.isNaN)
         .fold(-double.maxFinite, math.max);
   }
 }

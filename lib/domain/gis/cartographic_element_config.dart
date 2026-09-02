@@ -61,17 +61,25 @@ class NorthArrowConfig extends CartographicElementConfig {
   }
 }
 
+enum CoordinateFormat { decimal, dms }
+
 class CoordinateGridConfig extends CartographicElementConfig {
   final double intervalDegrees;
   final String lineStyle; // 'solid', 'dashed'
   final bool showLabels;
+  final CoordinateFormat format;
+  final double opacity;
+  final double lineWidth;
 
   const CoordinateGridConfig({
     super.isVisible = false,
     super.position = 'overlay',
-    this.intervalDegrees = 1.0,
+    this.intervalDegrees = 0.0,
     this.lineStyle = 'solid',
     this.showLabels = true,
+    this.format = CoordinateFormat.decimal,
+    this.opacity = 0.3,
+    this.lineWidth = 0.5,
   });
 
   CoordinateGridConfig copyWith({
@@ -80,6 +88,9 @@ class CoordinateGridConfig extends CartographicElementConfig {
     double? intervalDegrees,
     String? lineStyle,
     bool? showLabels,
+    CoordinateFormat? format,
+    double? opacity,
+    double? lineWidth,
   }) {
     return CoordinateGridConfig(
       isVisible: isVisible ?? this.isVisible,
@@ -87,6 +98,9 @@ class CoordinateGridConfig extends CartographicElementConfig {
       intervalDegrees: intervalDegrees ?? this.intervalDegrees,
       lineStyle: lineStyle ?? this.lineStyle,
       showLabels: showLabels ?? this.showLabels,
+      format: format ?? this.format,
+      opacity: opacity ?? this.opacity,
+      lineWidth: lineWidth ?? this.lineWidth,
     );
   }
 }

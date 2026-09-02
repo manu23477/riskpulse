@@ -1,3 +1,4 @@
+import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
@@ -5,9 +6,15 @@ import 'package:provider/provider.dart';
 import '../../data/providers/research_workspace_provider.dart';
 import '../../data/services/state_service.dart';
 import '../../data/services/cartographic_service.dart';
+import '../../data/services/coordinate_grid_engine.dart';
+import '../../data/services/hydrological_symbology_resolver.dart';
 import '../../data/services/watershed_analysis_service.dart';
 import '../../domain/gis/identify_result.dart';
+import '../../domain/gis/drainage_node.dart';
+import '../../domain/gis/drainage_network.dart';
+import '../../domain/gis/gis_style.dart';
 import '../../domain/gis/research_session.dart';
+import '../../domain/gis/research_workspace_state.dart';
 import '../../domain/gis/raster_data.dart';
 import '../../domain/gis/spatial_concepts.dart';
 import '../../domain/location/geo_location.dart';
@@ -31,6 +38,8 @@ class _ResearchGisScreenState extends State<ResearchGisScreen> {
   final MapController _researchMapController = MapController();
   final WatershedAnalysisService _watershedService = WatershedAnalysisService();
   final CartographicService _cartoService = CartographicService();
+  final CoordinateGridEngine _gridEngine = CoordinateGridEngine();
+  final HydrologicalSymbologyResolver _hydroResolver = HydrologicalSymbologyResolver();
   ResearchTool _activeTool = ResearchTool.identify;
 
   void _handleMapTap(LatLng point) {
@@ -50,7 +59,6 @@ class _ResearchGisScreenState extends State<ResearchGisScreen> {
 
     final List<IdentifyResult> results = [];
 
-    // Query each active raster layer
     for (var layer in session.layers) {
       final raster = layer.metadata['raster_data'];
       if (raster is RasterData) {
@@ -100,7 +108,6 @@ class _ResearchGisScreenState extends State<ResearchGisScreen> {
       );
       workspace.setPourPoint(point, snapped: snapped);
     } else {
-      // If no accumulation raster, we just set the point but no snapped result.
       workspace.setPourPoint(point, snapped: null);
 
       ScaffoldMessenger.of(context).showSnackBar(
@@ -134,6 +141,7 @@ class _ResearchGisScreenState extends State<ResearchGisScreen> {
   Widget build(BuildContext context) {
     final workspace = Provider.of<ResearchWorkspaceProvider>(context);
     final stateService = Provider.of<StateService>(context);
+    final session = workspace.currentSession;
     final isDesktop = MediaQuery.of(context).size.width > 900;
 
     return Scaffold(
@@ -149,6 +157,8 @@ class _ResearchGisScreenState extends State<ResearchGisScreen> {
             onPressed: _captureStudyArea,
             tooltip: 'Capture Study Area',
           ),
+          if (workspace.state is WorkspaceConfigured)
+            _runButton(workspace),
           const SizedBox(width: 8),
         ],
       ),
@@ -182,9 +192,14 @@ class _ResearchGisScreenState extends State<ResearchGisScreen> {
                             urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
                             userAgentPackageName: 'in.gov.hp.riskpulse.research',
                           ),
-                          // Visual markers for interactive points
+                          if (session?.drainageNetwork != null)
+                            PolylineLayer(
+                              polylines: _buildDrainagePolylines(session!.drainageNetwork!),
+                            ),
                           MarkerLayer(
                             markers: [
+                              if (session?.drainageNetwork != null)
+                                ..._buildNodeMarkers(session!.drainageNetwork!),
                               if (workspace.activePourPoint != null)
                                 Marker(
                                   point: LatLng(workspace.activePourPoint!.latitude, workspace.activePourPoint!.longitude),
@@ -221,7 +236,6 @@ class _ResearchGisScreenState extends State<ResearchGisScreen> {
             ],
           ),
 
-          // Processing HUD
           const Positioned(
             top: 20,
             left: 20,
@@ -229,11 +243,11 @@ class _ResearchGisScreenState extends State<ResearchGisScreen> {
             child: ProcessingHud(),
           ),
 
-          // Cartographic Overlays
           if (workspace.activeComposition != null)
             LayoutBuilder(
               builder: (context, constraints) {
                 Map<String, dynamic>? scaleMetadata;
+                CoordinateGridData? gridData;
                 try {
                   final bounds = _researchMapController.camera.visibleBounds;
                   final extent = MapExtent(
@@ -241,11 +255,12 @@ class _ResearchGisScreenState extends State<ResearchGisScreen> {
                     northEast: GeoLocation(latitude: bounds.northEast.latitude, longitude: bounds.northEast.longitude),
                   );
                   scaleMetadata = _cartoService.calculateScaleMetadata(extent, constraints.maxWidth);
-                } catch (_) {
-                  // Map camera not ready
-                }
-
-                return _buildCartographicOverlays(workspace, scaleMetadata);
+                  
+                  if (workspace.activeComposition!.grid.isVisible) {
+                    gridData = _gridEngine.generateGrid(extent: extent, config: workspace.activeComposition!.grid);
+                  }
+                } catch (_) {}
+                return _buildCartographicOverlays(workspace, scaleMetadata, gridData);
               },
             ),
 
@@ -266,12 +281,96 @@ class _ResearchGisScreenState extends State<ResearchGisScreen> {
     );
   }
 
+  List<Polyline> _buildDrainagePolylines(DrainageNetwork network) {
+    if (network.segments.isEmpty) return [];
+
+    final double maxMag = network.segments
+        .map((s) => s.shreveMagnitude)
+        .fold(0.0, math.max);
+
+    const defaultStyle = VectorStyle(
+      useStrahlerWidth: true,
+      strokeColor: '#3B82F6',
+    );
+
+    return network.segments.map((seg) {
+      final resolved = _hydroResolver.resolveSegmentStyle(
+        segment: seg,
+        style: defaultStyle,
+        maxMagnitude: maxMag,
+      );
+
+      return Polyline(
+        points: seg.polyline.map((p) => LatLng(p.latitude, p.longitude)).toList(),
+        strokeWidth: resolved.width,
+        color: _parseHexColor(resolved.colorHex).withValues(alpha: resolved.opacity),
+      );
+    }).toList();
+  }
+
+  List<Marker> _buildNodeMarkers(DrainageNetwork network) {
+    return network.nodes.map((node) {
+      return Marker(
+        point: LatLng(node.location.latitude, node.location.longitude),
+        width: 12, height: 12,
+        child: Container(
+          decoration: BoxDecoration(
+            color: _getNodeColor(node.type),
+            shape: BoxShape.circle,
+            border: Border.all(color: Colors.white, width: 1),
+          ),
+        ),
+      );
+    }).toList();
+  }
+
+  Color _getNodeColor(DrainageNodeType type) {
+    switch (type) {
+      case DrainageNodeType.headwater: return Colors.green;
+      case DrainageNodeType.junction: return Colors.orange;
+      case DrainageNodeType.outlet: return Colors.blue;
+    }
+  }
+
+  Color _parseHexColor(String hex) {
+    final h = hex.replaceAll('#', '');
+    if (h.length == 6) return Color(int.parse('FF$h', radix: 16));
+    if (h.length == 8) return Color(int.parse(h, radix: 16));
+    return Colors.black;
+  }
+
   Widget _toolButton(IconData icon, ResearchTool tool, String label) {
     final isSelected = _activeTool == tool;
     return IconButton(
       icon: Icon(icon, color: isSelected ? Colors.cyanAccent : Colors.white),
       onPressed: () => setState(() => _activeTool = tool),
       tooltip: label,
+    );
+  }
+
+  Widget _runButton(ResearchWorkspaceProvider workspace) {
+    return Padding(
+      padding: const EdgeInsets.only(right: 8.0),
+      child: TextButton.icon(
+        style: TextButton.styleFrom(backgroundColor: Colors.cyanAccent.withValues(alpha: 0.1)),
+        onPressed: () {
+          final dem = RasterData(
+            width: 3, height: 3, cellWidth: 30, cellHeight: 30,
+            origin: const GeoLocation(latitude: 31, longitude: 77),
+            crs: CoordinateReferenceSystem.wgs84,
+            values: [1000, 1000, 1000, 900, 800, 900, 1000, 1000, 1000],
+          );
+          workspace.runWorkflow(
+            dem: dem, 
+            pourPoint: const GeoLocation(latitude: 30.99, longitude: 77.0),
+          );
+        },
+        icon: const Icon(Icons.play_arrow, color: Colors.cyanAccent, size: 18),
+        label: const Text(
+          'RUN ANALYSIS', 
+          style: TextStyle(color: Colors.cyanAccent, fontSize: 11, fontWeight: FontWeight.bold)
+        ),
+      ),
     );
   }
 
@@ -285,26 +384,27 @@ class _ResearchGisScreenState extends State<ResearchGisScreen> {
     );
   }
 
-  Widget _buildCartographicOverlays(ResearchWorkspaceProvider workspace, Map<String, dynamic>? scaleMetadata) {
+  Widget _buildCartographicOverlays(ResearchWorkspaceProvider workspace, Map<String, dynamic>? scaleMetadata, CoordinateGridData? gridData) {
     final comp = workspace.activeComposition!;
 
     return Stack(
       children: [
-        // Coordinate Grid (Background of overlays)
-        if (comp.grid.isVisible)
-          CoordinateGridOverlay(config: comp.grid),
+        if (comp.grid.isVisible && gridData != null)
+          CoordinateGridOverlay(
+            config: comp.grid,
+            gridData: gridData,
+            camera: _researchMapController.camera,
+          ),
 
-        // North Arrow
         if (comp.northArrow.isVisible)
           _positionOverlay(
             comp.northArrow.position,
             NorthArrowWidget(
               config: comp.northArrow,
-              rotationDegrees: 0, // In future link to map rotation
+              rotationDegrees: 0,
             ),
           ),
 
-        // Scale Bar
         if (comp.scaleBar.isVisible && scaleMetadata != null)
           _positionOverlay(
             comp.scaleBar.position,
@@ -324,7 +424,7 @@ class _ResearchGisScreenState extends State<ResearchGisScreen> {
 
     switch (position) {
       case 'top-left':
-        top = margin + 80; // Below HUD
+        top = margin + 80;
         left = margin;
         break;
       case 'top-right':

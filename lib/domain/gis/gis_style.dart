@@ -62,6 +62,11 @@ class VectorStyle extends GisStyle {
   /// For scaling by attributes (e.g., Strahler Order)
   final double? scaleFactor;
 
+  // Hydrological Symbology Extensions
+  final bool useStrahlerWidth;
+  final bool useShreveColor;
+  final ColorRamp? shreveRamp;
+
   const VectorStyle({
     super.opacity,
     super.isVisible,
@@ -70,6 +75,9 @@ class VectorStyle extends GisStyle {
     this.fillColor,
     this.pointSize,
     this.scaleFactor,
+    this.useStrahlerWidth = false,
+    this.useShreveColor = false,
+    this.shreveRamp,
   }) : super();
 
   VectorStyle copyWith({
@@ -80,6 +88,9 @@ class VectorStyle extends GisStyle {
     String? fillColor,
     double? pointSize,
     double? scaleFactor,
+    bool? useStrahlerWidth,
+    bool? useShreveColor,
+    ColorRamp? shreveRamp,
   }) {
     return VectorStyle(
       opacity: opacity ?? this.opacity,
@@ -89,6 +100,9 @@ class VectorStyle extends GisStyle {
       fillColor: fillColor ?? this.fillColor,
       pointSize: pointSize ?? this.pointSize,
       scaleFactor: scaleFactor ?? this.scaleFactor,
+      useStrahlerWidth: useStrahlerWidth ?? this.useStrahlerWidth,
+      useShreveColor: useShreveColor ?? this.useShreveColor,
+      shreveRamp: shreveRamp ?? this.shreveRamp,
     );
   }
 }

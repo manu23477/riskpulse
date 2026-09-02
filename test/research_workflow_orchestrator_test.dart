@@ -9,6 +9,7 @@ import 'package:riskpulse/data/services/hydrological_analysis_service.dart';
 import 'package:riskpulse/data/services/drainage_analysis_service.dart';
 import 'package:riskpulse/data/services/watershed_analysis_service.dart';
 import 'package:riskpulse/data/services/morphometric_analysis_service.dart';
+import 'package:riskpulse/domain/gis/watershed.dart';
 import 'package:riskpulse/data/services/research_workflow_orchestrator.dart';
 
 void main() {
@@ -74,6 +75,57 @@ void main() {
       expect(updatedSession.activeWatershed, isNotNull);
       expect(updatedSession.morphometricResult, isNotNull);
       expect(updatedSession.layers.length, greaterThan(0));
+
+      // Provenance Verification
+      expect(updatedSession.workflowSteps.length, greaterThan(5));
+      expect(updatedSession.workflowSteps[0].name, 'Terrain Analysis');
+      expect(updatedSession.workflowSteps.any((s) => s.operationType == 'watershed'), isTrue);
+      expect(updatedSession.workflowSteps.any((s) => s.parameters.containsKey('threshold')), isTrue);
+    });
+
+    test('Should record previous steps when failure occurs later', () async {
+      // Create a service that fails specifically at watershed stage
+      final failingWatershed = _FailingWatershedService();
+      final failingOrchestrator = ResearchWorkflowOrchestrator(
+        terrainService: terrain,
+        hydroService: hydro,
+        drainageService: drainage,
+        watershedService: failingWatershed,
+        morphoService: morpho,
+      );
+
+      final dem = RasterData(
+        width: 3, height: 3, cellWidth: 30, cellHeight: 30,
+        origin: const GeoLocation(latitude: 31, longitude: 77),
+        crs: CoordinateReferenceSystem.wgs84,
+        values: List.filled(9, 1000.0),
+      );
+
+      final session = ResearchSession(
+        id: 'fail-session',
+        title: 'Partial Success',
+        extent: dem.extent,
+        createdAt: DateTime.now(),
+      );
+
+      ResearchSession? partialSession;
+
+      try {
+        await failingOrchestrator.runAnalysis(
+          session: session,
+          dem: dem,
+          pourPoint: const GeoLocation(latitude: 31, longitude: 77),
+          onSessionUpdated: (s) => partialSession = s,
+        );
+      } catch (_) {
+        // Expected failure
+      }
+
+      // Steps before watershed should be recorded
+      expect(partialSession, isNotNull);
+      expect(partialSession!.workflowSteps.length, greaterThan(0));
+      expect(partialSession!.workflowSteps.any((s) => s.operationType == 'terrain'), isTrue);
+      expect(partialSession!.workflowSteps.any((s) => s.operationType == 'watershed'), isFalse);
     });
 
     test('Should fail gracefully if analytical stage fails', () async {
@@ -109,4 +161,15 @@ void main() {
       expect(finalState?.error, isNotNull);
     });
   });
+}
+
+class _FailingWatershedService extends WatershedAnalysisService {
+  @override
+  Watershed delineateWatershed({
+    required RasterData flowDir,
+    required GeoLocation pourPoint,
+    String? id,
+  }) {
+    throw Exception('Simulated Watershed Failure');
+  }
 }

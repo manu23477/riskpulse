@@ -3,9 +3,12 @@ import 'package:riskpulse/domain/gis/spatial_concepts.dart';
 import 'package:riskpulse/domain/gis/legend_definition.dart';
 import 'package:riskpulse/domain/gis/gis_layer.dart';
 import 'package:riskpulse/domain/gis/gis_style.dart';
+import 'package:riskpulse/domain/gis/stream_segment.dart';
+import 'hydrological_symbology_resolver.dart';
 
 /// Service responsible for cartographic metadata and layout calculations.
 class CartographicService {
+  final HydrologicalSymbologyResolver _hydroResolver = HydrologicalSymbologyResolver();
 
   /// Calculates the visual scale bar length for a given map extent and physical width.
   Map<String, dynamic> calculateScaleMetadata(MapExtent extent, double mapPixelWidth) {
@@ -36,28 +39,91 @@ class CartographicService {
   LegendDefinition generateLegend(GisLayer layer) {
     final List<LegendEntry> entries = [];
     final style = layer.style;
+    final String? units = layer.metadata['units']?.toString();
 
     if (style is RasterStyle) {
-      final ramp = style.colorRamp;
-      if (ramp != null) {
-        for (var stop in ramp.stops) {
+      if (style.isClassified) {
+        // 1. Classified Raster Legend
+        final scheme = style.classificationScheme!;
+        for (var b in scheme.breaks) {
           entries.add(LegendEntry(
-            label: stop.label ?? '${(stop.value * 100).round()}%',
-            colorHex: stop.colorHex,
+            label: b.label,
+            colorHex: b.colorHex,
+            type: LegendEntryType.color,
+          ));
+        }
+      } else if (style.isContinuous) {
+        // 2. Continuous Raster Legend
+        final ramp = style.colorRamp!;
+        if (ramp.stops.isNotEmpty) {
+          entries.add(LegendEntry(
+            label: ramp.stops.first.label ?? 'Min',
+            colorHex: ramp.stops.first.colorHex,
+            type: LegendEntryType.gradient,
+            valueDescription: 'Minimum value',
+          ));
+          entries.add(LegendEntry(
+            label: ramp.stops.last.label ?? 'Max',
+            colorHex: ramp.stops.last.colorHex,
+            type: LegendEntryType.gradient,
+            valueDescription: 'Maximum value',
           ));
         }
       }
     } else if (style is VectorStyle) {
-      entries.add(LegendEntry(
-        label: layer.name,
-        colorHex: style.strokeColor,
+      if (style.useStrahlerWidth) {
+        // 3. Hydrological Hierarchy Legend (Strahler)
+        // We show examples for orders 1-4 as standard
+        for (int order = 1; order <= 4; order++) {
+          final dummySeg = StreamSegment(
+            id: 'dummy', upstreamNodeId: 'u', downstreamNodeId: 'd',
+            polyline: const [], strahlerOrder: order.toDouble(), length: 0,
+          );
+          final resolved = _hydroResolver.resolveSegmentStyle(
+            segment: dummySeg,
+            style: style,
+          );
+          entries.add(LegendEntry(
+            label: 'Order $order',
+            colorHex: resolved.colorHex,
+            strokeWidth: resolved.width,
+            type: LegendEntryType.line,
+          ));
+        }
+      } else {
+        // 4. Constant Vector Style
+        entries.add(LegendEntry(
+          label: layer.name,
+          colorHex: style.strokeColor,
+          strokeWidth: style.strokeWidth,
+          type: LegendEntryType.line,
+        ));
+      }
+    }
+
+    // Always include NoData if it's a research layer
+    if (layer.type == GisLayerType.research || layer.type == GisLayerType.terrain) {
+      entries.add(const LegendEntry(
+        label: 'No Data',
+        colorHex: '#00000000', // Transparent
+        type: LegendEntryType.symbol,
+        symbolIcon: 'empty',
       ));
     }
 
     return LegendDefinition(
       title: layer.name,
       entries: entries,
-      units: layer.metadata['units']?.toString(),
+      units: units,
     );
+  }
+
+  /// Generates a consolidated legend for multiple layers.
+  List<LegendDefinition> generateConsolidatedLegend(List<GisLayer> layers) {
+    return layers
+        .where((l) => l.isVisible)
+        .map((l) => generateLegend(l))
+        .where((ld) => ld.entries.isNotEmpty)
+        .toList();
   }
 }
