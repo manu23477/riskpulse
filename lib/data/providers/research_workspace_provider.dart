@@ -16,6 +16,9 @@ import 'package:riskpulse/data/services/drainage_analysis_service.dart';
 import 'package:riskpulse/data/services/watershed_analysis_service.dart';
 import 'package:riskpulse/data/services/morphometric_analysis_service.dart';
 
+import 'package:riskpulse/domain/gis/research_product_registry.dart';
+import 'package:riskpulse/data/services/research_product_registry_factory.dart';
+
 class ResearchWorkspaceProvider extends ChangeNotifier {
   final ResearchWorkflowOrchestrator? _orchestrator;
   ResearchWorkspaceState _state = const WorkspaceInitial();
@@ -41,6 +44,10 @@ class ResearchWorkspaceProvider extends ChangeNotifier {
   }
 
   ResearchWorkspaceState get state => _state;
+
+  /// Returns a derived ResearchProductRegistry inventory for the current workspace state.
+  ResearchProductRegistry get productRegistry =>
+      ResearchProductRegistryFactory.fromWorkspace(this);
 
   // Authoritative data getters (derived from state to prevent stale access)
   ResearchSession? get currentSession {
