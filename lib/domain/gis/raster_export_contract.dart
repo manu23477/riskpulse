@@ -21,6 +21,8 @@ enum RasterExportErrorType {
   invalidRequest,
   unsupportedFormat,
   missingRasterData,
+  unsupportedCrs,
+  unsupportedNumericPolicy,
   exportFailed,
 }
 

@@ -1,10 +1,16 @@
+import 'dart:typed_data';
 import 'package:riskpulse/domain/gis/raster_export_contract.dart';
 import 'package:riskpulse/domain/gis/research_product.dart';
+import 'package:riskpulse/data/services/geotiff_writer.dart';
 
 /// Platform-independent service contract for validating and coordinating raster exports.
 ///
-/// This service performs ZERO GIS calculations, ZERO file serialization, and ZERO I/O.
+/// This service performs ZERO GIS calculations, ZERO file filesystem I/O, and ZERO UI operations.
 class RasterExportService {
+  final GeoTiffWriter _writer;
+
+  RasterExportService({GeoTiffWriter? writer})
+      : _writer = writer ?? GeoTiffWriter();
 
   /// Validates a [RasterExportRequest] against the authoritative research product state.
   ///
@@ -68,9 +74,63 @@ class RasterExportService {
       );
     }
 
-    // 5. Valid contract request
+    // 5. Dimension integrity check
+    if (raster.width <= 0 || raster.height <= 0 || raster.values.length != raster.width * raster.height) {
+      return RasterExportResult.failure(
+        request: request,
+        error: RasterExportError(
+          type: RasterExportErrorType.invalidRequest,
+          message: 'Product "${product.id}" has invalid raster dimensions or buffer length (${raster.width}x${raster.height}, len: ${raster.values.length}).',
+          productId: product.id,
+        ),
+      );
+    }
+
+    // 6. Valid contract request
     return RasterExportResult.success(
       request: request,
     );
+  }
+
+  /// Executes raster export for a valid [RasterExportRequest], returning encoded bytes on success.
+  RasterExportResult export(RasterExportRequest request) {
+    final validation = validateRequest(request);
+    if (!validation.isSuccess) {
+      return validation;
+    }
+
+    final raster = request.authoritativeRaster!;
+
+    try {
+      if (request.format == RasterExportFormat.geoTiff) {
+        final Uint8List bytes = _writer.encode(
+          raster,
+          numericPolicy: request.numericPolicy,
+          description: '${request.product.name} (${request.product.id})',
+        );
+        return RasterExportResult.success(
+          request: request,
+          bytes: bytes,
+        );
+      } else {
+        return RasterExportResult.failure(
+          request: request,
+          error: RasterExportError(
+            type: RasterExportErrorType.unsupportedFormat,
+            message: 'Unsupported export format: ${request.format.name}.',
+            productId: request.product.id,
+          ),
+        );
+      }
+    } catch (e) {
+      return RasterExportResult.failure(
+        request: request,
+        error: RasterExportError(
+          type: RasterExportErrorType.exportFailed,
+          message: 'Raster export encoding failed: $e',
+          productId: request.product.id,
+        ),
+      );
+    }
   }
 }
