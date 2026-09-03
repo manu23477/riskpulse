@@ -129,6 +129,20 @@ void main() {
       expect(failedState.error, contains('Simulated Hydro Failure'));
       expect(failedState.lastKnownSession, isNotNull, reason: 'Failure should preserve last known session');
     });
+
+    test('testGenuineDemRequirement: inputDem management without fabrication', () {
+      expect(provider.inputDem, isNull);
+
+      final realDem = RasterData(
+        width: 3, height: 3, cellWidth: 0.1, cellHeight: 0.1,
+        origin: const GeoLocation(latitude: 31, longitude: 77),
+        crs: CoordinateReferenceSystem.wgs84,
+        values: [100, 100, 100, 90, 80, 90, 100, 100, 100],
+      );
+
+      provider.setInputDem(realDem);
+      expect(provider.inputDem, equals(realDem));
+    });
   });
 }
 

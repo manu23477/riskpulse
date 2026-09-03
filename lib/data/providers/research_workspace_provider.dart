@@ -25,6 +25,7 @@ class ResearchWorkspaceProvider extends ChangeNotifier {
   List<IdentifyResult> _lastIdentifyResults = [];
   GeoLocation? _activePourPoint;
   GeoLocation? _snappedPourPoint;
+  RasterData? _inputDem;
 
   ResearchWorkspaceProvider({ResearchWorkflowOrchestrator? orchestrator}) 
       : _orchestrator = orchestrator ?? _createDefaultOrchestrator();
@@ -88,6 +89,25 @@ class ResearchWorkspaceProvider extends ChangeNotifier {
   List<IdentifyResult> get lastIdentifyResults => _lastIdentifyResults;
   GeoLocation? get activePourPoint => _activePourPoint;
   GeoLocation? get snappedPourPoint => _snappedPourPoint;
+
+  RasterData? get inputDem => _inputDem ?? _extractDemFromSession();
+
+  void setInputDem(RasterData dem) {
+    _inputDem = dem;
+    notifyListeners();
+  }
+
+  RasterData? _extractDemFromSession() {
+    final session = currentSession;
+    if (session == null) return null;
+    for (final layer in session.layers) {
+      final raster = layer.metadata['raster_data'];
+      if (raster is RasterData && layer.type == GisLayerType.terrain) {
+        return raster;
+      }
+    }
+    return null;
+  }
 
   void initializeSession(String title, MapExtent extent) {
     _state = WorkspaceConfigured(extent);
@@ -207,5 +227,6 @@ class ResearchWorkspaceProvider extends ChangeNotifier {
     _lastIdentifyResults = [];
     _activePourPoint = null;
     _snappedPourPoint = null;
+    _inputDem = null;
   }
 }

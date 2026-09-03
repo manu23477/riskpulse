@@ -137,6 +137,35 @@ class _ResearchGisScreenState extends State<ResearchGisScreen> {
     );
   }
 
+  void _executeAnalysis(ResearchWorkspaceProvider workspace) {
+    final dem = workspace.inputDem;
+    final pourPoint = workspace.snappedPourPoint ?? workspace.activePourPoint;
+
+    if (dem == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('DEM required: Please load a valid DEM dataset before running analysis.'),
+          behavior: SnackBarBehavior.floating,
+          backgroundColor: Color(0xFF0F172A),
+        ),
+      );
+      return;
+    }
+
+    if (pourPoint == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Pour Point required: Use the Pour Point tool to select an outlet on the map.'),
+          behavior: SnackBarBehavior.floating,
+          backgroundColor: Color(0xFF0F172A),
+        ),
+      );
+      return;
+    }
+
+    workspace.runWorkflow(dem: dem, pourPoint: pourPoint);
+  }
+
   @override
   Widget build(BuildContext context) {
     final workspace = Provider.of<ResearchWorkspaceProvider>(context);
@@ -150,15 +179,10 @@ class _ResearchGisScreenState extends State<ResearchGisScreen> {
         backgroundColor: const Color(0xFF0F172A),
         foregroundColor: Colors.white,
         actions: [
+          _aoiButton(workspace),
           _toolButton(Icons.info_outline, ResearchTool.identify, 'Identify'),
           _toolButton(Icons.ads_click, ResearchTool.pourPoint, 'Pour Point'),
-          IconButton(
-            icon: const Icon(Icons.crop_free),
-            onPressed: _captureStudyArea,
-            tooltip: 'Capture Study Area',
-          ),
-          if (workspace.state is WorkspaceConfigured)
-            _runButton(workspace),
+          _runButton(workspace),
           const SizedBox(width: 8),
         ],
       ),
@@ -341,6 +365,32 @@ class _ResearchGisScreenState extends State<ResearchGisScreen> {
     return Colors.black;
   }
 
+  Widget _aoiButton(ResearchWorkspaceProvider workspace) {
+    final isConfigured = workspace.state is WorkspaceConfigured || workspace.state is WorkspaceReady;
+    return Padding(
+      padding: const EdgeInsets.only(right: 4.0),
+      child: TextButton.icon(
+        style: TextButton.styleFrom(
+          foregroundColor: isConfigured ? Colors.greenAccent : Colors.white70,
+        ),
+        onPressed: _captureStudyArea,
+        icon: Icon(
+          isConfigured ? Icons.check_box_outlined : Icons.crop_free,
+          size: 18,
+          color: isConfigured ? Colors.greenAccent : Colors.white,
+        ),
+        label: Text(
+          isConfigured ? 'AOI SET' : 'SET AOI',
+          style: TextStyle(
+            fontSize: 11,
+            fontWeight: FontWeight.bold,
+            color: isConfigured ? Colors.greenAccent : Colors.white,
+          ),
+        ),
+      ),
+    );
+  }
+
   Widget _toolButton(IconData icon, ResearchTool tool, String label) {
     final isSelected = _activeTool == tool;
     return IconButton(
@@ -351,26 +401,47 @@ class _ResearchGisScreenState extends State<ResearchGisScreen> {
   }
 
   Widget _runButton(ResearchWorkspaceProvider workspace) {
+    final isConfigured = workspace.state is WorkspaceConfigured ||
+        workspace.state is WorkspaceReady ||
+        workspace.state is WorkspaceFailed;
+    final isProcessing = workspace.state is WorkspaceProcessing;
+    final hasInputs = workspace.inputDem != null &&
+        (workspace.snappedPourPoint != null || workspace.activePourPoint != null);
+
     return Padding(
       padding: const EdgeInsets.only(right: 8.0),
-      child: TextButton.icon(
-        style: TextButton.styleFrom(backgroundColor: Colors.cyanAccent.withValues(alpha: 0.1)),
-        onPressed: () {
-          final dem = RasterData(
-            width: 3, height: 3, cellWidth: 30, cellHeight: 30,
-            origin: const GeoLocation(latitude: 31, longitude: 77),
-            crs: CoordinateReferenceSystem.wgs84,
-            values: [1000, 1000, 1000, 900, 800, 900, 1000, 1000, 1000],
-          );
-          workspace.runWorkflow(
-            dem: dem, 
-            pourPoint: const GeoLocation(latitude: 30.99, longitude: 77.0),
-          );
-        },
-        icon: const Icon(Icons.play_arrow, color: Colors.cyanAccent, size: 18),
-        label: const Text(
-          'RUN ANALYSIS', 
-          style: TextStyle(color: Colors.cyanAccent, fontSize: 11, fontWeight: FontWeight.bold)
+      child: ElevatedButton.icon(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: isProcessing
+              ? Colors.orange.shade800
+              : (hasInputs ? Colors.tealAccent.shade700 : Colors.grey.shade800),
+          foregroundColor: Colors.white,
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+          elevation: isConfigured ? 2 : 0,
+        ),
+        onPressed: isProcessing
+            ? null
+            : (isConfigured ? () => _executeAnalysis(workspace) : null),
+        icon: isProcessing
+            ? const SizedBox(
+                width: 14,
+                height: 14,
+                child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white),
+              )
+            : Icon(
+                Icons.play_arrow,
+                size: 18,
+                color: isConfigured ? Colors.white : Colors.white38,
+              ),
+        label: Text(
+          isProcessing
+              ? 'RUNNING...'
+              : (!hasInputs && isConfigured ? 'DEM / POUR POINT REQ.' : 'RUN ANALYSIS'),
+          style: TextStyle(
+            fontSize: 11,
+            fontWeight: FontWeight.bold,
+            color: isConfigured ? Colors.white : Colors.white38,
+          ),
         ),
       ),
     );

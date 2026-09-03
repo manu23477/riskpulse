@@ -76,6 +76,27 @@ void main() {
     expect(find.text('Analytical Workflow'), findsOneWidget);
   });
 
+  testWidgets('ResearchGisScreen should allow AOI capture and require genuine DEM and Pour Point for analysis', (tester) async {
+    tester.view.physicalSize = const Size(1200, 800);
+    tester.view.devicePixelRatio = 1.0;
+
+    final provider = ResearchWorkspaceProvider();
+    await tester.pumpWidget(createTestWidget(provider: provider));
+
+    // 1. Initial state: SET AOI button present
+    expect(find.text('SET AOI'), findsOneWidget);
+
+    // 2. Click SET AOI -> state becomes WorkspaceConfigured
+    await tester.tap(find.text('SET AOI'));
+    await tester.pumpAndSettle();
+
+    // 3. Verify AOI SET indicator appears and DEM / POUR POINT REQ. button label is shown
+    expect(find.text('AOI SET'), findsOneWidget);
+    expect(find.text('DEM / POUR POINT REQ.'), findsOneWidget);
+
+    addTearDown(tester.view.resetPhysicalSize);
+  });
+
   testWidgets('ResearchGisScreen should show empty state in info panel', (tester) async {
     await tester.pumpWidget(createTestWidget());
     expect(find.text('No Active Analysis'), findsOneWidget);
