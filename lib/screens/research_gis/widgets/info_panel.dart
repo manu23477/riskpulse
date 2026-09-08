@@ -8,6 +8,7 @@ import '../../../domain/gis/research_workspace_state.dart';
 import '../../../data/services/cartographic_service.dart';
 import '../../../data/services/metadata_factory.dart';
 import 'metadata/metadata_card.dart';
+import 'products/research_products_card.dart';
 
 class ResearchInfoPanel extends StatelessWidget {
   const ResearchInfoPanel({super.key});
@@ -35,103 +36,66 @@ class ResearchInfoPanel extends StatelessWidget {
             ),
           ),
           Expanded(
-            child: _buildStateLayer(workspace, state, cartoService, metadataFactory),
+            child: _buildInfoContent(workspace, state, cartoService, metadataFactory),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildStateLayer(
-    ResearchWorkspaceProvider workspace, 
-    ResearchWorkspaceState state,
-    CartographicService cartoService,
-    MetadataFactory metadataFactory,
-  ) {
-    if (state is WorkspaceInitial) {
-      return _buildEmptyState();
-    }
-    if (state is WorkspaceConfigured) {
-      return _buildMessageState(
-        Icons.settings_suggest_outlined,
-        'Study Area Configured',
-        'Study area captured. Click "Run Analysis" to generate hydrological results.',
-      );
-    }
-    if (state is WorkspaceProcessing) {
-      return _buildMessageState(
-        Icons.sync,
-        'Analysis in Progress',
-        'Synthesizing terrain and hydrological data. Please wait...',
-        isSpinning: true,
-      );
-    }
-    
-    // Ready or Failed (which may show last known good data)
-    return _buildInfoContent(workspace, cartoService, metadataFactory);
-  }
-
-  Widget _buildEmptyState() {
-    return _buildMessageState(
-      Icons.analytics_outlined,
-      'No Active Analysis',
-      'Select a study area and run analysis to see results here.',
-    );
-  }
-
-  Widget _buildMessageState(IconData icon, String title, String message, {bool isSpinning = false}) {
-    return Center(
-      child: SingleChildScrollView(
-        padding: const EdgeInsets.all(40),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            if (isSpinning)
-              const SizedBox(width: 48, height: 48, child: CircularProgressIndicator(strokeWidth: 2))
-            else
-              Icon(icon, size: 48, color: Colors.black12),
-            const SizedBox(height: 16),
-            Text(
-              title,
-              style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.black38),
-            ),
-            const SizedBox(height: 8),
-            Text(
-              message,
-              textAlign: TextAlign.center,
-              style: const TextStyle(fontSize: 12, color: Colors.black26),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
   Widget _buildInfoContent(
-    ResearchWorkspaceProvider workspace, 
+    ResearchWorkspaceProvider workspace,
+    ResearchWorkspaceState state,
     CartographicService cartoService,
     MetadataFactory metadataFactory,
   ) {
     final session = workspace.currentSession;
     final composition = workspace.activeComposition;
-    final state = workspace.state;
-    
-    if (session == null) return _buildEmptyState();
-
     final results = workspace.lastIdentifyResults;
-    final legends = cartoService.generateConsolidatedLegend(session.layers);
-    
+
+    final legends = session != null ? cartoService.generateConsolidatedLegend(session.layers) : <LegendDefinition>[];
+
     ResearchMetadataRecord? metadataRecord;
-    if (composition != null) {
+    if (session != null && composition != null) {
       metadataRecord = metadataFactory.createRecord(session: session, composition: composition);
     }
 
     return ListView(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       children: [
-        if (state is WorkspaceFailed)
+        // 1. Workspace State Status Banners
+        if (state is WorkspaceInitial) ...[
+  _buildStateBanner(
+    icon: Icons.analytics_outlined,
+    title: 'Workspace Initialized',
+    message: 'Capture an AOI to begin hydrological research.',
+    color: Colors.blue,
+  ),
+  _buildNoActiveAnalysisState(),
+]
+        else if (state is WorkspaceConfigured)
+          _buildStateBanner(
+            icon: Icons.settings_suggest_outlined,
+            title: 'Study Area Configured',
+            message: 'Study area captured. Click "Run Analysis" to generate hydrological results.',
+            color: Colors.blue,
+          )
+        else if (state is WorkspaceProcessing)
+          _buildStateBanner(
+            icon: Icons.sync,
+            title: 'Analysis in Progress',
+            message: 'Synthesizing terrain and hydrological data. Please wait...',
+            color: Colors.blue,
+            isSpinning: true,
+          )
+        else if (state is WorkspaceFailed)
           _buildErrorBanner(state.error),
 
+        // 2. Complete Research Products Catalog (Always visible across all states)
+        ResearchProductsCard(registry: workspace.productRegistry),
+        const SizedBox(height: 16),
+
+        // 3. Identified Point Inspection Values
         if (results.isNotEmpty) ...[
           _infoCard('Identified Values', [
             if (workspace.lastIdentifyPoint != null)
@@ -141,11 +105,13 @@ class ResearchInfoPanel extends StatelessWidget {
           const SizedBox(height: 16),
         ],
 
+        // 4. Research Metadata Record
         if (metadataRecord != null) ...[
           MetadataCard(record: metadataRecord),
           const SizedBox(height: 16),
         ],
 
+        // 5. Consolidated Map Legend
         if (legends.isNotEmpty) ...[
           _infoCard('Map Legend', [
             ...legends.map((ld) => _buildLegendBlock(ld)),
@@ -153,15 +119,94 @@ class ResearchInfoPanel extends StatelessWidget {
           const SizedBox(height: 16),
         ],
 
-        _infoCard('Morphometric Indices', [
-          _infoRow('Watershed Area', session.morphometricResult != null ? '${session.morphometricResult!.areaKm2.toStringAsFixed(2)} km²' : '-- km²'),
-          _infoRow('Total Stream Length', session.morphometricResult != null ? '${session.morphometricResult!.totalStreamLengthByOrder.values.fold(0.0, (a, b) => a + b).toStringAsFixed(2)} km' : '-- km'),
-          _infoRow('Drainage Density', session.morphometricResult != null ? '${session.morphometricResult!.drainageDensity.toStringAsFixed(2)} km/km²' : '-- km/km²'),
-        ]),
-        const SizedBox(height: 20),
+        // 6. Quantitative Morphometric Indices
+        if (session?.morphometricResult != null) ...[
+          _infoCard('Morphometric Indices', [
+            _infoRow('Watershed Area', '${session!.morphometricResult!.areaKm2.toStringAsFixed(2)} km²'),
+            _infoRow('Total Stream Length', '${session.morphometricResult!.totalStreamLengthByOrder.values.fold(0.0, (a, b) => a + b).toStringAsFixed(2)} km'),
+            _infoRow('Drainage Density', '${session.morphometricResult!.drainageDensity.toStringAsFixed(2)} km/km²'),
+          ]),
+          const SizedBox(height: 20),
+        ],
       ],
     );
   }
+
+  Widget _buildStateBanner({
+    required IconData icon,
+    required String title,
+    required String message,
+    required Color color,
+    bool isSpinning = false,
+  }) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 16),
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: color.withValues(alpha: 0.05),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: color.withValues(alpha: 0.2)),
+      ),
+      child: Row(
+        children: [
+          if (isSpinning)
+            const SizedBox(width: 18, height: 18, child: CircularProgressIndicator(strokeWidth: 2))
+          else
+            Icon(icon, size: 18, color: color),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold, color: color),
+                ),
+                const SizedBox(height: 2),
+                Text(
+                  message,
+                  style: const TextStyle(fontSize: 10, color: Colors.black54),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+Widget _buildNoActiveAnalysisState() {
+  return Container(
+    margin: const EdgeInsets.only(bottom: 16),
+    padding: const EdgeInsets.all(16),
+    decoration: BoxDecoration(
+      color: Colors.white,
+      borderRadius: BorderRadius.circular(16),
+      border: Border.all(
+        color: Colors.black.withValues(alpha: 0.06),
+      ),
+    ),
+    child: const Row(
+      children: [
+        Icon(
+          Icons.analytics_outlined,
+          size: 18,
+          color: Colors.black38,
+        ),
+        SizedBox(width: 10),
+        Expanded(
+          child: Text(
+            'No Active Analysis',
+            style: TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.w700,
+              color: Colors.black54,
+            ),
+          ),
+        ),
+      ],
+    ),
+  );
+}
 
   Widget _buildErrorBanner(String error) {
     return Container(
@@ -185,7 +230,7 @@ class ResearchInfoPanel extends StatelessWidget {
           const SizedBox(height: 4),
           Text(error, style: const TextStyle(fontSize: 10, color: Colors.redAccent)),
           const Divider(),
-          const Text('Displaying last known valid results for reference.', style: TextStyle(fontSize: 9, fontStyle: FontStyle.italic, color: Colors.black45)),
+          const Text('Displaying catalog and last known valid results for reference.', style: TextStyle(fontSize: 9, fontStyle: FontStyle.italic, color: Colors.black45)),
         ],
       ),
     );

@@ -9,6 +9,7 @@ import 'package:riskpulse/domain/gis/research_workspace_state.dart';
 import 'package:riskpulse/domain/gis/processing_state.dart';
 import 'package:riskpulse/data/services/research_workflow_orchestrator.dart';
 import 'package:riskpulse/domain/gis/raster_data.dart';
+import 'package:riskpulse/domain/gis/multispectral_product.dart';
 
 import 'package:riskpulse/data/services/terrain_analysis_service.dart';
 import 'package:riskpulse/data/services/hydrological_analysis_service.dart';
@@ -29,6 +30,13 @@ class ResearchWorkspaceProvider extends ChangeNotifier {
   GeoLocation? _activePourPoint;
   GeoLocation? _snappedPourPoint;
   RasterData? _inputDem;
+
+  // Remote Sensing Workspace State
+  MultispectralProduct? _multispectralProduct;
+  RasterData? _ndviRaster;
+  RasterData? _ndwiRaster;
+  bool _isRemoteSensingProcessing = false;
+  String? _remoteSensingError;
 
   ResearchWorkspaceProvider({ResearchWorkflowOrchestrator? orchestrator}) 
       : _orchestrator = orchestrator ?? _createDefaultOrchestrator();
@@ -99,8 +107,42 @@ class ResearchWorkspaceProvider extends ChangeNotifier {
 
   RasterData? get inputDem => _inputDem ?? _extractDemFromSession();
 
+  // Remote Sensing Getters
+  MultispectralProduct? get multispectralProduct => _multispectralProduct;
+  RasterData? get ndviRaster => _ndviRaster;
+  RasterData? get ndwiRaster => _ndwiRaster;
+  bool get isRemoteSensingProcessing => _isRemoteSensingProcessing;
+  String? get remoteSensingError => _remoteSensingError;
+
   void setInputDem(RasterData dem) {
     _inputDem = dem;
+    notifyListeners();
+  }
+
+  void setMultispectralProduct(MultispectralProduct? product) {
+    _multispectralProduct = product;
+    _remoteSensingError = null;
+    notifyListeners();
+  }
+
+  void setNdviRaster(RasterData? raster) {
+    _ndviRaster = raster;
+    notifyListeners();
+  }
+
+  void setNdwiRaster(RasterData? raster) {
+    _ndwiRaster = raster;
+    notifyListeners();
+  }
+
+  void setRemoteSensingProcessing(bool processing) {
+    _isRemoteSensingProcessing = processing;
+    notifyListeners();
+  }
+
+  void setRemoteSensingError(String? error) {
+    _remoteSensingError = error;
+    _isRemoteSensingProcessing = false;
     notifyListeners();
   }
 
@@ -235,5 +277,10 @@ class ResearchWorkspaceProvider extends ChangeNotifier {
     _activePourPoint = null;
     _snappedPourPoint = null;
     _inputDem = null;
+    _multispectralProduct = null;
+    _ndviRaster = null;
+    _ndwiRaster = null;
+    _isRemoteSensingProcessing = false;
+    _remoteSensingError = null;
   }
 }

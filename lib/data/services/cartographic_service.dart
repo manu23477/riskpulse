@@ -40,10 +40,30 @@ class CartographicService {
     final List<LegendEntry> entries = [];
     final style = layer.style;
     final String? units = layer.metadata['units']?.toString();
+    final String? compositeType = layer.metadata['compositeType']?.toString();
+    final String? analysisType = layer.metadata['analysis_type']?.toString();
 
-    if (style is RasterStyle) {
+    // 1. Remote Sensing Composite Legend Entries
+    if (compositeType != null) {
+      if (compositeType == 'B4/B3/B2') {
+        entries.add(const LegendEntry(label: 'Red Band: B4 (Red 665nm)', colorHex: '#FF0000', type: LegendEntryType.color));
+        entries.add(const LegendEntry(label: 'Green Band: B3 (Green 560nm)', colorHex: '#00FF00', type: LegendEntryType.color));
+        entries.add(const LegendEntry(label: 'Blue Band: B2 (Blue 490nm)', colorHex: '#0000FF', type: LegendEntryType.color));
+      } else if (compositeType == 'B8/B4/B3') {
+        entries.add(const LegendEntry(label: 'Red Band: B8 (NIR 842nm)', colorHex: '#FF0000', type: LegendEntryType.color));
+        entries.add(const LegendEntry(label: 'Green Band: B4 (Red 665nm)', colorHex: '#00FF00', type: LegendEntryType.color));
+        entries.add(const LegendEntry(label: 'Blue Band: B3 (Green 560nm)', colorHex: '#0000FF', type: LegendEntryType.color));
+      }
+    } else if (analysisType == 'NDVI') {
+      entries.add(const LegendEntry(label: 'Dense Canopy (+1.0)', colorHex: '#006400', type: LegendEntryType.gradient));
+      entries.add(const LegendEntry(label: 'Healthy Greenery (+0.5)', colorHex: '#32CD32', type: LegendEntryType.gradient));
+      entries.add(const LegendEntry(label: 'Bare Soil / Water (0.0)', colorHex: '#8B4513', type: LegendEntryType.gradient));
+    } else if (analysisType == 'NDWI') {
+      entries.add(const LegendEntry(label: 'Deep Water (+1.0)', colorHex: '#00008B', type: LegendEntryType.gradient));
+      entries.add(const LegendEntry(label: 'Water Body (+0.3)', colorHex: '#4169E1', type: LegendEntryType.gradient));
+      entries.add(const LegendEntry(label: 'Dry Land (0.0)', colorHex: '#D3D3D3', type: LegendEntryType.gradient));
+    } else if (style is RasterStyle) {
       if (style.isClassified) {
-        // 1. Classified Raster Legend
         final scheme = style.classificationScheme!;
         for (var b in scheme.breaks) {
           entries.add(LegendEntry(
@@ -53,7 +73,6 @@ class CartographicService {
           ));
         }
       } else if (style.isContinuous) {
-        // 2. Continuous Raster Legend
         final ramp = style.colorRamp!;
         if (ramp.stops.isNotEmpty) {
           entries.add(LegendEntry(
@@ -72,8 +91,6 @@ class CartographicService {
       }
     } else if (style is VectorStyle) {
       if (style.useStrahlerWidth) {
-        // 3. Hydrological Hierarchy Legend (Strahler)
-        // We show examples for orders 1-4 as standard
         for (int order = 1; order <= 4; order++) {
           final dummySeg = StreamSegment(
             id: 'dummy', upstreamNodeId: 'u', downstreamNodeId: 'd',
@@ -91,7 +108,6 @@ class CartographicService {
           ));
         }
       } else {
-        // 4. Constant Vector Style
         entries.add(LegendEntry(
           label: layer.name,
           colorHex: style.strokeColor,
@@ -105,7 +121,7 @@ class CartographicService {
     if (layer.type == GisLayerType.research || layer.type == GisLayerType.terrain) {
       entries.add(const LegendEntry(
         label: 'No Data',
-        colorHex: '#00000000', // Transparent
+        colorHex: '#00000000',
         type: LegendEntryType.symbol,
         symbolIcon: 'empty',
       ));
