@@ -1,3 +1,4 @@
+import 'package:riskpulse/domain/location/geo_location.dart';
 import 'package:riskpulse/domain/gis/analytical_step.dart';
 import 'package:riskpulse/domain/forecasting/forecasting.dart';
 import 'package:riskpulse/data/services/forecasting/hazard_exposure_intersection_engine.dart';
@@ -49,19 +50,24 @@ class ImpactAssessmentEngine {
       if (vulnerabilityProfile != null) {
         final vul = vulnerabilityProfile.vulnerabilityScore;
         impactScore = (vul * (totalExposed > 100 ? 1.0 : totalExposed / 100.0)).clamp(0.0, 1.0);
-      } else {
-        impactScore = (totalExposed > 100 ? 0.80 : totalExposed / 125.0).clamp(0.0, 1.0);
-      }
 
-      if (impactScore >= 0.75) {
-        severityLabel = 'Severe';
-      } else if (impactScore >= 0.50) {
-        severityLabel = 'High';
-      } else if (impactScore >= 0.25) {
-        severityLabel = 'Moderate';
+        if (impactScore >= 0.75) {
+          severityLabel = 'Severe';
+        } else if (impactScore >= 0.50) {
+          severityLabel = 'High';
+        } else if (impactScore >= 0.25) {
+          severityLabel = 'Moderate';
+        } else {
+          severityLabel = 'Low';
+        }
       } else {
-        severityLabel = 'Low';
+        // RECTIFICATION (Stage 3.8-R): When vulnerability is UNKNOWN, do NOT invent fallback impact scores.
+        impactScore = null;
+        severityLabel = 'UNKNOWN / NOT ESTIMATED';
       }
+    } else {
+      impactScore = 0.0;
+      severityLabel = 'Negligible';
     }
 
     final now = DateTime.now().toUtc();
@@ -103,12 +109,16 @@ class ImpactAssessmentEngine {
       horizon: horizon,
       location: hazardLocation,
       uncertainty: uncertainty,
-      scientificStatus: ScientificValidationStatus.provisionalSoftwareOnly,
+      scientificStatus: vulnerabilityProfile != null
+          ? ScientificValidationStatus.provisionalSoftwareOnly
+          : ScientificValidationStatus.notValidatedDataUnavailable,
       economicImpactEstimate: 'NOT AVAILABLE',
       provenanceSteps: [step, intersection.provenanceStep],
       metadata: {
         'spatialRelationshipLabel': intersection.spatialRelationshipLabel,
         'hasVulnerabilityProfile': vulnerabilityProfile != null,
+        'vulnerabilityStatus': vulnerabilityProfile != null ? 'KNOWN' : 'UNKNOWN',
+        'impactStatus': impactScore != null ? 'ESTIMATED' : 'NOT_ESTIMATED',
       },
     );
   }

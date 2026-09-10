@@ -14,9 +14,7 @@ class InputValidationResult {
       : isValid = true,
         issues = const [];
 
-  const InputValidationResult.failure(List<String> issues)
-      : isValid = false,
-        issues = issues;
+  const InputValidationResult.failure(this.issues) : isValid = false;
 }
 
 /// Validator enforcing structural, temporal, spatial, and security invariants on [ForecastInput].

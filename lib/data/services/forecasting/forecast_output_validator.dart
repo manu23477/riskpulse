@@ -14,9 +14,7 @@ class OutputValidationResult {
       : isValid = true,
         issues = const [];
 
-  const OutputValidationResult.failure(List<String> issues)
-      : isValid = false,
-        issues = issues;
+  const OutputValidationResult.failure(this.issues) : isValid = false;
 }
 
 /// Validator enforcing scientific, temporal, spatial, and probability invariants on [HazardForecast] outputs.

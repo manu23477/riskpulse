@@ -1,8 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:riskpulse/domain/location/geo_location.dart';
-import 'package:riskpulse/domain/gis/spatial_concepts.dart';
-import 'package:riskpulse/domain/gis/data_source_record.dart';
-import 'package:riskpulse/domain/gis/analytical_step.dart';
 import 'package:riskpulse/domain/forecasting/forecasting.dart';
 
 void main() {

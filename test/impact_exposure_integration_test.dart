@@ -232,6 +232,35 @@ void main() {
         expect(assessment.economicImpactEstimate, equals('NOT AVAILABLE'));
       });
 
+      test('UNKNOWN-VULNERABILITY TEST: when vulnerability is null, returns UNKNOWN severity while preserving valid exposure quantity', () {
+        final assessment = impactEngine.assessImpact(
+          assessmentId: 'impact-mandi-rectified-1',
+          hazardId: 'fcst-ls-mandi-5',
+          hazardCategory: 'Landslide',
+          hazardLocation: mandiLocation,
+          horizon: horizon,
+          uncertainty: ForecastUncertainty(),
+          exposureElements: [popElement],
+          exposureDatasetId: exposureDataset.datasetId,
+          vulnerabilityProfile: null, // UNKNOWN Vulnerability -> MUST NOT generate fallback score!
+        );
+
+        // ASSERT: Vulnerability is unknown and impact score is null / UNKNOWN / NOT ESTIMATED
+        expect(assessment.isVulnerabilityUnknown, isTrue);
+        expect(assessment.isImpactEstimated, isFalse);
+        expect(assessment.estimatedImpactScore, isNull);
+        expect(assessment.impactSeverityLabel, equals('UNKNOWN / NOT ESTIMATED'));
+        expect(assessment.scientificStatus, equals(ScientificValidationStatus.notValidatedDataUnavailable));
+        expect(assessment.metadata['vulnerabilityStatus'], equals('UNKNOWN'));
+        expect(assessment.metadata['impactStatus'], equals('NOT_ESTIMATED'));
+
+        // ASSERT: Exposure information remains 100% PRESERVED!
+        expect(assessment.totalExposedQuantity, equals(2500.0));
+        expect(assessment.quantityUnit, equals('persons'));
+        expect(assessment.exposedElementIds, contains('pop-mandi-001'));
+        expect(assessment.location, equals(mandiLocation));
+      });
+
       test('MANDATORY GOVERNANCE TEST: impact assessment DOES NOT mutate RiskMap or create operational hazards', () {
         final assessment = impactEngine.assessImpact(
           assessmentId: 'impact-gov-1',

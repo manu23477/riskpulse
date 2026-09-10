@@ -148,26 +148,16 @@ void main() {
         expect(result.isUnknown, isTrue);
       });
 
-      test('returns UNKNOWN trajectory when time window is inverted or duration <= 0', () {
-        final invalidHorizon = ForecastHorizon(
-          validFrom: t2,
-          validTo: t1, // Inverted!
+      test('ForecastHorizon contract rejects inverted or zero-length time window', () {
+        expect(
+          () => ForecastHorizon(validFrom: t2, validTo: t1),
+          throwsArgumentError,
         );
 
-        final result = engine.evaluateTrajectoryFromValues(
-          trajectoryId: 'traj-eval-time-fail',
-          targetEntityId: 'model-1',
-          entityCategory: 'Landslide',
-          stateVariable: 'exceedance_ratio',
-          initialValue: 0.50,
-          finalValue: 1.20,
-          timeSpan: invalidHorizon,
-          location: mandiLocation,
-          uncertainty: ForecastUncertainty(),
+        expect(
+          () => ForecastHorizon(validFrom: t1, validTo: t1),
+          throwsArgumentError,
         );
-
-        expect(result.direction, RiskTrajectoryDirection.unknown);
-        expect(result.isUnknown, isTrue);
       });
 
       test('handles zero initial baseline correctly (0 -> 5.0 is rising)', () {

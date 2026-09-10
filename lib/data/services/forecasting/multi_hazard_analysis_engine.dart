@@ -51,7 +51,7 @@ class MultiHazardAnalysisEngine {
     );
 
     final evidence = HazardLinkEvidence(
-      evidenceId: 'ev-${relationshipId}-seq',
+      evidenceId: 'ev-$relationshipId-seq',
       sourceType: 'ground_truth_event',
       sourceEntityId: eventA.eventId,
       observationTime: eventA.eventTime,
@@ -123,7 +123,7 @@ class MultiHazardAnalysisEngine {
 
         // Create relationship
         final rel = evaluateTemporalSequence(
-          relationshipId: 'rel-${compoundEventId}-$i',
+          relationshipId: 'rel-$compoundEventId-$i',
           eventA: refEvent,
           eventB: current,
         );

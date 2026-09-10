@@ -1,6 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:riskpulse/domain/location/geo_location.dart';
 import 'package:riskpulse/domain/hazard/hazard.dart';
+import 'package:riskpulse/domain/gis/analytical_step.dart';
 import 'package:riskpulse/domain/forecasting/forecasting.dart';
 import 'package:riskpulse/data/services/forecasting/forecasting_services.dart';
 
@@ -126,14 +127,14 @@ void main() {
       const regressionEngine = RegressionMetricsEngine();
 
       test('computes POD, FAR, CSI, Precision, Recall, F1 with zero-denominator safety', () {
-        const matchingResult = EventMatchingResult(
+        final matchingResult = EventMatchingResult(
           truePositives: 8,
           falsePositives: 2,
           falseNegatives: 2,
           trueNegatives: 80,
-          matchedEvents: [],
-          unmatchedEvents: [],
-          deduplicatedEvents: [],
+          matchedEvents: const [],
+          unmatchedEvents: const [],
+          deduplicatedEvents: const [],
           provenanceStep: AnalyticalStep(name: 'test', timestamp: DateTime.utc(2026)),
         );
 

@@ -104,14 +104,12 @@ class FloodHydrologicalResponseModel implements ForecastModel {
     }
 
     double maxIntensityMmHour = 0.0;
-    double totalRainMm = 0.0;
 
     for (final obs in sortedObs) {
       if (obs.qualityState == 'invalid') {
         throw ArgumentError('Time series contains invalid observations (QC failed ID: ${obs.observationId}).');
       }
       final conv = unitConverter.convertObservation(obs, 'mm');
-      totalRainMm += conv.value;
       if (conv.value > maxIntensityMmHour) {
         maxIntensityMmHour = conv.value;
       }

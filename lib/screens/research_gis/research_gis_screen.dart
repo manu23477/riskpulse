@@ -24,6 +24,7 @@ import 'widgets/info_panel.dart';
 import 'widgets/cartography/scale_bar_widget.dart';
 import 'widgets/cartography/north_arrow_widget.dart';
 import 'widgets/cartography/coordinate_grid_overlay.dart';
+import 'widgets/dem_acquisition_dialog.dart';
 
 enum ResearchTool { identify, pourPoint }
 
@@ -180,6 +181,7 @@ class _ResearchGisScreenState extends State<ResearchGisScreen> {
         foregroundColor: Colors.white,
         actions: [
           _aoiButton(workspace),
+          _loadDemButton(workspace),
           _toolButton(Icons.info_outline, ResearchTool.identify, 'Identify'),
           _toolButton(Icons.ads_click, ResearchTool.pourPoint, 'Pour Point'),
           _runButton(workspace),
@@ -389,6 +391,63 @@ class _ResearchGisScreenState extends State<ResearchGisScreen> {
         ),
       ),
     );
+  }
+
+  Widget _loadDemButton(ResearchWorkspaceProvider workspace) {
+    final hasDem = workspace.inputDem != null;
+    final isAoiSet = workspace.state is WorkspaceConfigured ||
+        workspace.state is WorkspaceReady ||
+        workspace.state is WorkspaceFailed;
+
+    return Padding(
+      padding: const EdgeInsets.only(right: 4.0),
+      child: TextButton.icon(
+        key: const Key('load-dem-appbar-btn'),
+        style: TextButton.styleFrom(
+          foregroundColor: hasDem ? Colors.tealAccent : Colors.white70,
+        ),
+        onPressed: isAoiSet ? () => _openDemAcquisitionDialog(workspace) : null,
+        icon: Icon(
+          hasDem ? Icons.terrain : Icons.terrain_outlined,
+          size: 18,
+          color: hasDem ? Colors.tealAccent : (isAoiSet ? Colors.white : Colors.white38),
+        ),
+        label: Text(
+          hasDem ? 'DEM ATTACHED' : 'LOAD DEM',
+          style: TextStyle(
+            fontSize: 11,
+            fontWeight: FontWeight.bold,
+            color: hasDem ? Colors.tealAccent : (isAoiSet ? Colors.white : Colors.white38),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Future<void> _openDemAcquisitionDialog(ResearchWorkspaceProvider workspace) async {
+    final bounds = _researchMapController.camera.visibleBounds;
+    final aoiExtent = MapExtent(
+      southWest: GeoLocation(latitude: bounds.southWest.latitude, longitude: bounds.southWest.longitude),
+      northEast: GeoLocation(latitude: bounds.northEast.latitude, longitude: bounds.northEast.longitude),
+    );
+
+    final RasterData? dem = await showDialog<RasterData>(
+      context: context,
+      builder: (ctx) => DemAcquisitionDialog(aoiExtent: aoiExtent),
+    );
+
+    if (dem != null) {
+      workspace.setInputDem(dem);
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('DEM attached to research workspace: ${dem.width}x${dem.height} cells (${dem.crs.code}).'),
+            behavior: SnackBarBehavior.floating,
+            backgroundColor: Colors.tealAccent.shade700,
+          ),
+        );
+      }
+    }
   }
 
   Widget _toolButton(IconData icon, ResearchTool tool, String label) {

@@ -1,6 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:riskpulse/domain/location/geo_location.dart';
-import 'package:riskpulse/domain/gis/spatial_concepts.dart';
 import 'package:riskpulse/domain/forecasting/forecasting.dart';
 import 'package:riskpulse/data/services/forecasting/forecasting_services.dart';
 
@@ -29,7 +28,7 @@ void main() {
         expect(obs.parameterId, 'rainfall_mm');
         expect(obs.value, 18.5);
         expect(obs.unit, 'mm');
-        expect(obs.qualityState, 'valid');
+        expect(obs.qualityState, 'observed');
         expect(obs.dataSource?.provider, 'MandiGaugeNet');
       });
 

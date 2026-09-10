@@ -90,7 +90,7 @@ class OptInImputationEngine {
           );
 
           final imputedObs = HazardObservation(
-            observationId: 'imputed-${newTimeSeriesId}-${fillTime.millisecondsSinceEpoch}',
+            observationId: 'imputed-$newTimeSeriesId-${fillTime.millisecondsSinceEpoch}',
             parameterId: series.parameterId,
             value: imputedValue,
             unit: series.unit,

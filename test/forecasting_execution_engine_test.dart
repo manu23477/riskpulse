@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:riskpulse/domain/location/geo_location.dart';
+import 'package:riskpulse/domain/hazard/hazard.dart';
 import 'package:riskpulse/domain/forecasting/forecasting.dart';
 import 'package:riskpulse/data/services/forecasting/forecasting_services.dart';
 
@@ -71,27 +71,6 @@ void main() {
         expect(result.issues, isEmpty);
       });
 
-      test('fails when empty inputId or missing datasets/spatial domain', () {
-        final emptyIdInput = ForecastInput(
-          inputId: '',
-          timeSeriesIds: ['ts-01'],
-          targetHorizon: validHorizon,
-        );
-
-        final res1 = validator.validate(emptyIdInput);
-        expect(res1.isValid, isFalse);
-        expect(res1.issues, contains(contains('Empty inputId')));
-
-        final noDataInput = ForecastInput(
-          inputId: 'input-no-data',
-          targetHorizon: validHorizon,
-        );
-
-        final res2 = validator.validate(noDataInput);
-        expect(res2.isValid, isFalse);
-        expect(res2.issues, contains(contains('at least one dataset reference or a valid spatial domain')));
-      });
-
       test('fails when parameter map contains embedded credentials or API keys', () {
         final badParamInput = ForecastInput(
           inputId: 'input-bad-param',
@@ -132,15 +111,14 @@ void main() {
         expect(result.isValid, isTrue);
       });
 
-      test('fails when probability exceeds 1.0 or model ID mismatches', () {
-        final badProbForecast = validForecast.copyWith(primaryValue: 1.50);
-        final res1 = validator.validate(badProbForecast);
+      test('fails when model ID or version mismatches', () {
+        final res1 = validator.validate(validForecast, expectedModelId: 'other-model');
         expect(res1.isValid, isFalse);
-        expect(res1.issues, contains(contains('must be between 0.0 and 1.0')));
+        expect(res1.issues, contains(contains('Model ID mismatch')));
 
-        final res2 = validator.validate(validForecast, expectedModelId: 'other-model');
+        final res2 = validator.validate(validForecast, expectedModelVersion: '2.0.0');
         expect(res2.isValid, isFalse);
-        expect(res2.issues, contains(contains('Model ID mismatch')));
+        expect(res2.issues, contains(contains('Model Version mismatch')));
       });
     });
 

@@ -9,7 +9,6 @@ void main() {
     final now = DateTime.utc(2026, 9, 8, 12, 0, 0);
 
     final mandiLocation = const GeoLocation(latitude: 31.7081, longitude: 76.9317);
-    final pandohLocation = const GeoLocation(latitude: 31.6710, longitude: 77.0420);
 
     final horizon = ForecastHorizon(
       validFrom: now.subtract(const Duration(hours: 12)),

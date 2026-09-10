@@ -263,16 +263,16 @@ class RiskTrajectoryEngine {
 
       return RiskTrajectory(
         trajectoryId: trajectoryId,
-        targetEntityId: forecasts.isNotEmpty ? forecasts.first.modelRecord.modelId : 'unknown',
-        entityCategory: forecasts.isNotEmpty ? forecasts.first.hazardCategory : 'unknown',
+        targetEntityId: forecasts.isNotEmpty ? forecasts.first.modelId : 'unknown',
+        entityCategory: forecasts.isNotEmpty ? forecasts.first.category : 'unknown',
         stateVariable: stateVariable,
         direction: RiskTrajectoryDirection.unknown,
         timeSpan: ForecastHorizon(
           validFrom: now,
           validTo: now.add(const Duration(hours: 1)),
         ),
-        location: forecasts.isNotEmpty
-            ? forecasts.first.location
+        location: (forecasts.isNotEmpty && forecasts.first.location != null)
+            ? forecasts.first.location!
             : const GeoLocation(latitude: 0, longitude: 0),
         uncertainty: ForecastUncertainty(),
         scientificStatus: ScientificValidationStatus.provisionalSoftwareOnly,
@@ -291,13 +291,13 @@ class RiskTrajectoryEngine {
 
     return evaluateTrajectoryFromValues(
       trajectoryId: trajectoryId,
-      targetEntityId: first.modelRecord.modelId,
-      entityCategory: first.hazardCategory,
+      targetEntityId: first.modelId,
+      entityCategory: first.category,
       stateVariable: stateVariable,
-      initialValue: first.value,
-      finalValue: last.value,
+      initialValue: first.primaryValue,
+      finalValue: last.primaryValue,
       timeSpan: timeSpan,
-      location: first.location,
+      location: first.location ?? const GeoLocation(latitude: 0, longitude: 0),
       uncertainty: last.uncertainty,
       scientificStatus: ScientificValidationStatus.provisionalSoftwareOnly,
     );

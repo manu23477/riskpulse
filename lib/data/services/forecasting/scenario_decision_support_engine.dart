@@ -2,6 +2,7 @@ import 'package:riskpulse/domain/location/geo_location.dart';
 import 'package:riskpulse/domain/gis/analytical_step.dart';
 import 'package:riskpulse/domain/forecasting/forecasting.dart';
 import 'package:riskpulse/data/services/forecasting/decision_support_engine.dart';
+import 'package:riskpulse/data/services/forecasting/research_scenario_engine.dart';
 
 /// Provider-neutral deterministic engine for synthesizing a [ScenarioComparison] into a scenario-conditioned [ResearchSituationBrief].
 ///

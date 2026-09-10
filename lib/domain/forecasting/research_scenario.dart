@@ -16,6 +16,7 @@ class ResearchScenario {
   final ForecastInput input;
   final List<HazardForecast> forecasts;
   final ImpactAssessment? potentialImpact;
+  final List<AnalyticalStep> provenanceSteps;
   final Map<String, dynamic> parameters;
   final int schemaVersion;
 
@@ -27,6 +28,7 @@ class ResearchScenario {
     required this.input,
     this.forecasts = const [],
     this.potentialImpact,
+    this.provenanceSteps = const [],
     this.parameters = const {},
     this.schemaVersion = currentSchemaVersion,
   }) {
@@ -117,6 +119,8 @@ class ScenarioComparison {
   final ResearchScenario comparisonScenario;
   final double intensityDelta;
   final double? impactScoreDelta;
+  final double? exposedPopulationDelta;
+  final double? exposedRoadLengthMetersDelta;
   final String comparativeSummary;
   final List<AnalyticalStep> provenanceSteps;
   final int schemaVersion;
@@ -127,6 +131,8 @@ class ScenarioComparison {
     required this.comparisonScenario,
     required this.intensityDelta,
     this.impactScoreDelta,
+    this.exposedPopulationDelta,
+    this.exposedRoadLengthMetersDelta,
     required this.comparativeSummary,
     this.provenanceSteps = const [],
     this.schemaVersion = currentSchemaVersion,
@@ -142,6 +148,13 @@ class ScenarioComparison {
     }
     if (impactScoreDelta != null && impactScoreDelta!.isNaN) {
       throw ArgumentError('impactScoreDelta cannot be NaN.');
+    }
+    if (exposedPopulationDelta != null && exposedPopulationDelta!.isNaN) {
+      throw ArgumentError('exposedPopulationDelta cannot be NaN.');
+    }
+    if (exposedRoadLengthMetersDelta != null &&
+        exposedRoadLengthMetersDelta!.isNaN) {
+      throw ArgumentError('exposedRoadLengthMetersDelta cannot be NaN.');
     }
     if (schemaVersion <= 0) {
       throw ArgumentError('schemaVersion must be positive.');

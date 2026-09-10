@@ -1,6 +1,7 @@
 import 'package:riskpulse/domain/gis/analytical_step.dart';
 import 'package:riskpulse/domain/forecasting/forecast_input.dart';
 import 'package:riskpulse/domain/forecasting/forecast_run.dart';
+import 'package:riskpulse/domain/forecasting/forecast_model_record.dart';
 import 'package:riskpulse/data/services/forecasting/forecast_model_registry.dart';
 import 'package:riskpulse/data/services/forecasting/forecast_input_validator.dart';
 import 'package:riskpulse/data/services/forecasting/forecast_output_validator.dart';

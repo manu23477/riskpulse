@@ -4,6 +4,7 @@ import 'package:riskpulse/domain/forecasting/forecast_input.dart';
 import 'package:riskpulse/domain/forecasting/hazard_forecast.dart';
 import 'package:riskpulse/domain/forecasting/forecast_uncertainty.dart';
 import 'package:riskpulse/domain/forecasting/hazard_time_series.dart';
+import 'package:riskpulse/domain/forecasting/landslide_threshold_profile.dart';
 import 'package:riskpulse/data/services/forecasting/forecast_model.dart';
 import 'package:riskpulse/data/services/forecasting/unit_conversion_engine.dart';
 
@@ -18,54 +19,57 @@ enum ScientificStatus {
 /// Provider-neutral empirical Landslide Rainfall Intensity-Duration (I-D) Threshold Model.
 ///
 /// SCIENTIFIC FORMULATION:
-/// Evaluates precipitation intensity $I$ ($mm/h$) over duration $D$ ($hours$) against an empirical threshold:
+/// Evaluates precipitation intensity $I$ ($mm/h$) over duration $D$ ($hours$) against an empirical threshold profile:
 /// $$I_{\text{threshold}} = a \cdot D^{-b}$$
 ///
-/// SCIENTIFIC BOUNDARIES:
-/// 1. Outputs a Threshold Exceedance Ratio $R = \frac{I}{I_{\text{threshold}}}$.
-/// 2. Does NOT convert threshold exceedance into an uncalibrated event probability.
-/// 3. Distinguishes historical rainfall threshold analysis from future forecast threshold exceedance.
-/// 4. Does NOT perform silent data imputation or zero-filling.
+/// SCIENTIFIC PROVENANCE CORRECTION (Stage 3.5-R):
+/// 1. Default threshold profile is [LandslideThresholdProfile.caine1980Global]: $I = 14.82 D^{-0.39}$.
+/// 2. Profile is explicitly classified as Global Empirical Reference (Uncalibrated for Himachal Pradesh).
+/// 3. Antecedent rainfall window ($48$-hour default) is explicitly separated from the primary I-D equation.
+/// 4. Outputs Threshold Exceedance Ratio $R = \frac{I}{I_{\text{threshold}}}$.
+/// 5. Does NOT convert threshold exceedance into an uncalibrated event probability.
 class LandslideRainfallThresholdModel implements ForecastModel {
-  final double aParameter;
-  final double bExponent;
+  final LandslideThresholdProfile profile;
   final int antecedentWindowHours;
   final ScientificStatus scientificStatus;
   final UnitConversionEngine unitConverter;
 
   LandslideRainfallThresholdModel({
-    this.aParameter = 12.5, // Default Caine/Guzzetti Himalayan empirical threshold
-    this.bExponent = 0.42,
+    this.profile = LandslideThresholdProfile.caine1980Global,
     this.antecedentWindowHours = 48,
     this.scientificStatus = ScientificStatus.provisional,
     this.unitConverter = const UnitConversionEngine(),
   }) {
-    if (aParameter <= 0.0 || aParameter.isNaN) {
-      throw ArgumentError('aParameter must be strictly positive.');
-    }
-    if (bExponent <= 0.0 || bExponent.isNaN) {
-      throw ArgumentError('bExponent must be strictly positive.');
-    }
     if (antecedentWindowHours < 0) {
       throw ArgumentError('antecedentWindowHours cannot be negative.');
     }
   }
 
+  double get aParameter => profile.coefficientA;
+  double get bExponent => profile.exponentB;
+
   @override
   ForecastModelRecord get modelRecord => ForecastModelRecord(
         modelId: 'landslide-rainfall-threshold',
         modelName: 'Landslide Rainfall Intensity-Duration Threshold Model',
-        modelVersion: '1.0.0',
+        modelVersion: '1.1.0',
         algorithmClass: 'empirical_threshold',
-        trainingPeriod: 'Empirical Himalayan Rainfall-Landslide Thresholds (Caine 1980 / GSI 2020)',
+        trainingPeriod: profile.sourceCitation,
         calibrationParameters: {
-          'a_parameter': aParameter,
-          'b_exponent': bExponent,
+          'threshold_profile_id': profile.profileId,
+          'threshold_profile_name': profile.name,
+          'coefficient_a': profile.coefficientA,
+          'exponent_b': profile.exponentB,
+          'geographic_scope': profile.geographicScope,
+          'source_citation': profile.sourceCitation,
           'antecedent_window_hours': antecedentWindowHours,
+          'antecedent_window_attribution':
+              'Model-Specific Additional Configuration (Explicitly Separated from I-D Equation)',
+          'calibration_status': profile.calibrationStatus.name,
           'scientific_status': scientificStatus.name,
         },
         featureDefinitions: const ['rainfall_mm', 'observation_time', 'spatial_location'],
-        softwareBuild: 'riskpulse-stage-3.5',
+        softwareBuild: 'riskpulse-stage-3.5-r',
         gitCommit: 'eeaac29',
       );
 
@@ -77,7 +81,6 @@ class LandslideRainfallThresholdModel implements ForecastModel {
 
   @override
   bool isCompatible(ForecastInput input) {
-    // Requires at least one time series reference or explicit rainfall series in parameters
     final hasTsRef = input.timeSeriesIds.isNotEmpty;
     final hasSeriesParam = input.parameters['rainfall_time_series'] is HazardTimeSeries;
     final hasObsListParam = input.parameters['rainfall_records'] is List;
@@ -90,7 +93,7 @@ class LandslideRainfallThresholdModel implements ForecastModel {
     required ForecastInput input,
     required DateTime initializationTime,
   }) async {
-    // 1. Extract rainfall series from parameters or input references
+    // 1. Extract rainfall series
     HazardTimeSeries? rainSeries;
 
     final paramSeries = input.parameters['rainfall_time_series'];
@@ -122,20 +125,23 @@ class LandslideRainfallThresholdModel implements ForecastModel {
     final startTime = rainSeries.startTime!;
     final endTime = rainSeries.endTime!;
     double durationHours = endTime.difference(startTime).inMinutes / 60.0;
-    if (durationHours < 1.0) {
-      durationHours = 1.0; // Minimum 1-hour resolution
+    if (durationHours < profile.durationMinHours) {
+      durationHours = profile.durationMinHours;
     }
 
     // 4. Calculate intensity I = totalRain / duration
     final double intensityMmHour = totalEventRainMm / durationHours;
 
-    // 5. Calculate threshold intensity I_thresh = a * D^(-b)
-    final double thresholdIntensity = aParameter * _pow(durationHours, -bExponent);
+    // 5. Calculate threshold intensity I_thresh using LandslideThresholdProfile
+    final double thresholdIntensity = profile.calculateThresholdIntensity(durationHours);
 
     // 6. Calculate Threshold Exceedance Ratio R = I / I_thresh
-    final double exceedanceRatio = intensityMmHour / thresholdIntensity;
+    final double exceedanceRatio = profile.calculateExceedanceRatio(
+      intensityMmHour: intensityMmHour,
+      durationHours: durationHours,
+    );
 
-    // 7. Calculate Antecedent Rainfall (if antecedent observations exist in series)
+    // 7. Calculate Antecedent Rainfall Condition (Explicitly Separated from I-D Equation)
     final antecedentCutoff = startTime.subtract(Duration(hours: antecedentWindowHours));
     double antecedentRainMm = 0.0;
     for (final obs in sortedObs) {
@@ -159,13 +165,17 @@ class LandslideRainfallThresholdModel implements ForecastModel {
       name: 'landslide_id_threshold_calculation',
       operationType: 'empirical_threshold_eval',
       parameters: {
-        'aParameter': aParameter,
-        'bExponent': bExponent,
+        'profileId': profile.profileId,
+        'profileName': profile.name,
+        'coefficientA': profile.coefficientA,
+        'exponentB': profile.exponentB,
+        'sourceCitation': profile.sourceCitation,
         'durationHours': durationHours,
         'totalEventRainMm': totalEventRainMm,
         'intensityMmHour': intensityMmHour,
-        'thresholdIntensity': thresholdIntensity,
+        'thresholdIntensityMmHour': thresholdIntensity,
         'exceedanceRatio': exceedanceRatio,
+        'antecedentWindowHours': antecedentWindowHours,
         'antecedentRainMm': antecedentRainMm,
         'isFutureForecast': isFutureForecast,
       },
@@ -192,34 +202,21 @@ class LandslideRainfallThresholdModel implements ForecastModel {
       provenanceSteps: [step],
       metadata: {
         'scientificStatus': scientificStatus.name,
-        'aParameter': aParameter,
-        'bExponent': bExponent,
+        'profileId': profile.profileId,
+        'profileName': profile.name,
+        'coefficientA': profile.coefficientA,
+        'exponentB': profile.exponentB,
+        'geographicScope': profile.geographicScope,
+        'sourceCitation': profile.sourceCitation,
         'durationHours': durationHours,
         'totalEventRainMm': totalEventRainMm,
         'intensityMmHour': intensityMmHour,
         'thresholdIntensityMmHour': thresholdIntensity,
         'exceedanceRatio': exceedanceRatio,
+        'antecedentWindowHours': antecedentWindowHours,
         'antecedentRainMm': antecedentRainMm,
         'isFutureForecast': isFutureForecast,
       },
     );
   }
-
-  static double _pow(double base, double exponent) {
-    // Pure Dart power function using math.pow
-    import_math();
-    return _mathPow(base, exponent);
-  }
-
-  static double _mathPow(double x, double y) {
-    return _purePow(x, y);
-  }
-
-  static void import_math() {}
-}
-
-import 'dart:math' as math;
-
-double _purePow(double base, double exponent) {
-  return math.pow(base, exponent).toDouble();
 }

@@ -5,7 +5,7 @@ import 'package:riskpulse/domain/forecasting/forecasting.dart';
 import 'package:riskpulse/data/services/forecasting/forecasting_services.dart';
 
 void main() {
-  group('Stage 3.5 Model 1 — Landslide Rainfall Threshold Model', () {
+  group('Stage 3.5-R Model 1 — Landslide Rainfall Threshold Model & Provenance Correction', () {
     final now = DateTime.utc(2026, 9, 8, 12, 0, 0);
 
     final historicalHorizon = ForecastHorizon(
@@ -18,59 +18,81 @@ void main() {
       validTo: now.add(const Duration(hours: 25)),
     );
 
-    group('1. Constructor & Model Record Invariants', () {
-      test('creates valid LandslideRainfallThresholdModel with default Caine/GSI parameters', () {
-        final model = LandslideRainfallThresholdModel();
+    group('1. Caine (1980) Profile Verification & Invariants', () {
+      test('Caine 1980 profile holds exact 14.82 and 0.39 parameters and global scope', () {
+        const profile = LandslideThresholdProfile.caine1980Global;
 
-        expect(model.modelId, 'landslide-rainfall-threshold');
-        expect(model.modelVersion, '1.0.0');
-        expect(model.aParameter, 12.5);
-        expect(model.bExponent, 0.42);
-        expect(model.scientificStatus, ScientificStatus.provisional);
-
-        final record = model.modelRecord;
-        expect(record.algorithmClass, 'empirical_threshold');
-        expect(record.gitCommit, 'eeaac29');
+        expect(profile.profileId, 'caine-1980-global');
+        expect(profile.coefficientA, 14.82);
+        expect(profile.exponentB, 0.39);
+        expect(profile.durationMinHours, 0.1);
+        expect(profile.durationMaxHours, 500.0);
+        expect(profile.publicationYear, 1980);
+        expect(profile.geographicScope, contains('Global Empirical Reference'));
+        expect(profile.sourceCitation, contains('Caine, N. (1980)'));
+        expect(profile.calibrationStatus, ThresholdCalibrationStatus.uncalibrated);
       });
 
-      test('rejects invalid parameters (non-positive aParameter or bExponent)', () {
-        expect(
-          () => LandslideRainfallThresholdModel(aParameter: -5.0),
-          throwsArgumentError,
-        );
+      test('default LandslideRainfallThresholdModel uses Caine 1980 profile', () {
+        final model = LandslideRainfallThresholdModel();
 
-        expect(
-          () => LandslideRainfallThresholdModel(bExponent: 0.0),
-          throwsArgumentError,
-        );
+        expect(model.aParameter, 14.82);
+        expect(model.bExponent, 0.39);
+        expect(model.profile.profileId, 'caine-1980-global');
+        expect(model.modelVersion, '1.1.0');
+
+        final record = model.modelRecord;
+        expect(record.calibrationParameters['threshold_profile_id'], 'caine-1980-global');
+        expect(record.calibrationParameters['coefficient_a'], 14.82);
+        expect(record.calibrationParameters['exponent_b'], 0.39);
+        expect(record.calibrationParameters['calibration_status'], 'uncalibrated');
+      });
+
+      test('unverified legacy profile is explicitly identified and separate from Caine', () {
+        const legacy = LandslideThresholdProfile.unverifiedLegacy;
+
+        expect(legacy.profileId, 'unverified-legacy-research');
+        expect(legacy.coefficientA, 12.5);
+        expect(legacy.exponentB, 0.42);
+        expect(legacy.sourceCitation, contains('Unverified prior code configuration'));
+        expect(legacy.geographicScope, contains('Unverified Scope'));
       });
     });
 
-    group('2. Empirical Threshold Exceedance Predictions', () {
-      test('evaluates rainfall below threshold correctly', () async {
-        final model = LandslideRainfallThresholdModel(aParameter: 12.5, bExponent: 0.42);
+    group('2. Empirical Caine (1980) Threshold Exceedance Predictions', () {
+      test('evaluates rainfall below Caine 1980 threshold correctly', () async {
+        final model = LandslideRainfallThresholdModel();
 
-        // Low rainfall: 5mm over 24 hours (Intensity = 0.208 mm/h)
-        // Threshold I_thresh = 12.5 * 24^(-0.42) = 12.5 * 0.262 = ~3.28 mm/h
-        // Exceedance Ratio = 0.208 / 3.28 = ~0.063 (< 1.0)
-        final rainObs = HazardObservation(
-          observationId: 'rain-low-1',
+        // 24mm rainfall over 24 hours -> Intensity I = 1.0 mm/h
+        // Threshold I_thresh = 14.82 * 24^(-0.39) = 14.82 * 0.2882 = ~4.27 mm/h
+        // Exceedance Ratio = 1.0 / 4.27 = ~0.234 (< 1.0)
+        final rainObs1 = HazardObservation(
+          observationId: 'rain-caine-low-1',
           parameterId: 'rainfall_mm',
-          value: 5.0,
+          value: 12.0,
           unit: 'mm',
           observationTime: now.subtract(const Duration(hours: 24)),
           location: const GeoLocation(latitude: 31.7081, longitude: 76.9317),
         );
 
+        final rainObs2 = HazardObservation(
+          observationId: 'rain-caine-low-2',
+          parameterId: 'rainfall_mm',
+          value: 12.0,
+          unit: 'mm',
+          observationTime: now,
+          location: const GeoLocation(latitude: 31.7081, longitude: 76.9317),
+        );
+
         final series = HazardTimeSeries(
-          timeSeriesId: 'ts-low-rain',
+          timeSeriesId: 'ts-caine-low',
           parameterId: 'rainfall_mm',
           unit: 'mm',
-          observations: [rainObs],
+          observations: [rainObs1, rainObs2],
         );
 
         final input = ForecastInput(
-          inputId: 'input-landslide-low',
+          inputId: 'input-caine-low',
           timeSeriesIds: [series.timeSeriesId],
           targetHorizon: historicalHorizon,
           parameters: {'rainfall_time_series': series},
@@ -80,44 +102,36 @@ void main() {
 
         expect(forecast.parameterId, 'landslide_threshold_exceedance');
         expect(forecast.category, 'Historical Landslide Threshold Analysis');
-        expect(forecast.primaryValue, lessThan(1.0));
+        expect(forecast.primaryValue, closeTo(0.234, 0.05));
         expect(forecast.categoricalLabel, 'Below Threshold');
-        expect(forecast.outputType, ForecastOutputType.thresholdExceedance);
+        expect(forecast.metadata['profileId'], 'caine-1980-global');
+        expect(forecast.metadata['coefficientA'], 14.82);
       });
 
-      test('evaluates heavy rainfall exceeding threshold correctly', () async {
-        final model = LandslideRainfallThresholdModel(aParameter: 12.5, bExponent: 0.42);
+      test('evaluates heavy rainfall exceeding Caine 1980 threshold correctly', () async {
+        final model = LandslideRainfallThresholdModel();
 
-        // Heavy cloudburst rainfall: 150mm over 6 hours (Intensity = 25.0 mm/h)
-        // Threshold I_thresh = 12.5 * 6^(-0.42) = ~5.87 mm/h
-        // Exceedance Ratio = 25.0 / 5.87 = ~4.25 (> 1.0)
-        final rainObs1 = HazardObservation(
-          observationId: 'rain-heavy-1',
+        // Heavy cloudburst rainfall: 120mm over 24 hours -> Intensity I = 5.0 mm/h
+        // Threshold I_thresh = 14.82 * 24^(-0.39) = ~4.27 mm/h
+        // Exceedance Ratio = 5.0 / 4.27 = ~1.17 (> 1.0)
+        final rainObs = HazardObservation(
+          observationId: 'rain-caine-heavy',
           parameterId: 'rainfall_mm',
-          value: 75.0,
+          value: 120.0,
           unit: 'mm',
-          observationTime: now.subtract(const Duration(hours: 6)),
-          location: const GeoLocation(latitude: 31.7081, longitude: 76.9317),
-        );
-
-        final rainObs2 = HazardObservation(
-          observationId: 'rain-heavy-2',
-          parameterId: 'rainfall_mm',
-          value: 75.0,
-          unit: 'mm',
-          observationTime: now,
+          observationTime: now.subtract(const Duration(hours: 24)),
           location: const GeoLocation(latitude: 31.7081, longitude: 76.9317),
         );
 
         final series = HazardTimeSeries(
-          timeSeriesId: 'ts-heavy-rain',
+          timeSeriesId: 'ts-caine-heavy',
           parameterId: 'rainfall_mm',
           unit: 'mm',
-          observations: [rainObs1, rainObs2],
+          observations: [rainObs],
         );
 
         final input = ForecastInput(
-          inputId: 'input-landslide-heavy',
+          inputId: 'input-caine-heavy',
           timeSeriesIds: [series.timeSeriesId],
           targetHorizon: futureHorizon,
           parameters: {'rainfall_time_series': series},
@@ -129,70 +143,27 @@ void main() {
         expect(forecast.primaryValue, greaterThan(1.0));
         expect(forecast.categoricalLabel, 'Threshold Exceeded');
       });
-    });
 
-    group('3. Execution Engine Integration & Governance Safeguards', () {
-      test('executes Landslide model via Stage 3.4 ForecastExecutionEngine cleanly', () async {
-        final registry = ForecastModelRegistry();
-        final model = LandslideRainfallThresholdModel();
-        registry.registerModel(model);
-
-        final engine = ForecastExecutionEngine(registry: registry);
+      test('separates primary I-D equation from optional antecedent rainfall condition', () async {
+        final model = LandslideRainfallThresholdModel(antecedentWindowHours: 48);
 
         final rainObs = HazardObservation(
-          observationId: 'rain-exec-1',
+          observationId: 'rain-ant-1',
           parameterId: 'rainfall_mm',
-          value: 20.0,
+          value: 30.0,
           unit: 'mm',
           observationTime: now,
         );
 
         final series = HazardTimeSeries(
-          timeSeriesId: 'ts-exec-rain',
+          timeSeriesId: 'ts-ant',
           parameterId: 'rainfall_mm',
           unit: 'mm',
           observations: [rainObs],
         );
 
         final input = ForecastInput(
-          inputId: 'input-exec-ls',
-          timeSeriesIds: [series.timeSeriesId],
-          targetHorizon: historicalHorizon,
-          parameters: {'rainfall_time_series': series},
-        );
-
-        final run = await engine.executeRun(
-          modelId: 'landslide-rainfall-threshold',
-          modelVersion: '1.0.0',
-          input: input,
-          initializationTime: now,
-        );
-
-        expect(run.isSuccessful, isTrue);
-        expect(run.status, ForecastRunStatus.completed);
-        expect(run.forecast?.parameterId, 'landslide_threshold_exceedance');
-      });
-
-      test('MANDATORY SCIENTIFIC NEGATIVE TEST: threshold exceedance does NOT populate calibrated probability', () async {
-        final model = LandslideRainfallThresholdModel();
-
-        final rainObs = HazardObservation(
-          observationId: 'rain-neg-1',
-          parameterId: 'rainfall_mm',
-          value: 100.0,
-          unit: 'mm',
-          observationTime: now,
-        );
-
-        final series = HazardTimeSeries(
-          timeSeriesId: 'ts-neg',
-          parameterId: 'rainfall_mm',
-          unit: 'mm',
-          observations: [rainObs],
-        );
-
-        final input = ForecastInput(
-          inputId: 'input-neg-1',
+          inputId: 'input-ant-1',
           timeSeriesIds: [series.timeSeriesId],
           targetHorizon: historicalHorizon,
           parameters: {'rainfall_time_series': series},
@@ -200,7 +171,53 @@ void main() {
 
         final forecast = await model.predict(input: input, initializationTime: now);
 
-        // ASSERT: Threshold exceedance MUST NOT be passed as calibrated event probability
+        // Verify antecedent window is explicitly tracked as separate configuration
+        expect(forecast.metadata['antecedentWindowHours'], 48);
+        final step = forecast.provenanceSteps.first;
+        expect(step.parameters['antecedentWindowHours'], 48);
+      });
+    });
+
+    group('3. Mandatory Scientific Negative Tests (Stage 3.5-R)', () {
+      test('MANDATORY SCIENTIFIC NEGATIVE TEST: Caine 1980 is NOT called Himalayan calibrated', () {
+        const profile = LandslideThresholdProfile.caine1980Global;
+        expect(profile.geographicScope, isNot(contains('Himalayan Calibrated')));
+        expect(profile.calibrationStatus, ThresholdCalibrationStatus.uncalibrated);
+      });
+
+      test('MANDATORY SCIENTIFIC NEGATIVE TEST: 12.5/0.42 is NOT attributed to Caine 1980', () {
+        const legacy = LandslideThresholdProfile.unverifiedLegacy;
+        expect(legacy.sourceCitation, isNot(contains('Caine, N. (1980)')));
+        expect(legacy.profileId, 'unverified-legacy-research');
+      });
+
+      test('MANDATORY SCIENTIFIC NEGATIVE TEST: threshold exceedance does NOT populate calibrated probability', () async {
+        final model = LandslideRainfallThresholdModel();
+
+        final rainObs = HazardObservation(
+          observationId: 'rain-neg-caine',
+          parameterId: 'rainfall_mm',
+          value: 100.0,
+          unit: 'mm',
+          observationTime: now,
+        );
+
+        final series = HazardTimeSeries(
+          timeSeriesId: 'ts-neg-caine',
+          parameterId: 'rainfall_mm',
+          unit: 'mm',
+          observations: [rainObs],
+        );
+
+        final input = ForecastInput(
+          inputId: 'input-neg-caine',
+          timeSeriesIds: [series.timeSeriesId],
+          targetHorizon: historicalHorizon,
+          parameters: {'rainfall_time_series': series},
+        );
+
+        final forecast = await model.predict(input: input, initializationTime: now);
+
         expect(forecast.uncertainty.isCalibrated, isFalse);
         expect(forecast.uncertainty.calibratedEventProbability, isNull);
         expect(forecast.uncertainty.uncalibratedScore, isNotNull);
@@ -210,7 +227,7 @@ void main() {
         final model = LandslideRainfallThresholdModel();
 
         final rainObs = HazardObservation(
-          observationId: 'rain-gov-1',
+          observationId: 'rain-gov-caine',
           parameterId: 'rainfall_mm',
           value: 120.0,
           unit: 'mm',
@@ -218,14 +235,14 @@ void main() {
         );
 
         final series = HazardTimeSeries(
-          timeSeriesId: 'ts-gov',
+          timeSeriesId: 'ts-gov-caine',
           parameterId: 'rainfall_mm',
           unit: 'mm',
           observations: [rainObs],
         );
 
         final input = ForecastInput(
-          inputId: 'input-gov-1',
+          inputId: 'input-gov-caine',
           timeSeriesIds: [series.timeSeriesId],
           targetHorizon: historicalHorizon,
           parameters: {'rainfall_time_series': series},

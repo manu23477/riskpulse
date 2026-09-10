@@ -1,3 +1,4 @@
+import 'package:riskpulse/domain/location/geo_location.dart';
 import 'package:riskpulse/domain/gis/analytical_step.dart';
 import 'package:riskpulse/domain/forecasting/forecasting.dart';
 import 'package:riskpulse/data/services/forecasting/spatial_alignment_engine.dart';
@@ -80,7 +81,7 @@ class RiskDriverAttributionEngine {
 
       // Temporal compatibility
       if (driver.temporalRelevance != null) {
-        final tOverlap = trajectory.timeSpan.overlaps(driver.temporalRelevance!);
+        final tOverlap = _horizonsOverlap(trajectory.timeSpan, driver.temporalRelevance!);
         if (!tOverlap) {
           continue; // Skip temporally non-overlapping driver
         }
@@ -186,6 +187,10 @@ class RiskDriverAttributionEngine {
       scientificStatus: ScientificValidationStatus.provisionalSoftwareOnly,
       rationale: rationale,
     );
+  }
+
+  bool _horizonsOverlap(ForecastHorizon h1, ForecastHorizon h2) {
+    return h1.validFrom.isBefore(h2.validTo) && h1.validTo.isAfter(h2.validFrom);
   }
 
   int _getRoleOrder(String role) {

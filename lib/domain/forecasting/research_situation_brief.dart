@@ -25,6 +25,7 @@ class ResearchSituationBrief {
 
   final String briefId;
   final String studyAreaName;
+  final String situationContext; // 'actual_observed', 'scenario_conditional'
   final GeoLocation location;
   final MapExtent? spatialDomain;
   final ForecastHorizon horizon;
@@ -41,6 +42,7 @@ class ResearchSituationBrief {
   ResearchSituationBrief({
     required this.briefId,
     required this.studyAreaName,
+    this.situationContext = 'actual_observed',
     required this.location,
     this.spatialDomain,
     required this.horizon,
@@ -65,9 +67,13 @@ class ResearchSituationBrief {
     }
   }
 
+  bool get isActualObserved => situationContext == 'actual_observed';
+  bool get isScenarioConditional => situationContext == 'scenario_conditional';
+
   ResearchSituationBrief copyWith({
     String? briefId,
     String? studyAreaName,
+    String? situationContext,
     GeoLocation? location,
     MapExtent? spatialDomain,
     bool clearSpatialDomain = false,
@@ -85,6 +91,7 @@ class ResearchSituationBrief {
     return ResearchSituationBrief(
       briefId: briefId ?? this.briefId,
       studyAreaName: studyAreaName ?? this.studyAreaName,
+      situationContext: situationContext ?? this.situationContext,
       location: location ?? this.location,
       spatialDomain:
           clearSpatialDomain ? null : (spatialDomain ?? this.spatialDomain),
@@ -106,6 +113,7 @@ class ResearchSituationBrief {
     return {
       'briefId': briefId,
       'studyAreaName': studyAreaName,
+      'situationContext': situationContext,
       'latitude': location.latitude,
       'longitude': location.longitude,
       'horizon': horizon.toMap(),
@@ -136,6 +144,7 @@ class ResearchSituationBrief {
     return ResearchSituationBrief(
       briefId: map['briefId'] as String? ?? '',
       studyAreaName: map['studyAreaName'] as String? ?? '',
+      situationContext: map['situationContext'] as String? ?? 'actual_observed',
       location: GeoLocation(
         latitude: (map['latitude'] as num?)?.toDouble() ?? 0.0,
         longitude: (map['longitude'] as num?)?.toDouble() ?? 0.0,
@@ -161,6 +170,7 @@ class ResearchSituationBrief {
           runtimeType == other.runtimeType &&
           briefId == other.briefId &&
           studyAreaName == other.studyAreaName &&
+          situationContext == other.situationContext &&
           location == other.location &&
           horizon == other.horizon &&
           advisoryAttentionLevel == other.advisoryAttentionLevel &&
@@ -175,6 +185,7 @@ class ResearchSituationBrief {
   int get hashCode => Object.hash(
         briefId,
         studyAreaName,
+        situationContext,
         location,
         horizon,
         advisoryAttentionLevel,

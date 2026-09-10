@@ -32,7 +32,7 @@ class LandslideThresholdProfile {
   final String notesAndLimitations;
   final int schemaVersion;
 
-  LandslideThresholdProfile({
+  const LandslideThresholdProfile({
     required this.profileId,
     required this.name,
     required this.coefficientA,
@@ -46,35 +46,10 @@ class LandslideThresholdProfile {
     this.calibrationStatus = ThresholdCalibrationStatus.uncalibrated,
     this.notesAndLimitations = '',
     this.schemaVersion = currentSchemaVersion,
-  }) {
-    if (profileId.trim().isEmpty) {
-      throw ArgumentError('profileId cannot be empty.');
-    }
-    if (name.trim().isEmpty) {
-      throw ArgumentError('name cannot be empty.');
-    }
-    if (sourceCitation.trim().isEmpty) {
-      throw ArgumentError('sourceCitation cannot be empty.');
-    }
-    if (geographicScope.trim().isEmpty) {
-      throw ArgumentError('geographicScope cannot be empty.');
-    }
-    if (coefficientA <= 0.0 || coefficientA.isNaN) {
-      throw ArgumentError('coefficientA must be strictly positive.');
-    }
-    if (exponentB <= 0.0 || exponentB.isNaN) {
-      throw ArgumentError('exponentB must be strictly positive.');
-    }
-    if (durationMinHours < 0.0 || durationMinHours.isNaN) {
-      throw ArgumentError('durationMinHours cannot be negative.');
-    }
-    if (durationMaxHours <= durationMinHours || durationMaxHours.isNaN) {
-      throw ArgumentError('durationMaxHours must be greater than durationMinHours.');
-    }
-    if (schemaVersion <= 0) {
-      throw ArgumentError('schemaVersion must be positive.');
-    }
-  }
+  })  : assert(profileId.length > 0, 'profileId cannot be empty.'),
+        assert(name.length > 0, 'name cannot be empty.'),
+        assert(coefficientA > 0.0, 'coefficientA must be strictly positive.'),
+        assert(exponentB > 0.0, 'exponentB must be strictly positive.');
 
   /// Authoritative Caine (1980) Landmark Global Empirical Threshold Profile: $I = 14.82 D^{-0.39}$
   static const caine1980Global = LandslideThresholdProfile(

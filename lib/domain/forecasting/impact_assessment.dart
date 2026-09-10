@@ -85,6 +85,8 @@ class ImpactAssessment {
 
   bool get isObservedImpact => hazardSourceType == 'observed';
   bool get isForecastDerived => hazardSourceType == 'forecast_derived';
+  bool get isVulnerabilityUnknown => vulnerabilityProfile == null;
+  bool get isImpactEstimated => estimatedImpactScore != null;
 
   ImpactAssessment copyWith({
     String? assessmentId,

@@ -165,7 +165,7 @@ class TemporalAlignmentEngine {
         );
 
         final derivedObs = HazardObservation(
-          observationId: 'agg-${newTimeSeriesId}-${currentWindowStart.millisecondsSinceEpoch}',
+          observationId: 'agg-$newTimeSeriesId-${currentWindowStart.millisecondsSinceEpoch}',
           parameterId: series.parameterId,
           value: aggVal,
           unit: series.unit,

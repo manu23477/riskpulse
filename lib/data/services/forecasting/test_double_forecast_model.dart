@@ -29,6 +29,12 @@ class TestDoubleForecastModel implements ForecastModel {
       );
 
   @override
+  String get modelId => modelRecord.modelId;
+
+  @override
+  String get modelVersion => modelRecord.modelVersion;
+
+  @override
   bool isCompatible(ForecastInput input) {
     if (input.parameters['simulate_incompatible'] == true) {
       return false;
@@ -45,7 +51,7 @@ class TestDoubleForecastModel implements ForecastModel {
       throw StateError('Simulated test-double prediction failure.');
     }
 
-    final double primaryVal = simulateInvalidOutput ? 1.85 : 0.50; // 1.85 violates probability bounds
+    final String outputModelId = simulateInvalidOutput ? 'invalid-mismatched-model-id' : modelRecord.modelId;
 
     return HazardForecast(
       forecastId: 'fcst-double-${initializationTime.millisecondsSinceEpoch}',
@@ -54,13 +60,13 @@ class TestDoubleForecastModel implements ForecastModel {
       initializationTime: initializationTime,
       horizon: input.targetHorizon,
       outputType: ForecastOutputType.eventProbability,
-      primaryValue: primaryVal,
+      primaryValue: 0.50,
       uncertainty: ForecastUncertainty(
         uncalibratedScore: 0.50,
         modelConfidence: 0.80,
       ),
       location: const GeoLocation(latitude: 31.7081, longitude: 76.9317),
-      modelId: modelRecord.modelId,
+      modelId: outputModelId,
       modelVersion: modelRecord.modelVersion,
     );
   }
