@@ -25,6 +25,8 @@ import 'widgets/cartography/scale_bar_widget.dart';
 import 'widgets/cartography/north_arrow_widget.dart';
 import 'widgets/cartography/coordinate_grid_overlay.dart';
 import 'widgets/dem_acquisition_dialog.dart';
+import 'widgets/dem_readiness_acknowledgement_dialog.dart';
+import 'package:riskpulse/domain/gis/dem_readiness_assessment.dart';
 
 enum ResearchTool { identify, pourPoint }
 
@@ -138,8 +140,9 @@ class _ResearchGisScreenState extends State<ResearchGisScreen> {
     );
   }
 
-  void _executeAnalysis(ResearchWorkspaceProvider workspace) {
+  void _executeAnalysis(ResearchWorkspaceProvider workspace) async {
     final dem = workspace.inputDem;
+    final assessment = workspace.demReadinessAssessment;
     final pourPoint = workspace.snappedPourPoint ?? workspace.activePourPoint;
 
     if (dem == null) {
@@ -151,6 +154,33 @@ class _ResearchGisScreenState extends State<ResearchGisScreen> {
         ),
       );
       return;
+    }
+
+    if (assessment != null && assessment.isRejected) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('DEM Rejected: ${assessment.rationale}'),
+          behavior: SnackBarBehavior.floating,
+          backgroundColor: Colors.red,
+        ),
+      );
+      return;
+    }
+
+    // Researcher Review & Acknowledgement Gate for Partial/Uncertain DEMs
+    if (assessment != null &&
+        assessment.requiresReview &&
+        !workspace.isResearcherAcknowledged) {
+      final acknowledged = await showDialog<bool>(
+        context: context,
+        builder: (ctx) => DemReadinessAcknowledgementDialog(assessment: assessment),
+      );
+
+      if (!mounted) return;
+      if (acknowledged != true) {
+        return; // Researcher cancelled execution
+      }
+      workspace.setResearcherAcknowledged(true);
     }
 
     if (pourPoint == null) {
@@ -431,17 +461,17 @@ class _ResearchGisScreenState extends State<ResearchGisScreen> {
       northEast: GeoLocation(latitude: bounds.northEast.latitude, longitude: bounds.northEast.longitude),
     );
 
-    final RasterData? dem = await showDialog<RasterData>(
+    final result = await showDialog<({RasterData raster, DemReadinessAssessment assessment})>(
       context: context,
       builder: (ctx) => DemAcquisitionDialog(aoiExtent: aoiExtent),
     );
 
-    if (dem != null) {
-      workspace.setInputDem(dem);
+    if (result != null) {
+      workspace.setInputDem(result.raster, assessment: result.assessment);
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('DEM attached to research workspace: ${dem.width}x${dem.height} cells (${dem.crs.code}).'),
+            content: Text('DEM attached (${result.raster.width}x${result.raster.height} cells). Status: ${result.assessment.status.name}.'),
             behavior: SnackBarBehavior.floating,
             backgroundColor: Colors.tealAccent.shade700,
           ),

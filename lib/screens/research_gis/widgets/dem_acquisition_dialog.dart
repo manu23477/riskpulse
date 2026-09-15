@@ -5,6 +5,7 @@ import 'package:riskpulse/domain/gis/research_data_provider.dart';
 import 'package:riskpulse/data/services/geotiff_reader.dart';
 import 'package:riskpulse/data/services/gee/gee_data_provider.dart';
 import 'package:riskpulse/data/services/dem_validation_service.dart';
+import 'package:riskpulse/data/services/dem_readiness_policy_service.dart';
 
 /// Dialog enabling researchers to supply a local GeoTIFF file or acquire a Copernicus DEM from GEE.
 class DemAcquisitionDialog extends StatefulWidget {
@@ -12,6 +13,7 @@ class DemAcquisitionDialog extends StatefulWidget {
   final GeoTiffReader reader;
   final GeeDataProvider geeProvider;
   final DemValidationService validationService;
+  final DemReadinessPolicyService policyService;
 
   DemAcquisitionDialog({
     super.key,
@@ -19,9 +21,11 @@ class DemAcquisitionDialog extends StatefulWidget {
     GeoTiffReader? reader,
     GeeDataProvider? geeProvider,
     DemValidationService? validationService,
+    DemReadinessPolicyService? policyService,
   })  : reader = reader ?? GeoTiffReader(),
         geeProvider = geeProvider ?? GeeDataProvider(),
-        validationService = validationService ?? const DemValidationService();
+        validationService = validationService ?? const DemValidationService(),
+        policyService = policyService ?? const DemReadinessPolicyService();
 
   @override
   State<DemAcquisitionDialog> createState() => _DemAcquisitionDialogState();
@@ -138,7 +142,12 @@ class _DemAcquisitionDialogState extends State<DemAcquisitionDialog> with Single
     if (_validationResult != null &&
         _validationResult!.raster != null &&
         !_validationResult!.isRejected) {
-      Navigator.of(context).pop(_validationResult!.raster);
+      final assessment = widget.policyService.evaluateReadiness(
+        assessmentId: 'readiness-${DateTime.now().millisecondsSinceEpoch}',
+        validationResult: _validationResult!,
+        productContext: 'general_terrain',
+      );
+      Navigator.of(context).pop((raster: _validationResult!.raster!, assessment: assessment));
     }
   }
 

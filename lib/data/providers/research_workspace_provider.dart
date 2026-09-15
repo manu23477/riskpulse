@@ -10,6 +10,7 @@ import 'package:riskpulse/domain/gis/processing_state.dart';
 import 'package:riskpulse/data/services/research_workflow_orchestrator.dart';
 import 'package:riskpulse/domain/gis/raster_data.dart';
 import 'package:riskpulse/domain/gis/multispectral_product.dart';
+import 'package:riskpulse/domain/gis/dem_readiness_assessment.dart';
 
 import 'package:riskpulse/data/services/terrain_analysis_service.dart';
 import 'package:riskpulse/data/services/hydrological_analysis_service.dart';
@@ -30,6 +31,8 @@ class ResearchWorkspaceProvider extends ChangeNotifier {
   GeoLocation? _activePourPoint;
   GeoLocation? _snappedPourPoint;
   RasterData? _inputDem;
+  DemReadinessAssessment? _demReadinessAssessment;
+  bool _isResearcherAcknowledged = false;
 
   // Remote Sensing Workspace State
   MultispectralProduct? _multispectralProduct;
@@ -106,6 +109,8 @@ class ResearchWorkspaceProvider extends ChangeNotifier {
   GeoLocation? get snappedPourPoint => _snappedPourPoint;
 
   RasterData? get inputDem => _inputDem ?? _extractDemFromSession();
+  DemReadinessAssessment? get demReadinessAssessment => _demReadinessAssessment;
+  bool get isResearcherAcknowledged => _isResearcherAcknowledged;
 
   // Remote Sensing Getters
   MultispectralProduct? get multispectralProduct => _multispectralProduct;
@@ -114,8 +119,15 @@ class ResearchWorkspaceProvider extends ChangeNotifier {
   bool get isRemoteSensingProcessing => _isRemoteSensingProcessing;
   String? get remoteSensingError => _remoteSensingError;
 
-  void setInputDem(RasterData dem) {
+  void setInputDem(RasterData? dem, {DemReadinessAssessment? assessment}) {
     _inputDem = dem;
+    _demReadinessAssessment = assessment;
+    _isResearcherAcknowledged = false; // Always clear stale acknowledgement on new DEM!
+    notifyListeners();
+  }
+
+  void setResearcherAcknowledged(bool acknowledged) {
+    _isResearcherAcknowledged = acknowledged;
     notifyListeners();
   }
 
@@ -277,6 +289,8 @@ class ResearchWorkspaceProvider extends ChangeNotifier {
     _activePourPoint = null;
     _snappedPourPoint = null;
     _inputDem = null;
+    _demReadinessAssessment = null;
+    _isResearcherAcknowledged = false;
     _multispectralProduct = null;
     _ndviRaster = null;
     _ndwiRaster = null;
