@@ -253,6 +253,44 @@ class ResearchProductRegistryFactory {
       } : const {},
     ));
 
+    // 17. HydroAI Flood Depth (Raster)
+    final hydroResult = workspace.hydrodynamicResult;
+    final depthRaster = hydroResult?.maxDepthRaster.rasterData ?? _findRasterInSession(session, 'Flood Depth (Max)');
+    products.add(_buildRasterProduct(
+      id: 'prod-flood-depth',
+      name: 'HydroAI Flood Depth (Max)',
+      type: ResearchProductType.filledDem,
+      raster: depthRaster,
+      fallbackCrs: session?.crs.code,
+      defaultUnits: 'meters',
+      stepName: 'Hydrodynamic Simulation',
+    ));
+
+    // 18. HydroAI SAR Spatial Validation (Raster Categorical)
+    final validationRecord = workspace.inundationValidationRecord;
+    final validationRaster = validationRecord?.sarRecord.sarFloodMask ?? _findRasterInSession(session, 'SAR Inundation Validation (CSI)');
+    products.add(ResearchProduct(
+      id: 'prod-sar-validation',
+      name: 'Sentinel-1 SAR Spatial Validation Overlay',
+      type: ResearchProductType.filledDem,
+      category: ResearchProductCategory.raster,
+      availability: validationRaster != null
+          ? ResearchProductAvailability.available
+          : ResearchProductAvailability.unavailable,
+      supportedExportFormats: const [ResearchProductFormat.geoTiff],
+      crsCode: validationRaster?.crs.code ?? session?.crs.code,
+      dimensions: validationRaster != null ? (width: validationRaster.width, height: validationRaster.height) : null,
+      sourceData: validationRaster,
+      provenanceStepName: 'SAR Inundation Validation',
+      metadata: validationRecord != null ? {
+        'csi': validationRecord.csi,
+        'pod': validationRecord.pod,
+        'far': validationRecord.far,
+        'f1Score': validationRecord.confusionMatrix.f1Score,
+        'depthThresholdMeters': validationRecord.depthThresholdMeters,
+      } : const {},
+    ));
+
     return ResearchProductRegistry(
       sessionId: session?.id,
       sessionTitle: session?.title,

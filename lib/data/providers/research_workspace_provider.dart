@@ -11,6 +11,9 @@ import 'package:riskpulse/data/services/research_workflow_orchestrator.dart';
 import 'package:riskpulse/domain/gis/raster_data.dart';
 import 'package:riskpulse/domain/gis/multispectral_product.dart';
 import 'package:riskpulse/domain/gis/dem_readiness_assessment.dart';
+import 'package:riskpulse/domain/gis/data_source_type.dart';
+import 'package:riskpulse/domain/gis/gis_style.dart';
+import 'package:riskpulse/domain/hydroai/hydroai.dart';
 
 import 'package:riskpulse/data/services/terrain_analysis_service.dart';
 import 'package:riskpulse/data/services/hydrological_analysis_service.dart';
@@ -40,6 +43,11 @@ class ResearchWorkspaceProvider extends ChangeNotifier {
   RasterData? _ndwiRaster;
   bool _isRemoteSensingProcessing = false;
   String? _remoteSensingError;
+
+  // HydroAI Workspace State
+  HydrodynamicResult? _hydrodynamicResult;
+  InundationValidationRecord? _inundationValidationRecord;
+  SarInundationRecord? _sarInundationRecord;
 
   ResearchWorkspaceProvider({ResearchWorkflowOrchestrator? orchestrator}) 
       : _orchestrator = orchestrator ?? _createDefaultOrchestrator();
@@ -118,6 +126,11 @@ class ResearchWorkspaceProvider extends ChangeNotifier {
   RasterData? get ndwiRaster => _ndwiRaster;
   bool get isRemoteSensingProcessing => _isRemoteSensingProcessing;
   String? get remoteSensingError => _remoteSensingError;
+
+  // HydroAI Getters
+  HydrodynamicResult? get hydrodynamicResult => _hydrodynamicResult;
+  InundationValidationRecord? get inundationValidationRecord => _inundationValidationRecord;
+  SarInundationRecord? get sarInundationRecord => _sarInundationRecord;
 
   void setInputDem(RasterData? dem, {DemReadinessAssessment? assessment}) {
     _inputDem = dem;
@@ -277,6 +290,101 @@ class ResearchWorkspaceProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  void setHydrodynamicResult(HydrodynamicResult result) {
+    _hydrodynamicResult = result;
+
+    final session = currentSession;
+    if (session != null) {
+      final List<GisLayer> existingLayers = List.from(session.layers);
+
+      // Create Flood Depth Layer
+      final depthLayer = GisLayer(
+        id: 'layer-flood-depth-${result.resultId}',
+        name: 'Flood Depth (Max)',
+        type: GisLayerType.raster,
+        dataType: SpatialDataType.raster,
+        dataSourceType: DataSourceType.userProvided,
+        style: const RasterStyle(
+          opacity: 0.8,
+          minValue: 0.0,
+          maxValue: 10.0,
+        ),
+        metadata: {
+          'raster_data': result.maxDepthRaster.rasterData,
+          'resultId': result.resultId,
+          'simulationId': result.config.simulationId,
+          'units': 'meters',
+        },
+      );
+
+      existingLayers.removeWhere((l) => l.name == 'Flood Depth (Max)');
+      existingLayers.add(depthLayer);
+
+      final updatedSession = session.copyWith(layers: existingLayers);
+      final currentComp = activeComposition;
+      final updatedComp = currentComp?.copyWith(layers: existingLayers) ??
+          MapComposition(
+            id: 'comp-${updatedSession.id}',
+            title: updatedSession.title,
+            layers: existingLayers,
+          );
+
+      _state = WorkspaceReady(session: updatedSession, composition: updatedComp);
+    }
+
+    notifyListeners();
+  }
+
+  void setInundationValidationRecord(InundationValidationRecord record) {
+    _inundationValidationRecord = record;
+    _sarInundationRecord = record.sarRecord;
+
+    final session = currentSession;
+    if (session != null) {
+      final List<GisLayer> existingLayers = List.from(session.layers);
+
+      // Create SAR Categorical Validation Layer
+      final validationLayer = GisLayer(
+        id: 'layer-sar-validation-${record.validationId}',
+        name: 'SAR Inundation Validation (CSI)',
+        type: GisLayerType.raster,
+        dataType: SpatialDataType.raster,
+        dataSourceType: DataSourceType.userProvided,
+        style: const RasterStyle(
+          opacity: 0.85,
+        ),
+        metadata: {
+          'raster_data': record.sarRecord.sarFloodMask,
+          'validationId': record.validationId,
+          'csi': record.csi,
+          'pod': record.pod,
+          'far': record.far,
+          'f1Score': record.confusionMatrix.f1Score,
+          'tp': record.confusionMatrix.truePositives,
+          'fp': record.confusionMatrix.falsePositives,
+          'fn': record.confusionMatrix.falseNegatives,
+          'tn': record.confusionMatrix.trueNegatives,
+        },
+      );
+
+      existingLayers.removeWhere((l) => l.name == 'SAR Inundation Validation (CSI)');
+      existingLayers.add(validationLayer);
+
+      final updatedSession = session.copyWith(layers: existingLayers);
+      final currentComp = activeComposition;
+      final updatedComp = currentComp?.copyWith(layers: existingLayers) ??
+          MapComposition(
+            id: 'comp-${updatedSession.id}',
+            title: updatedSession.title,
+            layers: existingLayers,
+          );
+
+      _state = WorkspaceReady(session: updatedSession, composition: updatedComp);
+    }
+
+    notifyListeners();
+  }
+
   void clearSession() {
     _state = const WorkspaceInitial();
     _clearInteractiveState();
@@ -296,5 +404,8 @@ class ResearchWorkspaceProvider extends ChangeNotifier {
     _ndwiRaster = null;
     _isRemoteSensingProcessing = false;
     _remoteSensingError = null;
+    _hydrodynamicResult = null;
+    _inundationValidationRecord = null;
+    _sarInundationRecord = null;
   }
 }
