@@ -14,6 +14,7 @@ import 'package:riskpulse/domain/gis/dem_readiness_assessment.dart';
 import 'package:riskpulse/domain/gis/data_source_type.dart';
 import 'package:riskpulse/domain/gis/gis_style.dart';
 import 'package:riskpulse/domain/hydroai/hydroai.dart';
+import 'package:riskpulse/domain/environmental_health/environmental_health.dart';
 
 import 'package:riskpulse/data/services/terrain_analysis_service.dart';
 import 'package:riskpulse/data/services/hydrological_analysis_service.dart';
@@ -48,6 +49,9 @@ class ResearchWorkspaceProvider extends ChangeNotifier {
   HydrodynamicResult? _hydrodynamicResult;
   InundationValidationRecord? _inundationValidationRecord;
   SarInundationRecord? _sarInundationRecord;
+
+  // Environmental Health Workspace State
+  HealthSpatialAnalysisResult? _environmentalHealthResult;
 
   ResearchWorkspaceProvider({ResearchWorkflowOrchestrator? orchestrator}) 
       : _orchestrator = orchestrator ?? _createDefaultOrchestrator();
@@ -131,6 +135,9 @@ class ResearchWorkspaceProvider extends ChangeNotifier {
   HydrodynamicResult? get hydrodynamicResult => _hydrodynamicResult;
   InundationValidationRecord? get inundationValidationRecord => _inundationValidationRecord;
   SarInundationRecord? get sarInundationRecord => _sarInundationRecord;
+
+  // Environmental Health Getter
+  HealthSpatialAnalysisResult? get environmentalHealthResult => _environmentalHealthResult;
 
   void setInputDem(RasterData? dem, {DemReadinessAssessment? assessment}) {
     _inputDem = dem;
@@ -385,6 +392,51 @@ class ResearchWorkspaceProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  void setEnvironmentalHealthResult(HealthSpatialAnalysisResult result) {
+    _environmentalHealthResult = result;
+
+    final session = currentSession;
+    final raster = result.associationRaster;
+    if (session != null && raster != null) {
+      final List<GisLayer> existingLayers = List.from(session.layers);
+
+      final ehLayer = GisLayer(
+        id: 'layer-eh-${result.resultId}',
+        name: 'Environmental Health Exposure Overlay',
+        type: GisLayerType.raster,
+        dataType: SpatialDataType.raster,
+        dataSourceType: DataSourceType.userProvided,
+        style: const RasterStyle(
+          opacity: 0.8,
+        ),
+        metadata: {
+          'raster_data': raster,
+          'resultId': result.resultId,
+          'pearsonCorrelationR': result.pearsonCorrelationR,
+          'healthCategory': result.config.healthDataset.healthCategory.name,
+          'exposureVariable': result.config.exposureLayer.variableName,
+          'causalityDisclaimer': result.causalityDisclaimer,
+        },
+      );
+
+      existingLayers.removeWhere((l) => l.name == 'Environmental Health Exposure Overlay');
+      existingLayers.add(ehLayer);
+
+      final updatedSession = session.copyWith(layers: existingLayers);
+      final currentComp = activeComposition;
+      final updatedComp = currentComp?.copyWith(layers: existingLayers) ??
+          MapComposition(
+            id: 'comp-${updatedSession.id}',
+            title: updatedSession.title,
+            layers: existingLayers,
+          );
+
+      _state = WorkspaceReady(session: updatedSession, composition: updatedComp);
+    }
+
+    notifyListeners();
+  }
+
   void clearSession() {
     _state = const WorkspaceInitial();
     _clearInteractiveState();
@@ -407,5 +459,6 @@ class ResearchWorkspaceProvider extends ChangeNotifier {
     _hydrodynamicResult = null;
     _inundationValidationRecord = null;
     _sarInundationRecord = null;
+    _environmentalHealthResult = null;
   }
 }

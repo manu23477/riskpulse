@@ -291,6 +291,30 @@ class ResearchProductRegistryFactory {
       } : const {},
     ));
 
+    // 19. Environmental Health Exposure Overlay (Raster)
+    final ehResult = workspace.environmentalHealthResult;
+    final ehRaster = ehResult?.associationRaster ?? _findRasterInSession(session, 'Environmental Health Exposure Overlay');
+    products.add(ResearchProduct(
+      id: 'prod-environmental-health',
+      name: 'Environmental Health Exposure Overlay',
+      type: ResearchProductType.filledDem,
+      category: ResearchProductCategory.raster,
+      availability: ehRaster != null
+          ? ResearchProductAvailability.available
+          : ResearchProductAvailability.unavailable,
+      supportedExportFormats: const [ResearchProductFormat.geoTiff, ResearchProductFormat.json],
+      crsCode: ehRaster?.crs.code ?? session?.crs.code,
+      dimensions: ehRaster != null ? (width: ehRaster.width, height: ehRaster.height) : null,
+      sourceData: ehRaster,
+      provenanceStepName: 'Environmental Health Analysis',
+      metadata: ehResult != null ? {
+        'pearsonCorrelationR': ehResult.pearsonCorrelationR,
+        'healthCategory': ehResult.config.healthDataset.healthCategory.name,
+        'exposureVariable': ehResult.config.exposureLayer.variableName,
+        'causalityDisclaimer': ehResult.causalityDisclaimer,
+      } : const {},
+    ));
+
     return ResearchProductRegistry(
       sessionId: session?.id,
       sessionTitle: session?.title,

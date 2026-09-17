@@ -16,6 +16,7 @@ import 'package:riskpulse/data/models/yatra_status.dart';
 import '../global_alerts/global_alerts_screen.dart';
 import '../research_gis/research_gis_screen.dart';
 import '../emergency/emergency_hub_screen.dart';
+import '../help_centre/help_centre_screen.dart';
 import '../profile/profile_screen.dart';
 import '../reports/report_generator_screen.dart';
 import '../weather/weather_details_screen.dart';
@@ -274,9 +275,13 @@ class _RiskPulseHomeState extends State<RiskPulseHome> {
         ),
         const Spacer(),
         _headerAction(theme.isDarkMode ? Icons.light_mode : Icons.dark_mode, () => theme.toggleTheme()),
-        const SizedBox(width: 10),
+        const SizedBox(width: 8),
         _headerAction(Icons.translate, () => lang.toggleLanguage()),
-        const SizedBox(width: 10),
+        const SizedBox(width: 8),
+        _headerAction(Icons.help_outline, () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) => const HelpCentreScreen()));
+        }),
+        const SizedBox(width: 8),
         _headerAction(Icons.emergency_share, () {
           Navigator.push(context, MaterialPageRoute(builder: (context) => const EmergencyHubScreen()));
         }),

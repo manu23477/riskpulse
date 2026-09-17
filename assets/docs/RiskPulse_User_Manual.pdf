@@ -1,0 +1,507 @@
+%PDF-1.4
+%ÿÿÿÿ
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Count 9 /Kids [ 5 0 R 7 0 R 9 0 R 11 0 R 13 0 R 15 0 R 17 0 R 19 0 R 21 0 R ] >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>
+endobj
+5 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612.0 792.0] /Contents 6 0 R /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> >>
+endobj
+6 0 obj
+<< /Length 3727 >>
+stream
+BT /F2 8 Tf 36 764.0 Td (RISKPULSE USER MANUAL) Tj ET
+BT /F1 8 Tf 400 764.0 Td (RiskPulse v1.0.0+1) Tj ET
+0.5 w 36 758.0 m 576.0 758.0 l S
+0.5 w 36 36 m 576.0 36 l S
+BT /F1 8 Tf 36 24 Td (Confidential Research Documentation — Association does NOT establish causation) Tj ET
+BT /F2 8 Tf 522.0 24 Td (Page 1 of 9) Tj ET
+BT /F2 16 Tf 36.0 726.0 Td (RISKPULSE — USER MANUAL) Tj ET
+BT /F2 10 Tf 36.0 704.0 Td (AI-Powered Disaster Risk Intelligence & Decision Support System) Tj ET
+BT /F1 9 Tf 36.0 689.0 Td (**Document Version**: 1.0.0-R.2 | **Release Baseline**: v1.0.0+1 | **Date**:) Tj ET
+BT /F1 9 Tf 36.0 677.0 Td (September 2026) Tj ET
+BT /F1 9 Tf 36.0 665.0 Td (**Status**: IMPLEMENTED & SOFTWARE-VERIFIED \(RESEARCH-READY\)) Tj ET
+BT /F1 9 Tf 36.0 645.0 Td (---) Tj ET
+BT /F2 13 Tf 36.0 625.0 Td (TABLE OF CONTENTS) Tj ET
+BT /F1 9 Tf 36.0 607.0 Td (1. About RiskPulse & Dual-Mode Architecture) Tj ET
+BT /F1 9 Tf 36.0 595.0 Td (2. Application Architecture) Tj ET
+BT /F1 9 Tf 36.0 583.0 Td (3. Getting Started) Tj ET
+BT /F1 9 Tf 36.0 571.0 Td (4. Home Dashboard) Tj ET
+BT /F1 9 Tf 36.0 559.0 Td (5. Operational RiskMap \(168 Production Features\)) Tj ET
+BT /F1 9 Tf 36.0 547.0 Td (6. Research GIS Studio & Cartographic Workspace) Tj ET
+BT /F1 9 Tf 36.0 535.0 Td (7. DEM Acquisition & Readiness Governance \(4K.8.12-v1 / 4K.8.14-v1\)) Tj ET
+BT /F1 9 Tf 36.0 523.0 Td (8. GIS Analytical Tools) Tj ET
+BT /F1 9 Tf 36.0 511.0 Td (9. Remote Sensing & Multispectral Indices \(NDVI / NDWI\)) Tj ET
+BT /F1 9 Tf 36.0 499.0 Td (10. Google Earth Engine \(GEE\) Architecture) Tj ET
+BT /F1 9 Tf 36.0 487.0 Td (11. OSINT Multi-Stream Intelligence & Controlled Promotion Gate) Tj ET
+BT /F1 9 Tf 36.0 475.0 Td (12. HydroAI 2D Hydrodynamic Modeling Architecture) Tj ET
+BT /F1 9 Tf 36.0 463.0 Td (13. HEC-RAS 2D Solver Adapter & Process Controller) Tj ET
+BT /F1 9 Tf 36.0 451.0 Td (14. Sentinel-1 SAR 2D Inundation Validation \(CSI Engine\)) Tj ET
+BT /F1 9 Tf 36.0 439.0 Td (15. Exposure Analysis Engine) Tj ET
+BT /F1 9 Tf 36.0 427.0 Td (16. Impact Assessment Engine \(Stage 3.8-R Safeguards\)) Tj ET
+BT /F1 9 Tf 36.0 415.0 Td (17. Decision Support Engine \(3.9.5-v1\) & Scenario Analysis) Tj ET
+BT /F1 9 Tf 36.0 403.0 Td (18. Research Priority Queue Engine \(3.9.8-v1\)) Tj ET
+BT /F1 9 Tf 36.0 391.0 Td (19. AI Assistance & Advisory Synthesis) Tj ET
+BT /F1 9 Tf 36.0 379.0 Td (20. Environmental Health & Disease Spatial Intelligence \(EH.1-R1\)) Tj ET
+BT /F1 9 Tf 36.0 367.0 Td (21. Provenance Continuity & Lineage Tracking \(Stage 4K.8.18\)) Tj ET
+BT /F1 9 Tf 36.0 355.0 Td (22. Research Product Registry \(18 Products\)) Tj ET
+BT /F1 9 Tf 36.0 343.0 Td (23. GeoTIFF / GeoJSON Export Infrastructure) Tj ET
+BT /F1 9 Tf 36.0 331.0 Td (24. Research vs Operational Mode Firewall) Tj ET
+BT /F1 9 Tf 36.0 319.0 Td (25. Troubleshooting & Data Governance) Tj ET
+BT /F1 9 Tf 36.0 307.0 Td (26. Scientific Limitations & Governance Disclaimers) Tj ET
+BT /F1 9 Tf 36.0 295.0 Td (27. Privacy & Aggregated Health Data Governance) Tj ET
+BT /F1 9 Tf 36.0 283.0 Td (28. Glossary & Terminology Guide) Tj ET
+BT /F1 9 Tf 36.0 263.0 Td (---) Tj ET
+BT /F2 13 Tf 36.0 243.0 Td (SECTION: GETTING STARTED & APPLICATION OVERVIEW) Tj ET
+BT /F1 9 Tf 36.0 225.0 Td (**Topic ID**: `getting_started` | **Category**: `gettingStarted`) Tj ET
+BT /F1 9 Tf 36.0 213.0 Td (**Scientific Status**: IMPLEMENTED & SOFTWARE-VERIFIED) Tj ET
+BT /F1 9 Tf 36.0 193.0 Td (**Summary**: Overview of RiskPulse dual-mode architecture: Operational RiskMap) Tj ET
+BT /F1 9 Tf 36.0 181.0 Td (vs Research GIS Studio.) Tj ET
+BT /F2 10 Tf 36.0 161.0 Td (Dual-Mode Architecture) Tj ET
+BT /F1 9 Tf 36.0 146.0 Td (RiskPulse provides two distinct operational environments: Operational Mode for) Tj ET
+endstream
+endobj
+7 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612.0 792.0] /Contents 8 0 R /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> >>
+endobj
+8 0 obj
+<< /Length 3698 >>
+stream
+BT /F2 8 Tf 36 764.0 Td (RISKPULSE USER MANUAL) Tj ET
+BT /F1 8 Tf 400 764.0 Td (RiskPulse v1.0.0+1) Tj ET
+0.5 w 36 758.0 m 576.0 758.0 l S
+0.5 w 36 36 m 576.0 36 l S
+BT /F1 8 Tf 36 24 Td (Confidential Research Documentation — Association does NOT establish causation) Tj ET
+BT /F2 8 Tf 522.0 24 Td (Page 2 of 9) Tj ET
+BT /F1 9 Tf 36.0 726.0 Td (real-time district hazard tracking and Research GIS Studio for reproducible) Tj ET
+BT /F1 9 Tf 36.0 714.0 Td (scientific research workflows.) Tj ET
+BT /F2 10 Tf 36.0 694.0 Td (Scientific Governance Principles) Tj ET
+BT /F1 9 Tf 36.0 679.0 Td (RiskPulse enforces strict separation between software execution, spatial) Tj ET
+BT /F1 9 Tf 36.0 667.0 Td (metrics, scientific validation, and operational promotion. A completed) Tj ET
+BT /F1 9 Tf 36.0 655.0 Td (simulation or calculation does NOT constitute scientific validation.) Tj ET
+BT /F2 10 Tf 36.0 635.0 Td (Step-by-Step User Workflow) Tj ET
+BT /F1 9 Tf 36.0 620.0 Td (1. Launch RiskPulse and navigate between Home Dashboard, Operational RiskMap,) Tj ET
+BT /F1 9 Tf 36.0 608.0 Td (and Research GIS.) Tj ET
+BT /F1 9 Tf 36.0 596.0 Td (2. Use Operational Mode to view established 168 district risk features.) Tj ET
+BT /F1 9 Tf 36.0 584.0 Td (3. Use Research GIS Studio to configure AOI, acquire DEMs, run HydroAI, or) Tj ET
+BT /F1 9 Tf 36.0 572.0 Td (perform SAR inundation validation.) Tj ET
+BT /F2 9 Tf 46.0 552.0 Td (**SCIENTIFIC & APPLICATION LIMITATIONS**: Research GIS analyses remain in) Tj ET
+BT /F1 9 Tf 36.0 539.0 Td (research mode and cannot mutate production operational RiskMap layers.) Tj ET
+BT /F1 9 Tf 36.0 519.0 Td (---) Tj ET
+BT /F2 13 Tf 36.0 499.0 Td (SECTION: OPERATIONAL RISKMAP & PROTECTED BASELINE) Tj ET
+BT /F1 9 Tf 36.0 481.0 Td (**Topic ID**: `operational_riskmap` | **Category**: `operationalRiskMap`) Tj ET
+BT /F1 9 Tf 36.0 469.0 Td (**Scientific Status**: IMPLEMENTED & SOFTWARE-VERIFIED) Tj ET
+BT /F1 9 Tf 36.0 449.0 Td (**Summary**: User guide for Operational RiskMap, hazard point/polygon feeds, and) Tj ET
+BT /F1 9 Tf 36.0 437.0 Td (baseline protection.) Tj ET
+BT /F2 10 Tf 36.0 417.0 Td (Production Feature Set) Tj ET
+BT /F1 9 Tf 36.0 402.0 Td (The Operational RiskMap is backed by a protected production GeoJSON baseline) Tj ET
+BT /F1 9 Tf 36.0 390.0 Td (containing 168 features \(163 Points, 5 Polygons\), including anchor feature) Tj ET
+BT /F1 9 Tf 36.0 378.0 Td (ls-hp-mandi-kotropi-2017.) Tj ET
+BT /F2 10 Tf 36.0 358.0 Td (Operational Isolation) Tj ET
+BT /F1 9 Tf 36.0 343.0 Td (Operational features are protected from experimental research modifications. Any) Tj ET
+BT /F1 9 Tf 36.0 331.0 Td (promotion from Research GIS to Operational RiskMap requires passing the) Tj ET
+BT /F1 9 Tf 36.0 319.0 Td (ControlledPromotionGate.) Tj ET
+BT /F2 10 Tf 36.0 299.0 Td (Step-by-Step User Workflow) Tj ET
+BT /F1 9 Tf 36.0 284.0 Td (1. Open Operational RiskMap from Home Dashboard.) Tj ET
+BT /F1 9 Tf 36.0 272.0 Td (2. Tap on any district point or hazard polygon to view attribute cards,) Tj ET
+BT /F1 9 Tf 36.0 260.0 Td (susceptibility scores, and historical event details.) Tj ET
+BT /F1 9 Tf 36.0 248.0 Td (3. Toggle map style \(Normal, Satellite, Terrain, Dark\).) Tj ET
+BT /F2 9 Tf 46.0 228.0 Td (**SCIENTIFIC & APPLICATION LIMITATIONS**: Live weather/hazard updates depend) Tj ET
+BT /F1 9 Tf 36.0 215.0 Td (on external service availability.) Tj ET
+BT /F1 9 Tf 36.0 195.0 Td (---) Tj ET
+BT /F2 13 Tf 36.0 175.0 Td (SECTION: RESEARCH GIS STUDIO & CARTOGRAPHIC WORKSPACE) Tj ET
+BT /F1 9 Tf 36.0 157.0 Td (**Topic ID**: `research_gis_studio` | **Category**: `researchGisStudio`) Tj ET
+BT /F1 9 Tf 36.0 145.0 Td (**Scientific Status**: IMPLEMENTED & SOFTWARE-VERIFIED) Tj ET
+endstream
+endobj
+9 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612.0 792.0] /Contents 10 0 R /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> >>
+endobj
+10 0 obj
+<< /Length 3713 >>
+stream
+BT /F2 8 Tf 36 764.0 Td (RISKPULSE USER MANUAL) Tj ET
+BT /F1 8 Tf 400 764.0 Td (RiskPulse v1.0.0+1) Tj ET
+0.5 w 36 758.0 m 576.0 758.0 l S
+0.5 w 36 36 m 576.0 36 l S
+BT /F1 8 Tf 36 24 Td (Confidential Research Documentation — Association does NOT establish causation) Tj ET
+BT /F2 8 Tf 522.0 24 Td (Page 3 of 9) Tj ET
+BT /F1 9 Tf 36.0 726.0 Td (**Summary**: Guide to managing Research Sessions, map compositions, layer) Tj ET
+BT /F1 9 Tf 36.0 714.0 Td (ordering, and product inventories.) Tj ET
+BT /F2 10 Tf 36.0 694.0 Td (Research Workspace State) Tj ET
+BT /F1 9 Tf 36.0 679.0 Td (Research Workspace Provider manages active Research Sessions, AOI extents, layer) Tj ET
+BT /F1 9 Tf 36.0 667.0 Td (stacks, cartographic elements \(scale bar, north arrow, coordinate grid\), and) Tj ET
+BT /F1 9 Tf 36.0 655.0 Td (product inventories.) Tj ET
+BT /F2 10 Tf 36.0 635.0 Td (Layer Management & Symbology) Tj ET
+BT /F1 9 Tf 36.0 620.0 Td (Reuses GisLayer, RasterStyle, and VectorStyle to support continuous color ramps,) Tj ET
+BT /F1 9 Tf 36.0 608.0 Td (classified schemes, opacity, and z-index reordering.) Tj ET
+BT /F2 10 Tf 36.0 588.0 Td (Step-by-Step User Workflow) Tj ET
+BT /F1 9 Tf 36.0 573.0 Td (1. Click [NEW RESEARCH SESSION] and draw or capture Study Area / AOI extent.) Tj ET
+BT /F1 9 Tf 36.0 561.0 Td (2. Acquire DEM or load multispectral satellite products.) Tj ET
+BT /F1 9 Tf 36.0 549.0 Td (3. Run analytical pipelines and inspect layers in Layer Manager.) Tj ET
+BT /F2 9 Tf 46.0 529.0 Td (**SCIENTIFIC & APPLICATION LIMITATIONS**: All research layers remain in) Tj ET
+BT /F1 9 Tf 36.0 516.0 Td (memory/local session storage.) Tj ET
+BT /F1 9 Tf 36.0 496.0 Td (---) Tj ET
+BT /F2 13 Tf 36.0 476.0 Td (SECTION: DEM ACQUISITION, VALIDATION & READINESS GOVERNANCE) Tj ET
+BT /F1 9 Tf 36.0 458.0 Td (**Topic ID**: `dem_acquisition` | **Category**: `demAndTerrain`) Tj ET
+BT /F1 9 Tf 36.0 446.0 Td (**Scientific Status**: IMPLEMENTED & SOFTWARE-VERIFIED) Tj ET
+BT /F1 9 Tf 36.0 426.0 Td (**Summary**: Complete guide to DEM structural validation \(4K.8.12-v1\), readiness) Tj ET
+BT /F1 9 Tf 36.0 414.0 Td (policy \(4K.8.14-v1\), and acknowledgement.) Tj ET
+BT /F2 10 Tf 36.0 394.0 Td (DemValidationService \(4K.8.12-v1\)) Tj ET
+BT /F1 9 Tf 36.0 379.0 Td (Evaluates raster dimensions, spatial extent coverage, valid cell %, and NoData) Tj ET
+BT /F1 9 Tf 36.0 367.0 Td (cell % against the AOI. No synthetic elevation or silent NoData filling is) Tj ET
+BT /F1 9 Tf 36.0 355.0 Td (permitted.) Tj ET
+BT /F2 10 Tf 36.0 335.0 Td (DemReadinessPolicyService \(4K.8.14-v1\)) Tj ET
+BT /F1 9 Tf 36.0 320.0 Td (Classifies DEM into readiness states \(readyForAnalysis,) Tj ET
+BT /F1 9 Tf 36.0 308.0 Td (requiresResearcherReview, rejected, notEstablished\). Partial footprint coverage) Tj ET
+BT /F1 9 Tf 36.0 296.0 Td (\(< 98%\) or internal NoData cells require explicit researcher acknowledgement via) Tj ET
+BT /F1 9 Tf 36.0 284.0 Td (DemReadinessAcknowledgementDialog.) Tj ET
+BT /F2 10 Tf 36.0 264.0 Td (Step-by-Step User Workflow) Tj ET
+BT /F1 9 Tf 36.0 249.0 Td (1. In Research GIS, click [ACQUIRE DEM] and select GEE GLO-30 or Local GeoTIFF.) Tj ET
+BT /F1 9 Tf 36.0 237.0 Td (2. Review calculated valid cell %, NoData %, and coverage statistics.) Tj ET
+BT /F1 9 Tf 36.0 225.0 Td (3. If readiness status is requiresResearcherReview, click [ACKNOWLEDGE &) Tj ET
+BT /F1 9 Tf 36.0 213.0 Td (PROCEED]. Note: Acknowledgement is a workflow decision, NOT scientific) Tj ET
+BT /F1 9 Tf 36.0 201.0 Td (validation.) Tj ET
+BT /F2 9 Tf 46.0 181.0 Td (**SCIENTIFIC & APPLICATION LIMITATIONS**: Raw DEM rasters outside AOI or with) Tj ET
+BT /F1 9 Tf 36.0 168.0 Td (zero valid cells are rejected.) Tj ET
+BT /F1 9 Tf 36.0 148.0 Td (---) Tj ET
+endstream
+endobj
+11 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612.0 792.0] /Contents 12 0 R /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> >>
+endobj
+12 0 obj
+<< /Length 3712 >>
+stream
+BT /F2 8 Tf 36 764.0 Td (RISKPULSE USER MANUAL) Tj ET
+BT /F1 8 Tf 400 764.0 Td (RiskPulse v1.0.0+1) Tj ET
+0.5 w 36 758.0 m 576.0 758.0 l S
+0.5 w 36 36 m 576.0 36 l S
+BT /F1 8 Tf 36 24 Td (Confidential Research Documentation — Association does NOT establish causation) Tj ET
+BT /F2 8 Tf 522.0 24 Td (Page 4 of 9) Tj ET
+BT /F2 13 Tf 36.0 726.0 Td (SECTION: REMOTE SENSING \(NDVI / NDWI\) & GEE INTEGRATION) Tj ET
+BT /F1 9 Tf 36.0 708.0 Td (**Topic ID**: `remote_sensing_gee` | **Category**: `remoteSensingGee`) Tj ET
+BT /F1 9 Tf 36.0 696.0 Td (**Scientific Status**: SOFTWARE READY / LIVE GEE PENDING CREDENTIALS) Tj ET
+BT /F1 9 Tf 36.0 676.0 Td (**Summary**: Guide to Sentinel-2 multispectral index calculations and Earth) Tj ET
+BT /F1 9 Tf 36.0 664.0 Td (Engine provider architecture.) Tj ET
+BT /F2 10 Tf 36.0 644.0 Td (Multispectral Index Engine) Tj ET
+BT /F1 9 Tf 36.0 629.0 Td (Computes NDVI \(Normalized Difference Vegetation Index\) and NDWI \(Normalized) Tj ET
+BT /F1 9 Tf 36.0 617.0 Td (Difference Water Index\) from Sentinel-2 bands \(NIR, Red, Green\). Runs) Tj ET
+BT /F1 9 Tf 36.0 605.0 Td (independently without DEM blocking.) Tj ET
+BT /F2 10 Tf 36.0 585.0 Td (Google Earth Engine Provider) Tj ET
+BT /F1 9 Tf 36.0 570.0 Td (GeeClient and GeeDataProvider manage GLO-30 DEM and Copernicus Sentinel-2 tile) Tj ET
+BT /F1 9 Tf 36.0 558.0 Td (requests. Operates behind secure credential boundaries.) Tj ET
+BT /F2 10 Tf 36.0 538.0 Td (Step-by-Step User Workflow) Tj ET
+BT /F1 9 Tf 36.0 523.0 Td (1. In Research GIS Remote Sensing tab, select Sentinel-2 product.) Tj ET
+BT /F1 9 Tf 36.0 511.0 Td (2. Calculate NDVI or NDWI raster.) Tj ET
+BT /F1 9 Tf 36.0 499.0 Td (3. Inspect continuous index color ramps in Layer Manager.) Tj ET
+BT /F2 9 Tf 46.0 479.0 Td (**SCIENTIFIC & APPLICATION LIMITATIONS**: Live satellite streaming requires) Tj ET
+BT /F1 9 Tf 36.0 466.0 Td (authenticated GEE service account credentials.) Tj ET
+BT /F1 9 Tf 36.0 446.0 Td (---) Tj ET
+BT /F2 13 Tf 36.0 426.0 Td (SECTION: OSINT INTELLIGENCE & CONTROLLED PROMOTION GATE) Tj ET
+BT /F1 9 Tf 36.0 408.0 Td (**Topic ID**: `osint_intelligence` | **Category**: `osintIntelligence`) Tj ET
+BT /F1 9 Tf 36.0 396.0 Td (**Scientific Status**: IMPLEMENTED & SOFTWARE-VERIFIED) Tj ET
+BT /F1 9 Tf 36.0 376.0 Td (**Summary**: Multi-stream intelligence fusion, corroboration, and operational) Tj ET
+BT /F1 9 Tf 36.0 364.0 Td (promotion firewall.) Tj ET
+BT /F2 10 Tf 36.0 344.0 Td (Evidence Fusion Pipeline) Tj ET
+BT /F1 9 Tf 36.0 329.0 Td (MultiStreamFusionEngine syndicates and corroborates news, social, and remote) Tj ET
+BT /F1 9 Tf 36.0 317.0 Td (sensing event signals. ControlledPromotionGate prevents raw unverified OSINT) Tj ET
+BT /F1 9 Tf 36.0 305.0 Td (from directly mutating operational RiskMap or forcing hydraulic models.) Tj ET
+BT /F2 10 Tf 36.0 285.0 Td (Step-by-Step User Workflow) Tj ET
+BT /F1 9 Tf 36.0 270.0 Td (1. Open OSINT Workspace from navigation.) Tj ET
+BT /F1 9 Tf 36.0 258.0 Td (2. Inspect cluster syndication, confidence scores, and source lineage.) Tj ET
+BT /F1 9 Tf 36.0 246.0 Td (3. Authorized reviewers can run promotion verification before operational) Tj ET
+BT /F1 9 Tf 36.0 234.0 Td (promotion.) Tj ET
+BT /F2 9 Tf 46.0 214.0 Td (**SCIENTIFIC & APPLICATION LIMITATIONS**: Raw OSINT remains intelligence) Tj ET
+BT /F1 9 Tf 36.0 201.0 Td (evidence, not physical ground truth.) Tj ET
+BT /F1 9 Tf 36.0 181.0 Td (---) Tj ET
+BT /F2 13 Tf 36.0 161.0 Td (SECTION: HYDROAI 2D HYDRODYNAMICS & HEC-RAS ADAPTER) Tj ET
+BT /F1 9 Tf 36.0 143.0 Td (**Topic ID**: `hydroai_hecras` | **Category**: `hydroAiAndHecRas`) Tj ET
+BT /F1 9 Tf 36.0 131.0 Td (**Scientific Status**: SOFTWARE CONTRACTS & ADAPTER COMPLETE / NATIVE BINARY) Tj ET
+endstream
+endobj
+13 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612.0 792.0] /Contents 14 0 R /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> >>
+endobj
+14 0 obj
+<< /Length 3857 >>
+stream
+BT /F2 8 Tf 36 764.0 Td (RISKPULSE USER MANUAL) Tj ET
+BT /F1 8 Tf 400 764.0 Td (RiskPulse v1.0.0+1) Tj ET
+0.5 w 36 758.0 m 576.0 758.0 l S
+0.5 w 36 36 m 576.0 36 l S
+BT /F1 8 Tf 36 24 Td (Confidential Research Documentation — Association does NOT establish causation) Tj ET
+BT /F2 8 Tf 522.0 24 Td (Page 5 of 9) Tj ET
+BT /F1 9 Tf 36.0 726.0 Td (PENDING) Tj ET
+BT /F1 9 Tf 36.0 706.0 Td (**Summary**: Physics-based 2D hydrodynamic modeling, solver-neutral contracts,) Tj ET
+BT /F1 9 Tf 36.0 694.0 Td (and HEC-RAS 2D adapter foundation.) Tj ET
+BT /F2 10 Tf 36.0 674.0 Td (Solver-Neutral HydroAI Architecture) Tj ET
+BT /F1 9 Tf 36.0 659.0 Td (Contains 20 domain contracts \(SimulationConfig, HydrodynamicModelDomain,) Tj ET
+BT /F1 9 Tf 36.0 647.0 Td (FloodplainModel, ChannelModel, RoughnessRaster, BoundaryCondition,) Tj ET
+BT /F1 9 Tf 36.0 635.0 Td (FloodDepthRaster, VelocityVectorRaster, FloodState, HydrodynamicResult\)) Tj ET
+BT /F1 9 Tf 36.0 623.0 Td (decoupled from specific solvers.) Tj ET
+BT /F2 10 Tf 36.0 603.0 Td (HecRasSolverAdapter & Process Controller) Tj ET
+BT /F1 9 Tf 36.0 588.0 Td (Translates SimulationConfig into HEC-RAS 2D project file structures \(.prj, .g01,) Tj ET
+BT /F1 9 Tf 36.0 576.0 Td (.u01, .p01\). Handles background process control, status polling, and) Tj ET
+BT /F1 9 Tf 36.0 564.0 Td (GeoTIFF/HDF5 parsing.) Tj ET
+BT /F2 10 Tf 36.0 544.0 Td (Step-by-Step User Workflow) Tj ET
+BT /F1 9 Tf 36.0 529.0 Td (1. In Research GIS, configure Hydrodynamic Model Domain with governed DEM and) Tj ET
+BT /F1 9 Tf 36.0 517.0 Td (precipitation forcing.) Tj ET
+BT /F1 9 Tf 36.0 505.0 Td (2. Execute HydroAI simulation via HecRasSolverAdapter.) Tj ET
+BT /F1 9 Tf 36.0 493.0 Td (3. View output Flood Depth \(Max\), Peak Velocity, and Water Surface Elevation) Tj ET
+BT /F1 9 Tf 36.0 481.0 Td (rasters.) Tj ET
+BT /F2 9 Tf 46.0 461.0 Td (**SCIENTIFIC & APPLICATION LIMITATIONS**: Native binary execution requires a) Tj ET
+BT /F1 9 Tf 36.0 448.0 Td (local Windows installation with RasUnsteady64.exe. Uninstalled machines fall) Tj ET
+BT /F1 9 Tf 36.0 436.0 Td (back cleanly to simulated mock execution.) Tj ET
+BT /F1 9 Tf 36.0 416.0 Td (---) Tj ET
+BT /F2 13 Tf 36.0 396.0 Td (SECTION: SENTINEL-1 SAR 2D INUNDATION VALIDATION & CSI ENGINE) Tj ET
+BT /F1 9 Tf 36.0 378.0 Td (**Topic ID**: `sar_inundation_validation` | **Category**:) Tj ET
+BT /F1 9 Tf 36.0 366.0 Td (`sarInundationValidation`) Tj ET
+BT /F1 9 Tf 36.0 354.0 Td (**Scientific Status**: SOFTWARE ENGINE COMPLETE / EMPIRICAL EXPERIMENTS PENDING) Tj ET
+BT /F1 9 Tf 36.0 334.0 Td (**Summary**: Spatial validation framework comparing HydroAI flood depth rasters) Tj ET
+BT /F1 9 Tf 36.0 322.0 Td (against Sentinel-1 SAR observations.) Tj ET
+BT /F2 10 Tf 36.0 302.0 Td (Common Validation Grid Governance) Tj ET
+BT /F1 9 Tf 36.0 287.0 Td (SarInundationValidationEngine enforces explicit grid compatibility \(CRS,) Tj ET
+BT /F1 9 Tf 36.0 275.0 Td (dimensions, cell size, origin/bounds\). Incompatible grids display SPATIAL) Tj ET
+BT /F1 9 Tf 36.0 263.0 Td (INCOMPATIBILITY: EXPLICIT HARMONISATION REQUIRED.) Tj ET
+BT /F2 10 Tf 36.0 243.0 Td (Critical Success Index \(CSI\)) Tj ET
+BT /F1 9 Tf 36.0 228.0 Td (Calculates spatial confusion matrix cell counts \(TP, FP, FN, TN\) and metrics:) Tj ET
+BT /F1 9 Tf 36.0 216.0 Td (CSI = TP / \(TP + FP + FN\), POD, FAR, F1, IoU, BIAS, ACC. CSI is an evaluation) Tj ET
+BT /F1 9 Tf 36.0 204.0 Td (metric and NOT automatic scientific validation or operational approval.) Tj ET
+BT /F2 10 Tf 36.0 184.0 Td (Step-by-Step User Workflow) Tj ET
+BT /F1 9 Tf 36.0 169.0 Td (1. In Research GIS, select completed HydrodynamicResult and Sentinel-1 SAR) Tj ET
+BT /F1 9 Tf 36.0 157.0 Td (reference record.) Tj ET
+BT /F1 9 Tf 36.0 145.0 Td (2. Supply explicit researcher wetting threshold \(depthThresholdMeters, e.g.) Tj ET
+BT /F1 9 Tf 36.0 133.0 Td (0.50m\).) Tj ET
+endstream
+endobj
+15 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612.0 792.0] /Contents 16 0 R /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> >>
+endobj
+16 0 obj
+<< /Length 3813 >>
+stream
+BT /F2 8 Tf 36 764.0 Td (RISKPULSE USER MANUAL) Tj ET
+BT /F1 8 Tf 400 764.0 Td (RiskPulse v1.0.0+1) Tj ET
+0.5 w 36 758.0 m 576.0 758.0 l S
+0.5 w 36 36 m 576.0 36 l S
+BT /F1 8 Tf 36 24 Td (Confidential Research Documentation — Association does NOT establish causation) Tj ET
+BT /F2 8 Tf 522.0 24 Td (Page 6 of 9) Tj ET
+BT /F1 9 Tf 36.0 726.0 Td (3. Run SAR validation and inspect 4-class categorical map overlay \(TP: Green,) Tj ET
+BT /F1 9 Tf 36.0 714.0 Td (FP: Orange, FN: Red\) and HydroaiValidationPanel metrics.) Tj ET
+BT /F2 9 Tf 46.0 694.0 Td (**SCIENTIFIC & APPLICATION LIMITATIONS**: SAR flood extent is an independent) Tj ET
+BT /F1 9 Tf 36.0 681.0 Td (reference, not absolute ground truth.) Tj ET
+BT /F1 9 Tf 36.0 661.0 Td (---) Tj ET
+BT /F2 13 Tf 36.0 641.0 Td (SECTION: ENVIRONMENTAL HEALTH & DISEASE SPATIAL INTELLIGENCE) Tj ET
+BT /F1 9 Tf 36.0 623.0 Td (**Topic ID**: `environmental_health` | **Category**: `environmentalHealth`) Tj ET
+BT /F1 9 Tf 36.0 611.0 Td (**Scientific Status**: IMPLEMENTED & SOFTWARE-VERIFIED) Tj ET
+BT /F1 9 Tf 36.0 591.0 Td (**Summary**: Guide to spatial research into disease patterns and environmental) Tj ET
+BT /F1 9 Tf 36.0 579.0 Td (exposure variables \(EH.1-R1 governance\).) Tj ET
+BT /F2 10 Tf 36.0 559.0 Td (Privacy-Safe Aggregated Health Outcomes) Tj ET
+BT /F1 9 Tf 36.0 544.0 Td (Supports 9 health categories \(respiratory, cardiovascular, vector-borne,) Tj ET
+BT /F1 9 Tf 36.0 532.0 Td (water-borne, renal, neurological, congenital, oncological, other\) aggregated at) Tj ET
+BT /F1 9 Tf 36.0 520.0 Td (district, block, or grid-cell spatial units. Zero patient PII is exposed.) Tj ET
+BT /F2 10 Tf 36.0 500.0 Td (EH.1-R1 Statistical Governance & Non-Causality) Tj ET
+BT /F1 9 Tf 36.0 485.0 Td (EnvironmentalHealthService computes Pearson correlation r and Student) Tj ET
+BT /F1 9 Tf 36.0 473.0 Td (t-statistic p-value. NO hardcoded p = 0.05 default exists. Derived rasters are) Tj ET
+BT /F1 9 Tf 36.0 461.0 Td (explicitly classified as EXPLORATORY EXPOSURE-HEALTH OVERLAY.) Tj ET
+BT /F2 10 Tf 36.0 441.0 Td (Epidemiological Non-Causality Rule) Tj ET
+BT /F1 9 Tf 36.0 426.0 Td (The UI and domain models explicitly state: "Spatial association identified.) Tj ET
+BT /F1 9 Tf 36.0 414.0 Td (Further epidemiological investigation is required. Statistical association does) Tj ET
+BT /F1 9 Tf 36.0 402.0 Td (NOT establish causation.") Tj ET
+BT /F2 10 Tf 36.0 382.0 Td (Step-by-Step User Workflow) Tj ET
+BT /F1 9 Tf 36.0 367.0 Td (1. In Research GIS, open Environmental Health panel.) Tj ET
+BT /F1 9 Tf 36.0 355.0 Td (2. Select Health Outcome Dataset and Environmental Exposure Layer \(e.g. Arsenic) Tj ET
+BT /F1 9 Tf 36.0 343.0 Td (Groundwater Concentration\).) Tj ET
+BT /F1 9 Tf 36.0 331.0 Td (3. Run Spatial Association Analysis to calculate Pearson r and load Exploratory) Tj ET
+BT /F1 9 Tf 36.0 319.0 Td (Overlay to map.) Tj ET
+BT /F2 9 Tf 46.0 299.0 Td (**SCIENTIFIC & APPLICATION LIMITATIONS**: Spatial correlation indicates) Tj ET
+BT /F1 9 Tf 36.0 286.0 Td (geographic association ONLY. It does NOT establish clinical diagnosis or medical) Tj ET
+BT /F1 9 Tf 36.0 274.0 Td (causation.) Tj ET
+BT /F1 9 Tf 36.0 254.0 Td (---) Tj ET
+BT /F2 13 Tf 36.0 234.0 Td (SECTION: EXPOSURE & IMPACT ASSESSMENT ENGINES) Tj ET
+BT /F1 9 Tf 36.0 216.0 Td (**Topic ID**: `exposure_and_impact` | **Category**: `exposureAndImpact`) Tj ET
+BT /F1 9 Tf 36.0 204.0 Td (**Scientific Status**: IMPLEMENTED & SOFTWARE-VERIFIED) Tj ET
+BT /F1 9 Tf 36.0 184.0 Td (**Summary**: Asset spatial intersection, population exposure, and physical) Tj ET
+BT /F1 9 Tf 36.0 172.0 Td (vulnerability/impact estimation.) Tj ET
+BT /F2 10 Tf 36.0 152.0 Td (HazardExposureIntersectionEngine) Tj ET
+BT /F1 9 Tf 36.0 137.0 Td (Intersects flood depth rasters, landslide susceptibility zones, and earthquake) Tj ET
+endstream
+endobj
+17 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612.0 792.0] /Contents 18 0 R /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> >>
+endobj
+18 0 obj
+<< /Length 3730 >>
+stream
+BT /F2 8 Tf 36 764.0 Td (RISKPULSE USER MANUAL) Tj ET
+BT /F1 8 Tf 400 764.0 Td (RiskPulse v1.0.0+1) Tj ET
+0.5 w 36 758.0 m 576.0 758.0 l S
+0.5 w 36 36 m 576.0 36 l S
+BT /F1 8 Tf 36 24 Td (Confidential Research Documentation — Association does NOT establish causation) Tj ET
+BT /F2 8 Tf 522.0 24 Td (Page 7 of 9) Tj ET
+BT /F1 9 Tf 36.0 726.0 Td (intensity with building, population, and road infrastructure layers.) Tj ET
+BT /F2 10 Tf 36.0 706.0 Td (ImpactAssessmentEngine) Tj ET
+BT /F1 9 Tf 36.0 691.0 Td (Calculates physical vulnerability and estimated potential damage while enforcing) Tj ET
+BT /F1 9 Tf 36.0 679.0 Td (Stage 3.8-R safeguards \(vulnerabilityProfile == null -> impactScore = null\).) Tj ET
+BT /F2 10 Tf 36.0 659.0 Td (Step-by-Step User Workflow) Tj ET
+BT /F1 9 Tf 36.0 644.0 Td (1. Select active hazard or HydroAI flood depth layer.) Tj ET
+BT /F1 9 Tf 36.0 632.0 Td (2. Run Exposure Intersection to calculate affected population and road length.) Tj ET
+BT /F1 9 Tf 36.0 620.0 Td (3. Apply vulnerability profile to estimate potential physical damage.) Tj ET
+BT /F2 9 Tf 46.0 600.0 Td (**SCIENTIFIC & APPLICATION LIMITATIONS**: Impact estimates represent) Tj ET
+BT /F1 9 Tf 36.0 587.0 Td (model-derived potential damage under stated assumptions, NOT observed) Tj ET
+BT /F1 9 Tf 36.0 575.0 Td (post-disaster losses.) Tj ET
+BT /F1 9 Tf 36.0 555.0 Td (---) Tj ET
+BT /F2 13 Tf 36.0 535.0 Td (SECTION: DECISION SUPPORT, SCENARIO ANALYSIS & PRIORITY QUEUE) Tj ET
+BT /F1 9 Tf 36.0 517.0 Td (**Topic ID**: `decision_support` | **Category**: `decisionSupport`) Tj ET
+BT /F1 9 Tf 36.0 505.0 Td (**Scientific Status**: IMPLEMENTED & SOFTWARE-VERIFIED) Tj ET
+BT /F1 9 Tf 36.0 485.0 Td (**Summary**: Evidentiary briefing, risk driver attribution, scenario comparison,) Tj ET
+BT /F1 9 Tf 36.0 473.0 Td (and research priority queueing.) Tj ET
+BT /F2 10 Tf 36.0 453.0 Td (DecisionSupportEngine \(3.9.5-v1\)) Tj ET
+BT /F1 9 Tf 36.0 438.0 Td (Synthesizes evidentiary briefings, risk driver attribution \(rainfall vs) Tj ET
+BT /F1 9 Tf 36.0 426.0 Td (susceptibility vs exposure\), and scenario comparison without arbitrary) Tj ET
+BT /F1 9 Tf 36.0 414.0 Td (weighting.) Tj ET
+BT /F2 10 Tf 36.0 394.0 Td (ResearchPriorityQueueEngine \(3.9.8-v1\)) Tj ET
+BT /F1 9 Tf 36.0 379.0 Td (Generates prioritized research task queues sorted by risk urgency, data gaps,) Tj ET
+BT /F1 9 Tf 36.0 367.0 Td (and validation requirements.) Tj ET
+BT /F2 10 Tf 36.0 347.0 Td (Step-by-Step User Workflow) Tj ET
+BT /F1 9 Tf 36.0 332.0 Td (1. In Research GIS, select Decision Support tab.) Tj ET
+BT /F1 9 Tf 36.0 320.0 Td (2. Generate Evidentiary Briefing or compare Baseline vs 95th Percentile Extreme) Tj ET
+BT /F1 9 Tf 36.0 308.0 Td (scenarios.) Tj ET
+BT /F1 9 Tf 36.0 296.0 Td (3. Inspect Research Priority Queue for recommended field validation tasks.) Tj ET
+BT /F2 9 Tf 46.0 276.0 Td (**SCIENTIFIC & APPLICATION LIMITATIONS**: Decision support provides advisory) Tj ET
+BT /F1 9 Tf 36.0 263.0 Td (research insights; human decision-makers remain authoritative.) Tj ET
+BT /F1 9 Tf 36.0 243.0 Td (---) Tj ET
+BT /F2 13 Tf 36.0 223.0 Td (SECTION: PROVENANCE CONTINUITY & RESEARCH PRODUCT REGISTRY) Tj ET
+BT /F1 9 Tf 36.0 205.0 Td (**Topic ID**: `provenance_registry` | **Category**: `provenanceAndRegistry`) Tj ET
+BT /F1 9 Tf 36.0 193.0 Td (**Scientific Status**: IMPLEMENTED & SOFTWARE-VERIFIED) Tj ET
+BT /F1 9 Tf 36.0 173.0 Td (**Summary**: AnalyticalStep lineage, metadata tracking, and 18-product Research) Tj ET
+BT /F1 9 Tf 36.0 161.0 Td (Product Registry.) Tj ET
+BT /F2 10 Tf 36.0 141.0 Td (Provenance Continuity \(Stage 4K.8.18\)) Tj ET
+BT /F1 9 Tf 36.0 126.0 Td (Every AnalyticalStep in session workflow steps preserves validationRuleVersion) Tj ET
+endstream
+endobj
+19 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612.0 792.0] /Contents 20 0 R /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> >>
+endobj
+20 0 obj
+<< /Length 3609 >>
+stream
+BT /F2 8 Tf 36 764.0 Td (RISKPULSE USER MANUAL) Tj ET
+BT /F1 8 Tf 400 764.0 Td (RiskPulse v1.0.0+1) Tj ET
+0.5 w 36 758.0 m 576.0 758.0 l S
+0.5 w 36 36 m 576.0 36 l S
+BT /F1 8 Tf 36 24 Td (Confidential Research Documentation — Association does NOT establish causation) Tj ET
+BT /F2 8 Tf 522.0 24 Td (Page 8 of 9) Tj ET
+BT /F1 9 Tf 36.0 726.0 Td (\(4K.8.12-v1\), readinessPolicyVersion \(4K.8.14-v1\), productContext, valid cell %,) Tj ET
+BT /F1 9 Tf 36.0 714.0 Td (NoData %, readiness status, and researcher acknowledgement.) Tj ET
+BT /F2 10 Tf 36.0 694.0 Td (Research Product Registry \(18 Products\)) Tj ET
+BT /F1 9 Tf 36.0 679.0 Td (ResearchProductRegistryFactory catalogs 18 products while preserving strict) Tj ET
+BT /F1 9 Tf 36.0 667.0 Td (distinction between sourceData != null \(software availability\) and scientific) Tj ET
+BT /F1 9 Tf 36.0 655.0 Td (validation.) Tj ET
+BT /F2 10 Tf 36.0 635.0 Td (Step-by-Step User Workflow) Tj ET
+BT /F1 9 Tf 36.0 620.0 Td (1. Open Product Registry panel in Research GIS.) Tj ET
+BT /F1 9 Tf 36.0 608.0 Td (2. Inspect product availability, supported export formats, and provenance step) Tj ET
+BT /F1 9 Tf 36.0 596.0 Td (names.) Tj ET
+BT /F1 9 Tf 36.0 584.0 Td (3. Click on any product to view detailed analytical step parameters.) Tj ET
+BT /F2 9 Tf 46.0 564.0 Td (**SCIENTIFIC & APPLICATION LIMITATIONS**: Product availability indicates data) Tj ET
+BT /F1 9 Tf 36.0 551.0 Td (object presence in memory, NOT empirical scientific validation.) Tj ET
+BT /F1 9 Tf 36.0 531.0 Td (---) Tj ET
+BT /F2 13 Tf 36.0 511.0 Td (SECTION: RASTER/VECTOR EXPORT & TROUBLESHOOTING GUIDE) Tj ET
+BT /F1 9 Tf 36.0 493.0 Td (**Topic ID**: `export_troubleshooting` | **Category**:) Tj ET
+BT /F1 9 Tf 36.0 481.0 Td (`exportAndTroubleshooting`) Tj ET
+BT /F1 9 Tf 36.0 469.0 Td (**Scientific Status**: IMPLEMENTED & SOFTWARE-VERIFIED) Tj ET
+BT /F1 9 Tf 36.0 449.0 Td (**Summary**: GeoTIFF/GeoJSON export workflows and solutions for common GIS/data) Tj ET
+BT /F1 9 Tf 36.0 437.0 Td (errors.) Tj ET
+BT /F2 10 Tf 36.0 417.0 Td (Raster & Vector Export) Tj ET
+BT /F1 9 Tf 36.0 402.0 Td (RasterExportService exports GeoTIFF rasters and GeoJSON vectors complete with) Tj ET
+BT /F1 9 Tf 36.0 390.0 Td (CRS and metadata headers.) Tj ET
+BT /F2 10 Tf 36.0 370.0 Td (Troubleshooting Common Issues) Tj ET
+BT /F1 9 Tf 36.0 355.0 Td (1. DEM Rejected -> Ensure GeoTIFF overlaps AOI extent.) Tj ET
+BT /F1 9 Tf 36.0 343.0 Td (2. Spatial Incompatibility in SAR Validation -> Ensure model and SAR masks share) Tj ET
+BT /F1 9 Tf 36.0 331.0 Td (identical CRS, resolution, and origin.) Tj ET
+BT /F1 9 Tf 36.0 319.0 Td (3. Native HEC-RAS Failure -> Verify RasUnsteady64.exe installation or use mock) Tj ET
+BT /F1 9 Tf 36.0 307.0 Td (execution mode.) Tj ET
+BT /F1 9 Tf 36.0 295.0 Td (4. Insufficient Health Data -> Ensure HealthOutcomeDataset has >= 3 valid) Tj ET
+BT /F1 9 Tf 36.0 283.0 Td (non-NoData observation pairs.) Tj ET
+BT /F2 10 Tf 36.0 263.0 Td (Step-by-Step User Workflow) Tj ET
+BT /F1 9 Tf 36.0 248.0 Td (1. In Product Registry or Layer Manager, select product to export.) Tj ET
+BT /F1 9 Tf 36.0 236.0 Td (2. Choose GeoTIFF or GeoJSON format.) Tj ET
+BT /F1 9 Tf 36.0 224.0 Td (3. Click [EXPORT PRODUCT] to save file.) Tj ET
+BT /F2 9 Tf 46.0 204.0 Td (**SCIENTIFIC & APPLICATION LIMITATIONS**: Exported GeoTIFFs preserve native) Tj ET
+BT /F1 9 Tf 36.0 191.0 Td (floating-point pixel values.) Tj ET
+BT /F1 9 Tf 36.0 171.0 Td (---) Tj ET
+BT /F2 13 Tf 36.0 151.0 Td (SECTION: GLOSSARY & SCIENTIFIC TERMINOLOGY GUIDE) Tj ET
+BT /F1 9 Tf 36.0 133.0 Td (**Topic ID**: `glossary` | **Category**: `glossary`) Tj ET
+endstream
+endobj
+21 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612.0 792.0] /Contents 22 0 R /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> >>
+endobj
+22 0 obj
+<< /Length 1799 >>
+stream
+BT /F2 8 Tf 36 764.0 Td (RISKPULSE USER MANUAL) Tj ET
+BT /F1 8 Tf 400 764.0 Td (RiskPulse v1.0.0+1) Tj ET
+0.5 w 36 758.0 m 576.0 758.0 l S
+0.5 w 36 36 m 576.0 36 l S
+BT /F1 8 Tf 36 24 Td (Confidential Research Documentation — Association does NOT establish causation) Tj ET
+BT /F2 8 Tf 522.0 24 Td (Page 9 of 9) Tj ET
+BT /F1 9 Tf 36.0 726.0 Td (**Scientific Status**: IMPLEMENTED & SOFTWARE-VERIFIED) Tj ET
+BT /F1 9 Tf 36.0 706.0 Td (**Summary**: Definitive scientific terminology guide for RiskPulse GIS, Remote) Tj ET
+BT /F1 9 Tf 36.0 694.0 Td (Sensing, and HydroAI.) Tj ET
+BT /F2 10 Tf 36.0 674.0 Td (Key Scientific Definitions) Tj ET
+BT /F1 9 Tf 36.0 659.0 Td (• AOI: Area of Interest / Study Area Extent.) Tj ET
+BT /F1 9 Tf 36.0 647.0 Td (• CSI: Critical Success Index = TP / \(TP + FP + FN\).) Tj ET
+BT /F1 9 Tf 36.0 635.0 Td (• DEM: Digital Elevation Model.) Tj ET
+BT /F1 9 Tf 36.0 623.0 Td (• GLO-30: Copernicus 30m Global Digital Elevation Model.) Tj ET
+BT /F1 9 Tf 36.0 611.0 Td (• HEC-RAS: Hydrologic Engineering Center River Analysis System \(2D) Tj ET
+BT /F1 9 Tf 36.0 599.0 Td (Hydrodynamics\).) Tj ET
+BT /F1 9 Tf 36.0 587.0 Td (• NDVI / NDWI: Normalized Difference Vegetation / Water Index.) Tj ET
+BT /F1 9 Tf 36.0 575.0 Td (• OSINT: Open Source Intelligence.) Tj ET
+BT /F1 9 Tf 36.0 563.0 Td (• Pearson r: Bivariate spatial correlation coefficient.) Tj ET
+BT /F1 9 Tf 36.0 551.0 Td (• SAR: Synthetic Aperture Radar \(Sentinel-1\).) Tj ET
+BT /F1 9 Tf 36.0 539.0 Td (• WSE: Water Surface Elevation \(meters above datum\).) Tj ET
+BT /F2 9 Tf 46.0 519.0 Td (**SCIENTIFIC & APPLICATION LIMITATIONS**: Terminology follows authoritative) Tj ET
+BT /F1 9 Tf 36.0 506.0 Td (IUGS, WMO, and Copernicus remote sensing standards.) Tj ET
+BT /F1 9 Tf 36.0 486.0 Td (---) Tj ET
+endstream
+endobj
+xref
+0 23
+0000000000 65535 f 
+0000000019 00000 n 
+0000000068 00000 n 
+0000000181 00000 n 
+0000000278 00000 n 
+0000000380 00000 n 
+0000000520 00000 n 
+0000004298 00000 n 
+0000004438 00000 n 
+0000008187 00000 n 
+0000008328 00000 n 
+0000012093 00000 n 
+0000012235 00000 n 
+0000015999 00000 n 
+0000016141 00000 n 
+0000020050 00000 n 
+0000020192 00000 n 
+0000024057 00000 n 
+0000024199 00000 n 
+0000027981 00000 n 
+0000028123 00000 n 
+0000031784 00000 n 
+0000031926 00000 n 
+trailer
+<< /Size 23 /Root 1 0 R >>
+startxref
+33777
+%%EOF
