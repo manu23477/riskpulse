@@ -1,0 +1,17 @@
+Parameter,Value,Units,Reference_Software,Formula_Convention
+Basin_Area,8.28,km2,QGIS / SAGA Morphometry,Sum of geodesic cell areas
+Basin_Perimeter,14.18,km,QGIS / SAGA Morphometry,Boundary cell exterior edge summation
+Basin_Length,4.20,km,QGIS / SAGA Morphometry,Max geodesic distance from pour point to boundary
+Total_Stream_Length,4.35,km,GRASS r.stream.extract,Polyline length summation
+Drainage_Density,0.525,km/km2,SAGA Morphometry,Total_Stream_Length / Basin_Area
+Stream_Frequency,0.242,streams/km2,SAGA Morphometry,Total_Streams / Basin_Area
+Bifurcation_Ratio_Order_1_2,2.00,dimensionless,GRASS r.stream.order,N1 / N2
+Mean_Bifurcation_Ratio,2.00,dimensionless,GRASS r.stream.order,Mean of Rb across orders
+Form_Factor,0.469,dimensionless,SAGA Morphometry,Basin_Area / (Basin_Length^2)
+Circularity_Ratio,0.518,dimensionless,SAGA Morphometry,4 * PI * Basin_Area / (Basin_Perimeter^2)
+Elongation_Ratio,0.773,dimensionless,SAGA Morphometry,(2 / Basin_Length) * sqrt(Basin_Area / PI)
+Max_Elevation,1212.0,meters,GRASS r.univar,Max cell elevation
+Min_Elevation,800.0,meters,GRASS r.univar,Min cell elevation
+Basin_Relief,412.0,meters,SAGA Morphometry,Max_Elevation - Min_Elevation
+Relief_Ratio,0.0981,dimensionless,SAGA Morphometry,Basin_Relief / (Basin_Length * 1000)
+Ruggedness_Number,0.216,dimensionless,SAGA Morphometry,Drainage_Density * Basin_Relief / 1000

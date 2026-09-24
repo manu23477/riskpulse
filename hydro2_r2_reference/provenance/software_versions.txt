@@ -1,0 +1,7 @@
+GRASS GIS: 8.3.2 (Python 3.10 / GDAL 3.8.4)
+QGIS Desktop: 3.34.8 LTR (Long Term Release)
+SAGA GIS: 9.3.1
+GDAL: 3.8.4 (Geospatial Data Abstraction Library)
+PROJ: 9.3.1 (Cartographic Projections Library)
+Operating System: Windows 11 Pro 64-bit (x86_64)
+Reference Package Spec: HYDRO-2-R2-SPEC-1.0

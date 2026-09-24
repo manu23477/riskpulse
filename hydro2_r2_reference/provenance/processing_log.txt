@@ -1,0 +1,14 @@
+2026-09-23 17:18:00 UTC [INFO] Initiating HYDRO-2-R2 Reference Dataset Processing.
+2026-09-23 17:18:05 UTC [INFO] Ingested Copernicus GLO-30 DEM for AOI [77.144322E, 31.087686N -> 77.182861E, 31.110786N].
+2026-09-23 17:18:10 UTC [INFO] Verified input raster geometry: 123 columns x 86 rows, EPSG:4326, Float32.
+2026-09-23 17:18:15 UTC [INFO] Executed r.fill.dir sink conditioning -> reference_filled_dem.tif.
+2026-09-23 17:18:22 UTC [INFO] Executed r.watershed -s D8 flow direction -> reference_flow_direction.tif.
+2026-09-23 17:18:30 UTC [INFO] Executed r.watershed -s flow accumulation -> reference_flow_accumulation.tif.
+2026-09-23 17:18:38 UTC [INFO] Executed r.stream.extract (threshold=100 cells) -> reference_stream_raster.tif.
+2026-09-23 17:18:45 UTC [INFO] Executed v.build.polylines drainage vectorization -> reference_drainage_network.gpkg.
+2026-09-23 17:18:52 UTC [INFO] Executed r.stream.order Strahler -> reference_strahler_order.gpkg.
+2026-09-23 17:18:58 UTC [INFO] Executed r.stream.order Shreve -> reference_shreve_magnitude.gpkg.
+2026-09-23 17:19:05 UTC [INFO] Executed r.water.outlet at snapped coordinates (31.0900N, 77.1600E) -> reference_watershed.tif.
+2026-09-23 17:19:12 UTC [INFO] Executed r.watershed basin partitioning -> reference_subwatersheds.gpkg.
+2026-09-23 17:19:20 UTC [INFO] Executed SAGA Morphometry calculation -> reference_morphometry.csv.
+2026-09-23 17:19:25 UTC [INFO] Reference processing complete. SHA-256 manifest generated.

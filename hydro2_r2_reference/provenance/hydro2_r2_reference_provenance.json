@@ -1,0 +1,95 @@
+{
+  "workstream": "HYDRO-2-R2-EXTERNAL-INDEPENDENT-REFERENCE-DATASET-ACQUISITION",
+  "software": "GRASS GIS 8.3.2 / QGIS 3.34.8 LTR Processing Toolbox",
+  "softwareVersion": "GRASS GIS 8.3.2 (r.watershed, r.stream.extract, r.stream.order, r.water.outlet)",
+  "dem": "COPERNICUS/DEM/GLO30",
+  "demClassification": "Digital Surface Model (DSM)",
+  "aoi": {
+    "west": 77.144322,
+    "south": 31.087686,
+    "east": 77.182861,
+    "north": 31.110786
+  },
+  "crs": "EPSG:4326",
+  "gridDimensions": {
+    "width": 123,
+    "height": 86,
+    "totalCells": 10578
+  },
+  "resolution": "0.000270 deg (~30m)",
+  "flowModel": "D8",
+  "streamThresholdCells": 100,
+  "outlet": {
+    "latitude": 31.0900,
+    "longitude": 77.1600
+  },
+  "nodata": -9999.0,
+  "processingSteps": [
+    {
+      "step": 1,
+      "name": "DEM Ingestion",
+      "tool": "gdal_translate / GEE computePixels",
+      "output": "reference_glo30_dem.tif"
+    },
+    {
+      "step": 2,
+      "name": "Sink Conditioning",
+      "tool": "r.fill.dir / r.watershed -s",
+      "output": "reference_filled_dem.tif"
+    },
+    {
+      "step": 3,
+      "name": "D8 Flow Direction",
+      "tool": "r.watershed -s (D8 single flow direction)",
+      "output": "reference_flow_direction.tif"
+    },
+    {
+      "step": 4,
+      "name": "Flow Accumulation",
+      "tool": "r.watershed -s",
+      "output": "reference_flow_accumulation.tif"
+    },
+    {
+      "step": 5,
+      "name": "Stream Extraction",
+      "tool": "r.stream.extract (threshold=100 cells)",
+      "output": "reference_stream_raster.tif"
+    },
+    {
+      "step": 6,
+      "name": "Drainage Network Vectorization",
+      "tool": "r.stream.extract / v.build.polylines",
+      "output": "reference_drainage_network.gpkg"
+    },
+    {
+      "step": 7,
+      "name": "Strahler Stream Order",
+      "tool": "r.stream.order (Strahler 1952)",
+      "output": "reference_strahler_order.gpkg"
+    },
+    {
+      "step": 8,
+      "name": "Shreve Stream Magnitude",
+      "tool": "r.stream.order (Shreve 1966)",
+      "output": "reference_shreve_magnitude.gpkg"
+    },
+    {
+      "step": 9,
+      "name": "Watershed Delineation",
+      "tool": "r.water.outlet",
+      "output": "reference_watershed.tif"
+    },
+    {
+      "step": 10,
+      "name": "Sub-watersheds Partitioning",
+      "tool": "r.watershed basin",
+      "output": "reference_subwatersheds.gpkg"
+    },
+    {
+      "step": 11,
+      "name": "Quantitative Morphometric Analysis",
+      "tool": "QGIS / SAGA Morphometry Toolbox (Horton/Strahler/Schumm equations)",
+      "output": "reference_morphometry.csv"
+    }
+  ]
+}

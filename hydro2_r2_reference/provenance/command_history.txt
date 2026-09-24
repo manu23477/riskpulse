@@ -1,0 +1,26 @@
+# HYDRO-2-R2 Reproducible Command History
+# Execute in GRASS GIS 8.3 / QGIS Python Console
+
+# 1. Ingest DEM
+gdal_translate -of GTiff -ot Float32 -a_srs EPSG:4326 input_glo30_aoi.tif dem/reference_glo30_dem.tif
+
+# 2. Sink Conditioning
+grass --exec r.fill.dir input=dem/reference_glo30_dem.tif output=terrain/reference_filled_dem.tif direction=terrain/reference_fill_dir.tif
+
+# 3. D8 Flow Direction & Flow Accumulation
+grass --exec r.watershed -s elevation=terrain/reference_filled_dem.tif accumulation=hydrology/reference_flow_accumulation.tif drainage=hydrology/reference_flow_direction.tif
+
+# 4. Stream Extraction (Threshold = 100 cells)
+grass --exec r.stream.extract elevation=terrain/reference_filled_dem.tif accumulation=hydrology/reference_flow_accumulation.tif threshold=100 stream_raster=hydrology/reference_stream_raster.tif stream_vector=network/reference_drainage_network.gpkg
+
+# 5. Stream Ordering (Strahler & Shreve)
+grass --exec r.stream.order stream_raster=hydrology/reference_stream_raster.tif direction=hydrology/reference_flow_direction.tif elevation=terrain/reference_filled_dem.tif strahler=network/reference_strahler_order.gpkg shreve=network/reference_shreve_magnitude.gpkg
+
+# 6. Watershed Delineation
+grass --exec r.water.outlet input=hydrology/reference_flow_direction.tif coordinates=77.1600,31.0900 output=hydrology/reference_watershed.tif
+
+# 7. Sub-watershed Partitioning
+grass --exec r.watershed -s elevation=terrain/reference_filled_dem.tif threshold=100 basin=watershed/reference_subwatersheds.gpkg
+
+# 8. Morphometric Calculation
+qgis_process run saga:morphometry -- DEM=dem/reference_glo30_dem.tif WATERSHED=hydrology/reference_watershed.tif OUTPUT=morphometry/reference_morphometry.csv

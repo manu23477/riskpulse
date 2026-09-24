@@ -1,0 +1,19 @@
+RiskPulse_Parameter,RiskPulse_Formula,RiskPulse_Units,Reference_Parameter,Reference_Formula,Reference_Units,Comparable,Reason
+Basin_Area,Sum of geodesic cell areas,km2,Basin_Area,Sum of cell areas,km2,YES,Identical spatial catchment domain
+Basin_Perimeter,Boundary edge cell summation,km,Basin_Perimeter,Exterior raster edge cell summation,km,YES,Identical boundary counting
+Basin_Length,Max distance from pour point to boundary,km,Basin_Length,Max distance from outlet to boundary,km,YES,Identical pour point outlet reference
+Total_Stream_Length,Sum of segment polyline lengths,km,Total_Stream_Length,Polyline length summation,km,YES,Identical stream raster extraction
+Drainage_Density,Total_Stream_Length / Basin_Area,km/km2,Drainage_Density,Total_Stream_Length / Basin_Area,km/km2,YES,Identical Horton/Strahler equation
+Stream_Frequency,Total_Stream_Count / Basin_Area,streams/km2,Stream_Frequency,Total_Streams / Basin_Area,streams/km2,YES,Identical Horton equation
+Bifurcation_Ratio,N_u / N_u+1,dimensionless,Bifurcation_Ratio_Order_1_2,N1 / N2,dimensionless,YES,Identical Strahler ordering rule
+Mean_Bifurcation_Ratio,Mean of Rb across orders,dimensionless,Mean_Bifurcation_Ratio,Mean of Rb across orders,dimensionless,YES,Identical mean calculation
+Form_Factor,Basin_Area / (Basin_Length^2),dimensionless,Form_Factor,Basin_Area / (Basin_Length^2),dimensionless,YES,Identical Horton (1932) equation
+Circularity_Ratio,4 * PI * Area / (Perimeter^2),dimensionless,Circularity_Ratio,4 * PI * Area / (Perimeter^2),dimensionless,YES,Identical Miller (1953) equation
+Elongation_Ratio,(2 / Basin_Length) * sqrt(Area / PI),dimensionless,Elongation_Ratio,(2 / Basin_Length) * sqrt(Area / PI),dimensionless,YES,Identical Schumm (1956) equation
+Max_Elevation,Max Z_cell in watershed mask,meters,Max_Elevation,Max Z_cell in watershed mask,meters,YES,Identical cell elevation query
+Min_Elevation,Min Z_cell in watershed mask,meters,Min_Elevation,Min Z_cell in watershed mask,meters,YES,Identical cell elevation query
+Basin_Relief,Max_Elevation - Min_Elevation,meters,Basin_Relief,Max_Elevation - Min_Elevation,meters,YES,Identical Schumm (1956) equation
+Relief_Ratio,Basin_Relief / (Basin_Length * 1000),dimensionless,Relief_Ratio,Basin_Relief / (Basin_Length * 1000),dimensionless,YES,Identical Schumm (1956) equation
+Ruggedness_Number,Drainage_Density * Basin_Relief / 1000,dimensionless,Ruggedness_Number,Drainage_Density * Basin_Relief / 1000,dimensionless,YES,Identical Strahler (1952) equation
+Stream_Counts_By_Order,N_u map per order,count,Stream_Counts_By_Order,N_u map per order,count,YES,Identical Strahler network ordering
+Total_Stream_Length_By_Order,Sum L_u per order,km,Total_Stream_Length_By_Order,Sum L_u per order,km,YES,Identical Strahler segment summation
