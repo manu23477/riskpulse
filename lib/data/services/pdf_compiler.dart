@@ -23,7 +23,13 @@ class PdfCompiler {
     required String documentTitle,
     required String subtitle,
     required String markdownContent,
+    double? customWidth,
+    double? customHeight,
   }) {
+    final double pWidth = customWidth ?? pageWidth;
+    final double pHeight = customHeight ?? pageHeight;
+    final double cHeight = pHeight - topMargin - bottomMargin;
+
     final List<String> lines = markdownContent.split('\n');
     final List<List<String>> pagesLines = [];
     List<String> currentPage = [];
@@ -44,9 +50,9 @@ class PdfCompiler {
       }
 
       // Line wrapping for long body text
-      final wrapped = _wrapLine(line, 80);
+      final wrapped = _wrapLine(line, (pWidth / 7.5).round());
       for (var wLine in wrapped) {
-        if (currentY + lineHeight > contentHeight) {
+        if (currentY + lineHeight > cHeight) {
           pagesLines.add(currentPage);
           currentPage = [];
           currentY = 0.0;
@@ -68,6 +74,8 @@ class PdfCompiler {
       documentTitle: documentTitle,
       subtitle: subtitle,
       pagesLines: pagesLines,
+      customWidth: pWidth,
+      customHeight: pHeight,
     );
   }
 
@@ -96,7 +104,12 @@ class PdfCompiler {
     required String documentTitle,
     required String subtitle,
     required List<List<String>> pagesLines,
+    double? customWidth,
+    double? customHeight,
   }) {
+    final double pWidth = customWidth ?? pageWidth;
+    final double pHeight = customHeight ?? pageHeight;
+
     final totalPages = pagesLines.length;
     final List<int> pdfBytes = [];
     final List<int> offsets = [0]; // Object 0 is dummy
@@ -134,7 +147,7 @@ class PdfCompiler {
       // Page Object
       writeObject(
         pageObjId,
-        '<< /Type /Page /Parent 2 0 R /MediaBox [0 0 $pageWidth $pageHeight] '
+        '<< /Type /Page /Parent 2 0 R /MediaBox [0 0 $pWidth $pHeight] '
         '/Contents $streamObjId 0 R '
         '/Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> >>',
       );
@@ -143,17 +156,17 @@ class PdfCompiler {
       final streamBuffer = StringBuffer();
 
       // Header Banner
-      streamBuffer.writeln('BT /F2 8 Tf 36 ${pageHeight - 28} Td (${_escapePdf(documentTitle.toUpperCase())}) Tj ET');
-      streamBuffer.writeln('BT /F1 8 Tf 400 ${pageHeight - 28} Td (RiskPulse v1.0.0+1) Tj ET');
-      streamBuffer.writeln('0.5 w 36 ${pageHeight - 34} m ${pageWidth - 36} ${pageHeight - 34} l S');
+      streamBuffer.writeln('BT /F2 8 Tf 36 ${pHeight - 28} Td (${_escapePdf(documentTitle.toUpperCase())}) Tj ET');
+      streamBuffer.writeln('BT /F1 8 Tf ${pWidth - 140} ${pHeight - 28} Td (RiskPulse v1.0.0+1) Tj ET');
+      streamBuffer.writeln('0.5 w 36 ${pHeight - 34} m ${pWidth - 36} ${pHeight - 34} l S');
 
       // Running Footer
-      streamBuffer.writeln('0.5 w 36 36 m ${pageWidth - 36} 36 l S');
+      streamBuffer.writeln('0.5 w 36 36 m ${pWidth - 36} 36 l S');
       streamBuffer.writeln('BT /F1 8 Tf 36 24 Td (Confidential Research Documentation — Association does NOT establish causation) Tj ET');
-      streamBuffer.writeln('BT /F2 8 Tf ${pageWidth - 90} 24 Td (Page ${p + 1} of $totalPages) Tj ET');
+      streamBuffer.writeln('BT /F2 8 Tf ${pWidth - 90} 24 Td (Page ${p + 1} of $totalPages) Tj ET');
 
       // Body Text Lines
-      double y = pageHeight - topMargin - 12.0;
+      double y = pHeight - topMargin - 12.0;
 
       for (var line in pagesLines[p]) {
         if (line.startsWith('# ')) {
@@ -215,12 +228,16 @@ class PdfCompiler {
     required String subtitle,
     required String markdownContent,
     required String targetPdfPath,
+    double? customWidth,
+    double? customHeight,
   }) {
     try {
       final pdfBytes = compileMarkdownToPdf(
         documentTitle: documentTitle,
         subtitle: subtitle,
         markdownContent: markdownContent,
+        customWidth: customWidth,
+        customHeight: customHeight,
       );
 
       final file = io.File(targetPdfPath);

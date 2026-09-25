@@ -2,6 +2,10 @@ import 'package:riskpulse/domain/gis/raster_data.dart';
 import 'package:riskpulse/domain/gis/research_session.dart';
 import 'package:riskpulse/domain/gis/processing_state.dart';
 import 'package:riskpulse/domain/gis/gis_layer.dart';
+import 'package:riskpulse/domain/gis/gis_style.dart';
+import 'package:riskpulse/domain/gis/color_ramp.dart';
+import 'package:riskpulse/domain/gis/data_source_type.dart';
+import 'package:riskpulse/domain/gis/data_source_record.dart';
 import 'package:riskpulse/domain/gis/analytical_step.dart';
 import 'package:riskpulse/domain/location/geo_location.dart';
 import 'package:riskpulse/domain/gis/dem_readiness_assessment.dart';
@@ -52,6 +56,21 @@ class ResearchWorkflowOrchestrator {
     
     try {
       _emitState(onStateChanged, ProcessingStatus.preparing, 0.05, 'Initializing analytical pipeline...');
+
+      // 0. Propagate DEM Data Source Record into ResearchSession
+      final demSource = _extractDemDataSource(dem);
+      if (demSource != null) {
+        final existingSources = currentSession.dataSources;
+        final bool alreadyExists = existingSources.any((s) =>
+            s.datasetId == demSource.datasetId &&
+            s.datasetName == demSource.datasetName &&
+            s.provider == demSource.provider);
+        if (!alreadyExists) {
+          currentSession = currentSession.copyWith(
+            dataSources: [...existingSources, demSource],
+          );
+        }
+      }
 
       // 1. Terrain Analysis (Independent - Failure Isolated)
       _emitState(onStateChanged, ProcessingStatus.analyzing, 0.1, 'Calculating slope, aspect, and hillshade...');
@@ -204,7 +223,13 @@ class ResearchWorkflowOrchestrator {
 
         final List<GisLayer> allAnalyticalLayers = [
           ...terrainLayers,
-          _terrainService.createLayerFromRaster(flowAcc, 'Flow Accumulation', GisLayerType.terrain),
+          _createHydrologyLayer(filledDem, 'Filled DEM', 'filledDem', units: 'meters'),
+          _createHydrologyLayer(flowDir, 'Flow Direction', 'flowDirection', units: 'D8 Code'),
+          _createHydrologyLayer(flowAcc, 'Flow Accumulation', 'flowAccumulation', units: 'cells'),
+          _createHydrologyLayer(streamRaster, 'Stream Raster', 'streamRaster', units: 'binary'),
+          _createHydrologyLayer(strahler, 'Strahler Order', 'strahlerOrder', units: 'order'),
+          _createHydrologyLayer(shreve, 'Shreve Magnitude', 'shreveMagnitude', units: 'magnitude'),
+          _createHydrologyLayer(watershed.mask, 'Sub-watersheds', 'watershedIdRaster', units: 'id'),
         ];
 
         final finalSession = currentSession.copyWith(
@@ -273,6 +298,59 @@ class ResearchWorkflowOrchestrator {
     );
   }
 
+  GisLayer _createHydrologyLayer(RasterData raster, String layerName, String productCode, {String? units}) {
+    final typedRaster = (units != null && raster.units == null)
+        ? RasterData(
+            width: raster.width,
+            height: raster.height,
+            cellWidth: raster.cellWidth,
+            cellHeight: raster.cellHeight,
+            origin: raster.origin,
+            crs: raster.crs,
+            values: raster.values,
+            noDataValue: raster.noDataValue,
+            units: units,
+            metadata: raster.metadata,
+          )
+        : raster;
+
+    GisStyle? defaultStyle;
+    final codeLower = productCode.toLowerCase();
+    if (codeLower == 'filleddem') {
+      defaultStyle = RasterStyle(colorRamp: ColorRamp.elevation);
+    } else if (codeLower == 'flowdirection') {
+      defaultStyle = RasterStyle(colorRamp: ColorRamp.flowDirection);
+    } else if (codeLower == 'flowaccumulation') {
+      defaultStyle = RasterStyle(colorRamp: ColorRamp.flowAccumulation);
+    } else if (codeLower == 'streamraster') {
+      defaultStyle = RasterStyle(colorRamp: ColorRamp.streamRaster);
+    } else if (codeLower == 'strahlerorder') {
+      defaultStyle = const VectorStyle(useStrahlerWidth: true);
+    } else if (codeLower == 'shrevemagnitude') {
+      defaultStyle = VectorStyle(
+        useShreveColor: true,
+        shreveRamp: ColorRamp.shreveRamp,
+      );
+    } else if (codeLower == 'watershedidraster') {
+      defaultStyle = RasterStyle(colorRamp: ColorRamp.elevation);
+    }
+
+    return GisLayer(
+      id: 'derived-$productCode-${DateTime.now().millisecondsSinceEpoch}',
+      name: layerName,
+      type: GisLayerType.terrain,
+      dataType: SpatialDataType.raster,
+      dataSourceType: DataSourceType.cloudProcessing,
+      style: defaultStyle,
+      metadata: {
+        'raster_data': typedRaster,
+        'units': typedRaster.units ?? units,
+        'hydrology_product': productCode,
+        ...typedRaster.metadata,
+      },
+    );
+  }
+
   void _emitState(
     void Function(ProcessingState)? callback,
     ProcessingStatus status,
@@ -289,5 +367,42 @@ class ResearchWorkflowOrchestrator {
         timestamp: DateTime.now(),
       ));
     }
+  }
+
+  DataSourceRecord? _extractDemDataSource(RasterData dem) {
+    final meta = dem.metadata;
+    final String provider = (meta['provider'] ?? meta['providerId'] ?? 'DEM Provider').toString();
+    final String datasetName = (meta['datasetName'] ?? meta['datasetId'] ?? 'Research DEM Dataset').toString();
+    final String? datasetId = meta['datasetId']?.toString();
+    final String? sourceUrl = meta['sourceUrl']?.toString();
+
+    DateTime? acqDate;
+    final rawAcq = meta['acquisitionDate'];
+    if (rawAcq != null) {
+      if (rawAcq is DateTime) {
+        acqDate = rawAcq;
+      } else if (rawAcq is String && rawAcq.isNotEmpty) {
+        acqDate = DateTime.tryParse(rawAcq);
+      }
+    }
+
+    final String? version = meta['version']?.toString();
+
+    String? resolution;
+    if (meta['resolutionMeters'] != null) {
+      resolution = '${meta['resolutionMeters']}m';
+    } else if (dem.cellWidth > 0) {
+      resolution = '${dem.cellWidth.toStringAsFixed(1)}m';
+    }
+
+    return DataSourceRecord(
+      provider: provider,
+      datasetName: datasetName,
+      datasetId: datasetId,
+      sourceUrl: sourceUrl,
+      acquisitionDate: acqDate,
+      version: version,
+      resolution: resolution,
+    );
   }
 }

@@ -2,6 +2,8 @@ import 'dart:math' as math;
 import 'package:riskpulse/domain/gis/gis_layer.dart';
 import 'package:riskpulse/domain/gis/raster_data.dart';
 import 'package:riskpulse/domain/gis/data_source_type.dart';
+import 'package:riskpulse/domain/gis/gis_style.dart';
+import 'package:riskpulse/domain/gis/color_ramp.dart';
 
 /// Service responsible for performing terrain analysis on DEM data.
 /// 
@@ -157,14 +159,26 @@ class TerrainAnalysisService {
 
   /// Wraps [RasterData] into a [GisLayer] for compatibility with the GIS architecture.
   GisLayer createLayerFromRaster(RasterData raster, String name, GisLayerType layerType) {
+    GisStyle? defaultStyle;
+    final nameLower = name.toLowerCase();
+    if (nameLower.contains('slope')) {
+      defaultStyle = RasterStyle(colorRamp: ColorRamp.slope);
+    } else if (nameLower.contains('aspect')) {
+      defaultStyle = RasterStyle(colorRamp: ColorRamp.aspect);
+    } else if (nameLower.contains('hillshade')) {
+      defaultStyle = RasterStyle(colorRamp: ColorRamp.hillshade);
+    }
+
     return GisLayer(
       id: 'derived-${layerType.name}-${DateTime.now().millisecondsSinceEpoch}',
       name: name,
       type: layerType,
       dataType: SpatialDataType.raster,
       dataSourceType: DataSourceType.cloudProcessing,
+      style: defaultStyle,
       metadata: {
         'raster_data': raster,
+        'units': raster.units ?? (nameLower.contains('slope') || nameLower.contains('aspect') ? 'degrees' : 'index'),
         ...raster.metadata,
       },
     );

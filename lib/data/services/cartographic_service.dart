@@ -3,6 +3,8 @@ import 'package:riskpulse/domain/gis/spatial_concepts.dart';
 import 'package:riskpulse/domain/gis/legend_definition.dart';
 import 'package:riskpulse/domain/gis/gis_layer.dart';
 import 'package:riskpulse/domain/gis/gis_style.dart';
+import 'package:riskpulse/domain/gis/color_ramp.dart';
+import 'package:riskpulse/domain/gis/raster_data.dart';
 import 'package:riskpulse/domain/gis/stream_segment.dart';
 import 'hydrological_symbology_resolver.dart';
 
@@ -38,10 +40,13 @@ class CartographicService {
   /// Generates a legend definition from a layer and its style.
   LegendDefinition generateLegend(GisLayer layer) {
     final List<LegendEntry> entries = [];
-    final style = layer.style;
+    final GisStyle style = (layer.style is GisStyle)
+        ? (layer.style as GisStyle)
+        : _resolveDefaultStyle(layer);
     final String? units = layer.metadata['units']?.toString();
     final String? compositeType = layer.metadata['compositeType']?.toString();
     final String? analysisType = layer.metadata['analysis_type']?.toString();
+    final RasterData? raster = layer.metadata['raster_data'] as RasterData?;
 
     // 1. Remote Sensing Composite Legend Entries
     if (compositeType != null) {
@@ -72,21 +77,35 @@ class CartographicService {
             type: LegendEntryType.color,
           ));
         }
-      } else if (style.isContinuous) {
+      } else if (style.isContinuous || style.colorRamp != null) {
         final ramp = style.colorRamp!;
         if (ramp.stops.isNotEmpty) {
-          entries.add(LegendEntry(
-            label: ramp.stops.first.label ?? 'Min',
-            colorHex: ramp.stops.first.colorHex,
-            type: LegendEntryType.gradient,
-            valueDescription: 'Minimum value',
-          ));
-          entries.add(LegendEntry(
-            label: ramp.stops.last.label ?? 'Max',
-            colorHex: ramp.stops.last.colorHex,
-            type: LegendEntryType.gradient,
-            valueDescription: 'Maximum value',
-          ));
+          final double? minVal = style.minValue ?? (raster != null ? _calculateMin(raster) : null);
+          final double? maxVal = style.maxValue ?? (raster != null ? _calculateMax(raster) : null);
+
+          final String minUnitSuffix = units != null ? ' $units' : '';
+
+          if (minVal != null && maxVal != null) {
+            for (int i = 0; i < ramp.stops.length; i++) {
+              final stop = ramp.stops[i];
+              final double stopVal = minVal + (stop.value * (maxVal - minVal));
+              final String stopLabel = '${stopVal.toStringAsFixed(1)}$minUnitSuffix${stop.label != null ? ' (${stop.label})' : ''}';
+
+              entries.add(LegendEntry(
+                label: stopLabel,
+                colorHex: stop.colorHex,
+                type: LegendEntryType.gradient,
+              ));
+            }
+          } else {
+            for (final stop in ramp.stops) {
+              entries.add(LegendEntry(
+                label: stop.label ?? 'Stop',
+                colorHex: stop.colorHex,
+                type: LegendEntryType.gradient,
+              ));
+            }
+          }
         }
       }
     } else if (style is VectorStyle) {
@@ -117,8 +136,13 @@ class CartographicService {
       }
     }
 
-    // Always include NoData if it's a research layer
-    if (layer.type == GisLayerType.research || layer.type == GisLayerType.terrain) {
+    // Only include NoData if the raster actually contains NoData cells or NaN values
+    bool hasNoDataCells = false;
+    if (raster != null) {
+      hasNoDataCells = raster.values.any((v) => raster.isNoData(v) || v.isNaN);
+    }
+
+    if (hasNoDataCells) {
       entries.add(const LegendEntry(
         label: 'No Data',
         colorHex: '#00000000',
@@ -141,5 +165,107 @@ class CartographicService {
         .map((l) => generateLegend(l))
         .where((ld) => ld.entries.isNotEmpty)
         .toList();
+  }
+
+  GisStyle _resolveDefaultStyle(GisLayer layer) {
+    final String nameLower = layer.name.toLowerCase();
+    final String? productCode = layer.metadata['hydrology_product']?.toString().toLowerCase();
+
+    if (nameLower.contains('slope')) {
+      return const RasterStyle(colorRamp: ColorRamp.slope);
+    } else if (nameLower.contains('aspect')) {
+      return const RasterStyle(
+        colorRamp: ColorRamp(
+          id: 'ramp-aspect',
+          name: 'Aspect Direction',
+          stops: [
+            ColorStop(value: 0.0, colorHex: '#3B82F6', label: 'North (0°)'),
+            ColorStop(value: 0.25, colorHex: '#10B981', label: 'East (90°)'),
+            ColorStop(value: 0.50, colorHex: '#F59E0B', label: 'South (180°)'),
+            ColorStop(value: 0.75, colorHex: '#EF4444', label: 'West (270°)'),
+            ColorStop(value: 1.0, colorHex: '#3B82F6', label: 'North (360°)'),
+          ],
+        ),
+      );
+    } else if (nameLower.contains('hillshade')) {
+      return const RasterStyle(
+        colorRamp: ColorRamp(
+          id: 'ramp-hillshade',
+          name: 'Hillshade Illumination',
+          stops: [
+            ColorStop(value: 0.0, colorHex: '#000000', label: 'Shadow (0)'),
+            ColorStop(value: 0.5, colorHex: '#808080', label: 'Midtone (128)'),
+            ColorStop(value: 1.0, colorHex: '#FFFFFF', label: 'Illuminated (255)'),
+          ],
+        ),
+      );
+    } else if (nameLower.contains('dem') || productCode == 'filleddem') {
+      return const RasterStyle(colorRamp: ColorRamp.elevation);
+    } else if (nameLower.contains('flow accumulation') || productCode == 'flowaccumulation') {
+      return const RasterStyle(
+        colorRamp: ColorRamp(
+          id: 'ramp-flow-acc',
+          name: 'Flow Accumulation',
+          stops: [
+            ColorStop(value: 0.0, colorHex: '#E0F2FE', label: 'Low Accumulation'),
+            ColorStop(value: 0.5, colorHex: '#0284C7', label: 'Moderate Flow'),
+            ColorStop(value: 1.0, colorHex: '#0369A1', label: 'High Accumulation'),
+          ],
+        ),
+      );
+    } else if (nameLower.contains('flow direction') || productCode == 'flowdirection') {
+      return const RasterStyle(
+        colorRamp: ColorRamp(
+          id: 'ramp-flow-dir',
+          name: 'D8 Flow Direction',
+          stops: [
+            ColorStop(value: 0.0, colorHex: '#64748B', label: 'East (1)'),
+            ColorStop(value: 0.5, colorHex: '#0284C7', label: 'South (4)'),
+            ColorStop(value: 1.0, colorHex: '#0F172A', label: 'North-East (128)'),
+          ],
+        ),
+      );
+    } else if (nameLower.contains('stream') || productCode == 'streamraster') {
+      return const RasterStyle(
+        colorRamp: ColorRamp(
+          id: 'ramp-stream',
+          name: 'Stream Channels',
+          stops: [
+            ColorStop(value: 0.0, colorHex: '#00000000', label: 'Non-stream'),
+            ColorStop(value: 1.0, colorHex: '#1D4ED8', label: 'Stream Channel'),
+          ],
+        ),
+      );
+    } else if (nameLower.contains('strahler') || productCode == 'strahlerorder') {
+      return const VectorStyle(useStrahlerWidth: true);
+    } else if (nameLower.contains('shreve') || productCode == 'shrevemagnitude') {
+      return const VectorStyle(
+        useShreveColor: true,
+        shreveRamp: ColorRamp(
+          id: 'ramp-shreve',
+          name: 'Shreve Magnitude',
+          stops: [
+            ColorStop(value: 0.0, colorHex: '#93C5FD', label: 'Low Magnitude'),
+            ColorStop(value: 1.0, colorHex: '#1E3A8A', label: 'High Magnitude'),
+          ],
+        ),
+      );
+    } else if (nameLower.contains('sub-watershed') || productCode == 'watershedidraster') {
+      return const RasterStyle(colorRamp: ColorRamp.elevation);
+    }
+
+    return const RasterStyle(colorRamp: ColorRamp.elevation);
+  }
+
+  double _calculateMin(RasterData raster) {
+    return raster.values
+        .where((v) => !raster.isNoData(v) && !v.isNaN)
+        .fold(double.maxFinite, math.min);
+  }
+
+  double _calculateMax(RasterData raster) {
+    return raster.values
+        .where((v) => !raster.isNoData(v) && !v.isNaN)
+        .fold(-double.maxFinite, math.max);
   }
 }

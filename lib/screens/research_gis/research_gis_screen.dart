@@ -1,32 +1,40 @@
 import 'dart:math' as math;
+import 'dart:typed_data';
+import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
+import 'package:riskpulse/data/services/research_map_print_service.dart';
+import 'package:riskpulse/data/services/share_output_sink.dart';
+import 'package:riskpulse/domain/gis/dem_readiness_assessment.dart';
+import 'package:riskpulse/domain/gis/map_composition.dart';
+import 'package:riskpulse/domain/gis/research_map_page_format.dart';
 import '../../data/providers/research_workspace_provider.dart';
-import '../../data/services/state_service.dart';
 import '../../data/services/cartographic_service.dart';
 import '../../data/services/coordinate_grid_engine.dart';
 import '../../data/services/hydrological_symbology_resolver.dart';
+import '../../data/services/state_service.dart';
 import '../../data/services/watershed_analysis_service.dart';
-import '../../domain/gis/identify_result.dart';
-import '../../domain/gis/drainage_node.dart';
 import '../../domain/gis/drainage_network.dart';
+import '../../domain/gis/drainage_node.dart';
 import '../../domain/gis/gis_style.dart';
+import '../../domain/gis/identify_result.dart';
+import '../../domain/gis/raster_data.dart';
 import '../../domain/gis/research_session.dart';
 import '../../domain/gis/research_workspace_state.dart';
-import '../../domain/gis/raster_data.dart';
 import '../../domain/gis/spatial_concepts.dart';
 import '../../domain/location/geo_location.dart';
-import 'widgets/processing_hud.dart';
-import 'widgets/layer_manager.dart';
-import 'widgets/info_panel.dart';
-import 'widgets/cartography/scale_bar_widget.dart';
-import 'widgets/cartography/north_arrow_widget.dart';
 import 'widgets/cartography/coordinate_grid_overlay.dart';
+import 'widgets/cartography/north_arrow_widget.dart';
+import 'widgets/cartography/scale_bar_widget.dart';
 import 'widgets/dem_acquisition_dialog.dart';
 import 'widgets/dem_readiness_acknowledgement_dialog.dart';
-import 'package:riskpulse/domain/gis/dem_readiness_assessment.dart';
+import 'widgets/export_map_dialog.dart';
+import 'widgets/info_panel.dart';
+import 'widgets/layer_manager.dart';
+import 'widgets/processing_hud.dart';
 
 enum ResearchTool { identify, pourPoint }
 
@@ -39,10 +47,14 @@ class ResearchGisScreen extends StatefulWidget {
 
 class _ResearchGisScreenState extends State<ResearchGisScreen> {
   final MapController _researchMapController = MapController();
+  final GlobalKey _mapRepaintKey = GlobalKey();
   final WatershedAnalysisService _watershedService = WatershedAnalysisService();
   final CartographicService _cartoService = CartographicService();
   final CoordinateGridEngine _gridEngine = CoordinateGridEngine();
   final HydrologicalSymbologyResolver _hydroResolver = HydrologicalSymbologyResolver();
+  final ResearchMapPrintService _printService = ResearchMapPrintService();
+  final ShareOutputSink _outputSink = ShareOutputSink();
+
   ResearchTool _activeTool = ResearchTool.identify;
 
   void _handleMapTap(LatLng point) {
@@ -206,16 +218,29 @@ class _ResearchGisScreenState extends State<ResearchGisScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Research GIS Workspace', style: TextStyle(fontWeight: FontWeight.w900)),
+        titleSpacing: 12,
+        title: const Text('Research GIS', style: TextStyle(fontWeight: FontWeight.w900, fontSize: 16)),
         backgroundColor: const Color(0xFF0F172A),
         foregroundColor: Colors.white,
         actions: [
-          _aoiButton(workspace),
-          _loadDemButton(workspace),
-          _toolButton(Icons.info_outline, ResearchTool.identify, 'Identify'),
-          _toolButton(Icons.ads_click, ResearchTool.pourPoint, 'Pour Point'),
-          _runButton(workspace),
-          const SizedBox(width: 8),
+          ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 520),
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  _aoiButton(workspace),
+                  _loadDemButton(workspace),
+                  _toolButton(Icons.info_outline, ResearchTool.identify, 'Identify'),
+                  _toolButton(Icons.ads_click, ResearchTool.pourPoint, 'Pour Point'),
+                  _runButton(workspace),
+                  _exportMapButton(workspace),
+                  const SizedBox(width: 8),
+                ],
+              ),
+            ),
+          ),
         ],
       ),
       body: Stack(
@@ -231,49 +256,52 @@ class _ResearchGisScreenState extends State<ResearchGisScreen> {
                 child: Column(
                   children: [
                     Expanded(
-                      child: FlutterMap(
-                        mapController: _researchMapController,
-                        options: MapOptions(
-                          initialCenter: stateService.selectedState == HimalayanState.himachal
-                              ? const LatLng(31.1048, 77.1734)
-                              : const LatLng(30.3, 79.0),
-                          initialZoom: 10,
-                          onTap: (tapPos, point) => _handleMapTap(point),
-                          onMapEvent: (event) {
-                            if (mounted) setState(() {});
-                          },
-                        ),
-                        children: [
-                          TileLayer(
-                            urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                            userAgentPackageName: 'in.gov.hp.riskpulse.research',
+                      child: RepaintBoundary(
+                        key: _mapRepaintKey,
+                        child: FlutterMap(
+                          mapController: _researchMapController,
+                          options: MapOptions(
+                            initialCenter: stateService.selectedState == HimalayanState.himachal
+                                ? const LatLng(31.1048, 77.1734)
+                                : const LatLng(30.3, 79.0),
+                            initialZoom: 10,
+                            onTap: (tapPos, point) => _handleMapTap(point),
+                            onMapEvent: (event) {
+                              if (mounted) setState(() {});
+                            },
                           ),
-                          if (session?.drainageNetwork != null)
-                            PolylineLayer(
-                              polylines: _buildDrainagePolylines(session!.drainageNetwork!),
+                          children: [
+                            TileLayer(
+                              urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                              userAgentPackageName: 'in.gov.hp.riskpulse.research',
                             ),
-                          MarkerLayer(
-                            markers: [
-                              if (session?.drainageNetwork != null)
-                                ..._buildNodeMarkers(session!.drainageNetwork!),
-                              if (workspace.activePourPoint != null)
-                                Marker(
-                                  point: LatLng(workspace.activePourPoint!.latitude, workspace.activePourPoint!.longitude),
-                                  child: const Icon(Icons.location_on, color: Colors.red, size: 30),
-                                ),
-                              if (workspace.snappedPourPoint != null && workspace.snappedPourPoint != workspace.activePourPoint)
-                                Marker(
-                                  point: LatLng(workspace.snappedPourPoint!.latitude, workspace.snappedPourPoint!.longitude),
-                                  child: const Icon(Icons.adjust, color: Colors.blue, size: 24),
-                                ),
-                              if (workspace.lastIdentifyPoint != null)
-                                Marker(
-                                  point: LatLng(workspace.lastIdentifyPoint!.latitude, workspace.lastIdentifyPoint!.longitude),
-                                  child: const Icon(Icons.help_center_outlined, color: Colors.orange, size: 20),
-                                ),
-                            ],
-                          ),
-                        ],
+                            if (session?.drainageNetwork != null)
+                              PolylineLayer(
+                                polylines: _buildDrainagePolylines(session!.drainageNetwork!),
+                              ),
+                            MarkerLayer(
+                              markers: [
+                                if (session?.drainageNetwork != null)
+                                  ..._buildNodeMarkers(session!.drainageNetwork!),
+                                if (workspace.activePourPoint != null)
+                                  Marker(
+                                    point: LatLng(workspace.activePourPoint!.latitude, workspace.activePourPoint!.longitude),
+                                    child: const Icon(Icons.location_on, color: Colors.red, size: 30),
+                                  ),
+                                if (workspace.snappedPourPoint != null && workspace.snappedPourPoint != workspace.activePourPoint)
+                                  Marker(
+                                    point: LatLng(workspace.snappedPourPoint!.latitude, workspace.snappedPourPoint!.longitude),
+                                    child: const Icon(Icons.adjust, color: Colors.blue, size: 24),
+                                  ),
+                                if (workspace.lastIdentifyPoint != null)
+                                  Marker(
+                                    point: LatLng(workspace.lastIdentifyPoint!.latitude, workspace.lastIdentifyPoint!.longitude),
+                                    child: const Icon(Icons.help_center_outlined, color: Colors.orange, size: 20),
+                                  ),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                     if (!isDesktop)
@@ -498,7 +526,7 @@ class _ResearchGisScreenState extends State<ResearchGisScreen> {
         (workspace.snappedPourPoint != null || workspace.activePourPoint != null);
 
     return Padding(
-      padding: const EdgeInsets.only(right: 8.0),
+      padding: const EdgeInsets.only(right: 4.0),
       child: ElevatedButton.icon(
         style: ElevatedButton.styleFrom(
           backgroundColor: isProcessing
@@ -534,6 +562,213 @@ class _ResearchGisScreenState extends State<ResearchGisScreen> {
         ),
       ),
     );
+  }
+
+  Widget _exportMapButton(ResearchWorkspaceProvider workspace) {
+    final isReady = workspace.state is WorkspaceReady;
+    final isProcessing = workspace.state is WorkspaceProcessing;
+
+    return Padding(
+      padding: const EdgeInsets.only(right: 8.0),
+      child: PopupMenuButton<ExportMapActionType>(
+        key: const Key('export-map-appbar-btn'),
+        enabled: isReady && !isProcessing,
+        onSelected: (action) => _handleExportAction(action, workspace),
+        itemBuilder: (context) => [
+          const PopupMenuItem(
+            value: ExportMapActionType.publicationPdf,
+            child: Row(
+              children: [
+                Icon(Icons.picture_as_pdf, color: Colors.indigo, size: 18),
+                SizedBox(width: 8),
+                Text('Publication PDF Map', style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
+              ],
+            ),
+          ),
+          const PopupMenuItem(
+            value: ExportMapActionType.pngSnapshot,
+            child: Row(
+              children: [
+                Icon(Icons.image, color: Colors.teal, size: 18),
+                SizedBox(width: 8),
+                Text('Map Image Snapshot (PNG)', style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
+              ],
+            ),
+          ),
+          const PopupMenuItem(
+            value: ExportMapActionType.gisCatalogue,
+            child: Row(
+              children: [
+                Icon(Icons.folder_open, color: Colors.blue, size: 18),
+                SizedBox(width: 8),
+                Text('GIS Dataset Catalogue', style: TextStyle(fontSize: 12)),
+              ],
+            ),
+          ),
+        ],
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+          decoration: BoxDecoration(
+            color: isReady ? Colors.indigoAccent.shade700 : Colors.grey.shade800,
+            borderRadius: BorderRadius.circular(6),
+          ),
+          child: Row(
+            children: [
+              Icon(
+                Icons.ios_share,
+                size: 16,
+                color: isReady ? Colors.white : Colors.white38,
+              ),
+              const SizedBox(width: 4),
+              Text(
+                'EXPORT MAP ▾',
+                style: TextStyle(
+                  fontSize: 11,
+                  fontWeight: FontWeight.bold,
+                  color: isReady ? Colors.white : Colors.white38,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Future<void> _handleExportAction(ExportMapActionType action, ResearchWorkspaceProvider workspace) async {
+    final session = workspace.currentSession;
+    final composition = workspace.activeComposition;
+
+    if (action == ExportMapActionType.publicationPdf) {
+      if (session == null || composition == null) return;
+
+      final result = await showDialog<ExportMapDialogResult>(
+        context: context,
+        builder: (ctx) => const ExportMapDialog(),
+      );
+
+      if (result != null && mounted) {
+        if (result.actionType == ExportMapActionType.publicationPdf) {
+          _exportPdfMap(session, composition, result.selectedPdfFormat);
+        } else if (result.actionType == ExportMapActionType.pngSnapshot) {
+          _exportPngSnapshot();
+        } else if (result.actionType == ExportMapActionType.gisCatalogue) {
+          _showMobileLayerManager(context);
+        }
+      }
+    } else if (action == ExportMapActionType.pngSnapshot) {
+      _exportPngSnapshot();
+    } else if (action == ExportMapActionType.gisCatalogue) {
+      _showMobileLayerManager(context);
+    }
+  }
+
+  Future<void> _exportPdfMap(ResearchSession session, MapComposition composition, ResearchMapPageFormat format) async {
+    if (mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Generating Publication PDF Map...'),
+          duration: Duration(seconds: 2),
+        ),
+      );
+    }
+
+    try {
+      final pdfBytes = _printService.generatePdfBinary(
+        session: session,
+        composition: composition,
+        pageFormat: format,
+      );
+
+      final sinkResult = await _outputSink.output(
+        bytes: Uint8List.fromList(pdfBytes),
+        filename: 'RiskPulse_Research_Map_Publication.pdf',
+        mimeType: 'application/pdf',
+        title: 'Research Map Publication PDF',
+      );
+
+      if (mounted) {
+        ScaffoldMessenger.of(context).hideCurrentSnackBar();
+        if (sinkResult.isSuccess) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Publication PDF Map exported successfully.'),
+              backgroundColor: Colors.green,
+            ),
+          );
+        }
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('PDF Export failed: $e'), backgroundColor: Colors.red),
+        );
+      }
+    }
+  }
+
+  Future<void> _exportPngSnapshot() async {
+    if (mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Capturing Map Image Snapshot...'),
+          duration: Duration(seconds: 2),
+        ),
+      );
+    }
+
+    try {
+      await WidgetsBinding.instance.endOfFrame;
+
+      final boundary = _mapRepaintKey.currentContext?.findRenderObject() as RenderRepaintBoundary?;
+      if (boundary == null) {
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Map Viewport capture failed: Render object unavailable.'), backgroundColor: Colors.red),
+          );
+        }
+        return;
+      }
+
+      final image = await boundary.toImage(pixelRatio: 2.0);
+      final byteData = await image.toByteData(format: ui.ImageByteFormat.png);
+
+      if (byteData == null) {
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Map Viewport encoding failed.'), backgroundColor: Colors.red),
+          );
+        }
+        return;
+      }
+
+      final pngBytes = byteData.buffer.asUint8List();
+
+      final sinkResult = await _outputSink.output(
+        bytes: pngBytes,
+        filename: 'RiskPulse_Research_Map_Snapshot.png',
+        mimeType: 'image/png',
+        title: 'Research Map PNG Snapshot',
+      );
+
+      if (mounted) {
+        ScaffoldMessenger.of(context).hideCurrentSnackBar();
+        if (sinkResult.isSuccess) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Map Image Snapshot exported successfully.'),
+              backgroundColor: Colors.green,
+            ),
+          );
+        }
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('PNG Snapshot failed: $e'), backgroundColor: Colors.red),
+        );
+      }
+    }
   }
 
   void _showMobileLayerManager(BuildContext context) {
@@ -572,44 +807,36 @@ class _ResearchGisScreenState extends State<ResearchGisScreen> {
             comp.scaleBar.position,
             ScaleBarWidget(
               config: comp.scaleBar,
-              pixelsPerKilometer: scaleMetadata['segment_pixels'],
-              label: scaleMetadata['label'],
+              pixelsPerKilometer: (scaleMetadata['segment_pixels'] as num?)?.toDouble() ?? 100.0,
+              label: scaleMetadata['label'] as String? ?? '1 km',
             ),
           ),
       ],
     );
   }
 
-  Widget _positionOverlay(String position, Widget child) {
-    double? top, left, right, bottom;
-    const margin = 20.0;
+  Widget _positionOverlay(String pos, Widget child) {
+    double? left, right, top, bottom;
 
-    switch (position) {
+    switch (pos) {
       case 'top-left':
-        top = margin + 80;
-        left = margin;
+        top = 20; left = 20;
         break;
       case 'top-right':
-        top = margin + 80;
-        right = margin;
+        top = 20; right = 20;
         break;
       case 'bottom-left':
-        bottom = margin;
-        left = margin;
+        bottom = 20; left = 20;
         break;
       case 'bottom-right':
       default:
-        bottom = margin;
-        right = margin;
+        bottom = 20; right = 20;
         break;
     }
 
     return Positioned(
-      top: top,
-      left: left,
-      right: right,
-      bottom: bottom,
-      child: IgnorePointer(child: child),
+      left: left, right: right, top: top, bottom: bottom,
+      child: child,
     );
   }
 }
