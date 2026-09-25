@@ -216,6 +216,9 @@ class _ResearchGisScreenState extends State<ResearchGisScreen> {
     final session = workspace.currentSession;
     final isDesktop = MediaQuery.of(context).size.width > 900;
 
+    final drainageLayer = session?.layers.where((l) => l.name == 'Drainage Network' || l.metadata['hydrology_product'] == 'drainageNetwork').firstOrNull;
+    final bool isDrainageVisible = drainageLayer?.isVisible ?? true;
+
     return Scaffold(
       appBar: AppBar(
         titleSpacing: 12,
@@ -275,13 +278,13 @@ class _ResearchGisScreenState extends State<ResearchGisScreen> {
                               urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
                               userAgentPackageName: 'in.gov.hp.riskpulse.research',
                             ),
-                            if (session?.drainageNetwork != null)
+                            if (session?.drainageNetwork != null && isDrainageVisible)
                               PolylineLayer(
                                 polylines: _buildDrainagePolylines(session!.drainageNetwork!),
                               ),
                             MarkerLayer(
                               markers: [
-                                if (session?.drainageNetwork != null)
+                                if (session?.drainageNetwork != null && isDrainageVisible)
                                   ..._buildNodeMarkers(session!.drainageNetwork!),
                                 if (workspace.activePourPoint != null)
                                   Marker(

@@ -52,7 +52,8 @@ class ResearchLayerPanel extends StatelessWidget {
 
   Widget _buildLayerList(BuildContext context, ResearchWorkspaceProvider workspace, List<GisLayer> layers) {
     final terrainLayers = layers.where((l) => l.name == 'Slope' || l.name == 'Aspect' || l.name == 'Hillshade').toList();
-    final hydroLayers = layers.where((l) => l.name == 'Flow Accumulation' || l.name == 'Stream Raster').toList();
+    final hydroLayers = layers.where((l) => l.name == 'Filled DEM' || l.name == 'Flow Direction' || l.name == 'Flow Accumulation' || l.name == 'Stream Raster' || l.name == 'Strahler Order' || l.name == 'Shreve Magnitude' || l.name == 'Sub-watersheds').toList();
+    final drainageLayers = layers.where((l) => l.name == 'Drainage Network' || l.name == 'Watershed Boundary').toList();
 
     return ListView(
       children: [
@@ -64,8 +65,10 @@ class ResearchLayerPanel extends StatelessWidget {
           _sectionHeader('Hydrology'),
           ...hydroLayers.map((l) => _layerItem(workspace, l)),
         ],
-        // Special case for fixed products not currently in layers list but part of session
-        if (workspace.currentSession?.drainageNetwork != null) ...[
+        if (drainageLayers.isNotEmpty) ...[
+          _sectionHeader('Drainage & Watershed'),
+          ...drainageLayers.map((l) => _layerItem(workspace, l)),
+        ] else if (workspace.currentSession?.drainageNetwork != null) ...[
           _sectionHeader('Drainage & Watershed'),
           _manualLayerItem('Drainage Network', true),
           _manualLayerItem('Watershed Mask', true),

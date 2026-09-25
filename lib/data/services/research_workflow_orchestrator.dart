@@ -221,6 +221,40 @@ class ResearchWorkflowOrchestrator {
         // 9. Finalize Full Session
         _emitState(onStateChanged, ProcessingStatus.rendering, 0.9, 'Preparing visualization layers...');
 
+        final drainageLayer = GisLayer(
+          id: 'derived-drainageNetwork-${DateTime.now().millisecondsSinceEpoch}',
+          name: 'Drainage Network',
+          type: GisLayerType.research,
+          dataType: SpatialDataType.vector,
+          dataSourceType: DataSourceType.cloudProcessing,
+          isVisible: true,
+          style: const VectorStyle(
+            useStrahlerWidth: true,
+            strokeColor: '#3B82F6',
+          ),
+          metadata: {
+            'hydrology_product': 'drainageNetwork',
+            'featureCount': network.segments.length,
+          },
+        );
+
+        final watershedLayer = GisLayer(
+          id: 'derived-watershedBoundary-${DateTime.now().millisecondsSinceEpoch}',
+          name: 'Watershed Boundary',
+          type: GisLayerType.research,
+          dataType: SpatialDataType.vector,
+          dataSourceType: DataSourceType.cloudProcessing,
+          isVisible: true,
+          style: const VectorStyle(
+            strokeColor: '#4682B4',
+            strokeWidth: 2.5,
+          ),
+          metadata: {
+            'hydrology_product': 'watershedBoundary',
+            'areaKm2': watershed.areaKm2,
+          },
+        );
+
         final List<GisLayer> allAnalyticalLayers = [
           ...terrainLayers,
           _createHydrologyLayer(filledDem, 'Filled DEM', 'filledDem', units: 'meters'),
@@ -230,6 +264,8 @@ class ResearchWorkflowOrchestrator {
           _createHydrologyLayer(strahler, 'Strahler Order', 'strahlerOrder', units: 'order'),
           _createHydrologyLayer(shreve, 'Shreve Magnitude', 'shreveMagnitude', units: 'magnitude'),
           _createHydrologyLayer(watershed.mask, 'Sub-watersheds', 'watershedIdRaster', units: 'id'),
+          drainageLayer,
+          watershedLayer,
         ];
 
         final finalSession = currentSession.copyWith(
