@@ -229,5 +229,42 @@ void main() {
       expect(mockSession.activeWatershed?.areaKm2, equals(6.24));
       expect(mockSession.morphometricResult?.drainageDensity, equals(2.15));
     });
+
+    test('11. PDF compilation embeds Image XObject (/Type /XObject /Subtype /Image /Filter /FlateDecode) when map RGB bytes provided', () {
+      // 10x10 RGB test image
+      final mockRgbBytes = List<int>.filled(10 * 10 * 3, 128);
+
+      final pdfBytes = printService.generatePdfBinary(
+        session: mockSession,
+        composition: mockComposition,
+        pageFormat: ResearchMapPageFormat.a4Landscape,
+        mapRgbBytes: mockRgbBytes,
+        mapImageWidth: 10,
+        mapImageHeight: 10,
+      );
+
+      final pdfString = String.fromCharCodes(pdfBytes);
+
+      expect(pdfString, contains('/Type /XObject'));
+      expect(pdfString, contains('/Subtype /Image'));
+      expect(pdfString, contains('/Filter /FlateDecode'));
+      expect(pdfString, contains('/ColorSpace /DeviceRGB'));
+      expect(pdfString, contains('/BitsPerComponent 8'));
+      expect(pdfString, contains('/Im1'));
+    });
+
+    test('12. WinAnsi Unicode sanitization eliminates corrupted symbols', () {
+      final pdfBytes = printService.generatePdfBinary(
+        session: mockSession,
+        composition: mockComposition,
+        pageFormat: ResearchMapPageFormat.a4Portrait,
+      );
+
+      final pdfString = String.fromCharCodes(pdfBytes);
+
+      // Verify no corrupted UTF-8 sequences (Â°, kmÂ²) appear in PDF text
+      expect(pdfString, isNot(contains('Â°')));
+      expect(pdfString, isNot(contains('kmÂ²')));
+    });
   });
 }

@@ -114,11 +114,14 @@ class ResearchMapPrintService {
     );
   }
 
-  /// Compiles a [PrintableResearchMapModel] into binary PDF bytes.
+  /// Compiles a [PrintableResearchMapModel] into binary PDF bytes with optional map canvas RGB image embedding.
   List<int> generatePdfBinary({
     required ResearchSession session,
     required MapComposition composition,
     ResearchMapPageFormat pageFormat = ResearchMapPageFormat.a4Portrait,
+    List<int>? mapRgbBytes,
+    int? mapImageWidth,
+    int? mapImageHeight,
   }) {
     final model = buildMapModel(
       session: session,
@@ -134,6 +137,9 @@ class ResearchMapPrintService {
       markdownContent: markdown,
       customWidth: pageFormat.widthPoints,
       customHeight: pageFormat.heightPoints,
+      mapRgbBytes: mapRgbBytes,
+      mapImageWidth: mapImageWidth,
+      mapImageHeight: mapImageHeight,
     );
   }
 }

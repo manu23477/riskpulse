@@ -674,10 +674,15 @@ class _ResearchGisScreenState extends State<ResearchGisScreen> {
     }
 
     try {
+      final imgCapture = await captureMapRgbBytes();
+
       final pdfBytes = _printService.generatePdfBinary(
         session: session,
         composition: composition,
         pageFormat: format,
+        mapRgbBytes: imgCapture?.rgbBytes,
+        mapImageWidth: imgCapture?.width,
+        mapImageHeight: imgCapture?.height,
       );
 
       final sinkResult = await _outputSink.output(
@@ -704,6 +709,35 @@ class _ResearchGisScreenState extends State<ResearchGisScreen> {
           SnackBar(content: Text('PDF Export failed: $e'), backgroundColor: Colors.red),
         );
       }
+    }
+  }
+
+  Future<({List<int> rgbBytes, int width, int height})?> captureMapRgbBytes() async {
+    try {
+      final boundary = _mapRepaintKey.currentContext?.findRenderObject() as RenderRepaintBoundary?;
+      if (boundary == null) return null;
+
+      final image = await boundary.toImage(pixelRatio: 1.5);
+      final byteData = await image.toByteData(format: ui.ImageByteFormat.rawRgba);
+      if (byteData == null) return null;
+
+      final rawRgba = byteData.buffer.asUint8List();
+      final width = image.width;
+      final height = image.height;
+      final totalPixels = width * height;
+
+      final rgbBytes = List<int>.filled(totalPixels * 3, 0);
+      int j = 0;
+      for (int i = 0; i < rawRgba.length; i += 4) {
+        rgbBytes[j++] = rawRgba[i];     // Red
+        rgbBytes[j++] = rawRgba[i + 1]; // Green
+        rgbBytes[j++] = rawRgba[i + 2]; // Blue
+      }
+
+      return (rgbBytes: rgbBytes, width: width, height: height);
+    } catch (e) {
+      debugPrint('Error capturing map RGB bytes for PDF: $e');
+      return null;
     }
   }
 

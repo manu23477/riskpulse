@@ -46,6 +46,7 @@ class CartographicService {
     final String? units = layer.metadata['units']?.toString();
     final String? compositeType = layer.metadata['compositeType']?.toString();
     final String? analysisType = layer.metadata['analysis_type']?.toString();
+    final String? hydroProduct = layer.metadata['hydrology_product']?.toString();
     final RasterData? raster = layer.metadata['raster_data'] as RasterData?;
 
     // 1. Remote Sensing Composite Legend Entries
@@ -67,6 +68,16 @@ class CartographicService {
       entries.add(const LegendEntry(label: 'Deep Water (+1.0)', colorHex: '#00008B', type: LegendEntryType.gradient));
       entries.add(const LegendEntry(label: 'Water Body (+0.3)', colorHex: '#4169E1', type: LegendEntryType.gradient));
       entries.add(const LegendEntry(label: 'Dry Land (0.0)', colorHex: '#D3D3D3', type: LegendEntryType.gradient));
+    } else if (layer.name.toLowerCase().contains('flow direction') || hydroProduct == 'flowDirection') {
+      // Discrete D8 Flow Direction Classes (No float interpolation!)
+      entries.add(const LegendEntry(label: '1: East', colorHex: '#64748B', type: LegendEntryType.color));
+      entries.add(const LegendEntry(label: '2: South-East', colorHex: '#0284C7', type: LegendEntryType.color));
+      entries.add(const LegendEntry(label: '4: South', colorHex: '#0F172A', type: LegendEntryType.color));
+      entries.add(const LegendEntry(label: '8: South-West', colorHex: '#2563EB', type: LegendEntryType.color));
+      entries.add(const LegendEntry(label: '16: West', colorHex: '#7C3AED', type: LegendEntryType.color));
+      entries.add(const LegendEntry(label: '32: North-West', colorHex: '#DB2777', type: LegendEntryType.color));
+      entries.add(const LegendEntry(label: '64: North', colorHex: '#DC2626', type: LegendEntryType.color));
+      entries.add(const LegendEntry(label: '128: North-East', colorHex: '#EA580C', type: LegendEntryType.color));
     } else if (style is RasterStyle) {
       if (style.isClassified) {
         final scheme = style.classificationScheme!;
@@ -120,7 +131,7 @@ class CartographicService {
             style: style,
           );
           entries.add(LegendEntry(
-            label: 'Order $order',
+            label: 'Strahler Order $order (${resolved.width.toStringAsFixed(1)}pt)',
             colorHex: resolved.colorHex,
             strokeWidth: resolved.width,
             type: LegendEntryType.line,
