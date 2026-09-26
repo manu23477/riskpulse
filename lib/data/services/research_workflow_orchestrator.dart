@@ -255,6 +255,24 @@ class ResearchWorkflowOrchestrator {
           },
         );
 
+        final districtBoundaryLayer = GisLayer(
+          id: 'derived-districtBoundaries-${DateTime.now().millisecondsSinceEpoch}',
+          name: 'District Boundaries',
+          type: GisLayerType.boundary,
+          dataType: SpatialDataType.vector,
+          dataSourceType: DataSourceType.local,
+          isVisible: true,
+          style: const VectorStyle(
+            strokeColor: '#6B7280',
+            strokeWidth: 1.8,
+          ),
+          metadata: const {
+            'hydrology_product': 'districtBoundaries',
+            'administrative_level': 'DISTRICT',
+            'sourceName': 'LGD / Survey of India',
+          },
+        );
+
         final List<GisLayer> allAnalyticalLayers = [
           ...terrainLayers,
           _createHydrologyLayer(filledDem, 'Filled DEM', 'filledDem', units: 'meters'),
@@ -266,6 +284,7 @@ class ResearchWorkflowOrchestrator {
           _createHydrologyLayer(watershed.mask, 'Sub-watersheds', 'watershedIdRaster', units: 'id'),
           drainageLayer,
           watershedLayer,
+          districtBoundaryLayer,
         ];
 
         final finalSession = currentSession.copyWith(

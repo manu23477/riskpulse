@@ -12,12 +12,15 @@ import 'package:riskpulse/domain/gis/dem_readiness_assessment.dart';
 import 'package:riskpulse/domain/gis/map_composition.dart';
 import 'package:riskpulse/domain/gis/research_map_page_format.dart';
 import '../../data/providers/research_workspace_provider.dart';
+import '../../data/services/administrative_boundary_service.dart';
 import '../../data/services/cartographic_service.dart';
 import '../../data/services/coordinate_grid_engine.dart';
 import '../../data/services/hydrological_symbology_resolver.dart';
 import '../../data/services/state_service.dart';
 import '../../data/services/watershed_analysis_service.dart';
+import '../../domain/administrative/administrative_unit.dart';
 import '../../domain/gis/drainage_network.dart';
+import '../../domain/gis/gis_layer.dart';
 import '../../domain/gis/drainage_node.dart';
 import '../../domain/gis/gis_style.dart';
 import '../../domain/gis/identify_result.dart';
@@ -55,6 +58,7 @@ class _ResearchGisScreenState extends State<ResearchGisScreen> {
   final HydrologicalSymbologyResolver _hydroResolver = HydrologicalSymbologyResolver();
   final ResearchMapPrintService _printService = ResearchMapPrintService();
   final ShareOutputSink _outputSink = ShareOutputSink();
+  final AdministrativeBoundaryService _adminBoundaryService = AdministrativeBoundaryService();
 
   ResearchTool _activeTool = ResearchTool.identify;
 
@@ -227,6 +231,12 @@ class _ResearchGisScreenState extends State<ResearchGisScreen> {
         .firstOrNull;
     final bool isWatershedVisible = watershedLayer?.isVisible ?? true;
 
+    final adminLayer = (workspace.activeComposition?.layers ?? session?.layers)
+        ?.where((l) => l.name == 'District Boundaries' || l.type == GisLayerType.boundary || l.metadata['hydrology_product'] == 'districtBoundaries')
+        .firstOrNull;
+    final bool isAdminVisible = adminLayer?.isVisible ?? true;
+    final String activeStateCode = stateService.selectedState == HimalayanState.himachal ? 'HP' : 'UK';
+
     final Polyline? watershedPolyline = (session?.activeWatershed != null && isWatershedVisible)
         ? _buildWatershedBoundaryPolyline(session!.activeWatershed!)
         : null;
@@ -290,6 +300,16 @@ class _ResearchGisScreenState extends State<ResearchGisScreen> {
                               urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
                               userAgentPackageName: 'in.gov.hp.riskpulse.research',
                             ),
+                            if (isAdminVisible)
+                              FutureBuilder<List<AdministrativeUnit>>(
+                                future: _adminBoundaryService.loadDistrictBoundaries(stateCode: activeStateCode),
+                                builder: (context, snapshot) {
+                                  if (!snapshot.hasData || snapshot.data!.isEmpty) return const SizedBox.shrink();
+                                  return PolygonLayer(
+                                    polygons: _buildAdminPolygons(snapshot.data!),
+                                  );
+                                },
+                              ),
                             if (watershedPolyline != null)
                               PolylineLayer(
                                 polylines: [watershedPolyline],
@@ -533,6 +553,53 @@ class _ResearchGisScreenState extends State<ResearchGisScreen> {
   @visibleForTesting
   Polyline? buildWatershedBoundaryPolylineForTest(Watershed watershed, {int? maxStepsOverride}) =>
       _buildWatershedBoundaryPolyline(watershed, maxStepsOverride: maxStepsOverride);
+
+  List<Polygon> _buildAdminPolygons(List<AdministrativeUnit> adminUnits) {
+    final List<Polygon> polygons = [];
+
+    for (final unit in adminUnits) {
+      final geom = unit.geometry;
+      if (geom == null) continue;
+
+      final coords = geom['coordinates'];
+      if (coords is! List || coords.isEmpty) continue;
+
+      void addRing(List rawRing) {
+        final List<LatLng> points = [];
+        for (final pt in rawRing) {
+          if (pt is List && pt.length >= 2) {
+            final double lon = (pt[0] as num).toDouble();
+            final double lat = (pt[1] as num).toDouble();
+            points.add(LatLng(lat, lon));
+          }
+        }
+        if (points.length >= 3) {
+          polygons.add(
+            Polygon(
+              points: points,
+              borderStrokeWidth: 1.8,
+              borderColor: const Color(0xFF6B7280),
+              color: Colors.transparent,
+            ),
+          );
+        }
+      }
+
+      if (geom['type'] == 'MultiPolygon') {
+        for (final poly in coords) {
+          if (poly is List && poly.isNotEmpty && poly[0] is List) {
+            addRing(poly[0] as List);
+          }
+        }
+      } else if (geom['type'] == 'Polygon') {
+        if (coords[0] is List) {
+          addRing(coords[0] as List);
+        }
+      }
+    }
+
+    return polygons;
+  }
 
   bool _isBoundaryCell(RasterData mask, int x, int y) {
     for (int dy = -1; dy <= 1; dy++) {

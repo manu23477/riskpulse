@@ -54,9 +54,14 @@ class ResearchLayerPanel extends StatelessWidget {
     final terrainLayers = layers.where((l) => l.name == 'Slope' || l.name == 'Aspect' || l.name == 'Hillshade').toList();
     final hydroLayers = layers.where((l) => l.name == 'Filled DEM' || l.name == 'Flow Direction' || l.name == 'Flow Accumulation' || l.name == 'Stream Raster' || l.name == 'Strahler Order' || l.name == 'Shreve Magnitude' || l.name == 'Sub-watersheds').toList();
     final drainageLayers = layers.where((l) => l.name == 'Drainage Network' || l.name == 'Watershed Boundary').toList();
+    final adminLayers = layers.where((l) => l.type == GisLayerType.boundary || l.name.contains('District') || l.name.contains('State')).toList();
 
     return ListView(
       children: [
+        if (adminLayers.isNotEmpty) ...[
+          _sectionHeader('Administrative Boundaries'),
+          ...adminLayers.map((l) => _layerItem(workspace, l)),
+        ],
         if (terrainLayers.isNotEmpty) ...[
           _sectionHeader('Terrain Analysis'),
           ...terrainLayers.map((l) => _layerItem(workspace, l)),
