@@ -23,6 +23,7 @@ import '../../domain/gis/gis_style.dart';
 import '../../domain/gis/identify_result.dart';
 import '../../domain/gis/raster_data.dart';
 import '../../domain/gis/research_session.dart';
+import '../../domain/gis/watershed.dart';
 import '../../domain/gis/research_workspace_state.dart';
 import '../../domain/gis/spatial_concepts.dart';
 import '../../domain/location/geo_location.dart';
@@ -216,8 +217,19 @@ class _ResearchGisScreenState extends State<ResearchGisScreen> {
     final session = workspace.currentSession;
     final isDesktop = MediaQuery.of(context).size.width > 900;
 
-    final drainageLayer = session?.layers.where((l) => l.name == 'Drainage Network' || l.metadata['hydrology_product'] == 'drainageNetwork').firstOrNull;
+    final drainageLayer = (workspace.activeComposition?.layers ?? session?.layers)
+        ?.where((l) => l.name == 'Drainage Network' || l.metadata['hydrology_product'] == 'drainageNetwork')
+        .firstOrNull;
     final bool isDrainageVisible = drainageLayer?.isVisible ?? true;
+
+    final watershedLayer = (workspace.activeComposition?.layers ?? session?.layers)
+        ?.where((l) => l.name == 'Watershed Boundary' || l.metadata['hydrology_product'] == 'watershedBoundary')
+        .firstOrNull;
+    final bool isWatershedVisible = watershedLayer?.isVisible ?? true;
+
+    final Polyline? watershedPolyline = (session?.activeWatershed != null && isWatershedVisible)
+        ? _buildWatershedBoundaryPolyline(session!.activeWatershed!)
+        : null;
 
     return Scaffold(
       appBar: AppBar(
@@ -278,6 +290,10 @@ class _ResearchGisScreenState extends State<ResearchGisScreen> {
                               urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
                               userAgentPackageName: 'in.gov.hp.riskpulse.research',
                             ),
+                            if (watershedPolyline != null)
+                              PolylineLayer(
+                                polylines: [watershedPolyline],
+                              ),
                             if (session?.drainageNetwork != null && isDrainageVisible)
                               PolylineLayer(
                                 polylines: _buildDrainagePolylines(session!.drainageNetwork!),
@@ -419,6 +435,117 @@ class _ResearchGisScreenState extends State<ResearchGisScreen> {
       case DrainageNodeType.junction: return Colors.orange;
       case DrainageNodeType.outlet: return Colors.blue;
     }
+  }
+
+  Polyline? _buildWatershedBoundaryPolyline(Watershed watershed, {int? maxStepsOverride}) {
+    final mask = watershed.mask;
+    if (mask.width < 2 || mask.height < 2) return null;
+
+    // Step 1: Find starting top-leftmost boundary cell
+    int startX = -1;
+    int startY = -1;
+
+    for (int y = 0; y < mask.height; y++) {
+      for (int x = 0; x < mask.width; x++) {
+        final val = mask.getValue(x, y);
+        if (val == 1.0 && !mask.isNoData(val)) {
+          if (_isBoundaryCell(mask, x, y)) {
+            startX = x;
+            startY = y;
+            break;
+          }
+        }
+      }
+      if (startX != -1) break;
+    }
+
+    if (startX == -1 || startY == -1) return null;
+
+    // Step 2: Moore-Neighbor 8-connected clockwise direction offsets
+    const List<({int dx, int dy})> offsets = [
+      (dx: 0, dy: -1),  // 0: N
+      (dx: 1, dy: -1),  // 1: NE
+      (dx: 1, dy: 0),   // 2: E
+      (dx: 1, dy: 1),   // 3: SE
+      (dx: 0, dy: 1),   // 4: S
+      (dx: -1, dy: 1),  // 5: SW
+      (dx: -1, dy: 0),  // 6: W
+      (dx: -1, dy: -1), // 7: NW
+    ];
+
+    final List<GeoLocation> boundaryPoints = [];
+    int currX = startX;
+    int currY = startY;
+    int backDir = 6; // Start checking from West
+
+    final int maxSteps = maxStepsOverride ?? (mask.width * mask.height * 2);
+    int steps = 0;
+
+    do {
+      boundaryPoints.add(mask.getCenterLocation(currX, currY));
+
+      int nextX = -1;
+      int nextY = -1;
+      int foundDir = -1;
+
+      final int startSearch = (backDir + 1) % 8;
+      for (int i = 0; i < 8; i++) {
+        final int dir = (startSearch + i) % 8;
+        final int nx = currX + offsets[dir].dx;
+        final int ny = currY + offsets[dir].dy;
+
+        if (nx >= 0 && nx < mask.width && ny >= 0 && ny < mask.height) {
+          final val = mask.getValue(nx, ny);
+          if (val == 1.0 && !mask.isNoData(val)) {
+            nextX = nx;
+            nextY = ny;
+            foundDir = dir;
+            break;
+          }
+        }
+      }
+
+      if (foundDir == -1) break; // Single isolated cell
+
+      backDir = (foundDir + 4) % 8;
+      currX = nextX;
+      currY = nextY;
+      steps++;
+
+    } while ((currX != startX || currY != startY) && steps < maxSteps);
+
+    final bool isClosed = (currX == startX && currY == startY && steps > 0);
+
+    if (!isClosed || boundaryPoints.length < 3) {
+      return null;
+    }
+
+    // Close the perimeter ring cleanly
+    boundaryPoints.add(boundaryPoints.first);
+
+    return Polyline(
+      points: boundaryPoints.map((p) => LatLng(p.latitude, p.longitude)).toList(),
+      strokeWidth: 2.5,
+      color: const Color(0xFF4682B4),
+    );
+  }
+
+  @visibleForTesting
+  Polyline? buildWatershedBoundaryPolylineForTest(Watershed watershed, {int? maxStepsOverride}) =>
+      _buildWatershedBoundaryPolyline(watershed, maxStepsOverride: maxStepsOverride);
+
+  bool _isBoundaryCell(RasterData mask, int x, int y) {
+    for (int dy = -1; dy <= 1; dy++) {
+      for (int dx = -1; dx <= 1; dx++) {
+        if (dx == 0 && dy == 0) continue;
+        final nx = x + dx;
+        final ny = y + dy;
+        if (nx < 0 || nx >= mask.width || ny < 0 || ny >= mask.height) return true;
+        final val = mask.getValue(nx, ny);
+        if (val != 1.0 || mask.isNoData(val)) return true;
+      }
+    }
+    return false;
   }
 
   Color _parseHexColor(String hex) {
