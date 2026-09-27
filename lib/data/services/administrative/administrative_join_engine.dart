@@ -74,13 +74,14 @@ class AdministrativeJoinEngine {
     required ThematicDataset dataset,
     required List<AdministrativeUnit> targetUnits,
   }) {
-    // 1. Level Mismatch Guard
+    // 1. Level Mismatch Guard (Exhaustively verifies every unit in targetUnits)
     if (targetUnits.isNotEmpty) {
-      final unitLevel = targetUnits.first.level;
-      if (dataset.administrativeLevel != unitLevel) {
+      final hasMismatch = targetUnits.any((u) => u.level != dataset.administrativeLevel);
+      if (hasMismatch) {
+        final expectedLevel = dataset.administrativeLevel;
         final msg =
-            'Administrative level mismatch: Dataset expects "${dataset.administrativeLevel.displayName}" (${dataset.administrativeLevel.code}), '
-            'but target units are "${unitLevel.displayName}" (${unitLevel.code}).';
+            'Administrative level mismatch: Dataset expects "${expectedLevel.displayName}" (${expectedLevel.code}), '
+            'but target units contain mismatched administrative levels.';
         return AdministrativeJoinResult(
           dataset: dataset,
           joinedRecords: targetUnits

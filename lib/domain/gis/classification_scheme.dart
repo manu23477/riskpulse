@@ -50,7 +50,7 @@ class ClassificationScheme {
     if (breaks.isEmpty) return;
     
     for (int i = 0; i < breaks.length; i++) {
-      if (breaks[i].minValue >= breaks[i].maxValue) {
+      if (breaks[i].minValue > breaks[i].maxValue || (breaks.length > 1 && breaks[i].minValue == breaks[i].maxValue)) {
         throw ArgumentError('Class break at index $i has an invalid range: [${breaks[i].minValue}, ${breaks[i].maxValue}]');
       }
       

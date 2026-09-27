@@ -1,9 +1,11 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:riskpulse/data/services/administrative/administrative_join_engine.dart';
+import 'package:riskpulse/data/services/administrative/thematic_classification_engine.dart';
 import 'package:riskpulse/data/services/administrative_boundary_service.dart';
 import 'package:riskpulse/domain/administrative/administrative_level.dart';
 import 'package:riskpulse/domain/administrative/administrative_unit.dart';
 import 'package:riskpulse/domain/administrative/thematic_dataset.dart';
+import 'package:riskpulse/domain/gis/classification_scheme.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -299,6 +301,377 @@ void main() {
       expect(result.totalMissingUnits, equals(0));
       expect(result.totalUnmatchedInput, equals(0));
       expect(result.totalDuplicates, equals(0));
+    });
+  });
+
+  group('Research GIS Phase 2B — Thematic Classification Engine Tests', () {
+    final classEngine = const ThematicClassificationEngine();
+
+    // A. EQUAL INTERVAL
+    test('A1. Equal Interval: Normal positive values', () {
+      final values = [10.0, 20.0, 30.0, 40.0, 50.0];
+      final scheme = classEngine.classifyDataset(
+        numericValues: values,
+        method: ClassificationMethod.equalInterval,
+        requestedClassCount: 4,
+      );
+
+      expect(scheme.breaks.length, equals(4));
+      expect(scheme.breaks.first.minValue, equals(10.0));
+      expect(scheme.breaks.last.maxValue, equals(50.0));
+    });
+
+    test('A2. Equal Interval: Decimal values', () {
+      final values = [1.2, 2.4, 3.6, 4.8, 6.0];
+      final scheme = classEngine.classifyDataset(
+        numericValues: values,
+        method: ClassificationMethod.equalInterval,
+        requestedClassCount: 3,
+      );
+
+      expect(scheme.breaks.length, equals(3));
+      expect(scheme.breaks.first.minValue, equals(1.2));
+      expect(scheme.breaks.last.maxValue, equals(6.0));
+    });
+
+    test('A3. Equal Interval: Zero-inclusive values', () {
+      final values = [0.0, 25.0, 50.0, 75.0, 100.0];
+      final scheme = classEngine.classifyDataset(
+        numericValues: values,
+        method: ClassificationMethod.equalInterval,
+        requestedClassCount: 4,
+      );
+
+      expect(scheme.breaks.first.minValue, equals(0.0));
+      expect(scheme.breaks.last.maxValue, equals(100.0));
+    });
+
+    test('A4. Equal Interval: Negative values preserved', () {
+      final values = [-50.0, -25.0, 0.0, 25.0, 50.0];
+      final scheme = classEngine.classifyDataset(
+        numericValues: values,
+        method: ClassificationMethod.equalInterval,
+        requestedClassCount: 4,
+      );
+
+      expect(scheme.breaks.first.minValue, equals(-50.0));
+      expect(scheme.breaks.last.maxValue, equals(50.0));
+    });
+
+    test('A5. Equal Interval: Constant-value dataset (min == max)', () {
+      final values = [25.0, 25.0, 25.0, 25.0];
+      final scheme = classEngine.classifyDataset(
+        numericValues: values,
+        method: ClassificationMethod.equalInterval,
+        requestedClassCount: 4,
+      );
+
+      expect(scheme.breaks.length, equals(1));
+      expect(scheme.breaks.first.minValue, equals(25.0));
+      expect(scheme.breaks.first.maxValue, equals(25.0));
+      expect(scheme.breaks.first.label, contains('Constant'));
+    });
+
+    // B. QUANTILE
+    test('B6. Quantile: Normal ordered values', () {
+      final values = [10.0, 20.0, 30.0, 40.0, 50.0, 60.0, 70.0, 80.0];
+      final scheme = classEngine.classifyDataset(
+        numericValues: values,
+        method: ClassificationMethod.quantile,
+        requestedClassCount: 4,
+      );
+
+      expect(scheme.breaks.length, equals(4));
+      expect(scheme.breaks.first.minValue, equals(10.0));
+      expect(scheme.breaks.last.maxValue, equals(80.0));
+    });
+
+    test('B7. Quantile: Duplicate values', () {
+      final values = [10.0, 10.0, 10.0, 20.0, 30.0, 30.0, 40.0];
+      final scheme = classEngine.classifyDataset(
+        numericValues: values,
+        method: ClassificationMethod.quantile,
+        requestedClassCount: 3,
+      );
+
+      expect(scheme.breaks.length, equals(3));
+      expect(scheme.breaks.first.minValue, equals(10.0));
+      expect(scheme.breaks.last.maxValue, equals(40.0));
+    });
+
+    test('B8. Quantile: Fewer unique values than requested classes', () {
+      final values = [10.0, 10.0, 20.0, 20.0];
+      final scheme = classEngine.classifyDataset(
+        numericValues: values,
+        method: ClassificationMethod.quantile,
+        requestedClassCount: 5,
+      );
+
+      expect(scheme.breaks.length, equals(2)); // Clamped to unique count = 2
+    });
+
+    test('B9. Quantile: Constant-value dataset', () {
+      final values = [15.0, 15.0, 15.0];
+      final scheme = classEngine.classifyDataset(
+        numericValues: values,
+        method: ClassificationMethod.quantile,
+        requestedClassCount: 4,
+      );
+
+      expect(scheme.breaks.length, equals(1));
+      expect(scheme.breaks.first.minValue, equals(15.0));
+    });
+
+    // C. JENKS NATURAL BREAKS
+    test('C10. Jenks: Clearly clustered values', () {
+      final values = [1.0, 2.0, 3.0, 50.0, 51.0, 52.0, 100.0, 101.0, 102.0];
+      final scheme = classEngine.classifyDataset(
+        numericValues: values,
+        method: ClassificationMethod.naturalBreaks,
+        requestedClassCount: 3,
+      );
+
+      expect(scheme.breaks.length, equals(3));
+      expect(scheme.breaks.first.minValue, equals(1.0));
+      expect(scheme.breaks.last.maxValue, equals(102.0));
+    });
+
+    test('C11. Jenks: Duplicate values', () {
+      final values = [5.0, 5.0, 5.0, 20.0, 20.0, 50.0, 50.0];
+      final scheme = classEngine.classifyDataset(
+        numericValues: values,
+        method: ClassificationMethod.naturalBreaks,
+        requestedClassCount: 3,
+      );
+
+      expect(scheme.breaks.length, equals(3));
+    });
+
+    test('C12. Jenks: Fewer unique values than requested classes', () {
+      final values = [5.0, 15.0];
+      final scheme = classEngine.classifyDataset(
+        numericValues: values,
+        method: ClassificationMethod.naturalBreaks,
+        requestedClassCount: 4,
+      );
+
+      expect(scheme.breaks.length, equals(2)); // Clamped to 2
+    });
+
+    test('C13. Jenks: Constant-value dataset', () {
+      final values = [42.0, 42.0, 42.0];
+      final scheme = classEngine.classifyDataset(
+        numericValues: values,
+        method: ClassificationMethod.naturalBreaks,
+        requestedClassCount: 4,
+      );
+
+      expect(scheme.breaks.length, equals(1));
+      expect(scheme.breaks.first.minValue, equals(42.0));
+    });
+
+    // D. GENERAL VALIDATION
+    test('D14. Empty dataset returns empty breaks', () {
+      final scheme = classEngine.classifyDataset(
+        numericValues: const [],
+        method: ClassificationMethod.equalInterval,
+        requestedClassCount: 5,
+      );
+
+      expect(scheme.breaks, isEmpty);
+    });
+
+    test('D15. One observation returns 1 class break', () {
+      final scheme = classEngine.classifyDataset(
+        numericValues: [100.0],
+        method: ClassificationMethod.equalInterval,
+        requestedClassCount: 5,
+      );
+
+      expect(scheme.breaks.length, equals(1));
+      expect(scheme.breaks.first.minValue, equals(100.0));
+    });
+
+    test('D16. Class count = 1 returns 1 class break', () {
+      final scheme = classEngine.classifyDataset(
+        numericValues: [10.0, 20.0, 30.0],
+        method: ClassificationMethod.equalInterval,
+        requestedClassCount: 1,
+      );
+
+      expect(scheme.breaks.length, equals(1));
+    });
+
+    test('D17. Class count < 1 is clamped to 1', () {
+      final scheme = classEngine.classifyDataset(
+        numericValues: [10.0, 20.0, 30.0],
+        method: ClassificationMethod.equalInterval,
+        requestedClassCount: 0,
+      );
+
+      expect(scheme.breaks.length, equals(1));
+    });
+
+    test('D18. Requested classes greater than observations is clamped to unique count', () {
+      final scheme = classEngine.classifyDataset(
+        numericValues: [10.0, 20.0],
+        method: ClassificationMethod.equalInterval,
+        requestedClassCount: 10,
+      );
+
+      expect(scheme.breaks.length, equals(2));
+    });
+
+    test('D19. Requested classes greater than unique values is clamped', () {
+      final scheme = classEngine.classifyDataset(
+        numericValues: [5.0, 5.0, 5.0, 10.0],
+        method: ClassificationMethod.equalInterval,
+        requestedClassCount: 5,
+      );
+
+      expect(scheme.breaks.length, equals(2)); // Only 2 unique values
+    });
+
+    test('D20. NaN and Infinity values are rejected before classification', () {
+      final scheme = classEngine.classifyDataset(
+        numericValues: [10.0, double.nan, 20.0, double.infinity, 30.0],
+        method: ClassificationMethod.equalInterval,
+        requestedClassCount: 3,
+      );
+
+      expect(scheme.breaks.first.minValue, equals(10.0));
+      expect(scheme.breaks.last.maxValue, equals(30.0));
+    });
+
+    test('D21. Missing/null values excluded from classification', () {
+      final scheme = classEngine.classifyDataset(
+        numericValues: [10.0, 20.0, 30.0],
+        method: ClassificationMethod.equalInterval,
+        requestedClassCount: 3,
+      );
+
+      expect(scheme.breaks.first.minValue, equals(10.0));
+    });
+
+    test('D22. Negative values preserved without artificial positivity constraint', () {
+      final scheme = classEngine.classifyDataset(
+        numericValues: [-100.0, -50.0, 0.0],
+        method: ClassificationMethod.equalInterval,
+        requestedClassCount: 2,
+      );
+
+      expect(scheme.breaks.first.minValue, equals(-100.0));
+    });
+
+    test('D23. Numeric zero preserved as valid classification bound', () {
+      final scheme = classEngine.classifyDataset(
+        numericValues: [0.0, 10.0, 20.0],
+        method: ClassificationMethod.equalInterval,
+        requestedClassCount: 2,
+      );
+
+      expect(scheme.breaks.first.minValue, equals(0.0));
+    });
+
+    // E. DETERMINISM
+    test('E24. Same input produces identical classification twice', () {
+      final values = [12.0, 45.0, 67.0, 89.0, 120.0];
+      final scheme1 = classEngine.classifyDataset(
+        numericValues: values,
+        method: ClassificationMethod.naturalBreaks,
+        requestedClassCount: 3,
+      );
+
+      final scheme2 = classEngine.classifyDataset(
+        numericValues: values,
+        method: ClassificationMethod.naturalBreaks,
+        requestedClassCount: 3,
+      );
+
+      expect(scheme1.breaks.length, equals(scheme2.breaks.length));
+      for (int i = 0; i < scheme1.breaks.length; i++) {
+        expect(scheme1.breaks[i].minValue, equals(scheme2.breaks[i].minValue));
+        expect(scheme1.breaks[i].maxValue, equals(scheme2.breaks[i].maxValue));
+        expect(scheme1.breaks[i].colorHex, equals(scheme2.breaks[i].colorHex));
+      }
+    });
+
+    // F. BOUNDARY ASSIGNMENT & RANGES
+    test('F25 & F26. Class break bounds cover full min and max range deterministically', () {
+      final values = [5.0, 15.0, 25.0, 35.0, 45.0];
+      final scheme = classEngine.classifyDataset(
+        numericValues: values,
+        method: ClassificationMethod.equalInterval,
+        requestedClassCount: 4,
+      );
+
+      expect(scheme.breaks.first.minValue, equals(5.0));
+      expect(scheme.breaks.last.maxValue, equals(45.0));
+
+      for (int i = 0; i < values.length; i++) {
+        final val = values[i];
+        final matchCount = scheme.breaks.where((b) {
+          final isLast = b == scheme.breaks.last;
+          return b.contains(val, isLast: isLast);
+        }).length;
+
+        expect(matchCount, equals(1)); // Every value belongs to exactly 1 class break
+      }
+    });
+
+    // G. COLOR RAMP INTEGRATION
+    test('G27. Class count maps deterministically to existing ColorRamp infrastructure', () {
+      final values = [10.0, 20.0, 30.0, 40.0, 50.0];
+      final scheme = classEngine.classifyDataset(
+        numericValues: values,
+        method: ClassificationMethod.equalInterval,
+        requestedClassCount: 3,
+      );
+
+      expect(scheme.breaks.first.colorHex, isNotEmpty);
+      expect(scheme.breaks.last.colorHex, isNotEmpty);
+      expect(scheme.breaks.first.colorHex, isNot(equals(scheme.breaks.last.colorHex)));
+    });
+
+    // H. PHASE 2A LEVEL-GUARD HARDENING
+    test('H28. Phase 2A level-guard hardening detects heterogeneous target unit level mismatch', () {
+      final joinEngine = const AdministrativeJoinEngine();
+      final heterogeneousUnits = [
+        AdministrativeUnit(
+          internalId: 'HP-01',
+          sourceId: '021',
+          name: 'Chamba',
+          level: AdministrativeLevel.district,
+          countryCode: 'IN',
+          sourceName: 'LGD',
+          sourceVersion: '1.0',
+        ),
+        AdministrativeUnit(
+          internalId: 'HP-STATE',
+          sourceId: 'IN-HP',
+          name: 'Himachal Pradesh State',
+          level: AdministrativeLevel.state, // Mixed state level unit!
+          countryCode: 'IN',
+          sourceName: 'LGD',
+          sourceVersion: '1.0',
+        ),
+      ];
+
+      final dataset = ThematicDataset(
+        id: 'test-ds-mixed',
+        attributeName: 'District Test',
+        unit: 'count',
+        administrativeLevel: AdministrativeLevel.district,
+        sourceName: 'Test',
+        observations: const [
+          ThematicObservation(administrativeName: 'Chamba', numericValue: 10.0),
+        ],
+      );
+
+      final result = joinEngine.joinDataset(dataset: dataset, targetUnits: heterogeneousUnits);
+
+      expect(result.hasLevelMismatch, isTrue);
+      expect(result.isSuccessful, isFalse);
     });
   });
 }
