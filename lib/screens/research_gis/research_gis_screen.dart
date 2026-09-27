@@ -235,6 +235,13 @@ class _ResearchGisScreenState extends State<ResearchGisScreen> {
         ?.where((l) => l.name == 'District Boundaries' || l.type == GisLayerType.boundary || l.metadata['hydrology_product'] == 'districtBoundaries')
         .firstOrNull;
     final bool isAdminVisible = adminLayer?.isVisible ?? true;
+
+    final thematicLayer = (workspace.activeComposition?.layers ?? session?.layers)
+        ?.where((l) => l.metadata['isThematicChoropleth'] == true)
+        .firstOrNull;
+    final bool isThematicVisible = thematicLayer?.isVisible ?? true;
+    final Map<String, String>? choroplethColorMap = thematicLayer?.metadata['colorMap'] as Map<String, String>?;
+
     final String activeStateCode = stateService.selectedState == HimalayanState.himachal ? 'HP' : 'UK';
 
     final Polyline? watershedPolyline = (session?.activeWatershed != null && isWatershedVisible)
@@ -300,6 +307,20 @@ class _ResearchGisScreenState extends State<ResearchGisScreen> {
                               urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
                               userAgentPackageName: 'in.gov.hp.riskpulse.research',
                             ),
+                            if (isThematicVisible && choroplethColorMap != null)
+                              FutureBuilder<List<AdministrativeUnit>>(
+                                future: _adminBoundaryService.loadDistrictBoundaries(stateCode: activeStateCode),
+                                builder: (context, snapshot) {
+                                  if (!snapshot.hasData || snapshot.data!.isEmpty) return const SizedBox.shrink();
+                                  return PolygonLayer(
+                                    polygons: _buildAdminPolygons(
+                                      snapshot.data!,
+                                      choroplethColorMap: choroplethColorMap,
+                                      fillOpacity: 0.65,
+                                    ),
+                                  );
+                                },
+                              ),
                             if (isAdminVisible)
                               FutureBuilder<List<AdministrativeUnit>>(
                                 future: _adminBoundaryService.loadDistrictBoundaries(stateCode: activeStateCode),
@@ -554,7 +575,11 @@ class _ResearchGisScreenState extends State<ResearchGisScreen> {
   Polyline? buildWatershedBoundaryPolylineForTest(Watershed watershed, {int? maxStepsOverride}) =>
       _buildWatershedBoundaryPolyline(watershed, maxStepsOverride: maxStepsOverride);
 
-  List<Polygon> _buildAdminPolygons(List<AdministrativeUnit> adminUnits) {
+  List<Polygon> _buildAdminPolygons(
+    List<AdministrativeUnit> adminUnits, {
+    Map<String, String>? choroplethColorMap,
+    double fillOpacity = 0.65,
+  }) {
     final List<Polygon> polygons = [];
 
     for (final unit in adminUnits) {
@@ -563,6 +588,15 @@ class _ResearchGisScreenState extends State<ResearchGisScreen> {
 
       final coords = geom['coordinates'];
       if (coords is! List || coords.isEmpty) continue;
+
+      final String? fillHex = choroplethColorMap?[unit.internalId] ??
+          choroplethColorMap?[unit.sourceId] ??
+          choroplethColorMap?[unit.name] ??
+          choroplethColorMap?[unit.name.toLowerCase()];
+
+      final Color fillColor = fillHex != null
+          ? _parseHexColor(fillHex).withOpacity(fillOpacity)
+          : Colors.transparent;
 
       void addRing(List rawRing) {
         final List<LatLng> points = [];
@@ -577,9 +611,9 @@ class _ResearchGisScreenState extends State<ResearchGisScreen> {
           polygons.add(
             Polygon(
               points: points,
-              borderStrokeWidth: 1.8,
-              borderColor: const Color(0xFF6B7280),
-              color: Colors.transparent,
+              borderStrokeWidth: choroplethColorMap != null ? 1.2 : 1.8,
+              borderColor: const Color(0xFF334155),
+              color: fillColor,
             ),
           );
         }

@@ -1,11 +1,13 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:riskpulse/data/services/administrative/administrative_join_engine.dart';
+import 'package:riskpulse/data/services/administrative/administrative_thematic_service.dart';
 import 'package:riskpulse/data/services/administrative/thematic_classification_engine.dart';
 import 'package:riskpulse/data/services/administrative_boundary_service.dart';
 import 'package:riskpulse/domain/administrative/administrative_level.dart';
 import 'package:riskpulse/domain/administrative/administrative_unit.dart';
 import 'package:riskpulse/domain/administrative/thematic_dataset.dart';
 import 'package:riskpulse/domain/gis/classification_scheme.dart';
+import 'package:riskpulse/domain/gis/gis_layer.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -672,6 +674,100 @@ void main() {
 
       expect(result.hasLevelMismatch, isTrue);
       expect(result.isSuccessful, isFalse);
+    });
+  });
+
+  group('Research GIS Phase 2C — Administrative Thematic Orchestration & GIS Integration Tests', () {
+    final thematicService = const AdministrativeThematicService();
+
+    test('Phase 2C: 1-10. End-to-end thematic choropleth orchestration, joining, and No Data assignments', () async {
+      final adminService = AdministrativeBoundaryService();
+      final hpUnits = await adminService.loadDistrictBoundaries(stateCode: 'HP');
+
+      expect(hpUnits.length, equals(12));
+
+      // Observations for 10 districts, leaving 2 missing and 1 duplicate
+      final dataset = ThematicDataset(
+        id: 'ds-hp-disaster-index',
+        attributeName: 'Vulnerability Index',
+        unit: 'score',
+        administrativeLevel: AdministrativeLevel.district,
+        sourceName: 'State Disaster Management Authority',
+        observations: const [
+          ThematicObservation(administrativeName: 'Chamba', numericValue: 85.0),
+          ThematicObservation(administrativeName: 'Kangra', numericValue: 62.0),
+          ThematicObservation(administrativeName: 'Lahul & Spiti', numericValue: 12.0),
+          ThematicObservation(administrativeName: 'Kullu', numericValue: 94.0),
+          ThematicObservation(administrativeName: 'Mandi', numericValue: 0.0), // Zero value
+          ThematicObservation(administrativeName: 'Hamirpur', numericValue: -15.0), // Negative value
+          ThematicObservation(administrativeName: 'Una', numericValue: 48.0),
+          ThematicObservation(administrativeName: 'Bilaspur', numericValue: 35.0),
+          ThematicObservation(administrativeName: 'Solan', numericValue: 71.0),
+          ThematicObservation(administrativeName: 'Sirmaur', numericValue: 55.0),
+          ThematicObservation(administrativeName: 'Unknown District', numericValue: 99.0), // Unmatched
+        ],
+      );
+
+      final result = thematicService.processThematicChoropleth(
+        dataset: dataset,
+        targetUnits: hpUnits,
+        classificationMethod: ClassificationMethod.equalInterval,
+        requestedClassCount: 4,
+      );
+
+      expect(result.totalMatchedUnits, equals(10));
+      expect(result.totalMissingUnits, equals(2)); // Shimla and Kinnaur missing
+      expect(result.totalUnmatchedInput, equals(1)); // Unknown District unmatched
+
+      // Verify No Data colour assigned to missing districts
+      final shimlaColor = result.choroplethColorMap[hpUnits.firstWhere((u) => u.name == 'Shimla').internalId];
+      final kinnaurColor = result.choroplethColorMap[hpUnits.firstWhere((u) => u.name == 'Kinnaur').internalId];
+      expect(shimlaColor, equals(ThematicChoroplethResult.noDataColorHex));
+      expect(kinnaurColor, equals(ThematicChoroplethResult.noDataColorHex));
+
+      // Verify matched districts receive valid choropleth hex colors
+      final chambaColor = result.choroplethColorMap[hpUnits.firstWhere((u) => u.name == 'Chamba').internalId];
+      expect(chambaColor, isNotNull);
+      expect(chambaColor, isNot(equals(ThematicChoroplethResult.noDataColorHex)));
+
+      // Create GisLayer for thematic choropleth
+      final layer = thematicService.createThematicLayer(result);
+      expect(layer.metadata['isThematicChoropleth'], isTrue);
+      expect(layer.type, equals(GisLayerType.boundary));
+    });
+
+    test('Phase 2C: 11-20. State-neutral design across all classification methods (Quantile & Jenks)', () async {
+      final adminService = AdministrativeBoundaryService();
+      final hpUnits = await adminService.loadDistrictBoundaries(stateCode: 'HP');
+
+      final dataset = ThematicDataset(
+        id: 'ds-hp-quantile',
+        attributeName: 'Landslide Risk Score',
+        unit: 'index',
+        administrativeLevel: AdministrativeLevel.district,
+        sourceName: 'GSI Benchmark',
+        observations: hpUnits.map((u) => ThematicObservation(administrativeId: u.internalId, administrativeName: u.name, numericValue: 10.0 + u.internalId.hashCode % 90)).toList(),
+      );
+
+      final quantileResult = thematicService.processThematicChoropleth(
+        dataset: dataset,
+        targetUnits: hpUnits,
+        classificationMethod: ClassificationMethod.quantile,
+        requestedClassCount: 4,
+      );
+
+      expect(quantileResult.choroplethColorMap.length, equals(12));
+      expect(quantileResult.classificationScheme.breaks.length, equals(4));
+
+      final jenksResult = thematicService.processThematicChoropleth(
+        dataset: dataset,
+        targetUnits: hpUnits,
+        classificationMethod: ClassificationMethod.naturalBreaks,
+        requestedClassCount: 4,
+      );
+
+      expect(jenksResult.choroplethColorMap.length, equals(12));
+      expect(jenksResult.classificationScheme.breaks.length, equals(4));
     });
   });
 }
