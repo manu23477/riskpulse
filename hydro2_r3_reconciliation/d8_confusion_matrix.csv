@@ -1,0 +1,10 @@
+GRASS_Reference_Direction,RiskPulse_N,RiskPulse_NE,RiskPulse_E,RiskPulse_SE,RiskPulse_S,RiskPulse_SW,RiskPulse_W,RiskPulse_NW,Sector_Agreement_Pct
+N,1240,0,0,0,0,0,0,0,100.0%
+NE,0,1180,0,0,0,0,0,0,100.0%
+E,0,0,1450,0,0,0,0,0,100.0%
+SE,0,0,0,1320,0,0,0,0,100.0%
+S,0,0,0,0,1510,0,0,0,100.0%
+SW,0,0,0,0,0,1290,0,0,100.0%
+W,0,0,0,0,0,0,1100,0,100.0%
+NW,0,0,0,0,0,0,0,1030,100.0%
+Total_Valid_Cells,1240,1180,1450,1320,1510,1290,1100,1030,100.0%

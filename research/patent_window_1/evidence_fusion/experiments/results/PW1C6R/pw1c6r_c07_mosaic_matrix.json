@@ -1,0 +1,9 @@
+[
+  {
+    "boundaryName": "C07 MINIMAL BOUNDARY",
+    "mosaicReferences": ["US7441230B2 (REF-01)", "CN117235153B (REF-08)", "US10452652B2 (REF-09)", "US9870396B2 (REF-10)"],
+    "singleReferenceDisclosed": false,
+    "multiReferenceMosaicDisclosed": true,
+    "missingCouplingRelationship": "A single reference coupling multi-event spatial administrative risk crosswalk DAGs with active mutation-driven selective propagation and non-deletion contradiction retention."
+  }
+]

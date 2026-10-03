@@ -1,0 +1,23 @@
+[
+  {
+    "query": "\"mutation\" \"shared downstream\" \"administrative\" \"risk\"",
+    "databases": ["Google Patents", "USPTO", "Espacenet"],
+    "domains": ["GIS", "Emergency Management", "IoT", "Supply Chain"],
+    "date": "2026-09-30",
+    "resultsLocated": ["US10891340B2", "US10452652B2"]
+  },
+  {
+    "query": "\"event mutation\" \"shared dependency\" GIS",
+    "databases": ["Google Patents", "WIPO Patentscope"],
+    "domains": ["Geospatial Graphs", "Event Sourcing"],
+    "date": "2026-09-30",
+    "resultsLocated": ["US7441230B2", "US20210286481A1"]
+  },
+  {
+    "query": "\"cross-event isolation\" dependency graph",
+    "databases": ["Google Patents", "IEEE Xplore", "ACM Digital Library"],
+    "domains": ["Compiler Build Graphs", "Stream Processing"],
+    "date": "2026-09-30",
+    "resultsLocated": ["US7441230B2", "US10067788B2"]
+  }
+]

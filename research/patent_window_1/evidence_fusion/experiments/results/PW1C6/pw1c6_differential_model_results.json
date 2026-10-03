@@ -1,0 +1,18 @@
+{
+  "modelAFullRebuild": {
+    "reproducesA": true,
+    "evaluations": 35
+  },
+  "modelBGlobalInvalidation": {
+    "reproducesA": true,
+    "evaluations": 35
+  },
+  "modelCSelectivePropagation": {
+    "reproducesA": true,
+    "evaluations": 3.2
+  },
+  "modelDMinimalCandidate": {
+    "reproducesA": true,
+    "evaluations": 3.2
+  }
+}

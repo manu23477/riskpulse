@@ -1,0 +1,28 @@
+{
+  "datasetVersion": "PW1C1-DATA-v1.0",
+  "groundTruthVersion": "PW1C1-GT-v1.0",
+  "generatorVersion": "1.0.0",
+  "schemaVersion": "1.0.0",
+  "randomSeed": 20260929,
+  "caseCount": 50,
+  "evidenceCount": 678,
+  "generationTimestamp": "2026-09-29T12:00:00Z",
+  "files": [
+    {
+      "path": "visible/evidence_objects.json",
+      "sha256": "e7785f567660afad4c0dd33111282698db106501571b2bb679005a7cfd0133e1"
+    },
+    {
+      "path": "ground_truth/ground_truth_cases.json",
+      "sha256": "d3c4688ae0ae3314e7082b2360ce2042e11b4a9b3666c8f5dd15043c1d83be93"
+    },
+    {
+      "path": "ground_truth/evidence_truth.json",
+      "sha256": "6f22b2da3ad200f3445a2a7021312b370a98d0871dec12acc2a329fc85914cd1"
+    },
+    {
+      "path": "ground_truth/arrival_order_controls.json",
+      "sha256": "b672de4e2a0103ff2bb5c7144cadd9e6e55fa61ac71f401e43a15ac9b49a4c5b"
+    }
+  ]
+}

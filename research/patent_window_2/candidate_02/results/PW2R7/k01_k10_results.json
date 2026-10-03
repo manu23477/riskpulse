@@ -1,0 +1,183 @@
+[
+  {
+    "combinationId": "K01",
+    "description": "C01 + C02 (Remote sensing mutation + Spatial closure)",
+    "includedComponents": [
+      "C01",
+      "C02"
+    ],
+    "singleReferenceDisclosed": false,
+    "multiReferenceMosaicDisclosed": true,
+    "disclosingReferences": [
+      "US8548248B2",
+      "US10036650B2"
+    ],
+    "missingCouplingRelationship": "Disclosed across remote sensing imagery and GIS dependency literature."
+  },
+  {
+    "combinationId": "K02",
+    "description": "C02 + C03 + C04 (Spatial -> Admin -> Risk propagation)",
+    "includedComponents": [
+      "C02",
+      "C03",
+      "C04"
+    ],
+    "singleReferenceDisclosed": false,
+    "multiReferenceMosaicDisclosed": true,
+    "disclosingReferences": [
+      "US10452652B2",
+      "US10036650B2"
+    ],
+    "missingCouplingRelationship": "Geospatial event correlation prior art discloses spatial to admin mapping."
+  },
+  {
+    "combinationId": "K03",
+    "description": "C03 + C04 + C08 + C09 (Shared Admin and Shared Risk propagation)",
+    "includedComponents": [
+      "C03",
+      "C04",
+      "C08",
+      "C09"
+    ],
+    "singleReferenceDisclosed": false,
+    "multiReferenceMosaicDisclosed": true,
+    "disclosingReferences": [
+      "US10452652B2",
+      "US10891340B2"
+    ],
+    "missingCouplingRelationship": "Shared DAG node crosswalk propagation."
+  },
+  {
+    "combinationId": "K04",
+    "description": "C05 + C08 + C09 (Cross-event isolation under shared dependencies)",
+    "includedComponents": [
+      "C05",
+      "C08",
+      "C09"
+    ],
+    "singleReferenceDisclosed": false,
+    "multiReferenceMosaicDisclosed": true,
+    "disclosingReferences": [
+      "US7441230B2",
+      "US10891340B2"
+    ],
+    "missingCouplingRelationship": "Branch isolation in build DAGs applied to shared admin/risk nodes."
+  },
+  {
+    "combinationId": "K05",
+    "description": "C06 + C10 (Historical state versioning + Topology mutation)",
+    "includedComponents": [
+      "C06",
+      "C10"
+    ],
+    "singleReferenceDisclosed": false,
+    "multiReferenceMosaicDisclosed": true,
+    "disclosingReferences": [
+      "CN117235153B",
+      "CN119443785A"
+    ],
+    "missingCouplingRelationship": "Versioned provenance graphs with edge redirection."
+  },
+  {
+    "combinationId": "K06",
+    "description": "C01 + C02 + C03 + C04 (Remote sensing mutation through spatial/admin/risk)",
+    "includedComponents": [
+      "C01",
+      "C02",
+      "C03",
+      "C04"
+    ],
+    "singleReferenceDisclosed": false,
+    "multiReferenceMosaicDisclosed": true,
+    "disclosingReferences": [
+      "US8548248B2",
+      "US10452652B2"
+    ],
+    "missingCouplingRelationship": "Coupling satellite observation ingestion with multi-layer risk DAGs."
+  },
+  {
+    "combinationId": "K07",
+    "description": "C01 + C02 + C08 + C09 (Remote sensing mutation + Shared admin/risk dependencies)",
+    "includedComponents": [
+      "C01",
+      "C02",
+      "C08",
+      "C09"
+    ],
+    "singleReferenceDisclosed": false,
+    "multiReferenceMosaicDisclosed": true,
+    "disclosingReferences": [
+      "US8548248B2",
+      "US10891340B2"
+    ],
+    "missingCouplingRelationship": "Satellite raster mutation with shared crosswalk nodes."
+  },
+  {
+    "combinationId": "K08",
+    "description": "C01 + C02 + C03 + C04 + C05 (Full pipeline with cross-event isolation)",
+    "includedComponents": [
+      "C01",
+      "C02",
+      "C03",
+      "C04",
+      "C05"
+    ],
+    "singleReferenceDisclosed": false,
+    "multiReferenceMosaicDisclosed": true,
+    "disclosingReferences": [
+      "US8548248B2",
+      "US10452652B2",
+      "US7441230B2"
+    ],
+    "missingCouplingRelationship": "Multi-layer spatial risk DAG with cross-region isolation."
+  },
+  {
+    "combinationId": "K09",
+    "description": "C01 + C02 + C03 + C04 + C05 + C06 (Full pipeline with isolation & versioning)",
+    "includedComponents": [
+      "C01",
+      "C02",
+      "C03",
+      "C04",
+      "C05",
+      "C06"
+    ],
+    "singleReferenceDisclosed": false,
+    "multiReferenceMosaicDisclosed": true,
+    "disclosingReferences": [
+      "US8548248B2",
+      "US10452652B2",
+      "US7441230B2",
+      "CN117235153B"
+    ],
+    "missingCouplingRelationship": "Integrated pipeline with historical state versioning."
+  },
+  {
+    "combinationId": "K10",
+    "description": "C01 + C02 + C03 + C04 + C05 + C06 + C08 + C09 + C10 (COMPLETE PW2R6 MINIMAL CANDIDATE)",
+    "includedComponents": [
+      "C01",
+      "C02",
+      "C03",
+      "C04",
+      "C05",
+      "C06",
+      "C08",
+      "C09",
+      "C10"
+    ],
+    "singleReferenceDisclosed": false,
+    "multiReferenceMosaicDisclosed": true,
+    "disclosingReferences": [
+      "CN119443785A",
+      "US8548248B2",
+      "US10036650B2",
+      "US20230267118A2",
+      "US7441230B2",
+      "US20200379978A1",
+      "CN117235153B",
+      "US10452652B2"
+    ],
+    "missingCouplingRelationship": "Integrated remote-sensing-derived mutation across a 5-layer spatial-administrative-risk crosswalk with shared dependency recalculation, cross-event isolation, and historical state versioning in a single publication."
+  }
+]

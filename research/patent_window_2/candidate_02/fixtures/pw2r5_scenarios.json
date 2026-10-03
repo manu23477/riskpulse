@@ -1,0 +1,29 @@
+{
+  "scenarios": [
+    {"scenarioId": "R5-A", "description": "Single-cell mutation"},
+    {"scenarioId": "R5-B", "description": "Multiple adjacent changed cells"},
+    {"scenarioId": "R5-C", "description": "Disconnected simultaneous changes"},
+    {"scenarioId": "R5-D", "description": "Shared administrative boundary"},
+    {"scenarioId": "R5-E", "description": "Shared downstream risk state"},
+    {"scenarioId": "R5-F", "description": "Observation change with no downstream state threshold crossing"}
+  ],
+  "historicalVersions": ["V1", "V2", "V3", "V4"],
+  "remoteSensingTests": [
+    {"testId": "RS-01", "name": "Cloud/no-data observation"},
+    {"testId": "RS-02", "name": "Partial spatial coverage"},
+    {"testId": "RS-03", "name": "Resolution mismatch"},
+    {"testId": "RS-04", "name": "Raster-cell to polygon overlap"},
+    {"testId": "RS-05", "name": "Multiple administrative overlaps"},
+    {"testId": "RS-06", "name": "Observation timestamp vs ingestion timestamp"},
+    {"testId": "RS-07", "name": "Late-arriving remote-sensing observation"},
+    {"testId": "RS-08", "name": "Topology/dependency mutation"}
+  ],
+  "adversarialAttacks": [
+    {"attackId": "A1", "name": "False propagation (Change Area A, verify Area B unchanged)"},
+    {"attackId": "A2", "name": "Missed propagation (Change observation contributing to District X, verify all required downstream states update)"},
+    {"attackId": "A3", "name": "Shared-dependency poisoning (Remove contributor A from Admin X, verify B remains represented)"},
+    {"attackId": "A4", "name": "Topology mutation (Cell A -> Village X moves to Cell A -> Village Y)"},
+    {"attackId": "A5", "name": "Late observation (Observation time 09:55, ingestion time 11:00)"}
+  ],
+  "scaleMatrixUnits": [10, 50, 100, 500, 1000]
+}

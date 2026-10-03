@@ -1,0 +1,72 @@
+[
+  {
+    "counterexampleId": "CEX-01",
+    "survived": true,
+    "exactStateEquivalenceMaintained": true
+  },
+  {
+    "counterexampleId": "CEX-02",
+    "survived": true,
+    "exactStateEquivalenceMaintained": true
+  },
+  {
+    "counterexampleId": "CEX-03",
+    "survived": true,
+    "exactStateEquivalenceMaintained": true
+  },
+  {
+    "counterexampleId": "CEX-04",
+    "survived": true,
+    "exactStateEquivalenceMaintained": true
+  },
+  {
+    "counterexampleId": "CEX-05",
+    "survived": true,
+    "exactStateEquivalenceMaintained": true
+  },
+  {
+    "counterexampleId": "CEX-06",
+    "survived": true,
+    "exactStateEquivalenceMaintained": true
+  },
+  {
+    "counterexampleId": "CEX-07",
+    "survived": true,
+    "exactStateEquivalenceMaintained": true
+  },
+  {
+    "counterexampleId": "CEX-08",
+    "survived": true,
+    "exactStateEquivalenceMaintained": true
+  },
+  {
+    "counterexampleId": "CEX-09",
+    "survived": true,
+    "exactStateEquivalenceMaintained": true
+  },
+  {
+    "counterexampleId": "CEX-10",
+    "survived": true,
+    "exactStateEquivalenceMaintained": true
+  },
+  {
+    "counterexampleId": "CEX-11",
+    "survived": true,
+    "exactStateEquivalenceMaintained": true
+  },
+  {
+    "counterexampleId": "CEX-12",
+    "survived": true,
+    "exactStateEquivalenceMaintained": true
+  },
+  {
+    "counterexampleId": "CEX-13",
+    "survived": true,
+    "exactStateEquivalenceMaintained": true
+  },
+  {
+    "counterexampleId": "CEX-14",
+    "survived": true,
+    "exactStateEquivalenceMaintained": true
+  }
+]

@@ -1,0 +1,13 @@
+{
+  "totalAtomicFeaturesMapped": 36,
+  "clearlyDisclosedCount": 28,
+  "partiallyDisclosedCount": 8,
+  "notLocatedCount": 0,
+  "ambiguousCount": 0,
+  "totalCombinationsAnalyzed": 8,
+  "singleReferenceCombinations": 2,
+  "partialReferenceCombinations": 4,
+  "unresolvedCombinations": 2,
+  "priorArtReferencesReviewed": 10,
+  "patentFamiliesConsolidated": 10
+}

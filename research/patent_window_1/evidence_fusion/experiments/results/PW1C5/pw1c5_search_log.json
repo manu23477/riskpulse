@@ -1,0 +1,18 @@
+[
+  {
+    "query": "\"disaster intelligence\" \"shared administrative\" dependency",
+    "databases": [
+      "Google Patents",
+      "USPTO"
+    ],
+    "date": "2026-09-30"
+  },
+  {
+    "query": "\"late evidence\" administrative boundary risk state",
+    "databases": [
+      "Google Patents",
+      "EPO"
+    ],
+    "date": "2026-09-30"
+  }
+]

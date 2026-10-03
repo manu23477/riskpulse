@@ -1,0 +1,15 @@
+{
+  "coreName": "PW2-MINIMAL-RELATIONSHIP-CORE",
+  "criticalRelationships": [
+    "R08",
+    "R10",
+    "R11",
+    "R16",
+    "R22",
+    "R25",
+    "R28",
+    "R29",
+    "R30"
+  ],
+  "description": "Smallest set of coupling relationships distinguishing K10 architecture from individual prior-art components."
+}

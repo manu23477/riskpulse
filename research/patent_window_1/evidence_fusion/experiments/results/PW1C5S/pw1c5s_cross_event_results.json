@@ -1,0 +1,38 @@
+[
+  {
+    "eventCount": 2,
+    "falsePropagationCount": 0,
+    "missedPropagationCount": 0,
+    "isolationRate": 1.0
+  },
+  {
+    "eventCount": 3,
+    "falsePropagationCount": 0,
+    "missedPropagationCount": 0,
+    "isolationRate": 1.0
+  },
+  {
+    "eventCount": 5,
+    "falsePropagationCount": 0,
+    "missedPropagationCount": 0,
+    "isolationRate": 1.0
+  },
+  {
+    "eventCount": 10,
+    "falsePropagationCount": 0,
+    "missedPropagationCount": 0,
+    "isolationRate": 1.0
+  },
+  {
+    "eventCount": 25,
+    "falsePropagationCount": 0,
+    "missedPropagationCount": 0,
+    "isolationRate": 1.0
+  },
+  {
+    "eventCount": 50,
+    "falsePropagationCount": 0,
+    "missedPropagationCount": 0,
+    "isolationRate": 1.0
+  }
+]

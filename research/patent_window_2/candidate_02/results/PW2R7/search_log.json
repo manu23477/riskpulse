@@ -1,0 +1,17 @@
+[
+  {
+    "query": "remote sensing dependency graph administrative risk",
+    "databases": [
+      "Google Patents",
+      "USPTO",
+      "Espacenet"
+    ]
+  },
+  {
+    "query": "satellite observation state mutation spatial crosswalk",
+    "databases": [
+      "WIPO Patentscope",
+      "IEEE Xplore"
+    ]
+  }
+]

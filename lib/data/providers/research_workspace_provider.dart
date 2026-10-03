@@ -217,16 +217,29 @@ class ResearchWorkspaceProvider extends ChangeNotifier {
     notifyListeners();
 
     try {
+      ProcessingStatus? lastStatus;
+      String? lastError;
       final updatedSession = await _orchestrator.runAnalysis(
         session: session,
         dem: dem,
         pourPoint: pourPoint,
         onStateChanged: (ps) {
+          lastStatus = ps.status;
+          if (ps.error != null) lastError = ps.error;
           _state = WorkspaceProcessing(progress: ps.progress, message: ps.message ?? '');
           notifyListeners();
         },
       );
-      completeAnalysis(updatedSession);
+
+      if (lastStatus == ProcessingStatus.failed) {
+        _state = WorkspaceFailed(
+          error: lastError ?? 'Analysis pipeline failed. Terrain products preserved.',
+          lastKnownSession: updatedSession,
+        );
+        notifyListeners();
+      } else {
+        completeAnalysis(updatedSession);
+      }
     } catch (e) {
       _state = WorkspaceFailed(error: e.toString(), lastKnownSession: lastKnown);
       notifyListeners();

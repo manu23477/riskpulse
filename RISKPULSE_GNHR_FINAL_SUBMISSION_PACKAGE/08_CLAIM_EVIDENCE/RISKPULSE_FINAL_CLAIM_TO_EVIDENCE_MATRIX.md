@@ -1,0 +1,11 @@
+# RISKPULSE FINAL CLAIM-TO-EVIDENCE MATRIX
+- CLM-01: Caine Power-Law Threshold Engine -> Software Verified (I = 14.82 * D^-0.39)
+- CLM-02: Caine Regional Exceedance -> Descriptive Ratio 1.340 (Exploratory n=5)
+- CLM-03: Rational Peak Runoff Engine -> Software Verified (C=0.65 Uncalibrated)
+- CLM-04: DEM Hydrological Drainage -> Deterministic D8 Engine
+- CLM-05: Sentinel-2 Band Math -> Software Verified (0.0001 Scale)
+- CLM-06: OSINT Multi-Stream Fusion -> Deterministic Rule Engine (<100m, >0.80 Jaccard)
+- CLM-07: HydroAI Adapter -> Solver-Neutral Adapter with Simulated Fallback
+- CLM-08: SAR Inundation Matrix -> Software Verified Engine (Awaiting Rasters)
+- CLM-09: Environmental Health -> Non-Causal Correlation Engine
+- CLM-10: Relative Priority Index -> Analytical Prioritization (Not Probability)

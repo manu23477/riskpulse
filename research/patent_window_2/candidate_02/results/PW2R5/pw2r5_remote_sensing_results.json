@@ -1,0 +1,42 @@
+[
+  {
+    "testId": "RS-01",
+    "passed": true,
+    "bitemporalSeparationVerified": false
+  },
+  {
+    "testId": "RS-02",
+    "passed": true,
+    "bitemporalSeparationVerified": false
+  },
+  {
+    "testId": "RS-03",
+    "passed": true,
+    "bitemporalSeparationVerified": false
+  },
+  {
+    "testId": "RS-04",
+    "passed": true,
+    "bitemporalSeparationVerified": false
+  },
+  {
+    "testId": "RS-05",
+    "passed": true,
+    "bitemporalSeparationVerified": false
+  },
+  {
+    "testId": "RS-06",
+    "passed": true,
+    "bitemporalSeparationVerified": true
+  },
+  {
+    "testId": "RS-07",
+    "passed": true,
+    "bitemporalSeparationVerified": true
+  },
+  {
+    "testId": "RS-08",
+    "passed": true,
+    "bitemporalSeparationVerified": false
+  }
+]

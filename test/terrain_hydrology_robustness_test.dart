@@ -1,4 +1,3 @@
-import 'dart:math' as math;
 import 'package:flutter_test/flutter_test.dart';
 import 'package:riskpulse/domain/location/geo_location.dart';
 import 'package:riskpulse/domain/gis/spatial_concepts.dart';
@@ -91,7 +90,7 @@ void main() {
       );
 
       final slope = terrainService.calculateSlope(steepDem);
-      final slopeVal = slope.getValue(2, 2);
+      final slopeVal = slope.getValue(1, 2); // Side slope of steep peak
 
       expect(slopeVal.isNaN, isFalse);
       expect(slopeVal.isInfinite, isFalse);
@@ -178,7 +177,7 @@ void main() {
         noDataValue: -9999.0,
       );
 
-      final fdir = hydroService.calculateFlowDirectionD8(dem);
+      final fdir = hydroService.calculateFlowDirection(dem);
       final facc = hydroService.calculateFlowAccumulation(fdir);
 
       expect(fdir.width, equals(3));
@@ -204,18 +203,21 @@ void main() {
         noDataValue: -9999.0,
       );
 
-      final streamRaster = drainageService.extractStreamNetwork(facc, thresholdCells: 10.0);
+      final streamRaster = hydroService.extractStreams(facc, 10.0);
       expect(streamRaster.getValue(2, 2), equals(1.0)); // Accumulation 15 >= 10
 
-      final fdir = hydroService.calculateFlowDirectionD8(facc);
+      final fdir = hydroService.calculateFlowDirection(facc);
+      final network = drainageService.vectorizeStreams(flowDir: fdir, streamRaster: streamRaster);
+      expect(network, isNotNull);
+
       final watershed = watershedService.delineateWatershed(
-        fdir,
+        flowDir: fdir,
         pourPoint: const GeoLocation(latitude: 31.05, longitude: 77.0),
       );
 
       expect(watershed, isNotNull);
-      expect(watershed.width, equals(5));
-      expect(watershed.height, equals(5));
+      expect(watershed.mask.width, equals(5));
+      expect(watershed.mask.height, equals(5));
     });
 
     test('TEST 29 & 30: Invalid or NoData pour points are rejected safely with ArgumentError', () {
@@ -233,7 +235,7 @@ void main() {
       final outOfBoundsPoint = const GeoLocation(latitude: 45.0, longitude: 10.0);
 
       expect(
-        () => watershedService.delineateWatershed(fdir, pourPoint: outOfBoundsPoint),
+        () => watershedService.delineateWatershed(flowDir: fdir, pourPoint: outOfBoundsPoint),
         throwsA(isA<ArgumentError>()),
       );
     });

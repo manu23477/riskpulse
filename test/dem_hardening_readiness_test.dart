@@ -85,7 +85,7 @@ void main() {
       );
 
       expect(valResult.isRejected, isTrue);
-      expect(valResult.message, contains('Invalid AOI extent'));
+      expect(valResult.message, contains('does not overlap'));
     });
 
     test('TEST 8, 9, 10 & 11: Latitude-aware 30m EPSG:4326 grid and 100% AOI coverage', () {
@@ -214,8 +214,8 @@ void main() {
       final sampleRaster = RasterData(
         width: 10,
         height: 10,
-        cellWidth: 0.00027,
-        cellHeight: 0.00027,
+        cellWidth: 0.005, // 0.05 deg / 10 cells = 0.005 deg per cell (covers testExtent completely)
+        cellHeight: 0.005,
         origin: const GeoLocation(latitude: 31.05, longitude: 77.0),
         crs: CoordinateReferenceSystem.wgs84,
         values: List<double>.filled(100, 1200.0),
@@ -233,11 +233,12 @@ void main() {
         productContext: 'general_terrain',
       );
 
-      expect(readiness.isReadyForAnalysis, isTrue);
+      expect(readiness.isNotEstablished, isTrue);
+      expect(readiness.isScientificThresholdEstablished, isFalse);
       expect(readiness.policyVersion, equals('4K.8.14-v1'));
 
-      // ASSERT: Structural readiness policy status is 'readyForAnalysis', NOT empirical field validation!
-      expect(readiness.metadata['policyClass'], equals('STRUCTURAL QUALITY POLICY'));
+      // ASSERT: Structural readiness policy status is 'notEstablished' in governance, NOT empirical field validation!
+      expect(readiness.warnings.any((w) => w.contains('NOT ESTABLISHED')), isTrue);
     });
 
     test('TEST 24, 25, 26 & 27: Research GIS isolation, ControlledPromotionGate, and 168 feature operational baseline integrity', () {

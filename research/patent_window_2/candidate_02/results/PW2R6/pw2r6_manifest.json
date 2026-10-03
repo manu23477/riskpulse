@@ -1,0 +1,16 @@
+{
+  "experimentId": "PW2R6",
+  "candidateId": "CANDIDATE_02",
+  "experimentName": "MINIMAL-TECHNICAL-BOUNDARY-DECOMPOSITION-AND-ABLATION",
+  "gitHead": "d6552707e0a693b04f40a2ade6a4efc5fdf9ae0a",
+  "randomSeed": 20260930,
+  "executionTimestamp": "2026-09-30T16:20:00Z",
+  "technicalBoundaryStatus": "MINIMAL BOUNDARY IDENTIFIED",
+  "priorArtBoundaryStatus": "PARTIALLY DISCLOSED ACROSS SEPARATE REFERENCES",
+  "legalPatentabilityStatus": "UNDETERMINED — REQUIRES PATENT COUNSEL",
+  "resultHashes": {
+    "componentInventory": "b52bb7184a0b1630b279f7bdfa793158df22fe57cc435f80c24c07fed6b4aef8",
+    "ablationResults": "8afd585f69aaaae2a28bb23764989a1304bd4c579981c4f6b67d2e93628880b7",
+    "metrics": "fea482b642513eed84ddc79d62a543434b8c6fcbda2c8103ef706d2c3cc8202a"
+  }
+}

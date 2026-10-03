@@ -1,0 +1,6 @@
+{
+  "status": "EFFICIENCY_ONLY",
+  "disclosedInPriorArt": true,
+  "primaryReference": "EP3622411B1",
+  "explanation": "Selective recomputation optimizes execution performance (98.73% reduction) but is not required for state correctness under full rebuild."
+}

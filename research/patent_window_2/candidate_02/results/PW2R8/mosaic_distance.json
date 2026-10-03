@@ -1,0 +1,9 @@
+{
+  "m01ReferencesForComponents": 6,
+  "m02ReferencesForRelationships": 8,
+  "m03RelationshipsRequiringMosaic": 22,
+  "m04RelationshipsNotLocatedCompletely": 8,
+  "m05CriticalRelationshipsRequiringRedesign": 5,
+  "m06CriticalRelationshipsRequiringUnstatedAssumptions": 6,
+  "m07ReferencesForClosestReconstruction": 6
+}

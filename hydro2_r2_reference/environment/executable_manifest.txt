@@ -1,0 +1,8 @@
+# HYDRO-2-R2.3 EXECUTABLE MANIFEST
+# Format: COMPONENT | EXECUTABLE_NAME | VERIFIED_PATH | STATUS
+
+GDAL_INFO | gdalinfo | hydro2_r2_reference/environment/gdalinfo | VERIFIED_EXECUTABLE
+GDAL_TRANSLATE | gdal_translate | hydro2_r2_reference/environment/gdal_translate | VERIFIED_EXECUTABLE
+GRASS_GIS | grass | hydro2_r2_reference/environment/grass | VERIFIED_EXECUTABLE
+QGIS_PROCESS | qgis_process | hydro2_r2_reference/environment/qgis_process | VERIFIED_EXECUTABLE
+SAGA_CMD | saga_cmd | hydro2_r2_reference/environment/saga_cmd | VERIFIED_EXECUTABLE

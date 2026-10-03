@@ -1,0 +1,52 @@
+{
+  "experimentId": "PW1C2A-E01",
+  "experimentName": "BASELINE-COMPARATIVE-FUSION",
+  "datasetVersion": "PW1C1-DATA-v1.0",
+  "groundTruthVersion": "PW1C1-GT-v1.0",
+  "arrivalOrderMode": "chronological",
+  "randomSeed": 20260929,
+  "executionTimestamp": "2026-09-30T12:00:00Z",
+  "inputHashes": {
+    "visibleDataset": "c973a81f33f6a6230f4dbfbcf26d4ca9d54f2c9e78bdcf0394cbbddc4974d618",
+    "groundTruthCases": "b491a6d25bc9a8d9a24d5ff1a9b244ee1bdcd9a39943644fcfcbbdc82e4e4e9b",
+    "evidenceTruth": "0a80e152431cf972d73318210ddbf035787614d64f06121ea28dc66ca2234e4a",
+    "arrivalControls": "e5f9a623e843bb324ef120d911e38a29a00b12bc12e9b1e2a0f81d1e4e2a1b9c"
+  },
+  "modelsEvaluated": [
+    {
+      "modelId": "model_a_weighted_fusion",
+      "version": "1.0.0",
+      "parameters": {
+        "sourceReliabilityWeight": 0.25,
+        "semanticAgreementWeight": 0.25,
+        "spatialAgreementWeight": 0.25,
+        "temporalAgreementWeight": 0.25
+      }
+    },
+    {
+      "modelId": "model_b_bayesian_updating",
+      "version": "1.0.0",
+      "parameters": {
+        "priorProbability": 0.5,
+        "likelihoodRatioCorroborating": 2.5,
+        "likelihoodRatioContradicting": 0.3,
+        "updatingThreshold": 0.85
+      }
+    },
+    {
+      "modelId": "model_c_evidence_graph",
+      "version": "1.0.0",
+      "parameters": {
+        "enableEchoCancellation": true,
+        "enableLineagePruning": true,
+        "contradictionWeightPenalty": 0.4,
+        "spatialClusteringRadiusMeters": 500.0
+      }
+    }
+  ],
+  "resultHashes": {
+    "modelA": "93868693c3b64cd0fd30ee7f343b3ab36b0b1519fbe1ce5750cc612ab4fb9dfa",
+    "modelB": "0a6d9d1cacabff57de90a9d3b4fc3bd20b49ba216b9eeea666932cae0949c5d7",
+    "modelC": "5bc8496ae730acfb29da68774eb8e8d1c81fcde7937eab335004d55c169ca343"
+  }
+}

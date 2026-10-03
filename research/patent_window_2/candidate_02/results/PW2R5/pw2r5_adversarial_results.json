@@ -1,0 +1,27 @@
+[
+  {
+    "attackId": "A1",
+    "passed": true,
+    "falsePropagations": 0
+  },
+  {
+    "attackId": "A2",
+    "passed": true,
+    "missedPropagations": 0
+  },
+  {
+    "attackId": "A3",
+    "passed": true,
+    "sharedDependencyPoisoned": false
+  },
+  {
+    "attackId": "A4",
+    "passed": true,
+    "topologyMutationCorrect": true
+  },
+  {
+    "attackId": "A5",
+    "passed": true,
+    "lateObservationBitemporalCorrect": true
+  }
+]

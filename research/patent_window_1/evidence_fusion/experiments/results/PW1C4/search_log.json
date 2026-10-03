@@ -1,0 +1,42 @@
+[
+  {
+    "searchId": "SEARCH-01",
+    "query": "\"dependency graph\" invalidation selective recomputation",
+    "databasesUsed": ["Google Patents", "USPTO", "EPO"],
+    "dateExecuted": "2026-09-30",
+    "resultsLocated": ["US7441230B2", "EP3622411B1", "US10067788B2"],
+    "notes": "Strong prior art located for basic dependency graph invalidation and selective recomputation."
+  },
+  {
+    "searchId": "SEARCH-02",
+    "query": "\"late arriving evidence\" OR \"out of order data\" computation graph",
+    "databasesUsed": ["Google Patents", "IEEE Xplore"],
+    "dateExecuted": "2026-09-30",
+    "resultsLocated": ["US20200379978A1"],
+    "notes": "Strong prior art located for out-of-order stream processing in computation graphs."
+  },
+  {
+    "searchId": "SEARCH-03",
+    "query": "provenance graph \"historical state\" modification tracing",
+    "databasesUsed": ["Google Patents", "CNIPA"],
+    "dateExecuted": "2026-09-30",
+    "resultsLocated": ["CN117235153B"],
+    "notes": "Strong prior art located for persistent provenance graphs and state tracing."
+  },
+  {
+    "searchId": "SEARCH-04",
+    "query": "\"evidence mutation\" dependency graph event state",
+    "databasesUsed": ["Google Patents"],
+    "dateExecuted": "2026-09-30",
+    "resultsLocated": ["US10452652B2", "US9870396B2"],
+    "notes": "Located geospatial event correlation graphs and evidence fusion prior art."
+  },
+  {
+    "searchId": "SEARCH-05",
+    "query": "\"administrative state\" event dependency graph risk disaster",
+    "databasesUsed": ["Google Patents", "IEEE Xplore"],
+    "dateExecuted": "2026-09-30",
+    "resultsLocated": ["US10452652B2"],
+    "notes": "Partial coverage found for spatial administrative risk pipelines."
+  }
+]

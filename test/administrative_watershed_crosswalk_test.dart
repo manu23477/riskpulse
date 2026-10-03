@@ -49,11 +49,11 @@ void main() {
         'type': 'Polygon',
         'coordinates': [
           [
-            [77.14, 31.08],
-            [77.18, 31.08],
-            [77.18, 31.11],
-            [77.14, 31.11],
-            [77.14, 31.08]
+            [77.14, 31.48],
+            [77.18, 31.48],
+            [77.18, 31.51],
+            [77.14, 31.51],
+            [77.14, 31.48]
           ]
         ]
       },
@@ -196,7 +196,110 @@ void main() {
       expect(entry.watershedName, 'Kotropi Micro-Watershed');
       expect(entry.watershedCode, '1B1A2a');
       expect(entry.calculationCrs.code, 'EPSG:4326');
-      expect(entry.provenance['distanceModel'], contains('Spherical Geodesic'));
+      expect(entry.provenance['calculationEngine'], contains('Sutherland-Hodgman Polygon Clipping'));
+    });
+
+    test('8. Mandatory Adversarial Disjoint Envelope Overlap Test: Disjoint concave polygons return 0.0 km²', () {
+      // Two L-shaped concave polygons whose bounding boxes overlap, but actual geometries do not intersect!
+      final concaveAdmin = mandiAdmin.copyWith(
+        geometry: {
+          'type': 'Polygon',
+          'coordinates': [
+            [
+              [77.0, 31.0],
+              [77.2, 31.0],
+              [77.2, 31.1],
+              [77.1, 31.1],
+              [77.1, 31.2],
+              [77.0, 31.2],
+              [77.0, 31.0]
+            ]
+          ]
+        },
+      );
+
+      final concaveWatershed = refWatershed.copyWith(
+        geometry: {
+          'type': 'Polygon',
+          'coordinates': [
+            [
+              [77.15, 31.15],
+              [77.25, 31.15],
+              [77.25, 31.25],
+              [77.20, 31.25],
+              [77.20, 31.20],
+              [77.15, 31.20],
+              [77.15, 31.15]
+            ]
+          ]
+        },
+      );
+
+      final entry = engine.computeCrosswalk(
+        adminUnit: concaveAdmin,
+        watershedUnit: concaveWatershed,
+      );
+
+      // Old bounding box envelope method returned > 0.0 km², whereas exact geometry clipping returns 0.0 km²!
+      expect(entry.intersectionAreaKm2, equals(0.0));
+      expect(entry.adminInWatershedPercent, equals(0.0));
+      expect(entry.watershedInAdminPercent, equals(0.0));
+      expect(entry.relationshipType, SpatialRelationshipType.disjoint);
+    });
+
+    test('9. MultiPolygon Gap Test: Target polygon in MultiPolygon gap returns 0.0 km² intersection', () {
+      final multiPolyWatershed = refWatershed.copyWith(
+        geometry: {
+          'type': 'MultiPolygon',
+          'coordinates': [
+            // Component A
+            [
+              [
+                [77.0, 31.0],
+                [77.1, 31.0],
+                [77.1, 31.1],
+                [77.0, 31.1],
+                [77.0, 31.0]
+              ]
+            ],
+            // Component B (with empty gap 77.1..77.3)
+            [
+              [
+                [77.3, 31.0],
+                [77.4, 31.0],
+                [77.4, 31.1],
+                [77.3, 31.1],
+                [77.3, 31.0]
+              ]
+            ]
+          ]
+        },
+      );
+
+      // Polygon inside the empty gap (77.15 .. 77.25)
+      final gapAdmin = mandiAdmin.copyWith(
+        geometry: {
+          'type': 'Polygon',
+          'coordinates': [
+            [
+              [77.15, 31.02],
+              [77.25, 31.02],
+              [77.25, 31.08],
+              [77.15, 31.08],
+              [77.15, 31.02]
+            ]
+          ]
+        },
+      );
+
+      final entry = engine.computeCrosswalk(
+        adminUnit: gapAdmin,
+        watershedUnit: multiPolyWatershed,
+      );
+
+      expect(entry.intersectionAreaKm2, equals(0.0));
+      expect(entry.adminInWatershedPercent, equals(0.0));
+      expect(entry.relationshipType, SpatialRelationshipType.disjoint);
     });
   });
 }

@@ -54,8 +54,14 @@ void main() {
 
       expect(result.isSuccess, isTrue);
       expect(capturedHeaders['Authorization'], 'Bearer test-valid-bearer-token');
+      expect(capturedHeaders['x-goog-user-project'], 'riskpulse-earth-engine');
       expect(capturedHeaders['Content-Type'], 'application/json');
-      expect(capturedBody['expression']['image']['assetId'], 'COPERNICUS/DEM/GLO30');
+      final values = capturedBody['expression']['values'] as Map<String, dynamic>;
+      expect(values['collection']['functionInvocationValue']['functionName'], 'ImageCollection.load');
+      expect(values['collection']['functionInvocationValue']['arguments']['id']['constantValue'], 'COPERNICUS/DEM/GLO30');
+      expect(values['mosaic']['functionInvocationValue']['functionName'], 'ImageCollection.mosaic');
+      expect(values['selected']['functionInvocationValue']['functionName'], 'Image.select');
+      expect(capturedBody['expression']['result'], 'selected');
       expect(capturedBody['fileFormat'], 'GEO_TIFF');
       expect(capturedBody['grid']['crsCode'], 'EPSG:4326');
       expect(capturedBody['bandIds'], equals(['DEM']));

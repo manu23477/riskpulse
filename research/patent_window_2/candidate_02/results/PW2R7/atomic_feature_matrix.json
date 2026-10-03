@@ -1,0 +1,152 @@
+[
+  {
+    "featureId": "M01",
+    "description": "Remote-sensing observation is ingested",
+    "isCoreToK10": true
+  },
+  {
+    "featureId": "M02",
+    "description": "Observation causes or represents a change/state mutation",
+    "isCoreToK10": true
+  },
+  {
+    "featureId": "M03",
+    "description": "Changed observation is associated with a spatial state",
+    "isCoreToK10": true
+  },
+  {
+    "featureId": "M04",
+    "description": "Spatial dependency relationship is represented",
+    "isCoreToK10": true
+  },
+  {
+    "featureId": "M05",
+    "description": "Affected spatial dependency closure is determined",
+    "isCoreToK10": true
+  },
+  {
+    "featureId": "M06",
+    "description": "Downstream spatial states are updated",
+    "isCoreToK10": true
+  },
+  {
+    "featureId": "M07",
+    "description": "Spatial state contributes to administrative state",
+    "isCoreToK10": true
+  },
+  {
+    "featureId": "M08",
+    "description": "Multiple spatial states can contribute to one administrative state",
+    "isCoreToK10": true
+  },
+  {
+    "featureId": "M09",
+    "description": "Administrative state contributes to risk state",
+    "isCoreToK10": true
+  },
+  {
+    "featureId": "M10",
+    "description": "Multiple administrative/spatial states can contribute to one risk state",
+    "isCoreToK10": true
+  },
+  {
+    "featureId": "M11",
+    "description": "Mutation propagates through spatial -> administrative -> risk relationship",
+    "isCoreToK10": true
+  },
+  {
+    "featureId": "M12",
+    "description": "Unrelated spatial/event regions remain isolated",
+    "isCoreToK10": true
+  },
+  {
+    "featureId": "M13",
+    "description": "Shared administrative dependency is preserved correctly after mutation",
+    "isCoreToK10": true
+  },
+  {
+    "featureId": "M14",
+    "description": "Shared risk dependency is preserved correctly after mutation",
+    "isCoreToK10": true
+  },
+  {
+    "featureId": "M15",
+    "description": "Historical state/version is preserved",
+    "isCoreToK10": true
+  },
+  {
+    "featureId": "M16",
+    "description": "Previous state can be reconstructed",
+    "isCoreToK10": true
+  },
+  {
+    "featureId": "M17",
+    "description": "Dependency topology can change",
+    "isCoreToK10": true
+  },
+  {
+    "featureId": "M18",
+    "description": "Addition/removal/redirection of dependency is handled",
+    "isCoreToK10": true
+  },
+  {
+    "featureId": "M19",
+    "description": "Downstream closure is recomputed after topology mutation",
+    "isCoreToK10": true
+  },
+  {
+    "featureId": "M20",
+    "description": "Current state and historical state coexist",
+    "isCoreToK10": true
+  },
+  {
+    "featureId": "M21",
+    "description": "Observation/state lineage is retained",
+    "isCoreToK10": true
+  },
+  {
+    "featureId": "M22",
+    "description": "State change remains attributable to source observation",
+    "isCoreToK10": true
+  },
+  {
+    "featureId": "M23",
+    "description": "Multiple events/regions can coexist without accidental merging",
+    "isCoreToK10": true
+  },
+  {
+    "featureId": "M24",
+    "description": "One event/region can affect a shared downstream administrative/risk state",
+    "isCoreToK10": true
+  },
+  {
+    "featureId": "M25",
+    "description": "Changing Event/Region A does not incorrectly rewrite Event/Region B",
+    "isCoreToK10": true
+  },
+  {
+    "featureId": "M26",
+    "description": "Complete spatial -> administrative -> risk crosswalk is represented as dependency structure",
+    "isCoreToK10": true
+  },
+  {
+    "featureId": "M27",
+    "description": "Dependency structure is updated in response to observation/state mutation",
+    "isCoreToK10": true
+  },
+  {
+    "featureId": "M28",
+    "description": "Historical versions remain valid after subsequent mutations",
+    "isCoreToK10": true
+  },
+  {
+    "featureId": "M29",
+    "description": "Shared downstream state is recalculated from remaining valid upstream contributors",
+    "isCoreToK10": true
+  },
+  {
+    "featureId": "M30",
+    "description": "Complete mechanism operates as one integrated technical system",
+    "isCoreToK10": true
+  }
+]

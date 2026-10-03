@@ -1,7 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:riskpulse/domain/gis/analytical_step.dart';
 import 'package:riskpulse/domain/gis/spatial_concepts.dart';
-import 'package:riskpulse/domain/location/geo_location.dart';
 
 /// Immutable record capturing an analytical model assumption or default parameter.
 @immutable

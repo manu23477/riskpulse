@@ -15,6 +15,12 @@ import 'package:riskpulse/domain/gis/gis_layer.dart';
 import 'package:riskpulse/domain/gis/data_source_type.dart';
 import 'package:riskpulse/domain/location/geo_location.dart';
 import 'package:riskpulse/data/providers/research_workspace_provider.dart';
+import 'package:riskpulse/data/services/research_workflow_orchestrator.dart';
+import 'package:riskpulse/data/services/terrain_analysis_service.dart';
+import 'package:riskpulse/data/services/hydrological_analysis_service.dart';
+import 'package:riskpulse/data/services/drainage_analysis_service.dart';
+import 'package:riskpulse/data/services/watershed_analysis_service.dart';
+import 'package:riskpulse/data/services/morphometric_analysis_service.dart';
 
 void main() {
   group('ResearchProductRegistry 4K.7.1 Tests', () {
@@ -370,6 +376,62 @@ void main() {
       // The provider retains lastKnownSession in WorkspaceFailed, so LKG products remain accessible
       expect(provider.productRegistry.byType(ResearchProductType.drainageNetwork)?.isAvailable, true);
       expect(provider.currentSession?.id, 's-lkg');
+    });
+
+    test('20. Full runAnalysis pipeline registers all computed intermediate rasters in session layers and registry', () async {
+      final dem = RasterData(
+        width: 10,
+        height: 10,
+        cellWidth: 0.001,
+        cellHeight: 0.001,
+        origin: const GeoLocation(latitude: 31.01, longitude: 77.0),
+        crs: CoordinateReferenceSystem.wgs84,
+        values: List.generate(100, (i) => 1000.0 + (i % 10) * 10.0),
+        units: 'meters',
+      );
+
+      final orchestrator = ResearchWorkflowOrchestrator(
+        terrainService: TerrainAnalysisService(),
+        hydroService: HydrologicalAnalysisService(),
+        drainageService: DrainageAnalysisService(),
+        watershedService: WatershedAnalysisService(),
+        morphoService: MorphometricAnalysisService(),
+      );
+      final initialSession = ResearchSession(
+        id: 's-full-run',
+        title: 'Full Pipeline Run',
+        extent: testExtent,
+        createdAt: DateTime.now(),
+      );
+
+      final pourPoint = const GeoLocation(latitude: 31.005, longitude: 77.005);
+
+      final completedSession = await orchestrator.runAnalysis(
+        session: initialSession,
+        dem: dem,
+        pourPoint: pourPoint,
+      );
+
+      final registry = ResearchProductRegistryFactory.fromSession(completedSession);
+
+      // Verify all intermediate products are available
+      expect(registry.byType(ResearchProductType.slope)?.isAvailable, isTrue);
+      expect(registry.byType(ResearchProductType.aspect)?.isAvailable, isTrue);
+      expect(registry.byType(ResearchProductType.hillshade)?.isAvailable, isTrue);
+      expect(registry.byType(ResearchProductType.filledDem)?.isAvailable, isTrue);
+      expect(registry.byType(ResearchProductType.flowDirection)?.isAvailable, isTrue);
+      expect(registry.byType(ResearchProductType.flowAccumulation)?.isAvailable, isTrue);
+      expect(registry.byType(ResearchProductType.streamRaster)?.isAvailable, isTrue);
+      expect(registry.byType(ResearchProductType.strahlerOrder)?.isAvailable, isTrue);
+      expect(registry.byType(ResearchProductType.shreveMagnitude)?.isAvailable, isTrue);
+      expect(registry.byType(ResearchProductType.drainageNetwork)?.isAvailable, isTrue);
+      expect(registry.byType(ResearchProductType.watershed)?.isAvailable, isTrue);
+      expect(registry.byType(ResearchProductType.subWatersheds)?.isAvailable, isTrue);
+      expect(registry.byType(ResearchProductType.morphometricResults)?.isAvailable, isTrue);
+
+      // Verify original DEM remains separate and unchanged
+      expect(dem.values[0], equals(1000.0));
+      expect(completedSession.layers.length, greaterThanOrEqualTo(10));
     });
   });
 }

@@ -1,0 +1,16 @@
+{
+  "experimentId": "PW1C3",
+  "experimentName": "DEEP-MUTATION-STATE-RECONSTRUCTION-AND-ADVERSARIAL-PROPAGATION",
+  "datasetVersion": "PW1C1-DATA-v1.0",
+  "groundTruthVersion": "PW1C1-GT-v1.0",
+  "randomSeed": 20260929,
+  "executionTimestamp": "2026-09-30T13:10:00Z",
+  "scenariosEvaluated": 20,
+  "cumulativeRebuildReductionPercentage": 89.62,
+  "resultHashes": {
+    "reconstruction": "4ed031ced4df2f315b81b49e6d9dc693261341677cd89daeeb7661760a01b24e",
+    "lateEvidence": "57f68f704417799c21be7bbbc50f48676b67f730ca950656f2cfb3cb94ec5243",
+    "adversarial": "9cac5f94913119dacd3b54d37843e96e1ec53cf125dd52d0bd9838ea5fd9f3ef",
+    "strategyComparison": "d1ace91066b4f38196b2d31423a9b0b6bf90ec50457633ef887a1fcb88b66e0f"
+  }
+}

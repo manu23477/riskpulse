@@ -7,6 +7,7 @@ import 'package:riskpulse/domain/osint/promotion_candidate.dart';
 import 'package:riskpulse/domain/osint/human_review_decision.dart';
 import 'package:riskpulse/domain/osint/review_state.dart';
 import 'package:riskpulse/domain/osint/promotion_result.dart';
+import 'package:riskpulse/domain/osint/osint_evidence.dart';
 import 'package:riskpulse/domain/osint/osint_evidence_contract.dart';
 import 'package:riskpulse/data/services/osint/multi_stream_fusion_engine.dart';
 import 'package:riskpulse/data/services/osint/corroboration_verification_engine.dart';
@@ -22,6 +23,7 @@ void main() {
     final lineageEngine = SyndicationLineageEngine();
 
     final testLoc = const GeoLocation(latitude: 31.85, longitude: 76.95); // Mandi
+    final now = DateTime.utc(2026, 8, 15, 10, 0);
 
     test('TEST 01 & 02: OsintSourceContract and OsintEvidenceContract domain validation', () {
       final source = OsintSourceContract(
@@ -29,7 +31,7 @@ void main() {
         sourceName: 'Central Water Commission HP Station',
         category: OsintSourceCategory.officialGovernment,
         publisher: 'CWC India',
-        acquisitionTimestamp: DateTime.utc(2026, 8, 15),
+        acquisitionTimestamp: now,
         sourceReliability: 0.90,
         isSynthetic: true,
       );
@@ -40,8 +42,8 @@ void main() {
         rawContentReference: 'cwc_feed_item_123',
         normalizedContent: 'High discharge recorded on Beas River at Mandi.',
         contentHash: 'hash_cwc_123_abc',
-        publishedAt: DateTime.utc(2026, 8, 15, 10, 0),
-        acquiredAt: DateTime.utc(2026, 8, 15, 10, 5),
+        publishedAt: now,
+        acquiredAt: now,
         location: testLoc,
         spatialPrecision: OSINTSpatialPrecision.exactPoint,
         hazardCategory: 'Flood',
@@ -55,17 +57,31 @@ void main() {
     });
 
     test('TEST 04, 05 & 06: SyndicationLineageEngine detects duplicate and syndicated content', () {
-      const text1 = 'Flash flood warning issued for Mandi district following heavy cloudburst.';
-      const text2 = 'Flash flood warning issued for Mandi district following heavy cloudburst.'; // Identical syndicated text
+      final ev1 = OSINTEvidence(
+        evidenceId: 'ev-syn-1',
+        sourceId: 'src-1',
+        extractedText: 'Flash flood warning issued for Mandi district following heavy cloudburst.',
+        publishedAt: now,
+        retrievedAt: now,
+      );
+      final ev2 = OSINTEvidence(
+        evidenceId: 'ev-syn-2',
+        sourceId: 'src-2',
+        extractedText: 'Flash flood warning issued for Mandi district following heavy cloudburst.',
+        publishedAt: now.add(const Duration(minutes: 30)),
+        retrievedAt: now,
+      );
 
-      final hash1 = lineageEngine.computeContentHash(text1);
-      final hash2 = lineageEngine.computeContentHash(text2);
+      final match = lineageEngine.compareEvidence(ev1, ev2);
 
-      expect(hash1, equals(hash2));
-      expect(hash1.length, equals(64)); // SHA-256 hash length
+      expect(match.isDuplicate, isTrue);
+      expect(match.contentSimilarity, greaterThanOrEqualTo(0.80));
     });
 
     test('TEST 14, 15 & 16: CorroborationVerificationEngine detects cross-stream conflict and requires reviewer acknowledgement', () {
+      expect(fusionEngine, isA<MultiStreamFusionEngine>());
+      expect(corroborationEngine, isA<CorroborationVerificationEngine>());
+
       final candidateWithConflict = PromotionCandidate(
         candidateId: 'cand-conflict-01',
         fusionResultId: 'fusion-01',
@@ -82,6 +98,7 @@ void main() {
         fusionConfidence: 0.75,
         contributingEvidenceIds: const ['ev-01', 'ev-02'],
         hasCrossStreamConflict: true, // Cross-stream conflict present!
+        createdTimestamp: now,
       );
 
       final check = gate.checkEligibility(candidateWithConflict);
@@ -94,6 +111,7 @@ void main() {
         reviewerId: 'reviewer-01',
         reviewerRole: 'District Disaster Officer',
         decision: ReviewDecisionType.approved,
+        reviewedAt: now,
         rationale: 'Verified with ground emergency teams.',
         acknowledgedConflicts: false, // NOT acknowledged!
       );
@@ -124,6 +142,8 @@ void main() {
           spatialPrecision: OSINTSpatialPrecision.exactPoint,
         ),
         fusionConfidence: 0.85,
+        hasCrossStreamConflict: false,
+        createdTimestamp: now,
         contributingEvidenceIds: const ['ev-101'],
       );
 
@@ -133,6 +153,7 @@ void main() {
         reviewerId: 'reviewer-01',
         reviewerRole: 'Senior Analyst',
         decision: ReviewDecisionType.approved,
+        reviewedAt: now,
         rationale: 'Confirmed by IMD gauge station data and local field report.',
         acknowledgedConflicts: true,
       );
@@ -163,6 +184,8 @@ void main() {
           spatialPrecision: OSINTSpatialPrecision.exactPoint,
         ),
         fusionConfidence: 0.80,
+        hasCrossStreamConflict: false,
+        createdTimestamp: now,
         contributingEvidenceIds: const ['ev-dup'],
       );
 
@@ -172,6 +195,7 @@ void main() {
         reviewerId: 'reviewer-01',
         reviewerRole: 'Analyst',
         decision: ReviewDecisionType.approved,
+        reviewedAt: now,
         rationale: 'Verified debris flow',
       );
 
@@ -220,6 +244,7 @@ void main() {
         reviewerId: 'rev-01',
         reviewerRole: 'Officer',
         decision: ReviewDecisionType.approved,
+        reviewedAt: now,
         rationale: 'Approved for map promotion',
       );
 
@@ -252,6 +277,8 @@ void main() {
         eventType: OSINTEventType.flood,
         spatialRef: const OSINTSpatialReference(district: 'Mandi', state: 'Himachal Pradesh'),
         fusionConfidence: 0.80,
+        hasCrossStreamConflict: false,
+        createdTimestamp: now,
       );
 
       final serialized = candidate.toMap().toString();

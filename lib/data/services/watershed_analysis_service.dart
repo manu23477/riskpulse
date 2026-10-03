@@ -17,7 +17,7 @@ class WatershedAnalysisService {
 
     final int startIdx = _getCellIndex(pourPoint, flowDir);
     if (startIdx == -1 || flowDir.isNoData(flowDir.values[startIdx])) {
-      throw Exception('Invalid pour point: Outside raster or NoData cell.');
+      throw ArgumentError('Invalid pour point: Outside raster or NoData cell.');
     }
 
     final List<double> maskValues = List<double>.filled(width * height, 0.0);

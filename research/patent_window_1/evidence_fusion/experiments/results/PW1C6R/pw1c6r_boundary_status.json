@@ -1,0 +1,9 @@
+{
+  "c07Status": "PARTIAL MULTI-REFERENCE COVERAGE ONLY",
+  "c08Status": "PARTIAL MULTI-REFERENCE COVERAGE ONLY",
+  "c07CompleteRelationshipLocated": false,
+  "c08CompleteRelationshipLocated": false,
+  "technicalBoundaryStatus": "ROBUST AND EXPERIMENTALLY MINIMAL (PW1C-6)",
+  "priorArtBoundaryStatus": "PARTIALLY DISCLOSED ACROSS SEPARATE REFERENCES (PW1C-6R)",
+  "legalPatentabilityStatus": "NOT DETERMINED (Requires external legal analysis)"
+}

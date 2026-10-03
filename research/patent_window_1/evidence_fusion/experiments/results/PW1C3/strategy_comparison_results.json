@@ -1,0 +1,56 @@
+[
+  {
+    "mutationId": "MUT3-15",
+    "fullRebuildEvaluations": 26,
+    "globalInvalidationEvaluations": 26,
+    "selectivePropagationEvaluations": 6,
+    "reductionVsFullRebuildPct": 76.92,
+    "reductionVsGlobalInvalidationPct": 76.92,
+    "selectiveEqualsFullRebuild": true
+  },
+  {
+    "mutationId": "MUT3-16",
+    "fullRebuildEvaluations": 32,
+    "globalInvalidationEvaluations": 32,
+    "selectivePropagationEvaluations": 1,
+    "reductionVsFullRebuildPct": 96.88,
+    "reductionVsGlobalInvalidationPct": 96.88,
+    "selectiveEqualsFullRebuild": true
+  },
+  {
+    "mutationId": "MUT3-17",
+    "fullRebuildEvaluations": 32,
+    "globalInvalidationEvaluations": 32,
+    "selectivePropagationEvaluations": 1,
+    "reductionVsFullRebuildPct": 96.88,
+    "reductionVsGlobalInvalidationPct": 96.88,
+    "selectiveEqualsFullRebuild": true
+  },
+  {
+    "mutationId": "MUT3-18",
+    "fullRebuildEvaluations": 38,
+    "globalInvalidationEvaluations": 38,
+    "selectivePropagationEvaluations": 1,
+    "reductionVsFullRebuildPct": 97.37,
+    "reductionVsGlobalInvalidationPct": 97.37,
+    "selectiveEqualsFullRebuild": true
+  },
+  {
+    "mutationId": "MUT3-19",
+    "fullRebuildEvaluations": 34,
+    "globalInvalidationEvaluations": 34,
+    "selectivePropagationEvaluations": 1,
+    "reductionVsFullRebuildPct": 97.06,
+    "reductionVsGlobalInvalidationPct": 97.06,
+    "selectiveEqualsFullRebuild": true
+  },
+  {
+    "mutationId": "MUT3-20",
+    "fullRebuildEvaluations": 36,
+    "globalInvalidationEvaluations": 36,
+    "selectivePropagationEvaluations": 1,
+    "reductionVsFullRebuildPct": 97.22,
+    "reductionVsGlobalInvalidationPct": 97.22,
+    "selectiveEqualsFullRebuild": true
+  }
+]

@@ -1,0 +1,23 @@
+[
+  {
+    "query": "\"late evidence\" \"shared administrative\" risk",
+    "databases": ["Google Patents", "USPTO", "Espacenet"],
+    "domains": ["Stream Processing", "Bitemporal Databases", "Emergency GIS"],
+    "date": "2026-09-30",
+    "resultsLocated": ["US20200379978A1", "US11200215B2"]
+  },
+  {
+    "query": "\"event time\" \"arrival time\" \"administrative\" risk",
+    "databases": ["Google Patents", "WIPO Patentscope"],
+    "domains": ["Stream Ingestion", "Temporal GIS"],
+    "date": "2026-09-30",
+    "resultsLocated": ["US20200379978A1", "CN117235153B"]
+  },
+  {
+    "query": "\"late evidence\" \"cross-event isolation\"",
+    "databases": ["Google Patents", "Google Scholar"],
+    "domains": ["Distributed Databases", "Event Sourcing"],
+    "date": "2026-09-30",
+    "resultsLocated": ["US20200379978A1", "US7441230B2"]
+  }
+]

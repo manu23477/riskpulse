@@ -1,0 +1,17 @@
+{
+  "experimentId": "PW1C5S",
+  "experimentName": "BOUNDARY-STRESS-TEST-OF-REMAINING-C07-C08-COMBINATION",
+  "datasetVersion": "PW1C1-DATA-v1.0",
+  "groundTruthVersion": "PW1C1-GT-v1.0",
+  "randomSeed": 20260929,
+  "executionTimestamp": "2026-09-30T13:45:00Z",
+  "c07Status": "ROBUST UNDER TESTED CONDITIONS",
+  "c08Status": "ROBUST UNDER TESTED CONDITIONS",
+  "jointResult": "ROBUST UNDER TESTED CONDITIONS",
+  "selectiveEvaluationReduction": 76.92,
+  "resultHashes": {
+    "c07Results": "1c7bd56a723f96954b8cebf9d8f99048afa22cd11470b204aefab8a0296236d8",
+    "c08Results": "51a825496362b68f9350d117112f79b090536b1438ce7470b8cf48304ecccaa6",
+    "metrics": "515aba6ec9337f2955fed2def9519fad701e599437768aef73271630d41958cc"
+  }
+}

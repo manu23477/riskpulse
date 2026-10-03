@@ -1,0 +1,14 @@
+{
+  "auditId": "PW2R8",
+  "auditName": "MOSAIC-COMBINATION-COLLISION-AND-RELATIONSHIP-GAP-ANALYSIS",
+  "k10CompleteRelationshipLocatedInSingleRef": false,
+  "technicalBoundaryStatus": "MINIMAL BOUNDARY IDENTIFIED (PW2R6 K10)",
+  "mosaicPriorArtBoundaryStatus": "PARTIALLY DISCLOSED ACROSS MULTI-REFERENCE MOSAIC (PW2R8)",
+  "legalPatentabilityStatus": "UNDETERMINED — REQUIRES PATENT COUNSEL",
+  "executionTimestamp": "2026-09-30T16:45:00Z",
+  "resultHashes": {
+    "relationshipMatrix": "dfd0e628e253623cf06c0d41255c0c9ca562cfa0c37c0bf5c75e2fc803036187",
+    "combinationResults": "e2d0fb88417acc6333fdb91d3026ad3cf6852f014600d82ee03b834827727496",
+    "boundaryStatus": "3a8f3c00970a1389e3a6d34db7fceed81fed9f3ed084607c6b44ef1b1a46fae5"
+  }
+}

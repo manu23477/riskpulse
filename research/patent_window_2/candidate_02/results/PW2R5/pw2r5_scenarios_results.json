@@ -1,0 +1,44 @@
+[
+  {
+    "scenarioId": "R5-A",
+    "affectedNodesCount": 5,
+    "unaffectedNodesCount": 152,
+    "reductionPct": 96.82,
+    "isFullRebuildEquivalent": true
+  },
+  {
+    "scenarioId": "R5-B",
+    "affectedNodesCount": 5,
+    "unaffectedNodesCount": 152,
+    "reductionPct": 96.82,
+    "isFullRebuildEquivalent": true
+  },
+  {
+    "scenarioId": "R5-C",
+    "affectedNodesCount": 5,
+    "unaffectedNodesCount": 152,
+    "reductionPct": 96.82,
+    "isFullRebuildEquivalent": true
+  },
+  {
+    "scenarioId": "R5-D",
+    "affectedNodesCount": 4,
+    "unaffectedNodesCount": 2,
+    "reductionPct": 33.33,
+    "isFullRebuildEquivalent": true
+  },
+  {
+    "scenarioId": "R5-E",
+    "affectedNodesCount": 4,
+    "unaffectedNodesCount": 2,
+    "reductionPct": 33.33,
+    "isFullRebuildEquivalent": true
+  },
+  {
+    "scenarioId": "R5-F",
+    "affectedNodesCount": 5,
+    "unaffectedNodesCount": 152,
+    "reductionPct": 96.82,
+    "isFullRebuildEquivalent": true
+  }
+]

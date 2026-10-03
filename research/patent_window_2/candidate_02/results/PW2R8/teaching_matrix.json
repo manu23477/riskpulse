@@ -1,0 +1,12 @@
+{
+  "T01_ExplicitTeachingToCombine": "NO",
+  "T02_CompatibleTechnicalArchitecture": "YES",
+  "T03_CompatibleDataModel": "PARTIAL",
+  "T04_CompatibleSpatialModel": "YES",
+  "T05_CompatibleTemporalModel": "PARTIAL",
+  "T06_CompatibleStateVersionModel": "PARTIAL",
+  "T07_CompatibleDependencySemantics": "UNCERTAIN",
+  "T08_CompatibleDownstreamAggregation": "YES",
+  "T09_CompatibleMutationSemantics": "UNCERTAIN",
+  "T10_CombinationRequiresSubstantialRedesign": "YES"
+}

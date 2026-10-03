@@ -1,0 +1,124 @@
+{
+  "type": "FeatureCollection",
+  "name": "Himachal_Pradesh_Canonical_Tehsils_2024",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "subdistrict_code": "0114",
+        "subdistrict_name": "Sadar Mandi",
+        "district_code": "0214",
+        "district_name": "Mandi",
+        "state_code": "HP",
+        "state_name": "Himachal Pradesh",
+        "sub_type": "TEHSIL"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[76.85, 31.65], [77.05, 31.65], [77.05, 31.80], [76.85, 31.80], [76.85, 31.65]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "subdistrict_code": "0115",
+        "subdistrict_name": "Aut",
+        "district_code": "0214",
+        "district_name": "Mandi",
+        "state_code": "HP",
+        "state_name": "Himachal Pradesh",
+        "sub_type": "SUB_TEHSIL"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[77.05, 31.68], [77.20, 31.68], [77.20, 31.82], [77.05, 31.82], [77.05, 31.68]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "subdistrict_code": "0116",
+        "subdistrict_name": "Bali Chowki",
+        "district_code": "0214",
+        "district_name": "Mandi",
+        "state_code": "HP",
+        "state_name": "Himachal Pradesh",
+        "sub_type": "SUB_TEHSIL"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[77.10, 31.50], [77.30, 31.50], [77.30, 31.68], [77.10, 31.68], [77.10, 31.50]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "subdistrict_code": "0117",
+        "subdistrict_name": "Chachyot",
+        "district_code": "0214",
+        "district_name": "Mandi",
+        "state_code": "HP",
+        "state_name": "Himachal Pradesh",
+        "sub_type": "TEHSIL"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[76.90, 31.45], [77.10, 31.45], [77.10, 31.65], [76.90, 31.65], [76.90, 31.45]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "subdistrict_code": "0118",
+        "subdistrict_name": "Kullu",
+        "district_code": "0213",
+        "district_name": "Kullu",
+        "state_code": "HP",
+        "state_name": "Himachal Pradesh",
+        "sub_type": "TEHSIL"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[77.00, 31.85], [77.30, 31.85], [77.30, 32.10], [77.00, 32.10], [77.00, 31.85]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "subdistrict_code": "0119",
+        "subdistrict_name": "Manali",
+        "district_code": "0213",
+        "district_name": "Kullu",
+        "state_code": "HP",
+        "state_name": "Himachal Pradesh",
+        "sub_type": "TEHSIL"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[77.10, 32.10], [77.40, 32.10], [77.40, 32.35], [77.10, 32.35], [77.10, 32.10]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "subdistrict_code": "0120",
+        "subdistrict_name": "Shimla Urban",
+        "district_code": "0215",
+        "district_name": "Shimla",
+        "state_code": "HP",
+        "state_name": "Himachal Pradesh",
+        "sub_type": "TEHSIL"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[77.12, 31.08], [77.22, 31.08], [77.22, 31.15], [77.12, 31.15], [77.12, 31.08]]]
+      }
+    }
+  ]
+}

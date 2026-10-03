@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="750" viewBox="0 0 1200 750">
+  <rect width="100%" height="100%" fill="#f8f9fa"/>
+  <rect x="10" y="10" width="1180" height="80" fill="#1e3a8a"/>
+  <text x="25" y="45" font-family="Arial" font-size="20" font-weight="bold" fill="#ffffff">FIG-04: Research-to-Operational Separation & ControlledPromotionGate</text>
+  <text x="25" y="70" font-family="Arial" font-size="12" font-style="italic" fill="#e2e8f0">Isolated Research GIS Engine & Mandatory Human Review Firewall</text>
+  <rect x="30" y="110" width="1140" height="570" fill="#ffffff" stroke="#64748b" stroke-width="2"/>
+  <text x="50" y="150" font-family="Arial" font-size="14" fill="#0f172a">RiskPulse Research Software Architecture | Geomatics, Natural Hazards and Risk</text>
+  <text x="50" y="180" font-family="Arial" font-size="12" fill="#334155">Author: Kuldeep Singh (Faculty, Department of Interdisciplinary Studies, HPU Shimla)</text>
+</svg>

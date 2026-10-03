@@ -1,0 +1,434 @@
+{
+  "modelA_failures": [
+    {
+      "failureType": "false_merge",
+      "description": "2 distinct true events were merged into a single hypothesis",
+      "relevantEvidenceIds": [
+        "EVID-0333",
+        "EVID-0334",
+        "EVID-0335",
+        "EVID-0336",
+        "EVID-0337",
+        "EVID-0338",
+        "EVID-0339",
+        "EVID-0340",
+        "EVID-0341",
+        "EVID-0342",
+        "EVID-0343",
+        "EVID-0344",
+        "EVID-0345",
+        "EVID-0346"
+      ]
+    },
+    {
+      "failureType": "false_merge",
+      "description": "2 distinct true events were merged into a single hypothesis",
+      "relevantEvidenceIds": [
+        "EVID-0362",
+        "EVID-0363",
+        "EVID-0364",
+        "EVID-0365",
+        "EVID-0366",
+        "EVID-0367",
+        "EVID-0368",
+        "EVID-0369",
+        "EVID-0370",
+        "EVID-0371",
+        "EVID-0372",
+        "EVID-0373"
+      ]
+    },
+    {
+      "failureType": "false_merge",
+      "description": "2 distinct true events were merged into a single hypothesis",
+      "relevantEvidenceIds": [
+        "EVID-0451",
+        "EVID-0452",
+        "EVID-0453",
+        "EVID-0454",
+        "EVID-0455",
+        "EVID-0456",
+        "EVID-0457",
+        "EVID-0458",
+        "EVID-0459",
+        "EVID-0460",
+        "EVID-0461",
+        "EVID-0462",
+        "EVID-0463",
+        "EVID-0464",
+        "EVID-0465",
+        "EVID-0466",
+        "EVID-0467"
+      ]
+    },
+    {
+      "failureType": "false_merge",
+      "description": "2 distinct true events were merged into a single hypothesis",
+      "relevantEvidenceIds": [
+        "EVID-0468",
+        "EVID-0469",
+        "EVID-0470",
+        "EVID-0471",
+        "EVID-0472",
+        "EVID-0473",
+        "EVID-0474",
+        "EVID-0475",
+        "EVID-0476",
+        "EVID-0477",
+        "EVID-0478",
+        "EVID-0479",
+        "EVID-0480",
+        "EVID-0481"
+      ]
+    },
+    {
+      "failureType": "false_merge",
+      "description": "2 distinct true events were merged into a single hypothesis",
+      "relevantEvidenceIds": [
+        "EVID-0482",
+        "EVID-0483",
+        "EVID-0484",
+        "EVID-0485",
+        "EVID-0486",
+        "EVID-0487",
+        "EVID-0488",
+        "EVID-0489",
+        "EVID-0490",
+        "EVID-0491",
+        "EVID-0492",
+        "EVID-0493",
+        "EVID-0494",
+        "EVID-0495",
+        "EVID-0496"
+      ]
+    },
+    {
+      "failureType": "false_merge",
+      "description": "2 distinct true events were merged into a single hypothesis",
+      "relevantEvidenceIds": [
+        "EVID-0497",
+        "EVID-0498",
+        "EVID-0499",
+        "EVID-0500",
+        "EVID-0501",
+        "EVID-0502",
+        "EVID-0503",
+        "EVID-0504",
+        "EVID-0505",
+        "EVID-0506",
+        "EVID-0507",
+        "EVID-0508",
+        "EVID-0509",
+        "EVID-0510",
+        "EVID-0511"
+      ]
+    },
+    {
+      "failureType": "false_merge",
+      "description": "2 distinct true events were merged into a single hypothesis",
+      "relevantEvidenceIds": [
+        "EVID-0512",
+        "EVID-0513",
+        "EVID-0514",
+        "EVID-0515",
+        "EVID-0516",
+        "EVID-0517",
+        "EVID-0518",
+        "EVID-0519",
+        "EVID-0520",
+        "EVID-0521",
+        "EVID-0522",
+        "EVID-0523",
+        "EVID-0524"
+      ]
+    }
+  ],
+  "modelB_failures": [
+    {
+      "failureType": "false_merge",
+      "description": "2 distinct true events were merged into a single hypothesis",
+      "relevantEvidenceIds": [
+        "EVID-0333",
+        "EVID-0334",
+        "EVID-0335",
+        "EVID-0336",
+        "EVID-0337",
+        "EVID-0338",
+        "EVID-0339",
+        "EVID-0340",
+        "EVID-0341",
+        "EVID-0342",
+        "EVID-0343",
+        "EVID-0344",
+        "EVID-0345",
+        "EVID-0346"
+      ]
+    },
+    {
+      "failureType": "false_merge",
+      "description": "2 distinct true events were merged into a single hypothesis",
+      "relevantEvidenceIds": [
+        "EVID-0362",
+        "EVID-0363",
+        "EVID-0364",
+        "EVID-0365",
+        "EVID-0366",
+        "EVID-0367",
+        "EVID-0368",
+        "EVID-0369",
+        "EVID-0370",
+        "EVID-0371",
+        "EVID-0372",
+        "EVID-0373"
+      ]
+    },
+    {
+      "failureType": "false_merge",
+      "description": "2 distinct true events were merged into a single hypothesis",
+      "relevantEvidenceIds": [
+        "EVID-0451",
+        "EVID-0452",
+        "EVID-0453",
+        "EVID-0454",
+        "EVID-0455",
+        "EVID-0456",
+        "EVID-0457",
+        "EVID-0458",
+        "EVID-0459",
+        "EVID-0460",
+        "EVID-0461",
+        "EVID-0462",
+        "EVID-0463",
+        "EVID-0464",
+        "EVID-0465",
+        "EVID-0466",
+        "EVID-0467"
+      ]
+    },
+    {
+      "failureType": "false_merge",
+      "description": "2 distinct true events were merged into a single hypothesis",
+      "relevantEvidenceIds": [
+        "EVID-0468",
+        "EVID-0469",
+        "EVID-0470",
+        "EVID-0471",
+        "EVID-0472",
+        "EVID-0473",
+        "EVID-0474",
+        "EVID-0475",
+        "EVID-0476",
+        "EVID-0477",
+        "EVID-0478",
+        "EVID-0479",
+        "EVID-0480",
+        "EVID-0481"
+      ]
+    },
+    {
+      "failureType": "false_merge",
+      "description": "2 distinct true events were merged into a single hypothesis",
+      "relevantEvidenceIds": [
+        "EVID-0482",
+        "EVID-0483",
+        "EVID-0484",
+        "EVID-0485",
+        "EVID-0486",
+        "EVID-0487",
+        "EVID-0488",
+        "EVID-0489",
+        "EVID-0490",
+        "EVID-0491",
+        "EVID-0492",
+        "EVID-0493",
+        "EVID-0494",
+        "EVID-0495",
+        "EVID-0496"
+      ]
+    },
+    {
+      "failureType": "false_merge",
+      "description": "2 distinct true events were merged into a single hypothesis",
+      "relevantEvidenceIds": [
+        "EVID-0497",
+        "EVID-0498",
+        "EVID-0499",
+        "EVID-0500",
+        "EVID-0501",
+        "EVID-0502",
+        "EVID-0503",
+        "EVID-0504",
+        "EVID-0505",
+        "EVID-0506",
+        "EVID-0507",
+        "EVID-0508",
+        "EVID-0509",
+        "EVID-0510",
+        "EVID-0511"
+      ]
+    },
+    {
+      "failureType": "false_merge",
+      "description": "2 distinct true events were merged into a single hypothesis",
+      "relevantEvidenceIds": [
+        "EVID-0512",
+        "EVID-0513",
+        "EVID-0514",
+        "EVID-0515",
+        "EVID-0516",
+        "EVID-0517",
+        "EVID-0518",
+        "EVID-0519",
+        "EVID-0520",
+        "EVID-0521",
+        "EVID-0522",
+        "EVID-0523",
+        "EVID-0524"
+      ]
+    }
+  ],
+  "modelC_failures": [
+    {
+      "failureType": "false_merge",
+      "description": "2 distinct true events were merged into a single hypothesis",
+      "relevantEvidenceIds": [
+        "EVID-0333",
+        "EVID-0334",
+        "EVID-0335",
+        "EVID-0336",
+        "EVID-0337",
+        "EVID-0338",
+        "EVID-0339",
+        "EVID-0340",
+        "EVID-0341",
+        "EVID-0342",
+        "EVID-0343",
+        "EVID-0344",
+        "EVID-0345",
+        "EVID-0346"
+      ]
+    },
+    {
+      "failureType": "false_merge",
+      "description": "2 distinct true events were merged into a single hypothesis",
+      "relevantEvidenceIds": [
+        "EVID-0362",
+        "EVID-0363",
+        "EVID-0364",
+        "EVID-0365",
+        "EVID-0366",
+        "EVID-0367",
+        "EVID-0368",
+        "EVID-0369",
+        "EVID-0370",
+        "EVID-0371",
+        "EVID-0372",
+        "EVID-0373"
+      ]
+    },
+    {
+      "failureType": "false_merge",
+      "description": "2 distinct true events were merged into a single hypothesis",
+      "relevantEvidenceIds": [
+        "EVID-0451",
+        "EVID-0452",
+        "EVID-0453",
+        "EVID-0454",
+        "EVID-0455",
+        "EVID-0456",
+        "EVID-0457",
+        "EVID-0458",
+        "EVID-0459",
+        "EVID-0460",
+        "EVID-0461",
+        "EVID-0462",
+        "EVID-0463",
+        "EVID-0464",
+        "EVID-0465",
+        "EVID-0466",
+        "EVID-0467"
+      ]
+    },
+    {
+      "failureType": "false_merge",
+      "description": "2 distinct true events were merged into a single hypothesis",
+      "relevantEvidenceIds": [
+        "EVID-0468",
+        "EVID-0469",
+        "EVID-0470",
+        "EVID-0471",
+        "EVID-0472",
+        "EVID-0473",
+        "EVID-0474",
+        "EVID-0475",
+        "EVID-0476",
+        "EVID-0477",
+        "EVID-0478",
+        "EVID-0479",
+        "EVID-0480",
+        "EVID-0481"
+      ]
+    },
+    {
+      "failureType": "false_merge",
+      "description": "2 distinct true events were merged into a single hypothesis",
+      "relevantEvidenceIds": [
+        "EVID-0482",
+        "EVID-0483",
+        "EVID-0484",
+        "EVID-0485",
+        "EVID-0486",
+        "EVID-0487",
+        "EVID-0488",
+        "EVID-0489",
+        "EVID-0490",
+        "EVID-0491",
+        "EVID-0492",
+        "EVID-0493",
+        "EVID-0494",
+        "EVID-0495",
+        "EVID-0496"
+      ]
+    },
+    {
+      "failureType": "false_merge",
+      "description": "2 distinct true events were merged into a single hypothesis",
+      "relevantEvidenceIds": [
+        "EVID-0497",
+        "EVID-0498",
+        "EVID-0499",
+        "EVID-0500",
+        "EVID-0501",
+        "EVID-0502",
+        "EVID-0503",
+        "EVID-0504",
+        "EVID-0505",
+        "EVID-0506",
+        "EVID-0507",
+        "EVID-0508",
+        "EVID-0509",
+        "EVID-0510",
+        "EVID-0511"
+      ]
+    },
+    {
+      "failureType": "false_merge",
+      "description": "2 distinct true events were merged into a single hypothesis",
+      "relevantEvidenceIds": [
+        "EVID-0512",
+        "EVID-0513",
+        "EVID-0514",
+        "EVID-0515",
+        "EVID-0516",
+        "EVID-0517",
+        "EVID-0518",
+        "EVID-0519",
+        "EVID-0520",
+        "EVID-0521",
+        "EVID-0522",
+        "EVID-0523",
+        "EVID-0524"
+      ]
+    }
+  ]
+}

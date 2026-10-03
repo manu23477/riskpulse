@@ -1,0 +1,44 @@
+{
+  "components": [
+    {"componentId": "C01", "name": "Remote-sensing observation/state mutation", "classification": "NECESSARY_FOR_CORRECTNESS"},
+    {"componentId": "C02", "name": "Spatial dependency closure", "classification": "NECESSARY_FOR_CORRECTNESS"},
+    {"componentId": "C03", "name": "Administrative-state propagation", "classification": "NECESSARY_FOR_CORRECTNESS"},
+    {"componentId": "C04", "name": "Risk-state propagation", "classification": "NECESSARY_FOR_CORRECTNESS"},
+    {"componentId": "C05", "name": "Cross-region/event isolation", "classification": "NECESSARY_FOR_CORRECTNESS"},
+    {"componentId": "C06", "name": "Historical state preservation/versioning", "classification": "HISTORICAL_CORRECTNESS"},
+    {"componentId": "C07", "name": "Selective recomputation", "classification": "EFFICIENCY_ONLY"},
+    {"componentId": "C08", "name": "Shared-administration dependency", "classification": "COMBINATION_DEPENDENT"},
+    {"componentId": "C09", "name": "Shared-risk dependency", "classification": "COMBINATION_DEPENDENT"},
+    {"componentId": "C10", "name": "Mutation topology handling", "classification": "NECESSARY_FOR_CORRECTNESS"}
+  ],
+  "singleAblations": [
+    {"id": "A01", "component": "C01"},
+    {"id": "A02", "component": "C02"},
+    {"id": "A03", "component": "C03"},
+    {"id": "A04", "component": "C04"},
+    {"id": "A05", "component": "C05"},
+    {"id": "A06", "component": "C06"},
+    {"id": "A07", "component": "C07"},
+    {"id": "A08", "component": "C08"},
+    {"id": "A09", "component": "C09"},
+    {"id": "A10", "component": "C10"}
+  ],
+  "multiAblations": [
+    {"id": "AB-01", "removed": ["C03", "C04"], "description": "Remove admin and risk state propagation"},
+    {"id": "AB-02", "removed": ["C05", "C06"], "description": "Remove cross-event isolation and historical state preservation"},
+    {"id": "AB-03", "removed": ["C07", "C02"], "description": "Remove selective recomputation and spatial dependency closure"},
+    {"id": "AB-04", "removed": ["C08", "C09"], "description": "Remove shared administration and shared risk dependencies"},
+    {"id": "AB-05", "removed": ["C03", "C04", "C05"], "description": "Remove admin, risk, and isolation"},
+    {"id": "AB-06", "removed": ["C05", "C06", "C07"], "description": "Remove isolation, history, and selective recomputation"},
+    {"id": "AB-07", "removed": ["C01", "C06", "C07"], "description": "Generic prior-art component removal test"}
+  ],
+  "topologyMutations": [
+    {"id": "T1", "type": "add_dependency_edge"},
+    {"id": "T2", "type": "remove_dependency_edge"},
+    {"id": "T3", "type": "redirect_dependency_edge"},
+    {"id": "T4", "type": "add_shared_admin_dependency"},
+    {"id": "T5", "type": "remove_shared_admin_dependency"},
+    {"id": "T6", "type": "add_shared_risk_dependency"},
+    {"id": "T7", "type": "remove_shared_risk_dependency"}
+  ]
+}

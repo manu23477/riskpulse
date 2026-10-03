@@ -128,7 +128,6 @@ class ThematicDataValidator {
 
     for (final row in parsedData.rows) {
       final rawId = (row.getValue(idColKey) ?? '').trim();
-      final rawVal = (row.getValue(valColKey) ?? '').trim();
 
       if (rawId.isNotEmpty) {
         final normId = AdministrativeJoinEngine.normalizeName(rawId);

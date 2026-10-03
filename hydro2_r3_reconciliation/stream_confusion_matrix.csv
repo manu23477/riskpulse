@@ -1,0 +1,13 @@
+Metric,Value,Units,Formula_Or_Definition
+True_Positives_TP,1240,cells,Both RiskPulse and GRASS identify cell as stream (accum >= 100)
+False_Positives_FP,21,cells,RiskPulse identifies stream; GRASS does not (due to diagonal line connectivity)
+False_Negatives_FN,18,cells,GRASS identifies stream; RiskPulse does not
+True_Negatives_TN,8885,cells,Both identify cell as non-stream hillslopes
+Precision,0.9833,scalar,TP / (TP + FP) = 1240 / 1261
+Recall,0.9857,scalar,TP / (TP + FN) = 1240 / 1258
+F1_Dice_Score,0.9845,scalar,2 * TP / (2 * TP + FP + FN) = 2480 / 2519
+Intersection_Over_Union_IoU,0.9695,scalar,TP / (TP + FP + FN) = 1240 / 1279
+RiskPulse_Stream_Cell_Count,1261,cells,Total cells with accumulation >= 100
+Reference_Stream_Cell_Count,1258,cells,Total reference stream cells
+Cell_Count_Difference,+3,cells,RiskPulse has 3 additional stream cells in diagonal confluences
+Cell_Count_Relative_Diff,+0.24,%,(1261 - 1258) / 1258

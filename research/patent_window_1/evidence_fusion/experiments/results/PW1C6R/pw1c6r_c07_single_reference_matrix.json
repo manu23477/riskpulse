@@ -1,0 +1,59 @@
+{
+  "boundaryName": "C07 MINIMAL BOUNDARY",
+  "completeRelationshipStatement": "A system receives evidence that mutates one event hypothesis, identifies the affected dependency closure through a shared spatial-administrative-risk graph, selectively propagates the mutation through affected downstream states, and preserves unrelated event hypotheses and their provenance.",
+  "singleReferenceEvaluations": [
+    {
+      "referenceId": "REF-01 (US7441230B2)",
+      "subFeatures": {
+        "F1_mutation": "YES",
+        "F2_selective_dependency_closure": "YES",
+        "F3_spatial_state": "NO",
+        "F4_administrative_state": "NO",
+        "F5_risk_state": "NO",
+        "F6_shared_downstream_dependency": "YES",
+        "F7_multiple_independent_events": "YES",
+        "F8_cross_event_isolation": "YES",
+        "F9_contradiction_retention": "NO",
+        "F10_provenance": "PARTIAL",
+        "F11_historical_state": "NO"
+      },
+      "disclosesCompleteRelationship": false
+    },
+    {
+      "referenceId": "REF-08 (CN117235153B)",
+      "subFeatures": {
+        "F1_mutation": "YES",
+        "F2_selective_dependency_closure": "PARTIAL",
+        "F3_spatial_state": "NO",
+        "F4_administrative_state": "NO",
+        "F5_risk_state": "NO",
+        "F6_shared_downstream_dependency": "PARTIAL",
+        "F7_multiple_independent_events": "YES",
+        "F8_cross_event_isolation": "PARTIAL",
+        "F9_contradiction_retention": "YES",
+        "F10_provenance": "YES",
+        "F11_historical_state": "YES"
+      },
+      "disclosesCompleteRelationship": false
+    },
+    {
+      "referenceId": "REF-09 (US10452652B2)",
+      "subFeatures": {
+        "F1_mutation": "PARTIAL",
+        "F2_selective_dependency_closure": "NO",
+        "F3_spatial_state": "YES",
+        "F4_administrative_state": "PARTIAL",
+        "F5_risk_state": "PARTIAL",
+        "F6_shared_downstream_dependency": "NO",
+        "F7_multiple_independent_events": "YES",
+        "F8_cross_event_isolation": "NO",
+        "F9_contradiction_retention": "NO",
+        "F10_provenance": "PARTIAL",
+        "F11_historical_state": "NO"
+      },
+      "disclosesCompleteRelationship": false
+    }
+  ],
+  "singleReferenceCoverageResult": "PARTIAL MULTI-REFERENCE COVERAGE ONLY",
+  "completeRelationshipLocated": false
+}

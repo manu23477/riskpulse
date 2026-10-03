@@ -1,0 +1,101 @@
+[
+  {
+    "counterexampleId": "CEX-01",
+    "targetComponentId": "C01",
+    "inputState": "Observation A & B -> Shared Admin X -> Shared Risk X",
+    "mutation": "Mutate Observation A value from 0.8 to 0.1",
+    "expectedClosure": "{NODE-OBS-EVTA, NODE-SPAT-EVTA, NODE-ADM-SHARED-X, NODE-RISK-SHARED-X}",
+    "actualAblationClosure": "{NODE-OBS-EVTA, NODE-SPAT-EVTA}",
+    "violatedInvariant": "R05 Missed Propagation",
+    "causalMechanism": "Removal of C01 broke the required dependency traversal or isolation invariant",
+    "survived": true
+  },
+  {
+    "counterexampleId": "CEX-02",
+    "targetComponentId": "C02",
+    "inputState": "Observation A & B -> Shared Admin X -> Shared Risk X",
+    "mutation": "Mutate Observation A value from 0.8 to 0.1",
+    "expectedClosure": "{NODE-OBS-EVTA, NODE-SPAT-EVTA, NODE-ADM-SHARED-X, NODE-RISK-SHARED-X}",
+    "actualAblationClosure": "{NODE-OBS-EVTA, NODE-SPAT-EVTA}",
+    "violatedInvariant": "R05 Missed Propagation",
+    "causalMechanism": "Removal of C02 broke the required dependency traversal or isolation invariant",
+    "survived": true
+  },
+  {
+    "counterexampleId": "CEX-03",
+    "targetComponentId": "C03",
+    "inputState": "Observation A & B -> Shared Admin X -> Shared Risk X",
+    "mutation": "Mutate Observation A value from 0.8 to 0.1",
+    "expectedClosure": "{NODE-OBS-EVTA, NODE-SPAT-EVTA, NODE-ADM-SHARED-X, NODE-RISK-SHARED-X}",
+    "actualAblationClosure": "{NODE-OBS-EVTA, NODE-SPAT-EVTA}",
+    "violatedInvariant": "R05 Missed Propagation",
+    "causalMechanism": "Removal of C03 broke the required dependency traversal or isolation invariant",
+    "survived": true
+  },
+  {
+    "counterexampleId": "CEX-04",
+    "targetComponentId": "C04",
+    "inputState": "Observation A & B -> Shared Admin X -> Shared Risk X",
+    "mutation": "Mutate Observation A value from 0.8 to 0.1",
+    "expectedClosure": "{NODE-OBS-EVTA, NODE-SPAT-EVTA, NODE-ADM-SHARED-X, NODE-RISK-SHARED-X}",
+    "actualAblationClosure": "{NODE-OBS-EVTA, NODE-SPAT-EVTA}",
+    "violatedInvariant": "R05 Missed Propagation",
+    "causalMechanism": "Removal of C04 broke the required dependency traversal or isolation invariant",
+    "survived": true
+  },
+  {
+    "counterexampleId": "CEX-05",
+    "targetComponentId": "C05",
+    "inputState": "Observation A & B -> Shared Admin X -> Shared Risk X",
+    "mutation": "Mutate Observation A value from 0.8 to 0.1",
+    "expectedClosure": "{NODE-OBS-EVTA, NODE-SPAT-EVTA, NODE-ADM-SHARED-X, NODE-RISK-SHARED-X}",
+    "actualAblationClosure": "{NODE-OBS-EVTA, NODE-SPAT-EVTA, NODE-ADM-SHARED-X, NODE-RISK-SHARED-X, NODE-OBS-EVTB, NODE-SPAT-EVTB}",
+    "violatedInvariant": "R06 Cross-Region Isolation",
+    "causalMechanism": "Removal of C05 broke the required dependency traversal or isolation invariant",
+    "survived": true
+  },
+  {
+    "counterexampleId": "CEX-06",
+    "targetComponentId": "C06",
+    "inputState": "Observation A & B -> Shared Admin X -> Shared Risk X",
+    "mutation": "Mutate Observation A value from 0.8 to 0.1",
+    "expectedClosure": "{NODE-OBS-EVTA, NODE-SPAT-EVTA, NODE-ADM-SHARED-X, NODE-RISK-SHARED-X}",
+    "actualAblationClosure": "{NODE-OBS-EVTA, NODE-SPAT-EVTA}",
+    "violatedInvariant": "R05 Missed Propagation",
+    "causalMechanism": "Removal of C06 broke the required dependency traversal or isolation invariant",
+    "survived": true
+  },
+  {
+    "counterexampleId": "CEX-07",
+    "targetComponentId": "C08",
+    "inputState": "Observation A & B -> Shared Admin X -> Shared Risk X",
+    "mutation": "Mutate Observation A value from 0.8 to 0.1",
+    "expectedClosure": "{NODE-OBS-EVTA, NODE-SPAT-EVTA, NODE-ADM-SHARED-X, NODE-RISK-SHARED-X}",
+    "actualAblationClosure": "{NODE-OBS-EVTA, NODE-SPAT-EVTA}",
+    "violatedInvariant": "R05 Missed Propagation",
+    "causalMechanism": "Removal of C08 broke the required dependency traversal or isolation invariant",
+    "survived": true
+  },
+  {
+    "counterexampleId": "CEX-08",
+    "targetComponentId": "C09",
+    "inputState": "Observation A & B -> Shared Admin X -> Shared Risk X",
+    "mutation": "Mutate Observation A value from 0.8 to 0.1",
+    "expectedClosure": "{NODE-OBS-EVTA, NODE-SPAT-EVTA, NODE-ADM-SHARED-X, NODE-RISK-SHARED-X}",
+    "actualAblationClosure": "{NODE-OBS-EVTA, NODE-SPAT-EVTA}",
+    "violatedInvariant": "R05 Missed Propagation",
+    "causalMechanism": "Removal of C09 broke the required dependency traversal or isolation invariant",
+    "survived": true
+  },
+  {
+    "counterexampleId": "CEX-09",
+    "targetComponentId": "C10",
+    "inputState": "Observation A & B -> Shared Admin X -> Shared Risk X",
+    "mutation": "Mutate Observation A value from 0.8 to 0.1",
+    "expectedClosure": "{NODE-OBS-EVTA, NODE-SPAT-EVTA, NODE-ADM-SHARED-X, NODE-RISK-SHARED-X}",
+    "actualAblationClosure": "{NODE-OBS-EVTA, NODE-SPAT-EVTA}",
+    "violatedInvariant": "R05 Missed Propagation",
+    "causalMechanism": "Removal of C10 broke the required dependency traversal or isolation invariant",
+    "survived": true
+  }
+]

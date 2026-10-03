@@ -1,0 +1,6 @@
+{
+  "strategyAFullRebuildEquivalence": 1.0,
+  "strategyBGlobalInvalidationEquivalence": 1.0,
+  "strategyCSelectivePropagationEquivalence": 1.0,
+  "cumulativeSelectiveReductionPct": 99.52
+}

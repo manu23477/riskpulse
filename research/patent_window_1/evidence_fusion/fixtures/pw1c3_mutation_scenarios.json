@@ -1,0 +1,192 @@
+[
+  {
+    "mutationId": "MUT3-01",
+    "arm": "1C-3A",
+    "mutationType": "seven_version_cascading",
+    "targetCaseId": "CASE-01",
+    "description": "Deep 7-version cascading mutation sequence V1 through V7.",
+    "sequence": [
+      {"v": 1, "action": "initial_supporting", "targetEvidenceId": "EVID-0001"},
+      {"v": 2, "action": "independent_corroboration", "targetEvidenceId": "EVID-0002"},
+      {"v": 3, "action": "add_contradiction", "targetEvidenceId": "EVID-0003", "changes": {"relationshipType": "contradicting"}},
+      {"v": 4, "action": "revise_spatial", "targetEvidenceId": "EVID-0001", "changes": {"statedLocation": "Km 45 near Rampur Bazaar"}},
+      {"v": 5, "action": "reclassify_repost", "targetEvidenceId": "EVID-0002", "changes": {"sourceLineageId": "L1", "relationshipType": "repost"}},
+      {"v": 6, "action": "new_corroboration", "targetEvidenceId": "EVID-0004"},
+      {"v": 7, "action": "invalidate_contradiction", "targetEvidenceId": "EVID-0003", "changes": {"isValid": false}}
+    ]
+  },
+  {
+    "mutationId": "MUT3-02",
+    "arm": "1C-3A",
+    "mutationType": "mutation_reversal_sequence",
+    "targetCaseId": "CASE-02",
+    "description": "Deterministic mutation reversal: Supporting -> Contradictory -> Uncertain -> Supporting.",
+    "sequence": [
+      {"step": 1, "state": "supporting", "targetEvidenceId": "EVID-0012", "changes": {"relationshipType": "corroborating"}},
+      {"step": 2, "state": "contradictory", "targetEvidenceId": "EVID-0012", "changes": {"relationshipType": "contradicting"}},
+      {"step": 3, "state": "uncertain", "targetEvidenceId": "EVID-0012", "changes": {"relationshipType": "unrelated", "sourceReliabilityInput": 0.20}},
+      {"step": 4, "state": "supporting", "targetEvidenceId": "EVID-0012", "changes": {"relationshipType": "corroborating", "sourceReliabilityInput": 0.85}}
+    ]
+  },
+  {
+    "mutationId": "MUT3-03",
+    "arm": "1C-3A",
+    "mutationType": "batched_mutation",
+    "targetCaseId": "CASE-03",
+    "description": "Batched sequence applying Mutation A, B, and C simultaneously before state recomputation.",
+    "batch": [
+      {"targetEvidenceId": "EVID-0025", "changes": {"statedLocation": "Sector 4 Upper Valley"}},
+      {"targetEvidenceId": "EVID-0026", "changes": {"sourceReliabilityInput": 0.30}},
+      {"targetEvidenceId": "EVID-0027", "changes": {"relationshipType": "repost"}}
+    ]
+  },
+  {
+    "mutationId": "MUT3-04",
+    "arm": "1C-3B",
+    "mutationType": "shared_administrative_dependency",
+    "targetCaseId": "CASE-35",
+    "description": "Multi-event case where Event A and Event B share AdministrativeState X. Mutating Event A recomputes Spatial A and Admin X without affecting Event B hypothesis.",
+    "targetEventAId": "EVT-CASE-35-A",
+    "targetEventBId": "EVT-CASE-35-B",
+    "targetEvidenceId": "EVID-0440",
+    "attributeChanges": {"statedLocation": "Aut Bridge Sector 1"}
+  },
+  {
+    "mutationId": "MUT3-05",
+    "arm": "1C-3B",
+    "mutationType": "one_event_multiple_downstream",
+    "targetCaseId": "CASE-19",
+    "description": "One event mapped to multiple downstream administrative boundaries.",
+    "targetEvidenceId": "EVID-0200",
+    "attributeChanges": {"statedLocation": "Boundary Intersection Sector"}
+  },
+  {
+    "mutationId": "MUT3-06",
+    "arm": "1C-3B",
+    "mutationType": "shared_downstream_risk_aggregation",
+    "targetCaseId": "CASE-26",
+    "description": "Shared downstream risk aggregation across multiple nearby cloudburst hypotheses.",
+    "targetEvidenceId": "EVID-0300",
+    "attributeChanges": {"extractedHazardHint": "cloudburst"}
+  },
+  {
+    "mutationId": "MUT3-07",
+    "arm": "1C-3C",
+    "mutationType": "non_sequential_historical_reconstruction",
+    "targetCaseId": "CASE-01",
+    "description": "Request reconstruction of historical states in non-sequential order V4, V1, V7, V3, V6, V2, V5.",
+    "requestedOrder": [4, 1, 7, 3, 6, 2, 5]
+  },
+  {
+    "mutationId": "MUT3-08",
+    "arm": "1C-3C",
+    "mutationType": "historical_immutability_verification",
+    "targetCaseId": "CASE-01",
+    "description": "Verify V1 through V5 remain 100% unchanged after V6 mutation.",
+    "versionsToVerify": [1, 2, 3, 4, 5]
+  },
+  {
+    "mutationId": "MUT3-09",
+    "arm": "1C-3D",
+    "mutationType": "late_arriving_evidence",
+    "targetCaseId": "CASE-05",
+    "description": "Late-arriving evidence E4 arriving at 11:00 about event occurring at 09:55.",
+    "eventTime": "2026-08-15T09:55:00Z",
+    "lateEvidence": {
+      "evidenceId": "EVID-LATE-01",
+      "caseId": "CASE-05",
+      "acquisitionTimestamp": "2026-08-15T11:00:00Z",
+      "publicationTimestamp": "2026-08-15T10:55:00Z",
+      "rawText": "Late field report confirming landslide occurred earlier at 09:55 near Km 30."
+    }
+  },
+  {
+    "mutationId": "MUT3-10",
+    "arm": "1C-3D",
+    "mutationType": "late_negative_contradiction",
+    "targetCaseId": "CASE-06",
+    "description": "Late report indicating initial E1 report was incorrect. E1 remains immutable; V_new records contradiction.",
+    "lateContradictionEvidenceId": "EVID-LATE-02"
+  },
+  {
+    "mutationId": "MUT3-11",
+    "arm": "1C-3E",
+    "mutationType": "false_propagation_adversarial",
+    "targetCaseId": "CASE-36",
+    "description": "Construct graph with semantically similar but structurally unconnected branch; verify no false propagation.",
+    "targetEvidenceId": "EVID-0460",
+    "unrelatedBranchNodeId": "NODE-EV-EVID-0470"
+  },
+  {
+    "mutationId": "MUT3-12",
+    "arm": "1C-3E",
+    "mutationType": "missed_propagation_adversarial",
+    "targetCaseId": "CASE-37",
+    "description": "Transitive dependency edge; verify mutation reaches dependent node through explicit edge.",
+    "targetEvidenceId": "EVID-0480"
+  },
+  {
+    "mutationId": "MUT3-13",
+    "arm": "1C-3E",
+    "mutationType": "dependency_poisoning_adversarial",
+    "targetCaseId": "CASE-38",
+    "description": "Mutate Event A; shared node X is recomputed while Event B upstream hypothesis node remains unpoisoned.",
+    "targetEvidenceId": "EVID-0500"
+  },
+  {
+    "mutationId": "MUT3-14",
+    "arm": "1C-3E",
+    "mutationType": "transitive_closure_verification",
+    "targetCaseId": "CASE-40",
+    "description": "Verify complete transitive dependency closure calculation.",
+    "targetEvidenceId": "EVID-0520"
+  },
+  {
+    "mutationId": "MUT3-15",
+    "arm": "1C-3F",
+    "mutationType": "three_way_strategy_comparison",
+    "targetCaseId": "CASE-01",
+    "description": "Three-way comparison: Strategy A (Full Rebuild), Strategy B (Global Invalidation), Strategy C (Selective Propagation).",
+    "targetEvidenceId": "EVID-0001"
+  },
+  {
+    "mutationId": "MUT3-16",
+    "arm": "1C-3F",
+    "mutationType": "three_way_strategy_comparison",
+    "targetCaseId": "CASE-13",
+    "description": "Three-way comparison on flash flood case.",
+    "targetEvidenceId": "EVID-0150"
+  },
+  {
+    "mutationId": "MUT3-17",
+    "arm": "1C-3F",
+    "mutationType": "three_way_strategy_comparison",
+    "targetCaseId": "CASE-25",
+    "description": "Three-way comparison on conflicting location case.",
+    "targetEvidenceId": "EVID-0280"
+  },
+  {
+    "mutationId": "MUT3-18",
+    "arm": "1C-3F",
+    "mutationType": "three_way_strategy_comparison",
+    "targetCaseId": "CASE-35",
+    "description": "Three-way comparison on 2-event nearby case.",
+    "targetEvidenceId": "EVID-0440"
+  },
+  {
+    "mutationId": "MUT3-19",
+    "arm": "1C-3F",
+    "mutationType": "three_way_strategy_comparison",
+    "targetCaseId": "CASE-43",
+    "description": "Three-way comparison on earthquake risk case.",
+    "targetEvidenceId": "EVID-0550"
+  },
+  {
+    "mutationId": "MUT3-20",
+    "arm": "1C-3F",
+    "mutationType": "three_way_strategy_comparison",
+    "targetCaseId": "CASE-47",
+    "description": "Three-way comparison on road blockage case.",
+    "targetEvidenceId": "EVID-0600"
+  }
+]

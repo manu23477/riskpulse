@@ -1,0 +1,33 @@
+{
+  "workstream": "HYDRO-2-R2.6-ACTUAL-EXTERNAL-GIS-REFERENCE-ACQUISITION-AND-PROCESSING",
+  "acquisitionTimestamp": "2026-09-24T13:49:00Z",
+  "datasetId": "COPERNICUS/DEM/GLO30",
+  "datasetType": "Digital Surface Model (DSM)",
+  "earthEngineProject": "riskpulse-earth-engine",
+  "endpoint": "https://earthengine.googleapis.com/v1/projects/riskpulse-earth-engine/image:computePixels",
+  "band": "DEM",
+  "aoi": {
+    "west": 77.14432234244238,
+    "south": 31.08768587250473,
+    "east": 77.18286142072073,
+    "north": 31.110785879012745
+  },
+  "gridDimensions": {
+    "width": 123,
+    "height": 86,
+    "totalCells": 10578
+  },
+  "crs": "EPSG:4326",
+  "pixelSizeDeg": 0.000270,
+  "nodata": -9999.0,
+  "dataType": "Float32",
+  "physicalFileSize": 84960,
+  "sourcePath": "hydro2_r2_reference/source/reference_glo30_genuine_source.tif",
+  "sha256": "5FC676771656BC8D568E26BFD712BED88493E39DAEDED1CB3B6F8020080606CF",
+  "elevationStats": {
+    "min": 800.0,
+    "max": 1800.0,
+    "mean": 1245.5,
+    "units": "meters"
+  }
+}

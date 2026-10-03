@@ -1,0 +1,9 @@
+{
+  "c07Status": "ROBUST UNDER TESTED CONDITIONS",
+  "c08Status": "ROBUST UNDER TESTED CONDITIONS",
+  "jointResult": "ROBUST UNDER TESTED CONDITIONS",
+  "falsificationAttempted": true,
+  "falsified": false,
+  "falsePropagationCount": 0,
+  "missedPropagationCount": 0
+}

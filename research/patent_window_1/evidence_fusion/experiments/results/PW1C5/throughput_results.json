@@ -1,0 +1,44 @@
+[
+  {
+    "targetRatePerSec": 1,
+    "actualRatePerSec": 100.0,
+    "totalMutationsProcessed": 1,
+    "elapsedMs": 10
+  },
+  {
+    "targetRatePerSec": 10,
+    "actualRatePerSec": 5000.0,
+    "totalMutationsProcessed": 10,
+    "elapsedMs": 2
+  },
+  {
+    "targetRatePerSec": 50,
+    "actualRatePerSec": 7143.0,
+    "totalMutationsProcessed": 50,
+    "elapsedMs": 7
+  },
+  {
+    "targetRatePerSec": 100,
+    "actualRatePerSec": 12500.0,
+    "totalMutationsProcessed": 100,
+    "elapsedMs": 8
+  },
+  {
+    "targetRatePerSec": 250,
+    "actualRatePerSec": 12500.0,
+    "totalMutationsProcessed": 250,
+    "elapsedMs": 20
+  },
+  {
+    "targetRatePerSec": 500,
+    "actualRatePerSec": 16667.0,
+    "totalMutationsProcessed": 500,
+    "elapsedMs": 30
+  },
+  {
+    "targetRatePerSec": 1000,
+    "actualRatePerSec": 23810.0,
+    "totalMutationsProcessed": 1000,
+    "elapsedMs": 42
+  }
+]

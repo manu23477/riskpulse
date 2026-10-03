@@ -1,0 +1,122 @@
+[
+  {
+    "variantId": "C07-A",
+    "isTechnicallyMeaningful": true,
+    "collapsesOnRemoval": false,
+    "redundantComponents": [],
+    "necessaryComponents": [
+      "mutation",
+      "selective_closure",
+      "cross_event_isolation",
+      "shared_admin_risk"
+    ]
+  },
+  {
+    "variantId": "C07-B",
+    "isTechnicallyMeaningful": true,
+    "collapsesOnRemoval": false,
+    "redundantComponents": [],
+    "necessaryComponents": [
+      "mutation",
+      "selective_closure",
+      "cross_event_isolation",
+      "shared_admin_risk"
+    ]
+  },
+  {
+    "variantId": "C07-C",
+    "isTechnicallyMeaningful": true,
+    "collapsesOnRemoval": false,
+    "redundantComponents": [],
+    "necessaryComponents": [
+      "mutation",
+      "selective_closure",
+      "cross_event_isolation",
+      "shared_admin_risk"
+    ]
+  },
+  {
+    "variantId": "C07-D",
+    "isTechnicallyMeaningful": true,
+    "collapsesOnRemoval": false,
+    "redundantComponents": [],
+    "necessaryComponents": [
+      "mutation",
+      "selective_closure",
+      "cross_event_isolation",
+      "shared_admin_risk"
+    ]
+  },
+  {
+    "variantId": "C07-E",
+    "isTechnicallyMeaningful": true,
+    "collapsesOnRemoval": false,
+    "redundantComponents": [],
+    "necessaryComponents": [
+      "mutation",
+      "selective_closure",
+      "cross_event_isolation",
+      "shared_admin_risk"
+    ]
+  },
+  {
+    "variantId": "C07-F",
+    "isTechnicallyMeaningful": true,
+    "collapsesOnRemoval": false,
+    "redundantComponents": [],
+    "necessaryComponents": [
+      "mutation",
+      "selective_closure",
+      "cross_event_isolation",
+      "shared_admin_risk"
+    ]
+  },
+  {
+    "variantId": "C07-G",
+    "isTechnicallyMeaningful": true,
+    "collapsesOnRemoval": true,
+    "redundantComponents": [],
+    "necessaryComponents": [
+      "mutation",
+      "selective_closure",
+      "cross_event_isolation",
+      "shared_admin_risk"
+    ]
+  },
+  {
+    "variantId": "C07-H",
+    "isTechnicallyMeaningful": true,
+    "collapsesOnRemoval": false,
+    "redundantComponents": [],
+    "necessaryComponents": [
+      "mutation",
+      "selective_closure",
+      "cross_event_isolation",
+      "shared_admin_risk"
+    ]
+  },
+  {
+    "variantId": "C07-I",
+    "isTechnicallyMeaningful": true,
+    "collapsesOnRemoval": false,
+    "redundantComponents": [],
+    "necessaryComponents": [
+      "mutation",
+      "selective_closure",
+      "cross_event_isolation",
+      "shared_admin_risk"
+    ]
+  },
+  {
+    "variantId": "C07-J",
+    "isTechnicallyMeaningful": true,
+    "collapsesOnRemoval": true,
+    "redundantComponents": [],
+    "necessaryComponents": [
+      "mutation",
+      "selective_closure",
+      "cross_event_isolation",
+      "shared_admin_risk"
+    ]
+  }
+]

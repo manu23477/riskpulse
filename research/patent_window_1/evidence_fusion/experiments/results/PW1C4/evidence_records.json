@@ -1,0 +1,23 @@
+[
+  {
+    "recordId": "EV-REC-01",
+    "featureId": "F07",
+    "referenceId": "REF-01",
+    "excerptText": "A product proxy receives notification of a change in a dependency node and invalidates its output, causing selective recalculation of affected downstream proxies.",
+    "evaluation": "YES"
+  },
+  {
+    "recordId": "EV-REC-02",
+    "featureId": "F18",
+    "referenceId": "REF-04",
+    "excerptText": "Late arriving and out of order data records are ingested into computation graphs with event timestamps separated from processing timestamps.",
+    "evaluation": "YES"
+  },
+  {
+    "recordId": "EV-REC-03",
+    "featureId": "F13",
+    "referenceId": "REF-08",
+    "excerptText": "A ProV-DM persistent directed graph model stores compliance data provenance, modification records, and historical states.",
+    "evaluation": "YES"
+  }
+]

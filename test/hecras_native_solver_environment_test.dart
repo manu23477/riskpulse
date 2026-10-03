@@ -1,4 +1,3 @@
-import 'dart:io' as io;
 import 'package:flutter_test/flutter_test.dart';
 import 'package:riskpulse/domain/location/geo_location.dart';
 import 'package:riskpulse/domain/gis/spatial_concepts.dart';
@@ -71,16 +70,14 @@ void main() {
       final result = await simAdapter.executeAdapter(config);
 
       expect(result.resultId, equals('res-sim-test-01'));
-      expect(result.diagnostics['executionMode'], equals('simulatedMock'));
+      expect(result.provenanceStep.parameters['executionMode'], equals('simulatedMock'));
 
       // ASSERT: Simulated execution mode is NOT labeled as native HEC-RAS
-      expect(result.diagnostics['executionMode'], isNot(equals('nativeProcessExecution')));
+      expect(result.provenanceStep.parameters['executionMode'], isNot(equals('nativeProcessExecution')));
     });
 
     test('TEST 13, 14, 15 & 16: Hydrodynamic output unit validation (Depth in m, Velocity in m/s)', () async {
       final adapter = HecRasSolverAdapter();
-      final config = adapter.executeAdapter;
-
       expect(adapter.capabilities.supportedOutputTypes, contains('flood_depth'));
       expect(adapter.capabilities.supportedOutputTypes, contains('velocity_vector'));
       expect(adapter.capabilities.supportedOutputTypes, contains('arrival_time'));

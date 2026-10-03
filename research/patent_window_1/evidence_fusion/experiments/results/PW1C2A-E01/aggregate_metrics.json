@@ -1,0 +1,44 @@
+{
+  "modelA": {
+    "eventAssociationAccuracy": 1.0,
+    "falseMergeRate": 0.14,
+    "falseSplitRate": 0.0,
+    "lineageAccuracy": 0.8236,
+    "spatialErrorMeters": 45.2,
+    "spatialPrecisionInflationRatio": 1.05,
+    "temporalErrorSeconds": 120.0,
+    "temporalPrecisionInflationRatio": 1.02,
+    "contradictionRetentionRate": 1.0,
+    "provenanceCompletenessRatio": 1.0,
+    "stateReconstructionAccuracy": 1.0,
+    "arrivalOrderRobustness": -1.0
+  },
+  "modelB": {
+    "eventAssociationAccuracy": 1.0,
+    "falseMergeRate": 0.14,
+    "falseSplitRate": 0.0,
+    "lineageAccuracy": 0.8283,
+    "spatialErrorMeters": 45.2,
+    "spatialPrecisionInflationRatio": 1.05,
+    "temporalErrorSeconds": 120.0,
+    "temporalPrecisionInflationRatio": 1.02,
+    "contradictionRetentionRate": 1.0,
+    "provenanceCompletenessRatio": 1.0,
+    "stateReconstructionAccuracy": 1.0,
+    "arrivalOrderRobustness": -1.0
+  },
+  "modelC": {
+    "eventAssociationAccuracy": 1.0,
+    "falseMergeRate": 0.14,
+    "falseSplitRate": 0.0,
+    "lineageAccuracy": 0.8283,
+    "spatialErrorMeters": 45.2,
+    "spatialPrecisionInflationRatio": 1.05,
+    "temporalErrorSeconds": 120.0,
+    "temporalPrecisionInflationRatio": 1.02,
+    "contradictionRetentionRate": 1.0,
+    "provenanceCompletenessRatio": 1.0,
+    "stateReconstructionAccuracy": 1.0,
+    "arrivalOrderRobustness": -1.0
+  }
+}

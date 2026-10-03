@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EvidenceTruthRecord",
+  "description": "Schema for hidden evidence-to-event truth mappings in PW1C1-GT-v1.0.",
+  "type": "object",
+  "required": [
+    "evidenceId",
+    "trueEventId",
+    "trueLineageId",
+    "relationshipType"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "evidenceId": {
+      "type": "string",
+      "pattern": "^EVID-[0-9]{4}$"
+    },
+    "trueEventId": {
+      "type": "string"
+    },
+    "trueLineageId": {
+      "type": "string"
+    },
+    "relationshipType": {
+      "type": "string",
+      "enum": [
+        "primary_observation",
+        "corroborating",
+        "repost",
+        "duplicate",
+        "contradicting",
+        "unrelated"
+      ]
+    }
+  }
+}

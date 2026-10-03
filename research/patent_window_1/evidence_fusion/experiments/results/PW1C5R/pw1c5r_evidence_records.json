@@ -1,0 +1,23 @@
+[
+  {
+    "evidenceRecordId": "EV-5R-01",
+    "featureId": "F09",
+    "referenceId": "REF-01",
+    "citation": "US7441230B2, Col. 3, lines 20-40",
+    "excerptText": "A change in a product proxy triggers traversal of connected dependency nodes to identify all affected downstream proxies needing invalidation."
+  },
+  {
+    "evidenceRecordId": "EV-5R-02",
+    "featureId": "F18",
+    "referenceId": "REF-04",
+    "citation": "US20200379978A1, Paragraph [0032]",
+    "excerptText": "Out of order stream data items are evaluated using separate event time and processing watermark timestamps."
+  },
+  {
+    "evidenceRecordId": "EV-5R-03",
+    "featureId": "F13",
+    "referenceId": "REF-08",
+    "citation": "CN117235153B, Paragraph [0020]",
+    "excerptText": "Compliance modification records are appended as new nodes in a persistent directed graph without deleting historical state nodes."
+  }
+]

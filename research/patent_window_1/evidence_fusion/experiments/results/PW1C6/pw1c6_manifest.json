@@ -1,0 +1,16 @@
+{
+  "experimentId": "PW1C6",
+  "experimentName": "EXACT-TECHNICAL-BOUNDARY-DECOMPOSITION",
+  "datasetVersion": "PW1C1-DATA-v1.0",
+  "groundTruthVersion": "PW1C1-GT-v1.0",
+  "randomSeed": 20260929,
+  "executionTimestamp": "2026-09-30T13:55:00Z",
+  "c07Status": "MINIMAL BOUNDARY IDENTIFIED",
+  "c08Status": "MINIMAL BOUNDARY IDENTIFIED",
+  "jointBoundaryStatus": "SEPARATE BOUNDARIES WITH COMMON MINIMAL DEPENDENCY CORE",
+  "resultHashes": {
+    "ablations": "4623dcbf9981d291c3ca16fefb71dca23161bbde237fbb3ffe975f25f8115745",
+    "counterexamples": "d6347888909710ac3f6c362b31f4ddf872a874d97af787e1b13eb2e83df80ffe",
+    "metrics": "66d1ba96d9cc671888739294e26bdfbb2e52f0c74c8bdb009da45bf237a4f7c7"
+  }
+}

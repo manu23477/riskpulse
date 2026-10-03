@@ -1,0 +1,123 @@
+[
+  {
+    "comboId": "COMBO-01",
+    "referencesIncluded": [
+      "US8548248B2",
+      "US10036650B2"
+    ],
+    "singleReferenceDisclosed": false,
+    "multiReferenceMosaicDisclosed": true,
+    "disclosesCompleteK10": false,
+    "missingCouplingRelationship": "Partial mosaic combination of referenced technical sub-systems."
+  },
+  {
+    "comboId": "COMBO-02",
+    "referencesIncluded": [
+      "US8548248B2",
+      "US10452652B2"
+    ],
+    "singleReferenceDisclosed": false,
+    "multiReferenceMosaicDisclosed": true,
+    "disclosesCompleteK10": false,
+    "missingCouplingRelationship": "Partial mosaic combination of referenced technical sub-systems."
+  },
+  {
+    "comboId": "COMBO-03",
+    "referencesIncluded": [
+      "US10036650B2",
+      "US10452652B2"
+    ],
+    "singleReferenceDisclosed": false,
+    "multiReferenceMosaicDisclosed": true,
+    "disclosesCompleteK10": false,
+    "missingCouplingRelationship": "Partial mosaic combination of referenced technical sub-systems."
+  },
+  {
+    "comboId": "COMBO-04",
+    "referencesIncluded": [
+      "US10036650B2",
+      "US7441230B2"
+    ],
+    "singleReferenceDisclosed": false,
+    "multiReferenceMosaicDisclosed": true,
+    "disclosesCompleteK10": false,
+    "missingCouplingRelationship": "Partial mosaic combination of referenced technical sub-systems."
+  },
+  {
+    "comboId": "COMBO-05",
+    "referencesIncluded": [
+      "US10452652B2",
+      "US20200379978A1"
+    ],
+    "singleReferenceDisclosed": false,
+    "multiReferenceMosaicDisclosed": true,
+    "disclosesCompleteK10": false,
+    "missingCouplingRelationship": "Partial mosaic combination of referenced technical sub-systems."
+  },
+  {
+    "comboId": "COMBO-06",
+    "referencesIncluded": [
+      "US7441230B2",
+      "US20200379978A1",
+      "CN117235153B"
+    ],
+    "singleReferenceDisclosed": false,
+    "multiReferenceMosaicDisclosed": true,
+    "disclosesCompleteK10": false,
+    "missingCouplingRelationship": "Partial mosaic combination of referenced technical sub-systems."
+  },
+  {
+    "comboId": "COMBO-07",
+    "referencesIncluded": [
+      "US8548248B2",
+      "US10036650B2",
+      "US10452652B2"
+    ],
+    "singleReferenceDisclosed": false,
+    "multiReferenceMosaicDisclosed": true,
+    "disclosesCompleteK10": false,
+    "missingCouplingRelationship": "Partial mosaic combination of referenced technical sub-systems."
+  },
+  {
+    "comboId": "COMBO-08",
+    "referencesIncluded": [
+      "US8548248B2",
+      "US10036650B2",
+      "US7441230B2",
+      "US20200379978A1"
+    ],
+    "singleReferenceDisclosed": false,
+    "multiReferenceMosaicDisclosed": true,
+    "disclosesCompleteK10": false,
+    "missingCouplingRelationship": "Partial mosaic combination of referenced technical sub-systems."
+  },
+  {
+    "comboId": "COMBO-09",
+    "referencesIncluded": [
+      "US8548248B2",
+      "US10036650B2",
+      "US10452652B2",
+      "US20200379978A1",
+      "CN117235153B"
+    ],
+    "singleReferenceDisclosed": false,
+    "multiReferenceMosaicDisclosed": true,
+    "disclosesCompleteK10": false,
+    "missingCouplingRelationship": "Partial mosaic combination of referenced technical sub-systems."
+  },
+  {
+    "comboId": "COMBO-10",
+    "referencesIncluded": [
+      "US8548248B2",
+      "US10036650B2",
+      "US10452652B2",
+      "US7441230B2",
+      "US20200379978A1",
+      "CN117235153B"
+    ],
+    "singleReferenceDisclosed": false,
+    "multiReferenceMosaicDisclosed": true,
+    "disclosesCompleteK10": false,
+    "missingCouplingRelationship": "Integrated remote-sensing satellite observation mutation across multi-event spatial-administrative-risk crosswalk DAGs with cross-event isolation, dynamic topology redirection, and historical state versioning."
+  }
+]

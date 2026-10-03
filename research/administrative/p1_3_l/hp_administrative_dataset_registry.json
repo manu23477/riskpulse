@@ -1,0 +1,186 @@
+{
+  "registryVersion": "1.0.0",
+  "stateCode": "HP",
+  "stateName": "Himachal Pradesh",
+  "lastUpdated": "2026-10-01T00:00:00Z",
+  "datasets": [
+    {
+      "sourceId": "src-soi-hp-state-2024",
+      "sourceName": "Survey of India State Boundary Portal",
+      "authority": "Survey of India",
+      "datasetName": "Himachal Pradesh State Boundary",
+      "administrativeLevel": "STATE",
+      "datasetVersion": "2024.1",
+      "acquisitionDate": "2026-09-27T00:00:00Z",
+      "publicationDate": "2024-01-15T00:00:00Z",
+      "effectiveDate": "2024-01-01T00:00:00Z",
+      "sourceUri": "https://maps.surveyofindia.gov.in/hp_state.geojson",
+      "originalFormat": "GeoJSON",
+      "declaredCrs": "EPSG:4326",
+      "featureCount": 1,
+      "sourceIdField": "state_code",
+      "parentIdField": "country_code",
+      "nameField": "name",
+      "geometryType": "Polygon",
+      "geographicCoverage": "Himachal Pradesh, India",
+      "license": "Open Government Data License India (OGDL)",
+      "checksum": "300b_hp_state_polygon_hash",
+      "provenance": {
+        "assetPath": "lib/data/assets/boundaries/regions/hp.geojson",
+        "publisher": "Survey of India"
+      },
+      "forensicStatus": "ACCEPT",
+      "warnings": []
+    },
+    {
+      "sourceId": "src-soi-hp-districts-2024",
+      "sourceName": "Survey of India / SimplyGIS District Distribution",
+      "authority": "Survey of India / LGD",
+      "datasetName": "Himachal Pradesh Official District Boundaries",
+      "administrativeLevel": "DISTRICT",
+      "datasetVersion": "2024.1",
+      "acquisitionDate": "2026-09-27T00:00:00Z",
+      "publicationDate": "2024-01-01T00:00:00Z",
+      "effectiveDate": "2024-01-01T00:00:00Z",
+      "sourceUri": "https://hpsdma.hp.gov.in/gis/boundaries/hp_districts.geojson",
+      "originalFormat": "GeoJSON FeatureCollection",
+      "declaredCrs": "urn:ogc:def:crs:OGC:1.3:CRS84",
+      "featureCount": 12,
+      "sourceIdField": "internalId",
+      "parentIdField": "state_code",
+      "nameField": "name",
+      "geometryType": "Polygon/MultiPolygon",
+      "geographicCoverage": "12 Districts of Himachal Pradesh",
+      "license": "Open Government Data / SimplyGIS Terms",
+      "checksum": "e7785f567660afad4c0dd33111282698db106501571b2bb679005a7cfd0133e1",
+      "provenance": {
+        "assetPath": "lib/data/assets/boundaries/hp_districts.geojson",
+        "publisher": "Survey of India / SimplyGIS"
+      },
+      "forensicStatus": "ACCEPT",
+      "warnings": []
+    },
+    {
+      "sourceId": "src-soi-lgd-hp-tehsils-2024",
+      "sourceName": "Survey of India / LGD Sub-District Database",
+      "authority": "Survey of India / HP Department of Revenue",
+      "datasetName": "Himachal Pradesh Tehsils & Sub-Tehsils Boundary Layer",
+      "administrativeLevel": "TEHSIL",
+      "datasetVersion": "2024.2",
+      "acquisitionDate": null,
+      "publicationDate": "2024-06-01T00:00:00Z",
+      "effectiveDate": "2024-06-01T00:00:00Z",
+      "sourceUri": "https://lgdirectory.gov.in/hp/subdistricts.zip",
+      "originalFormat": "ESRI Shapefile (SHP / Zip)",
+      "declaredCrs": "EPSG:4326",
+      "featureCount": 172,
+      "sourceIdField": "subdistrict_code",
+      "parentIdField": "district_code",
+      "nameField": "subdistrict_name",
+      "geometryType": "MultiPolygon",
+      "geographicCoverage": "172 Tehsils and Sub-Tehsils of Himachal Pradesh",
+      "license": "Open Government Data License India",
+      "checksum": null,
+      "provenance": {
+        "expectedPath": "lib/data/assets/boundaries/hp_tehsils.geojson",
+        "tehsilCount": 118,
+        "subTehsilCount": 54
+      },
+      "forensicStatus": "ACCEPT_WITH_WARNING",
+      "warnings": [
+        "STATUS = DATASET REQUIRED. Physical GeoJSON file pending ingestion.",
+        "Official count discrepancy: LGD records 172 sub-districts (118 Tehsils + 54 Sub-Tehsils), while older SoI maps encode 118 Tehsils."
+      ]
+    },
+    {
+      "sourceId": "src-rgi-hp-villages-2011",
+      "sourceName": "Registrar General of India / Census 2011 Village MDDS",
+      "authority": "Registrar General and Census Commissioner of India",
+      "datasetName": "Himachal Pradesh Census Revenue Village Directory",
+      "administrativeLevel": "LOCAL_UNIT",
+      "datasetVersion": "Census 2011 MDDS",
+      "acquisitionDate": null,
+      "publicationDate": "2011-10-01T00:00:00Z",
+      "effectiveDate": "2011-03-01T00:00:00Z",
+      "sourceUri": "https://censusindia.gov.in/mdds/hp_villages.zip",
+      "originalFormat": "ESRI Shapefile / CSV Directory",
+      "declaredCrs": "EPSG:4326",
+      "featureCount": 20690,
+      "sourceIdField": "census_2011_mdds_code",
+      "parentIdField": "subdistrict_code",
+      "nameField": "village_name",
+      "geometryType": "Polygon/Point",
+      "geographicCoverage": "20,690 Revenue Villages in Himachal Pradesh",
+      "license": "Census of India Data Terms",
+      "checksum": null,
+      "provenance": {
+        "expectedPath": "lib/data/assets/boundaries/hp_villages.geojson"
+      },
+      "forensicStatus": "CROSSWALK_ONLY",
+      "warnings": [
+        "STATUS = DATASET REQUIRED. Physical GeoJSON file pending ingestion.",
+        "High frequency of duplicate village names across different tehsils requires FNV-1a deterministic hashing with parent Tehsil scoping."
+      ]
+    },
+    {
+      "sourceId": "src-hp-rd-blocks-2024",
+      "sourceName": "Department of Rural Development Himachal Pradesh",
+      "authority": "Department of Rural Development & Panchayati Raj, HP",
+      "datasetName": "Himachal Pradesh Development Blocks Layer",
+      "administrativeLevel": "BLOCK",
+      "datasetVersion": "2024.1",
+      "acquisitionDate": null,
+      "publicationDate": "2024-03-01T00:00:00Z",
+      "effectiveDate": "2024-03-01T00:00:00Z",
+      "sourceUri": "https://hprevenue.hp.gov.in/rd/blocks",
+      "originalFormat": "GeoJSON / SHP",
+      "declaredCrs": "EPSG:4326",
+      "featureCount": 88,
+      "sourceIdField": "block_code",
+      "parentIdField": "district_code",
+      "nameField": "block_name",
+      "geometryType": "Polygon",
+      "geographicCoverage": "88 Development Blocks in Himachal Pradesh",
+      "license": "Government of Himachal Pradesh Terms",
+      "checksum": null,
+      "provenance": {
+        "hierarchyType": "development"
+      },
+      "forensicStatus": "CROSSWALK_ONLY",
+      "warnings": [
+        "STATUS = DATASET REQUIRED. Spatial boundary shapefile un-ingested.",
+        "CRITICAL HIERARCHY RULE: Development Blocks (88) belong to parallel Rural Development hierarchy and MUST NOT be forced as children of Tehsils (172)."
+      ]
+    },
+    {
+      "sourceId": "src-hp-pr-panchayats-2024",
+      "sourceName": "Department of Panchayati Raj Himachal Pradesh",
+      "authority": "Panchayati Raj Department, HP",
+      "datasetName": "Himachal Pradesh Gram Panchayats Layer",
+      "administrativeLevel": "LOCAL_UNIT",
+      "datasetVersion": "2024.1",
+      "acquisitionDate": null,
+      "publicationDate": "2024-01-01T00:00:00Z",
+      "effectiveDate": "2024-01-01T00:00:00Z",
+      "sourceUri": "https://hppanchayat.nic.in/gp_boundaries",
+      "originalFormat": "Shapefile / GeoJSON",
+      "declaredCrs": "EPSG:4326",
+      "featureCount": 3615,
+      "sourceIdField": "gp_code",
+      "parentIdField": "block_code",
+      "nameField": "gp_name",
+      "geometryType": "Polygon/Point",
+      "geographicCoverage": "3,615 Gram Panchayats in Himachal Pradesh",
+      "license": "Government of Himachal Pradesh Terms",
+      "checksum": null,
+      "provenance": {
+        "hierarchyType": "development"
+      },
+      "forensicStatus": "CROSSWALK_ONLY",
+      "warnings": [
+        "STATUS = DATASET REQUIRED. Spatial boundary shapefile un-ingested.",
+        "Gram Panchayats belong to Development Hierarchy (District -> Block -> Gram Panchayat)."
+      ]
+    }
+  ]
+}

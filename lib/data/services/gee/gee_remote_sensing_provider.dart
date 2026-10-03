@@ -81,7 +81,13 @@ class GeeRemoteSensingProvider implements RemoteSensingProvider {
     }
 
     // 3. Validate authentication.
-    if (accessToken == null || accessToken.trim().isEmpty) {
+    var rawToken = accessToken?.trim() ?? '';
+    if (rawToken.toLowerCase().startsWith('bearer ')) {
+      rawToken = rawToken.substring(7).trim();
+    }
+    final cleanToken = rawToken;
+
+    if (cleanToken.isEmpty) {
       return DataProviderResult.failure(
         const DataProviderError(
           type: DataProviderErrorType.unauthorized,
@@ -160,10 +166,12 @@ class GeeRemoteSensingProvider implements RemoteSensingProvider {
         final bytes = await _client.computeImagePixels(
           expression: expression,
           extent: query.extent,
+          width: grid.width,
+          height: grid.height,
           cellWidthDeg: grid.cellWidthDeg,
           cellHeightDeg: grid.cellHeightDeg,
           bandIds: [definition.bandId],
-          accessToken: accessToken,
+          accessToken: cleanToken,
         );
 
         final raster = _reader.decode(bytes);

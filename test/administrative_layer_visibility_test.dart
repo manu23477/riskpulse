@@ -128,11 +128,17 @@ void main() {
       final adminService = AdministrativeBoundaryService();
       final hpUnits = await adminService.loadDistrictBoundaries(stateCode: 'HP');
 
-      expect(hpUnits, isNotEmpty);
+      expect(hpUnits.length, equals(12));
       expect(hpUnits.first.level, equals(AdministrativeLevel.district));
       expect(hpUnits.first.sourceName, equals('LGD / Survey of India'));
       expect(hpUnits.first.geometry, isNotNull);
-      expect(hpUnits.map((u) => u.name), contains('Mandi'));
+      final names = hpUnits.map((u) => u.name).toSet();
+      expect(hpUnits.length, equals(12));
+      expect(names, contains('Chamba'));
+      expect(names, contains('Kangra'));
+      expect(names, contains('Mandi'));
+      expect(names, contains('Shimla'));
+      expect(names.any((n) => n.contains('Spiti')), isTrue);
     });
 
     testWidgets('2. 8-State Visibility Matrix Tests (Admin ON/OFF x Watershed ON/OFF x Drainage ON/OFF)', (WidgetTester tester) async {

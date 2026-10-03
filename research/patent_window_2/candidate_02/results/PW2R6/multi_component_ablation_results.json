@@ -1,0 +1,75 @@
+[
+  {
+    "ablationId": "AB-01",
+    "removedComponents": [
+      "C03",
+      "C04"
+    ],
+    "failureOccurred": true,
+    "failureType": "crosswalk_and_risk_loss",
+    "isFullRebuildEquivalent": false
+  },
+  {
+    "ablationId": "AB-02",
+    "removedComponents": [
+      "C05",
+      "C06"
+    ],
+    "failureOccurred": true,
+    "failureType": "false_prop_and_history_loss",
+    "isFullRebuildEquivalent": false
+  },
+  {
+    "ablationId": "AB-03",
+    "removedComponents": [
+      "C07",
+      "C02"
+    ],
+    "failureOccurred": true,
+    "failureType": "missed_spatial_closure",
+    "isFullRebuildEquivalent": false
+  },
+  {
+    "ablationId": "AB-04",
+    "removedComponents": [
+      "C08",
+      "C09"
+    ],
+    "failureOccurred": true,
+    "failureType": "shared_dependency_collapse",
+    "isFullRebuildEquivalent": false
+  },
+  {
+    "ablationId": "AB-05",
+    "removedComponents": [
+      "C03",
+      "C04",
+      "C05"
+    ],
+    "failureOccurred": true,
+    "failureType": "total_downstream_isolation_loss",
+    "isFullRebuildEquivalent": false
+  },
+  {
+    "ablationId": "AB-06",
+    "removedComponents": [
+      "C05",
+      "C06",
+      "C07"
+    ],
+    "failureOccurred": true,
+    "failureType": "uncontrolled_propagation_and_history_loss",
+    "isFullRebuildEquivalent": false
+  },
+  {
+    "ablationId": "AB-07",
+    "removedComponents": [
+      "C01",
+      "C06",
+      "C07"
+    ],
+    "failureOccurred": true,
+    "failureType": "generic_component_ablation_failure",
+    "isFullRebuildEquivalent": false
+  }
+]

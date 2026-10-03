@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "VisibleEvidenceObject",
+  "description": "Schema for visible OSINT evidence objects in PW1C1-DATA-v1.0. Strictly excludes ground truth fields.",
+  "type": "object",
+  "required": [
+    "evidenceId",
+    "caseId",
+    "sourceId",
+    "sourceType",
+    "sourceLineageId",
+    "publicationTimestamp",
+    "acquisitionTimestamp",
+    "rawText",
+    "mediaType",
+    "mediaReference",
+    "statedLocation",
+    "statedTime",
+    "extractedHazardHint",
+    "sourceReliabilityInput",
+    "arrivalSequence"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "evidenceId": {
+      "type": "string",
+      "pattern": "^EVID-[0-9]{4}$"
+    },
+    "caseId": {
+      "type": "string",
+      "pattern": "^CASE-[0-9]{2}$"
+    },
+    "sourceId": {
+      "type": "string"
+    },
+    "sourceType": {
+      "type": "string",
+      "enum": [
+        "social_post",
+        "news_outlet",
+        "official_bulletin",
+        "weather_station",
+        "field_reporter",
+        "remote_sensor",
+        "community_report"
+      ]
+    },
+    "sourceLineageId": {
+      "type": "string"
+    },
+    "publicationTimestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "acquisitionTimestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "rawText": {
+      "type": "string"
+    },
+    "mediaType": {
+      "type": "string",
+      "enum": [
+        "text",
+        "image",
+        "document",
+        "sensor_telemetry",
+        "video"
+      ]
+    },
+    "mediaReference": {
+      "type": "string"
+    },
+    "statedLocation": {
+      "type": "string"
+    },
+    "statedTime": {
+      "type": "string"
+    },
+    "extractedHazardHint": {
+      "type": "string"
+    },
+    "sourceReliabilityInput": {
+      "type": "number",
+      "minimum": 0.0,
+      "maximum": 1.0
+    },
+    "arrivalSequence": {
+      "type": "integer",
+      "minimum": 1
+    }
+  }
+}

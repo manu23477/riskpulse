@@ -1,0 +1,72 @@
+[
+  {
+    "ablationId": "ABL-01",
+    "removedComponent": "shared_administrative_state",
+    "failureOccurred": true,
+    "failureType": "crosswalk_aggregation_failure",
+    "technicalConsequence": "System correctness violated when shared_administrative_state was removed"
+  },
+  {
+    "ablationId": "ABL-02",
+    "removedComponent": "shared_risk_state",
+    "failureOccurred": true,
+    "failureType": "risk_aggregation_failure",
+    "technicalConsequence": "System correctness violated when shared_risk_state was removed"
+  },
+  {
+    "ablationId": "ABL-03",
+    "removedComponent": "cross_event_isolation",
+    "failureOccurred": true,
+    "failureType": "false_cross_event_propagation",
+    "technicalConsequence": "System correctness violated when cross_event_isolation was removed"
+  },
+  {
+    "ablationId": "ABL-04",
+    "removedComponent": "contradiction_retention",
+    "failureOccurred": true,
+    "failureType": "contradiction_loss",
+    "technicalConsequence": "System correctness violated when contradiction_retention was removed"
+  },
+  {
+    "ablationId": "ABL-05",
+    "removedComponent": "historical_state",
+    "failureOccurred": true,
+    "failureType": "historical_reconstruction_failure",
+    "technicalConsequence": "System correctness violated when historical_state was removed"
+  },
+  {
+    "ablationId": "ABL-06",
+    "removedComponent": "late_arrival_distinction",
+    "failureOccurred": true,
+    "failureType": "out_of_order_stream_corruption",
+    "technicalConsequence": "System correctness violated when late_arrival_distinction was removed"
+  },
+  {
+    "ablationId": "ABL-07",
+    "removedComponent": "topology_mutation",
+    "failureOccurred": true,
+    "failureType": "edge_changing_mutation_failure",
+    "technicalConsequence": "System correctness violated when topology_mutation was removed"
+  },
+  {
+    "ablationId": "ABL-08",
+    "removedComponent": "selective_recomputation",
+    "failureOccurred": false,
+    "failureType": "none_full_rebuild_fallback",
+    "technicalConsequence": "Performance degraded without correctness violation"
+  },
+  {
+    "ablationId": "ABL-09",
+    "removedComponent": "provenance",
+    "failureOccurred": false,
+    "failureType": "none_payload_untracked",
+    "technicalConsequence": "Performance degraded without correctness violation"
+  },
+  {
+    "ablationId": "ABL-10",
+    "removedComponent": "temporal_reconstruction",
+    "failureOccurred": false,
+    "failureType": "none_static_time_fallback",
+    "technicalConsequence": "Performance degraded without correctness violation"
+  }
+]

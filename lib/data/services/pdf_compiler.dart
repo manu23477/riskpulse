@@ -1,5 +1,6 @@
 import 'dart:io' as io;
 import 'dart:convert' as convert;
+import 'package:archive/archive.dart' as archive;
 import 'package:flutter/foundation.dart';
 
 /// Pure Dart PDF 1.4 Compiler that generates structurally valid binary PDF documents
@@ -193,7 +194,7 @@ class PdfCompiler {
 
     // Object 5 (Optional): Image XObject
     if (hasImage && imageObjId != null) {
-      final compressedBytes = io.zlib.encode(mapRgbBytes);
+      final compressedBytes = const archive.ZLibEncoder().encode(mapRgbBytes);
       final imageHeader = '<< /Type /XObject /Subtype /Image '
           '/Width $mapImageWidth /Height $mapImageHeight '
           '/ColorSpace /DeviceRGB /BitsPerComponent 8 '

@@ -1,0 +1,15 @@
+{
+  "experimentId": "PW2R5",
+  "candidateId": "CANDIDATE_02",
+  "experimentName": "GEOSPATIAL-MUTATION-AND-DEPENDENCY-CLOSURE-EXPERIMENT",
+  "gitHead": "d6552707e0a693b04f40a2ade6a4efc5fdf9ae0a",
+  "randomSeed": 20260930,
+  "executionTimestamp": "2026-09-30T16:10:00Z",
+  "finalClassification": "GREEN",
+  "selectiveEvaluationReduction": 99.52,
+  "resultHashes": {
+    "scenarios": "73628bbec84db61608b03e9957f4d8b5f9dcdd9efe6494dd96ec111150a4739f",
+    "scale": "b36eca21e2d2d62d9a130ad683b555b4ce266a0b2be4a1aab34bfc96eb5cffc3",
+    "metrics": "13e668b67e32cb106474a2cd5927bf3b02c8e778a68b16f5753649a2ef61a014"
+  }
+}

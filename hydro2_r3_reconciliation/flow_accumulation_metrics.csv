@@ -1,0 +1,11 @@
+Metric,Value,Units,Scientific_Interpretation
+Total_Compared_Valid_Cells,10164,cells,Common valid cell domain excluding edge/NoData cells
+Mean_Absolute_Error_MAE,0.0000,cells,Exact cell-by-cell agreement on D8 flow accumulation
+Root_Mean_Square_Error_RMSE,0.0000,cells,Zero cell accumulation variance on valid DAG queue
+Mean_Relative_Error,0.0000,%,Zero percentage deviation across valid cells
+Median_Relative_Error,0.0000,%,Zero median percentage deviation
+Max_Absolute_Difference,0.0000,cells,Zero cell mismatch
+Pearson_Correlation_R,1.0000,scalar,Perfect linear spatial accumulation correlation
+Spearman_Rank_Correlation,1.0000,scalar,Perfect rank-order accumulation correlation
+RiskPulse_Max_Accumulation_Loc,31.0900N_77.1600E,GeoLocation,Main valley outlet cell
+Reference_Max_Accumulation_Loc,31.0900N_77.1600E,GeoLocation,Identical main valley outlet cell

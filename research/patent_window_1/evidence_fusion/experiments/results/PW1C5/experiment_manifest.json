@@ -1,0 +1,25 @@
+{
+  "experimentId": "PW1C5",
+  "experimentName": "HIGH-FREQUENCY-CONTINUOUS-STREAM-AND-TARGETED-PRIOR-ART-SEARCH",
+  "datasetVersion": "PW1C1-DATA-v1.0",
+  "groundTruthVersion": "PW1C1-GT-v1.0",
+  "randomSeed": 20260929,
+  "executionTimestamp": "2026-09-30T13:30:00Z",
+  "testedFrequencies": [
+    1,
+    10,
+    50,
+    100,
+    250,
+    500,
+    1000
+  ],
+  "maxTestedRate": 1000,
+  "selectiveEvaluationReduction": 90.86,
+  "resultHashes": {
+    "throughput": "b57fe1803a88ccf789541fa754e521a32a68453ce887132d3e0034c25489da15",
+    "latency": "a020a8fb12035407b0479851835e9956fded811874e5d81b111c62189b4608a8",
+    "sharedDependency": "2ee2a6924a35244aa8c7bdf7a3b08b5ecd364303982075c99fab0f35a037b367",
+    "lateEvidence": "db383eb141bb04e67241437eb668a51b36b2ea69fa1a6f0336844a90f24dde49"
+  }
+}

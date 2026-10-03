@@ -1,0 +1,14 @@
+[
+  {
+    "uncertaintyId": "UNCERT-01",
+    "topic": "Specialized Emergency GIS Patent Classification Search",
+    "description": "The search covered general software patent databases (USPTO, EPO, CNIPA) for dependency invalidation and provenance. Additional searching in specialized emergency management patent subclasses (e.g. G08B, G06Q50/26) is recommended.",
+    "impactOnConclusion": "Does not alter factual findings that core dependency graph invalidation is broadly disclosed."
+  },
+  {
+    "uncertaintyId": "UNCERT-02",
+    "topic": "Domain-Specific Spatial Administrative Crosswalk Edge Cases",
+    "description": "Whether the specific coupling of spatial administrative crosswalk nodes within a dynamic DAG constitutes an obvious application of general DAG recomputation requires further specialized prior-art investigation.",
+    "impactOnConclusion": "Remains classified as an unresolved technical relationship."
+  }
+]

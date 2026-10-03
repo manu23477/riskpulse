@@ -183,7 +183,9 @@ class HydrologicalAnalysisService {
         continue;
       }
       final int nextIdx = _getDownstreamIndex(i, flowDir.values[i].toInt(), width, height);
-      if (nextIdx != -1 && nextIdx != i) inDegree[nextIdx]++;
+      if (nextIdx != -1 && nextIdx != i && !flowDir.isNoData(flowDir.values[nextIdx])) {
+        inDegree[nextIdx]++;
+      }
     }
 
     final Queue<int> queue = Queue<int>();
@@ -194,7 +196,7 @@ class HydrologicalAnalysisService {
     while (queue.isNotEmpty) {
       final int currIdx = queue.removeFirst();
       final int nextIdx = _getDownstreamIndex(currIdx, flowDir.values[currIdx].toInt(), width, height);
-      if (nextIdx != -1 && nextIdx != currIdx) {
+      if (nextIdx != -1 && nextIdx != currIdx && !flowDir.isNoData(flowDir.values[nextIdx])) {
         accumulation[nextIdx] += accumulation[currIdx];
         inDegree[nextIdx]--;
         if (inDegree[nextIdx] == 0) queue.add(nextIdx);

@@ -1,0 +1,37 @@
+[
+  {
+    "targetRatePerSec": 1,
+    "maxBacklogDepth": 0,
+    "status": "GREEN_CONVERGENT"
+  },
+  {
+    "targetRatePerSec": 10,
+    "maxBacklogDepth": 0,
+    "status": "GREEN_CONVERGENT"
+  },
+  {
+    "targetRatePerSec": 50,
+    "maxBacklogDepth": 0,
+    "status": "GREEN_CONVERGENT"
+  },
+  {
+    "targetRatePerSec": 100,
+    "maxBacklogDepth": 0,
+    "status": "GREEN_CONVERGENT"
+  },
+  {
+    "targetRatePerSec": 250,
+    "maxBacklogDepth": 0,
+    "status": "GREEN_CONVERGENT"
+  },
+  {
+    "targetRatePerSec": 500,
+    "maxBacklogDepth": 0,
+    "status": "GREEN_CONVERGENT"
+  },
+  {
+    "targetRatePerSec": 1000,
+    "maxBacklogDepth": 0,
+    "status": "GREEN_CONVERGENT"
+  }
+]

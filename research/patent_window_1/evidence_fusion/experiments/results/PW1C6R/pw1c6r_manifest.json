@@ -1,0 +1,10 @@
+{
+  "auditId": "PW1C6R",
+  "auditName": "TARGETED-COLLISION-AUDIT-OF-MINIMAL-C07-C08-BOUNDARIES",
+  "c07Status": "PARTIAL MULTI-REFERENCE COVERAGE ONLY",
+  "c08Status": "PARTIAL MULTI-REFERENCE COVERAGE ONLY",
+  "completeRelationshipLocated": false,
+  "executionTimestamp": "2026-09-30T14:45:00Z",
+  "auditedBaseline": "PW1C-6 Exact Technical Boundary Decomposition",
+  "datasetVersion": "PW1C1-DATA-v1.0"
+}

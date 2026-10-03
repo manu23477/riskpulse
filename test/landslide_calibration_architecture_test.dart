@@ -1,6 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:riskpulse/domain/location/geo_location.dart';
-import 'package:riskpulse/domain/hazard/hazard.dart';
 import 'package:riskpulse/domain/forecasting/landslide_threshold_profile.dart';
 import 'package:riskpulse/domain/forecasting/landslide_calibration_contracts.dart';
 import 'package:riskpulse/data/services/forecasting/landslide_rainfall_threshold_model.dart';
@@ -36,22 +35,22 @@ void main() {
       final dataset = LandslideCalibrationDataset(
         datasetId: 'ds-hp-test-01',
         datasetName: 'Himachal Calibration Test Dataset',
-        landslideEvents: const [
+        landslideEvents: [
           LandslideEventRecord(
             eventId: 'ls-01',
             eventDate: DateTime.utc(2025, 7, 10),
-            location: GeoLocation(latitude: 31.7, longitude: 76.9),
+            location: const GeoLocation(latitude: 31.7, longitude: 76.9),
             district: 'Mandi',
             state: 'Himachal Pradesh',
             source: 'HP SDMA',
             isSynthetic: true,
           ),
         ],
-        rainfallRecords: const [
+        rainfallRecords: [
           RainfallStationRecord(
             stationId: 'st-01',
             stationName: 'Mandi IMD',
-            location: GeoLocation(latitude: 31.71, longitude: 76.91),
+            location: const GeoLocation(latitude: 31.71, longitude: 76.91),
             observationTime: DateTime.utc(2025, 7, 10),
             rainfallAmountMm: 120.0,
             accumulationPeriodHours: 24.0,
@@ -72,22 +71,22 @@ void main() {
       final dataset = LandslideCalibrationDataset(
         datasetId: 'ds-assoc-test',
         datasetName: 'Spatial Match Test',
-        landslideEvents: const [
+        landslideEvents: [
           LandslideEventRecord(
             eventId: 'ls-kotropi-01',
             eventDate: DateTime.utc(2017, 8, 13),
-            location: GeoLocation(latitude: 31.85, longitude: 76.95),
+            location: const GeoLocation(latitude: 31.85, longitude: 76.95),
             district: 'Mandi',
             state: 'Himachal Pradesh',
             source: 'Historical Archive',
             isSynthetic: true,
           ),
         ],
-        rainfallRecords: const [
+        rainfallRecords: [
           RainfallStationRecord(
             stationId: 'st-mandi-01',
             stationName: 'Mandi Gauge',
-            location: GeoLocation(latitude: 31.86, longitude: 76.96), // ~1.4 km away
+            location: const GeoLocation(latitude: 31.86, longitude: 76.96), // ~1.4 km away
             observationTime: DateTime.utc(2017, 8, 13),
             rainfallAmountMm: 150.0,
             accumulationPeriodHours: 12.0, // 12.5 mm/h intensity
@@ -132,8 +131,8 @@ void main() {
             stationName: 'Station $i',
             location: GeoLocation(latitude: 31.0 + (i * 0.01), longitude: 77.0 + (i * 0.01)),
             observationTime: DateTime.utc(2025, 7, 1 + i),
-            rainfallAmountMm: 50.0 + (i * 10),
-            accumulationPeriodHours: 6.0 + i,
+            rainfallAmountMm: 100.0, // Constant rainfall -> intensity I = 100/D decreases with duration D
+            accumulationPeriodHours: 2.0 + (i * 2.0),
             isSynthetic: true,
           ),
         ),

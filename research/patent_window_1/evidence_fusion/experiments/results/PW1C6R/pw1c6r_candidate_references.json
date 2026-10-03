@@ -1,0 +1,58 @@
+[
+  {
+    "referenceId": "REF-01",
+    "publicationNumber": "US7441230B2",
+    "title": "Method of utilizing product proxies with a dependency graph",
+    "assignee": "Microsoft Corp",
+    "domain": "Compiler / Build Dependency Graphs",
+    "classification": "C (Partial Disclosure Only)"
+  },
+  {
+    "referenceId": "REF-04",
+    "publicationNumber": "US20200379978A1",
+    "title": "System and method of processing late arriving and out of order data",
+    "assignee": "Google LLC",
+    "domain": "Stream Processing & Bitemporal Ingestion",
+    "classification": "C (Partial Disclosure Only)"
+  },
+  {
+    "referenceId": "REF-08",
+    "publicationNumber": "CN117235153B",
+    "title": "ProV-DM model-based compliance data evidence-storing and tracing",
+    "assignee": "Zhejiang Univ",
+    "domain": "Provenance & Compliance Tracing Graphs",
+    "classification": "C (Partial Disclosure Only)"
+  },
+  {
+    "referenceId": "REF-09",
+    "publicationNumber": "US10452652B2",
+    "title": "Geospatial event extraction and correlation graph",
+    "assignee": "BAE Systems",
+    "domain": "Geospatial Event Extraction",
+    "classification": "C (Partial Disclosure Only)"
+  },
+  {
+    "referenceId": "REF-10",
+    "publicationNumber": "US9870396B2",
+    "title": "Multi-source evidence fusion and contradiction resolution",
+    "assignee": "Raytheon Co",
+    "domain": "Evidence Fusion & Contradiction Resolution",
+    "classification": "C (Partial Disclosure Only)"
+  },
+  {
+    "referenceId": "REF-C07-01",
+    "publicationNumber": "US10891340B2",
+    "title": "System and method for creating dependency graphs for build systems",
+    "assignee": "International Business Machines Corp",
+    "domain": "Build Automation DAG Invalidation",
+    "classification": "C (Partial Disclosure Only)"
+  },
+  {
+    "referenceId": "REF-C08-01",
+    "publicationNumber": "US11200215B2",
+    "title": "Incremental dependency resolution in database query execution",
+    "assignee": "Microsoft Corp",
+    "domain": "Database Query Dependency Graphs",
+    "classification": "C (Partial Disclosure Only)"
+  }
+]

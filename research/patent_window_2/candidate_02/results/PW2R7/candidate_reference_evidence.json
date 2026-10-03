@@ -1,0 +1,14 @@
+[
+  {
+    "ref": "US8548248B2",
+    "evidence": "Discloses satellite imagery classification and raster cell state changes."
+  },
+  {
+    "ref": "US10036650B2",
+    "evidence": "Discloses spatial dependency graph traversal in hazard mapping."
+  },
+  {
+    "ref": "US10452652B2",
+    "evidence": "Discloses geospatial event correlation graphs linking spatial entities to admin boundaries."
+  }
+]

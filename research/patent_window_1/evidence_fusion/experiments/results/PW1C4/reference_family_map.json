@@ -1,0 +1,82 @@
+[
+  {
+    "familyId": "FAM-US7441230",
+    "representativePublication": "US7441230B2",
+    "priorityDate": "2003-09-30",
+    "assignee": "Microsoft Corp",
+    "technicalDomain": "Dependency Graph Invalidation & Recomputation",
+    "members": ["US7441230B2", "US20050071802A1"]
+  },
+  {
+    "familyId": "FAM-EP3622411",
+    "representativePublication": "EP3622411B1",
+    "priorityDate": "2018-09-12",
+    "assignee": "SAP SE",
+    "technicalDomain": "Incremental Graph Computation",
+    "members": ["EP3622411B1", "US10860584B2"]
+  },
+  {
+    "familyId": "FAM-US10067788",
+    "representativePublication": "US10067788B2",
+    "priorityDate": "2015-06-29",
+    "assignee": "Amazon Technologies Inc",
+    "technicalDomain": "Automated Downstream Invalidation",
+    "members": ["US10067788B2", "US20160378496A1"]
+  },
+  {
+    "familyId": "FAM-US20200379978",
+    "representativePublication": "US20200379978A1",
+    "priorityDate": "2019-05-31",
+    "assignee": "Google LLC",
+    "technicalDomain": "Late Arriving / Out-of-Order Stream Processing",
+    "members": ["US20200379978A1", "WO2020242861A1"]
+  },
+  {
+    "familyId": "FAM-US20210286481",
+    "representativePublication": "US20210286481A1",
+    "priorityDate": "2020-03-13",
+    "assignee": "Palantir Technologies Inc",
+    "technicalDomain": "Unified Document Surface Invalidation Graph",
+    "members": ["US20210286481A1"]
+  },
+  {
+    "familyId": "FAM-US10360209",
+    "representativePublication": "US10360209B2",
+    "priorityDate": "2016-04-18",
+    "assignee": "Oracle International Corp",
+    "technicalDomain": "Selective Dependency Invalidation",
+    "members": ["US10360209B2"]
+  },
+  {
+    "familyId": "FAM-US12182202",
+    "representativePublication": "US12182202B2",
+    "priorityDate": "2021-08-20",
+    "assignee": "International Business Machines Corp",
+    "technicalDomain": "Selective Call Graph Recomputation",
+    "members": ["US12182202B2"]
+  },
+  {
+    "familyId": "FAM-CN117235153",
+    "representativePublication": "CN117235153B",
+    "priorityDate": "2023-11-08",
+    "assignee": "Zhejiang Univ",
+    "technicalDomain": "Persistent Directed Provenance Graph & Versioning",
+    "members": ["CN117235153B"]
+  },
+  {
+    "familyId": "FAM-US10452652",
+    "representativePublication": "US10452652B2",
+    "priorityDate": "2016-11-15",
+    "assignee": "BAE Systems Information and Electronic Systems Integration Inc",
+    "technicalDomain": "Geospatial Event Extraction & Correlation Graph",
+    "members": ["US10452652B2"]
+  },
+  {
+    "familyId": "FAM-US9870396",
+    "representativePublication": "US9870396B2",
+    "priorityDate": "2014-05-12",
+    "assignee": "Raytheon Co",
+    "technicalDomain": "Multi-Source Evidence Fusion & Contradiction Handling",
+    "members": ["US9870396B2"]
+  }
+]

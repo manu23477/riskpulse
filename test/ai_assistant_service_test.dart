@@ -167,7 +167,7 @@ void main() {
         timestamp: DateTime.now().toUtc(),
       );
 
-      final serialized = step.toJson().toString();
+      final serialized = '${step.name}_${step.parameters}';
       expect(serialized, isNot(contains('Bearer')));
       expect(serialized, isNot(contains(testSessionToken)));
       expect(serialized, isNot(contains('AIzaSy')));

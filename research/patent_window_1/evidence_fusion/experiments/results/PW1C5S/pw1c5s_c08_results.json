@@ -1,0 +1,50 @@
+[
+  {
+    "caseId": "C08-01",
+    "eventTime": "09:55",
+    "arrivalTime": "09:56",
+    "bitemporalSeparationCorrect": true,
+    "historicalImmutabilityVerified": true,
+    "currentVersionUpdated": true
+  },
+  {
+    "caseId": "C08-02",
+    "eventTime": "09:55",
+    "arrivalTime": "10:20",
+    "bitemporalSeparationCorrect": true,
+    "historicalImmutabilityVerified": true,
+    "currentVersionUpdated": true
+  },
+  {
+    "caseId": "C08-03",
+    "eventTime": "09:55",
+    "arrivalTime": "11:00",
+    "bitemporalSeparationCorrect": true,
+    "historicalImmutabilityVerified": true,
+    "currentVersionUpdated": true
+  },
+  {
+    "caseId": "C08-04",
+    "eventTime": "09:55",
+    "arrivalTime": "12:30",
+    "bitemporalSeparationCorrect": true,
+    "historicalImmutabilityVerified": true,
+    "currentVersionUpdated": true
+  },
+  {
+    "caseId": "C08-05",
+    "eventTime": "08:30",
+    "arrivalTime": "15:00",
+    "bitemporalSeparationCorrect": true,
+    "historicalImmutabilityVerified": true,
+    "currentVersionUpdated": true
+  },
+  {
+    "caseId": "C08-06",
+    "eventTime": "2026-08-14T20:00:00Z",
+    "arrivalTime": "2026-08-15T08:00:00Z",
+    "bitemporalSeparationCorrect": true,
+    "historicalImmutabilityVerified": true,
+    "currentVersionUpdated": true
+  }
+]

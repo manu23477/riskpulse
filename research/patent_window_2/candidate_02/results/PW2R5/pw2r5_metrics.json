@@ -1,0 +1,18 @@
+{
+  "r01FullRebuildEquivalence": 1.0,
+  "r02DependencyClosurePrecision": 1.0,
+  "r03DependencyClosureRecall": 1.0,
+  "r04FalsePropagationCount": 0,
+  "r05MissedPropagationCount": 0,
+  "r06CrossRegionIsolation": 1.0,
+  "r07AdministrativeAttributionCorrectness": 1.0,
+  "r08RiskStateCorrectness": 1.0,
+  "r09HistoricalStateIntegrity": 1.0,
+  "r10ProvenancePreservation": 1.0,
+  "r11NodeEvaluationReduction": 99.52,
+  "r12ComputationReduction": 99.52,
+  "r13MutationOrderInvariance": 1.0,
+  "r14RepeatedMutationStability": 1.0,
+  "r15SharedAdministrationCorrectness": 1.0,
+  "r16SharedRiskCorrectness": 1.0
+}

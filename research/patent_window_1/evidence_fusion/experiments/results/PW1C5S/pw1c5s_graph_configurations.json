@@ -1,0 +1,38 @@
+[
+  {
+    "classId": "C07-G1",
+    "description": "2 events -> 1 shared administrative node -> 1 shared risk node"
+  },
+  {
+    "classId": "C07-G2",
+    "description": "3 events -> 1 shared administrative node -> 1 shared risk node"
+  },
+  {
+    "classId": "C07-G3",
+    "description": "3 events -> 2 shared administrative nodes -> 1 shared risk node"
+  },
+  {
+    "classId": "C07-G4",
+    "description": "1 event -> multiple administrative nodes -> multiple risk nodes"
+  },
+  {
+    "classId": "C07-G5",
+    "description": "2 events -> same two administrative nodes -> same risk node"
+  },
+  {
+    "classId": "C07-G6",
+    "description": "3 events -> overlapping administrative memberships -> overlapping risk aggregation"
+  },
+  {
+    "classId": "C07-G7",
+    "description": "Event enters and exits a shared administrative dependency"
+  },
+  {
+    "classId": "C07-G8",
+    "description": "Event changes from Administrative X to Administrative Y"
+  },
+  {
+    "classId": "C07-G9",
+    "description": "Event changes from Risk X contribution to Risk Y contribution"
+  }
+]

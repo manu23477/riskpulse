@@ -1,0 +1,153 @@
+[
+  {
+    "reconstructionId": "E01",
+    "title": "Remote sensing + dependency graph",
+    "requiredReferences": [
+      "US8548248B2",
+      "US10036650B2"
+    ],
+    "equalsK10Architecture": false,
+    "requiresSubstantialRedesign": true,
+    "missingRelationships": [
+      "R08",
+      "R10",
+      "R11",
+      "R22",
+      "R25",
+      "R30"
+    ]
+  },
+  {
+    "reconstructionId": "E02",
+    "title": "Remote sensing + administrative aggregation",
+    "requiredReferences": [
+      "US8548248B2",
+      "US10452652B2"
+    ],
+    "equalsK10Architecture": false,
+    "requiresSubstantialRedesign": true,
+    "missingRelationships": [
+      "R08",
+      "R10",
+      "R11",
+      "R22",
+      "R25",
+      "R30"
+    ]
+  },
+  {
+    "reconstructionId": "E03",
+    "title": "Remote sensing + dynamic risk propagation",
+    "requiredReferences": [
+      "US8548248B2",
+      "US10452652B2",
+      "US10891340B2"
+    ],
+    "equalsK10Architecture": false,
+    "requiresSubstantialRedesign": true,
+    "missingRelationships": [
+      "R08",
+      "R10",
+      "R11",
+      "R22",
+      "R25",
+      "R30"
+    ]
+  },
+  {
+    "reconstructionId": "E04",
+    "title": "Dependency graph + historical state",
+    "requiredReferences": [
+      "US10036650B2",
+      "CN117235153B"
+    ],
+    "equalsK10Architecture": false,
+    "requiresSubstantialRedesign": true,
+    "missingRelationships": [
+      "R08",
+      "R10",
+      "R11",
+      "R22",
+      "R25",
+      "R30"
+    ]
+  },
+  {
+    "reconstructionId": "E05",
+    "title": "Administrative/risk shared dependency + dynamic mutation",
+    "requiredReferences": [
+      "US10452652B2",
+      "US7441230B2"
+    ],
+    "equalsK10Architecture": false,
+    "requiresSubstantialRedesign": true,
+    "missingRelationships": [
+      "R08",
+      "R10",
+      "R11",
+      "R22",
+      "R25",
+      "R30"
+    ]
+  },
+  {
+    "reconstructionId": "E06",
+    "title": "Remote sensing + dependency graph + historical state",
+    "requiredReferences": [
+      "US8548248B2",
+      "US10036650B2",
+      "CN117235153B"
+    ],
+    "equalsK10Architecture": false,
+    "requiresSubstantialRedesign": true,
+    "missingRelationships": [
+      "R08",
+      "R10",
+      "R11",
+      "R22",
+      "R25",
+      "R30"
+    ]
+  },
+  {
+    "reconstructionId": "E07",
+    "title": "Remote sensing + administrative/risk graph + historical state",
+    "requiredReferences": [
+      "US8548248B2",
+      "US10452652B2",
+      "CN117235153B"
+    ],
+    "equalsK10Architecture": false,
+    "requiresSubstantialRedesign": true,
+    "missingRelationships": [
+      "R08",
+      "R10",
+      "R11",
+      "R22",
+      "R25",
+      "R30"
+    ]
+  },
+  {
+    "reconstructionId": "E08",
+    "title": "Full K10 reconstruction",
+    "requiredReferences": [
+      "US8548248B2",
+      "US10036650B2",
+      "US10452652B2",
+      "US7441230B2",
+      "US20200379978A1",
+      "CN117235153B"
+    ],
+    "equalsK10Architecture": false,
+    "requiresSubstantialRedesign": true,
+    "missingRelationships": [
+      "R08",
+      "R10",
+      "R11",
+      "R22",
+      "R25",
+      "R30"
+    ]
+  }
+]

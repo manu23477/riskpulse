@@ -1,0 +1,62 @@
+[
+  {
+    "featureId": "F37",
+    "description": "Continuous evidence-stream mutation handling",
+    "coverage": "YES"
+  },
+  {
+    "featureId": "F38",
+    "description": "High-frequency mutation processing",
+    "coverage": "YES"
+  },
+  {
+    "featureId": "F39",
+    "description": "Shared administrative aggregation under mutation",
+    "coverage": "PARTIAL"
+  },
+  {
+    "featureId": "F40",
+    "description": "Shared risk aggregation under mutation",
+    "coverage": "PARTIAL"
+  },
+  {
+    "featureId": "F41",
+    "description": "Cross-event selective propagation under shared downstream state",
+    "coverage": "PARTIAL"
+  },
+  {
+    "featureId": "F42",
+    "description": "Late evidence propagating through shared administrative state",
+    "coverage": "PARTIAL"
+  },
+  {
+    "featureId": "F43",
+    "description": "Late evidence propagating through shared risk state",
+    "coverage": "PARTIAL"
+  },
+  {
+    "featureId": "F44",
+    "description": "Contradictory evidence propagation through shared state",
+    "coverage": "YES"
+  },
+  {
+    "featureId": "F45",
+    "description": "Repeated mutation propagation through shared state",
+    "coverage": "YES"
+  },
+  {
+    "featureId": "F46",
+    "description": "Historical reconstruction after continuous mutation stream",
+    "coverage": "YES"
+  },
+  {
+    "featureId": "F47",
+    "description": "Cross-event isolation maintained under continuous mutation",
+    "coverage": "YES"
+  },
+  {
+    "featureId": "F48",
+    "description": "Selective recomputation under continuous stream load",
+    "coverage": "YES"
+  }
+]

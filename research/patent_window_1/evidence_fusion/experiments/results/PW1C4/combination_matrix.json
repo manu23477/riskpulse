@@ -1,0 +1,74 @@
+[
+  {
+    "combinationId": "C01",
+    "features": ["F07", "F09", "F10", "F11"],
+    "description": "Dependency graph + affected closure + selective invalidation + selective recomputation",
+    "singleReferenceCoverage": "YES (Disclosed completely in US7441230B2 REF-01 and US20210286481A1 REF-05)",
+    "partialReferences": ["US10067788B2 (REF-03)", "US12182202B2 (REF-07)"],
+    "unresolvedElements": [],
+    "notes": "Classic software dependency invalidation pattern; broadly disclosed."
+  },
+  {
+    "combinationId": "C02",
+    "features": ["F08", "F13", "F14"],
+    "description": "Evidence mutation event + versioned event state + historical state reconstruction",
+    "singleReferenceCoverage": "YES (Disclosed completely in CN117235153B REF-08)",
+    "partialReferences": ["US20200379978A1 (REF-04)"],
+    "unresolvedElements": [],
+    "notes": "Event-sourcing and persistent provenance graph architecture."
+  },
+  {
+    "combinationId": "C03",
+    "features": ["F15", "F16", "F17"],
+    "description": "Persistent contradiction + provenance + evidence lineage retention",
+    "singleReferenceCoverage": "PARTIAL (Disclosed across CN117235153B REF-08 and US9870396B2 REF-10)",
+    "partialReferences": ["CN117235153B", "US9870396B2"],
+    "unresolvedElements": [],
+    "notes": "Combination of multi-source evidence fusion with provenance tracing."
+  },
+  {
+    "combinationId": "C04",
+    "features": ["F18", "F19", "F13", "F14"],
+    "description": "Late evidence + event/arrival-time separation + versioned state + historical reconstruction",
+    "singleReferenceCoverage": "PARTIAL (Disclosed across US20200379978A1 REF-04 and CN117235153B REF-08)",
+    "partialReferences": ["US20200379978A1", "CN117235153B"],
+    "unresolvedElements": [],
+    "notes": "Integration of late data in versioned provenance graphs."
+  },
+  {
+    "combinationId": "C05",
+    "features": ["F20", "F21", "F22"],
+    "description": "Shared downstream administrative/risk state + selective propagation + unaffected branch preservation",
+    "singleReferenceCoverage": "PARTIAL (DAG selective invalidation disclosed in REF-01/REF-03; domain administrative/risk linkage is domain application)",
+    "partialReferences": ["US7441230B2", "US10067788B2"],
+    "unresolvedElements": ["Domain-specific administrative and risk state coupling under selective propagation"],
+    "notes": "Application of general DAG selective recomputation to shared spatial administrative risk nodes."
+  },
+  {
+    "combinationId": "C06",
+    "features": ["F08", "F09", "F11", "F13", "F16"],
+    "description": "Evidence mutation + dependency closure + selective recomputation + state history + provenance",
+    "singleReferenceCoverage": "PARTIAL (REF-01 + REF-08)",
+    "partialReferences": ["US7441230B2", "CN117235153B"],
+    "unresolvedElements": [],
+    "notes": "Combination of incremental dependency recomputation with persistent provenance graph."
+  },
+  {
+    "combinationId": "C07",
+    "features": ["F08", "F09", "F11", "F15", "F20", "F21", "F22"],
+    "description": "Mutation + selective dependency propagation + contradiction + shared administrative/risk state + cross-event isolation",
+    "singleReferenceCoverage": "NO (Not disclosed in a single reference)",
+    "partialReferences": ["US7441230B2 (REF-01)", "CN117235153B (REF-08)", "US9870396B2 (REF-10)"],
+    "unresolvedElements": ["Full multi-layer disaster intelligence pipeline coupling mutation, DAG closure, contradiction retention, and shared administrative risk crosswalks"],
+    "notes": "Requires further investigation regarding technical relationship."
+  },
+  {
+    "combinationId": "C08",
+    "features": ["F18", "F20", "F21", "F22", "F30", "F33"],
+    "description": "Late evidence + shared downstream spatial/administrative/risk state + historical state + temporal reconstruction",
+    "singleReferenceCoverage": "NO (Not disclosed in a single reference)",
+    "partialReferences": ["US20200379978A1 (REF-04)", "CN117235153B (REF-08)", "US7441230B2 (REF-01)"],
+    "unresolvedElements": ["Combination of late data stream integration with shared spatial administrative risk DAG versioning"],
+    "notes": "Requires further research regarding technical relationship."
+  }
+]

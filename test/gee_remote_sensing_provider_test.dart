@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:math' as math;
 import 'dart:typed_data';
 
 import 'package:flutter_test/flutter_test.dart';
@@ -27,21 +26,15 @@ void main() {
 
     RasterData makeRasterFromRequest(Map<String, dynamic> body) {
       final grid = body['grid']['affineTransform'] as Map<String, dynamic>;
+      final dims = body['grid']['dimensions'] as Map<String, dynamic>;
 
       final scaleX = (grid['scaleX'] as num).toDouble();
       final scaleY = (grid['scaleY'] as num).toDouble();
       final translateX = (grid['translateX'] as num).toDouble();
       final translateY = (grid['translateY'] as num).toDouble();
 
-      final region = body['region']['coordinates'][0] as List<dynamic>;
-
-      final west = (region[0][0] as num).toDouble();
-      final south = (region[0][1] as num).toDouble();
-      final east = (region[2][0] as num).toDouble();
-      final north = (region[2][1] as num).toDouble();
-
-      final width = math.max(1, ((east - west) / scaleX).ceil());
-      final height = math.max(1, ((north - south) / scaleY.abs()).ceil());
+      final width = (dims['width'] as num).toInt();
+      final height = (dims['height'] as num).toInt();
 
       final band = (body['bandIds'] as List<dynamic>).first as String;
 

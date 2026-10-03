@@ -1,0 +1,4070 @@
+[
+  {
+    "evidenceId": "EVID-0001",
+    "trueEventId": "EVT-CASE-01-A",
+    "trueLineageId": "L1",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0002",
+    "trueEventId": "EVT-CASE-01-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0003",
+    "trueEventId": "EVT-CASE-01-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0004",
+    "trueEventId": "EVT-CASE-01-A",
+    "trueLineageId": "L4",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0005",
+    "trueEventId": "EVT-CASE-01-A",
+    "trueLineageId": "L5",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0006",
+    "trueEventId": "EVT-CASE-01-A",
+    "trueLineageId": "L6",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0007",
+    "trueEventId": "EVT-CASE-01-A",
+    "trueLineageId": "L7",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0008",
+    "trueEventId": "EVT-CASE-01-A",
+    "trueLineageId": "L8",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0009",
+    "trueEventId": "EVT-CASE-01-A",
+    "trueLineageId": "L9",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0010",
+    "trueEventId": "EVT-CASE-01-A",
+    "trueLineageId": "L10",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0011",
+    "trueEventId": "EVT-CASE-01-A",
+    "trueLineageId": "L11",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0012",
+    "trueEventId": "EVT-CASE-02-A",
+    "trueLineageId": "L1",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0013",
+    "trueEventId": "EVT-CASE-02-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0014",
+    "trueEventId": "EVT-CASE-02-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0015",
+    "trueEventId": "EVT-CASE-02-A",
+    "trueLineageId": "L4",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0016",
+    "trueEventId": "EVT-CASE-02-A",
+    "trueLineageId": "L5",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0017",
+    "trueEventId": "EVT-CASE-02-A",
+    "trueLineageId": "L6",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0018",
+    "trueEventId": "EVT-CASE-02-A",
+    "trueLineageId": "L7",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0019",
+    "trueEventId": "EVT-CASE-02-A",
+    "trueLineageId": "L8",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0020",
+    "trueEventId": "EVT-CASE-02-A",
+    "trueLineageId": "L9",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0021",
+    "trueEventId": "EVT-CASE-02-A",
+    "trueLineageId": "L10",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0022",
+    "trueEventId": "EVT-CASE-02-A",
+    "trueLineageId": "L11",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0023",
+    "trueEventId": "EVT-CASE-02-A",
+    "trueLineageId": "L12",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0024",
+    "trueEventId": "EVT-CASE-03-A",
+    "trueLineageId": "L1",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0025",
+    "trueEventId": "EVT-CASE-03-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0026",
+    "trueEventId": "EVT-CASE-03-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0027",
+    "trueEventId": "EVT-CASE-03-A",
+    "trueLineageId": "L4",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0028",
+    "trueEventId": "EVT-CASE-03-A",
+    "trueLineageId": "L5",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0029",
+    "trueEventId": "EVT-CASE-03-A",
+    "trueLineageId": "L6",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0030",
+    "trueEventId": "EVT-CASE-03-A",
+    "trueLineageId": "L7",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0031",
+    "trueEventId": "EVT-CASE-03-A",
+    "trueLineageId": "L8",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0032",
+    "trueEventId": "EVT-CASE-03-A",
+    "trueLineageId": "L9",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0033",
+    "trueEventId": "EVT-CASE-03-A",
+    "trueLineageId": "L10",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0034",
+    "trueEventId": "EVT-CASE-03-A",
+    "trueLineageId": "L11",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0035",
+    "trueEventId": "EVT-CASE-03-A",
+    "trueLineageId": "L12",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0036",
+    "trueEventId": "EVT-CASE-03-A",
+    "trueLineageId": "L13",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0037",
+    "trueEventId": "EVT-CASE-04-A",
+    "trueLineageId": "L1",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0038",
+    "trueEventId": "EVT-CASE-04-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0039",
+    "trueEventId": "EVT-CASE-04-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0040",
+    "trueEventId": "EVT-CASE-04-A",
+    "trueLineageId": "L4",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0041",
+    "trueEventId": "EVT-CASE-04-A",
+    "trueLineageId": "L5",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0042",
+    "trueEventId": "EVT-CASE-04-A",
+    "trueLineageId": "L6",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0043",
+    "trueEventId": "EVT-CASE-04-A",
+    "trueLineageId": "L7",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0044",
+    "trueEventId": "EVT-CASE-04-A",
+    "trueLineageId": "L8",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0045",
+    "trueEventId": "EVT-CASE-04-A",
+    "trueLineageId": "L9",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0046",
+    "trueEventId": "EVT-CASE-04-A",
+    "trueLineageId": "L10",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0047",
+    "trueEventId": "EVT-CASE-05-A",
+    "trueLineageId": "L1",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0048",
+    "trueEventId": "EVT-CASE-05-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0049",
+    "trueEventId": "EVT-CASE-05-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0050",
+    "trueEventId": "EVT-CASE-05-A",
+    "trueLineageId": "L4",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0051",
+    "trueEventId": "EVT-CASE-05-A",
+    "trueLineageId": "L5",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0052",
+    "trueEventId": "EVT-CASE-05-A",
+    "trueLineageId": "L6",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0053",
+    "trueEventId": "EVT-CASE-05-A",
+    "trueLineageId": "L7",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0054",
+    "trueEventId": "EVT-CASE-05-A",
+    "trueLineageId": "L8",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0055",
+    "trueEventId": "EVT-CASE-05-A",
+    "trueLineageId": "L9",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0056",
+    "trueEventId": "EVT-CASE-05-A",
+    "trueLineageId": "L10",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0057",
+    "trueEventId": "EVT-CASE-05-A",
+    "trueLineageId": "L11",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0058",
+    "trueEventId": "EVT-CASE-06-A",
+    "trueLineageId": "L1",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0059",
+    "trueEventId": "EVT-CASE-06-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0060",
+    "trueEventId": "EVT-CASE-06-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0061",
+    "trueEventId": "EVT-CASE-06-A",
+    "trueLineageId": "L4",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0062",
+    "trueEventId": "EVT-CASE-06-A",
+    "trueLineageId": "L5",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0063",
+    "trueEventId": "EVT-CASE-06-A",
+    "trueLineageId": "L6",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0064",
+    "trueEventId": "EVT-CASE-06-A",
+    "trueLineageId": "L7",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0065",
+    "trueEventId": "EVT-CASE-06-A",
+    "trueLineageId": "L8",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0066",
+    "trueEventId": "EVT-CASE-06-A",
+    "trueLineageId": "L9",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0067",
+    "trueEventId": "EVT-CASE-06-A",
+    "trueLineageId": "L10",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0068",
+    "trueEventId": "EVT-CASE-06-A",
+    "trueLineageId": "L11",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0069",
+    "trueEventId": "EVT-CASE-06-A",
+    "trueLineageId": "L12",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0070",
+    "trueEventId": "EVT-CASE-07-A",
+    "trueLineageId": "L1",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0071",
+    "trueEventId": "EVT-CASE-07-A",
+    "trueLineageId": "L1",
+    "relationshipType": "duplicate"
+  },
+  {
+    "evidenceId": "EVID-0072",
+    "trueEventId": "EVT-CASE-07-A",
+    "trueLineageId": "L1",
+    "relationshipType": "repost"
+  },
+  {
+    "evidenceId": "EVID-0073",
+    "trueEventId": "EVT-CASE-07-A",
+    "trueLineageId": "L1",
+    "relationshipType": "duplicate"
+  },
+  {
+    "evidenceId": "EVID-0074",
+    "trueEventId": "EVT-CASE-07-A",
+    "trueLineageId": "L1",
+    "relationshipType": "repost"
+  },
+  {
+    "evidenceId": "EVID-0075",
+    "trueEventId": "EVT-CASE-07-A",
+    "trueLineageId": "L1",
+    "relationshipType": "duplicate"
+  },
+  {
+    "evidenceId": "EVID-0076",
+    "trueEventId": "EVT-CASE-07-A",
+    "trueLineageId": "L1",
+    "relationshipType": "repost"
+  },
+  {
+    "evidenceId": "EVID-0077",
+    "trueEventId": "EVT-CASE-07-A",
+    "trueLineageId": "L1",
+    "relationshipType": "duplicate"
+  },
+  {
+    "evidenceId": "EVID-0078",
+    "trueEventId": "EVT-CASE-07-A",
+    "trueLineageId": "L1",
+    "relationshipType": "repost"
+  },
+  {
+    "evidenceId": "EVID-0079",
+    "trueEventId": "EVT-CASE-07-A",
+    "trueLineageId": "L1",
+    "relationshipType": "duplicate"
+  },
+  {
+    "evidenceId": "EVID-0080",
+    "trueEventId": "EVT-CASE-07-A",
+    "trueLineageId": "L1",
+    "relationshipType": "repost"
+  },
+  {
+    "evidenceId": "EVID-0081",
+    "trueEventId": "EVT-CASE-07-A",
+    "trueLineageId": "L1",
+    "relationshipType": "duplicate"
+  },
+  {
+    "evidenceId": "EVID-0082",
+    "trueEventId": "EVT-CASE-07-A",
+    "trueLineageId": "L1",
+    "relationshipType": "repost"
+  },
+  {
+    "evidenceId": "EVID-0083",
+    "trueEventId": "EVT-CASE-07-A",
+    "trueLineageId": "L1",
+    "relationshipType": "duplicate"
+  },
+  {
+    "evidenceId": "EVID-0084",
+    "trueEventId": "EVT-CASE-08-A",
+    "trueLineageId": "L1",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0085",
+    "trueEventId": "EVT-CASE-08-A",
+    "trueLineageId": "L1",
+    "relationshipType": "duplicate"
+  },
+  {
+    "evidenceId": "EVID-0086",
+    "trueEventId": "EVT-CASE-08-A",
+    "trueLineageId": "L1",
+    "relationshipType": "repost"
+  },
+  {
+    "evidenceId": "EVID-0087",
+    "trueEventId": "EVT-CASE-08-A",
+    "trueLineageId": "L1",
+    "relationshipType": "duplicate"
+  },
+  {
+    "evidenceId": "EVID-0088",
+    "trueEventId": "EVT-CASE-08-A",
+    "trueLineageId": "L1",
+    "relationshipType": "repost"
+  },
+  {
+    "evidenceId": "EVID-0089",
+    "trueEventId": "EVT-CASE-08-A",
+    "trueLineageId": "L1",
+    "relationshipType": "duplicate"
+  },
+  {
+    "evidenceId": "EVID-0090",
+    "trueEventId": "EVT-CASE-08-A",
+    "trueLineageId": "L1",
+    "relationshipType": "repost"
+  },
+  {
+    "evidenceId": "EVID-0091",
+    "trueEventId": "EVT-CASE-08-A",
+    "trueLineageId": "L1",
+    "relationshipType": "duplicate"
+  },
+  {
+    "evidenceId": "EVID-0092",
+    "trueEventId": "EVT-CASE-08-A",
+    "trueLineageId": "L1",
+    "relationshipType": "repost"
+  },
+  {
+    "evidenceId": "EVID-0093",
+    "trueEventId": "EVT-CASE-08-A",
+    "trueLineageId": "L1",
+    "relationshipType": "duplicate"
+  },
+  {
+    "evidenceId": "EVID-0094",
+    "trueEventId": "EVT-CASE-08-A",
+    "trueLineageId": "L1",
+    "relationshipType": "repost"
+  },
+  {
+    "evidenceId": "EVID-0095",
+    "trueEventId": "EVT-CASE-08-A",
+    "trueLineageId": "L1",
+    "relationshipType": "duplicate"
+  },
+  {
+    "evidenceId": "EVID-0096",
+    "trueEventId": "EVT-CASE-08-A",
+    "trueLineageId": "L1",
+    "relationshipType": "repost"
+  },
+  {
+    "evidenceId": "EVID-0097",
+    "trueEventId": "EVT-CASE-08-A",
+    "trueLineageId": "L1",
+    "relationshipType": "duplicate"
+  },
+  {
+    "evidenceId": "EVID-0098",
+    "trueEventId": "EVT-CASE-08-A",
+    "trueLineageId": "L1",
+    "relationshipType": "repost"
+  },
+  {
+    "evidenceId": "EVID-0099",
+    "trueEventId": "EVT-CASE-09-A",
+    "trueLineageId": "L1",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0100",
+    "trueEventId": "EVT-CASE-09-A",
+    "trueLineageId": "L1",
+    "relationshipType": "duplicate"
+  },
+  {
+    "evidenceId": "EVID-0101",
+    "trueEventId": "EVT-CASE-09-A",
+    "trueLineageId": "L1",
+    "relationshipType": "repost"
+  },
+  {
+    "evidenceId": "EVID-0102",
+    "trueEventId": "EVT-CASE-09-A",
+    "trueLineageId": "L1",
+    "relationshipType": "duplicate"
+  },
+  {
+    "evidenceId": "EVID-0103",
+    "trueEventId": "EVT-CASE-09-A",
+    "trueLineageId": "L1",
+    "relationshipType": "repost"
+  },
+  {
+    "evidenceId": "EVID-0104",
+    "trueEventId": "EVT-CASE-09-A",
+    "trueLineageId": "L1",
+    "relationshipType": "duplicate"
+  },
+  {
+    "evidenceId": "EVID-0105",
+    "trueEventId": "EVT-CASE-09-A",
+    "trueLineageId": "L1",
+    "relationshipType": "repost"
+  },
+  {
+    "evidenceId": "EVID-0106",
+    "trueEventId": "EVT-CASE-09-A",
+    "trueLineageId": "L1",
+    "relationshipType": "duplicate"
+  },
+  {
+    "evidenceId": "EVID-0107",
+    "trueEventId": "EVT-CASE-09-A",
+    "trueLineageId": "L1",
+    "relationshipType": "repost"
+  },
+  {
+    "evidenceId": "EVID-0108",
+    "trueEventId": "EVT-CASE-09-A",
+    "trueLineageId": "L1",
+    "relationshipType": "duplicate"
+  },
+  {
+    "evidenceId": "EVID-0109",
+    "trueEventId": "EVT-CASE-09-A",
+    "trueLineageId": "L1",
+    "relationshipType": "repost"
+  },
+  {
+    "evidenceId": "EVID-0110",
+    "trueEventId": "EVT-CASE-09-A",
+    "trueLineageId": "L1",
+    "relationshipType": "duplicate"
+  },
+  {
+    "evidenceId": "EVID-0111",
+    "trueEventId": "EVT-CASE-09-A",
+    "trueLineageId": "L1",
+    "relationshipType": "repost"
+  },
+  {
+    "evidenceId": "EVID-0112",
+    "trueEventId": "EVT-CASE-09-A",
+    "trueLineageId": "L1",
+    "relationshipType": "duplicate"
+  },
+  {
+    "evidenceId": "EVID-0113",
+    "trueEventId": "EVT-CASE-09-A",
+    "trueLineageId": "L1",
+    "relationshipType": "repost"
+  },
+  {
+    "evidenceId": "EVID-0114",
+    "trueEventId": "EVT-CASE-09-A",
+    "trueLineageId": "L1",
+    "relationshipType": "duplicate"
+  },
+  {
+    "evidenceId": "EVID-0115",
+    "trueEventId": "EVT-CASE-10-A",
+    "trueLineageId": "L1",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0116",
+    "trueEventId": "EVT-CASE-10-A",
+    "trueLineageId": "L1",
+    "relationshipType": "duplicate"
+  },
+  {
+    "evidenceId": "EVID-0117",
+    "trueEventId": "EVT-CASE-10-A",
+    "trueLineageId": "L1",
+    "relationshipType": "repost"
+  },
+  {
+    "evidenceId": "EVID-0118",
+    "trueEventId": "EVT-CASE-10-A",
+    "trueLineageId": "L1",
+    "relationshipType": "duplicate"
+  },
+  {
+    "evidenceId": "EVID-0119",
+    "trueEventId": "EVT-CASE-10-A",
+    "trueLineageId": "L1",
+    "relationshipType": "repost"
+  },
+  {
+    "evidenceId": "EVID-0120",
+    "trueEventId": "EVT-CASE-10-A",
+    "trueLineageId": "L1",
+    "relationshipType": "duplicate"
+  },
+  {
+    "evidenceId": "EVID-0121",
+    "trueEventId": "EVT-CASE-10-A",
+    "trueLineageId": "L1",
+    "relationshipType": "repost"
+  },
+  {
+    "evidenceId": "EVID-0122",
+    "trueEventId": "EVT-CASE-10-A",
+    "trueLineageId": "L1",
+    "relationshipType": "duplicate"
+  },
+  {
+    "evidenceId": "EVID-0123",
+    "trueEventId": "EVT-CASE-10-A",
+    "trueLineageId": "L1",
+    "relationshipType": "repost"
+  },
+  {
+    "evidenceId": "EVID-0124",
+    "trueEventId": "EVT-CASE-10-A",
+    "trueLineageId": "L1",
+    "relationshipType": "duplicate"
+  },
+  {
+    "evidenceId": "EVID-0125",
+    "trueEventId": "EVT-CASE-10-A",
+    "trueLineageId": "L1",
+    "relationshipType": "repost"
+  },
+  {
+    "evidenceId": "EVID-0126",
+    "trueEventId": "EVT-CASE-10-A",
+    "trueLineageId": "L1",
+    "relationshipType": "duplicate"
+  },
+  {
+    "evidenceId": "EVID-0127",
+    "trueEventId": "EVT-CASE-11-A",
+    "trueLineageId": "L1",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0128",
+    "trueEventId": "EVT-CASE-11-A",
+    "trueLineageId": "L1",
+    "relationshipType": "duplicate"
+  },
+  {
+    "evidenceId": "EVID-0129",
+    "trueEventId": "EVT-CASE-11-A",
+    "trueLineageId": "L1",
+    "relationshipType": "repost"
+  },
+  {
+    "evidenceId": "EVID-0130",
+    "trueEventId": "EVT-CASE-11-A",
+    "trueLineageId": "L1",
+    "relationshipType": "duplicate"
+  },
+  {
+    "evidenceId": "EVID-0131",
+    "trueEventId": "EVT-CASE-11-A",
+    "trueLineageId": "L1",
+    "relationshipType": "repost"
+  },
+  {
+    "evidenceId": "EVID-0132",
+    "trueEventId": "EVT-CASE-11-A",
+    "trueLineageId": "L1",
+    "relationshipType": "duplicate"
+  },
+  {
+    "evidenceId": "EVID-0133",
+    "trueEventId": "EVT-CASE-11-A",
+    "trueLineageId": "L1",
+    "relationshipType": "repost"
+  },
+  {
+    "evidenceId": "EVID-0134",
+    "trueEventId": "EVT-CASE-11-A",
+    "trueLineageId": "L1",
+    "relationshipType": "duplicate"
+  },
+  {
+    "evidenceId": "EVID-0135",
+    "trueEventId": "EVT-CASE-11-A",
+    "trueLineageId": "L1",
+    "relationshipType": "repost"
+  },
+  {
+    "evidenceId": "EVID-0136",
+    "trueEventId": "EVT-CASE-11-A",
+    "trueLineageId": "L1",
+    "relationshipType": "duplicate"
+  },
+  {
+    "evidenceId": "EVID-0137",
+    "trueEventId": "EVT-CASE-11-A",
+    "trueLineageId": "L1",
+    "relationshipType": "repost"
+  },
+  {
+    "evidenceId": "EVID-0138",
+    "trueEventId": "EVT-CASE-11-A",
+    "trueLineageId": "L1",
+    "relationshipType": "duplicate"
+  },
+  {
+    "evidenceId": "EVID-0139",
+    "trueEventId": "EVT-CASE-11-A",
+    "trueLineageId": "L1",
+    "relationshipType": "repost"
+  },
+  {
+    "evidenceId": "EVID-0140",
+    "trueEventId": "EVT-CASE-11-A",
+    "trueLineageId": "L1",
+    "relationshipType": "duplicate"
+  },
+  {
+    "evidenceId": "EVID-0141",
+    "trueEventId": "EVT-CASE-12-A",
+    "trueLineageId": "L1",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0142",
+    "trueEventId": "EVT-CASE-12-A",
+    "trueLineageId": "L1",
+    "relationshipType": "duplicate"
+  },
+  {
+    "evidenceId": "EVID-0143",
+    "trueEventId": "EVT-CASE-12-A",
+    "trueLineageId": "L1",
+    "relationshipType": "repost"
+  },
+  {
+    "evidenceId": "EVID-0144",
+    "trueEventId": "EVT-CASE-12-A",
+    "trueLineageId": "L1",
+    "relationshipType": "duplicate"
+  },
+  {
+    "evidenceId": "EVID-0145",
+    "trueEventId": "EVT-CASE-12-A",
+    "trueLineageId": "L1",
+    "relationshipType": "repost"
+  },
+  {
+    "evidenceId": "EVID-0146",
+    "trueEventId": "EVT-CASE-12-A",
+    "trueLineageId": "L1",
+    "relationshipType": "duplicate"
+  },
+  {
+    "evidenceId": "EVID-0147",
+    "trueEventId": "EVT-CASE-12-A",
+    "trueLineageId": "L1",
+    "relationshipType": "repost"
+  },
+  {
+    "evidenceId": "EVID-0148",
+    "trueEventId": "EVT-CASE-12-A",
+    "trueLineageId": "L1",
+    "relationshipType": "duplicate"
+  },
+  {
+    "evidenceId": "EVID-0149",
+    "trueEventId": "EVT-CASE-12-A",
+    "trueLineageId": "L1",
+    "relationshipType": "repost"
+  },
+  {
+    "evidenceId": "EVID-0150",
+    "trueEventId": "EVT-CASE-12-A",
+    "trueLineageId": "L1",
+    "relationshipType": "duplicate"
+  },
+  {
+    "evidenceId": "EVID-0151",
+    "trueEventId": "EVT-CASE-12-A",
+    "trueLineageId": "L1",
+    "relationshipType": "repost"
+  },
+  {
+    "evidenceId": "EVID-0152",
+    "trueEventId": "EVT-CASE-13-A",
+    "trueLineageId": "L1",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0153",
+    "trueEventId": "EVT-CASE-13-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0154",
+    "trueEventId": "EVT-CASE-13-A",
+    "trueLineageId": "L1",
+    "relationshipType": "repost"
+  },
+  {
+    "evidenceId": "EVID-0155",
+    "trueEventId": "EVT-CASE-13-A",
+    "trueLineageId": "L4",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0156",
+    "trueEventId": "EVT-CASE-13-A",
+    "trueLineageId": "L1",
+    "relationshipType": "repost"
+  },
+  {
+    "evidenceId": "EVID-0157",
+    "trueEventId": "EVT-CASE-13-A",
+    "trueLineageId": "L6",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0158",
+    "trueEventId": "EVT-CASE-13-A",
+    "trueLineageId": "L1",
+    "relationshipType": "repost"
+  },
+  {
+    "evidenceId": "EVID-0159",
+    "trueEventId": "EVT-CASE-13-A",
+    "trueLineageId": "L8",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0160",
+    "trueEventId": "EVT-CASE-13-A",
+    "trueLineageId": "L1",
+    "relationshipType": "repost"
+  },
+  {
+    "evidenceId": "EVID-0161",
+    "trueEventId": "EVT-CASE-13-A",
+    "trueLineageId": "L10",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0162",
+    "trueEventId": "EVT-CASE-13-A",
+    "trueLineageId": "L1",
+    "relationshipType": "repost"
+  },
+  {
+    "evidenceId": "EVID-0163",
+    "trueEventId": "EVT-CASE-13-A",
+    "trueLineageId": "L12",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0164",
+    "trueEventId": "EVT-CASE-13-A",
+    "trueLineageId": "L1",
+    "relationshipType": "repost"
+  },
+  {
+    "evidenceId": "EVID-0165",
+    "trueEventId": "EVT-CASE-13-A",
+    "trueLineageId": "L_CONF",
+    "relationshipType": "contradicting"
+  },
+  {
+    "evidenceId": "EVID-0166",
+    "trueEventId": "EVT-CASE-14-A",
+    "trueLineageId": "L1",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0167",
+    "trueEventId": "EVT-CASE-14-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0168",
+    "trueEventId": "EVT-CASE-14-A",
+    "trueLineageId": "L1",
+    "relationshipType": "repost"
+  },
+  {
+    "evidenceId": "EVID-0169",
+    "trueEventId": "EVT-CASE-14-A",
+    "trueLineageId": "L4",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0170",
+    "trueEventId": "EVT-CASE-14-A",
+    "trueLineageId": "L1",
+    "relationshipType": "repost"
+  },
+  {
+    "evidenceId": "EVID-0171",
+    "trueEventId": "EVT-CASE-14-A",
+    "trueLineageId": "L6",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0172",
+    "trueEventId": "EVT-CASE-14-A",
+    "trueLineageId": "L1",
+    "relationshipType": "repost"
+  },
+  {
+    "evidenceId": "EVID-0173",
+    "trueEventId": "EVT-CASE-14-A",
+    "trueLineageId": "L8",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0174",
+    "trueEventId": "EVT-CASE-14-A",
+    "trueLineageId": "L1",
+    "relationshipType": "repost"
+  },
+  {
+    "evidenceId": "EVID-0175",
+    "trueEventId": "EVT-CASE-14-A",
+    "trueLineageId": "L10",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0176",
+    "trueEventId": "EVT-CASE-14-A",
+    "trueLineageId": "L1",
+    "relationshipType": "repost"
+  },
+  {
+    "evidenceId": "EVID-0177",
+    "trueEventId": "EVT-CASE-14-A",
+    "trueLineageId": "L12",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0178",
+    "trueEventId": "EVT-CASE-14-A",
+    "trueLineageId": "L1",
+    "relationshipType": "repost"
+  },
+  {
+    "evidenceId": "EVID-0179",
+    "trueEventId": "EVT-CASE-14-A",
+    "trueLineageId": "L14",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0180",
+    "trueEventId": "EVT-CASE-14-A",
+    "trueLineageId": "L_CONF",
+    "relationshipType": "contradicting"
+  },
+  {
+    "evidenceId": "EVID-0181",
+    "trueEventId": "EVT-CASE-15-A",
+    "trueLineageId": "L1",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0182",
+    "trueEventId": "EVT-CASE-15-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0183",
+    "trueEventId": "EVT-CASE-15-A",
+    "trueLineageId": "L1",
+    "relationshipType": "repost"
+  },
+  {
+    "evidenceId": "EVID-0184",
+    "trueEventId": "EVT-CASE-15-A",
+    "trueLineageId": "L4",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0185",
+    "trueEventId": "EVT-CASE-15-A",
+    "trueLineageId": "L1",
+    "relationshipType": "repost"
+  },
+  {
+    "evidenceId": "EVID-0186",
+    "trueEventId": "EVT-CASE-15-A",
+    "trueLineageId": "L6",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0187",
+    "trueEventId": "EVT-CASE-15-A",
+    "trueLineageId": "L1",
+    "relationshipType": "repost"
+  },
+  {
+    "evidenceId": "EVID-0188",
+    "trueEventId": "EVT-CASE-15-A",
+    "trueLineageId": "L8",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0189",
+    "trueEventId": "EVT-CASE-15-A",
+    "trueLineageId": "L1",
+    "relationshipType": "repost"
+  },
+  {
+    "evidenceId": "EVID-0190",
+    "trueEventId": "EVT-CASE-15-A",
+    "trueLineageId": "L10",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0191",
+    "trueEventId": "EVT-CASE-15-A",
+    "trueLineageId": "L1",
+    "relationshipType": "repost"
+  },
+  {
+    "evidenceId": "EVID-0192",
+    "trueEventId": "EVT-CASE-15-A",
+    "trueLineageId": "L12",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0193",
+    "trueEventId": "EVT-CASE-15-A",
+    "trueLineageId": "L1",
+    "relationshipType": "repost"
+  },
+  {
+    "evidenceId": "EVID-0194",
+    "trueEventId": "EVT-CASE-15-A",
+    "trueLineageId": "L14",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0195",
+    "trueEventId": "EVT-CASE-15-A",
+    "trueLineageId": "L1",
+    "relationshipType": "repost"
+  },
+  {
+    "evidenceId": "EVID-0196",
+    "trueEventId": "EVT-CASE-15-A",
+    "trueLineageId": "L_CONF",
+    "relationshipType": "contradicting"
+  },
+  {
+    "evidenceId": "EVID-0197",
+    "trueEventId": "EVT-CASE-16-A",
+    "trueLineageId": "L1",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0198",
+    "trueEventId": "EVT-CASE-16-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0199",
+    "trueEventId": "EVT-CASE-16-A",
+    "trueLineageId": "L1",
+    "relationshipType": "repost"
+  },
+  {
+    "evidenceId": "EVID-0200",
+    "trueEventId": "EVT-CASE-16-A",
+    "trueLineageId": "L4",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0201",
+    "trueEventId": "EVT-CASE-16-A",
+    "trueLineageId": "L1",
+    "relationshipType": "repost"
+  },
+  {
+    "evidenceId": "EVID-0202",
+    "trueEventId": "EVT-CASE-16-A",
+    "trueLineageId": "L6",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0203",
+    "trueEventId": "EVT-CASE-16-A",
+    "trueLineageId": "L1",
+    "relationshipType": "repost"
+  },
+  {
+    "evidenceId": "EVID-0204",
+    "trueEventId": "EVT-CASE-16-A",
+    "trueLineageId": "L8",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0205",
+    "trueEventId": "EVT-CASE-16-A",
+    "trueLineageId": "L1",
+    "relationshipType": "repost"
+  },
+  {
+    "evidenceId": "EVID-0206",
+    "trueEventId": "EVT-CASE-16-A",
+    "trueLineageId": "L10",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0207",
+    "trueEventId": "EVT-CASE-16-A",
+    "trueLineageId": "L1",
+    "relationshipType": "repost"
+  },
+  {
+    "evidenceId": "EVID-0208",
+    "trueEventId": "EVT-CASE-16-A",
+    "trueLineageId": "L12",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0209",
+    "trueEventId": "EVT-CASE-16-A",
+    "trueLineageId": "L_CONF",
+    "relationshipType": "contradicting"
+  },
+  {
+    "evidenceId": "EVID-0210",
+    "trueEventId": "EVT-CASE-17-A",
+    "trueLineageId": "L1",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0211",
+    "trueEventId": "EVT-CASE-17-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0212",
+    "trueEventId": "EVT-CASE-17-A",
+    "trueLineageId": "L1",
+    "relationshipType": "repost"
+  },
+  {
+    "evidenceId": "EVID-0213",
+    "trueEventId": "EVT-CASE-17-A",
+    "trueLineageId": "L4",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0214",
+    "trueEventId": "EVT-CASE-17-A",
+    "trueLineageId": "L1",
+    "relationshipType": "repost"
+  },
+  {
+    "evidenceId": "EVID-0215",
+    "trueEventId": "EVT-CASE-17-A",
+    "trueLineageId": "L6",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0216",
+    "trueEventId": "EVT-CASE-17-A",
+    "trueLineageId": "L1",
+    "relationshipType": "repost"
+  },
+  {
+    "evidenceId": "EVID-0217",
+    "trueEventId": "EVT-CASE-17-A",
+    "trueLineageId": "L8",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0218",
+    "trueEventId": "EVT-CASE-17-A",
+    "trueLineageId": "L1",
+    "relationshipType": "repost"
+  },
+  {
+    "evidenceId": "EVID-0219",
+    "trueEventId": "EVT-CASE-17-A",
+    "trueLineageId": "L10",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0220",
+    "trueEventId": "EVT-CASE-17-A",
+    "trueLineageId": "L1",
+    "relationshipType": "repost"
+  },
+  {
+    "evidenceId": "EVID-0221",
+    "trueEventId": "EVT-CASE-17-A",
+    "trueLineageId": "L12",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0222",
+    "trueEventId": "EVT-CASE-17-A",
+    "trueLineageId": "L1",
+    "relationshipType": "repost"
+  },
+  {
+    "evidenceId": "EVID-0223",
+    "trueEventId": "EVT-CASE-17-A",
+    "trueLineageId": "L_CONF",
+    "relationshipType": "contradicting"
+  },
+  {
+    "evidenceId": "EVID-0224",
+    "trueEventId": "EVT-CASE-18-A",
+    "trueLineageId": "L1",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0225",
+    "trueEventId": "EVT-CASE-18-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0226",
+    "trueEventId": "EVT-CASE-18-A",
+    "trueLineageId": "L1",
+    "relationshipType": "repost"
+  },
+  {
+    "evidenceId": "EVID-0227",
+    "trueEventId": "EVT-CASE-18-A",
+    "trueLineageId": "L4",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0228",
+    "trueEventId": "EVT-CASE-18-A",
+    "trueLineageId": "L1",
+    "relationshipType": "repost"
+  },
+  {
+    "evidenceId": "EVID-0229",
+    "trueEventId": "EVT-CASE-18-A",
+    "trueLineageId": "L6",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0230",
+    "trueEventId": "EVT-CASE-18-A",
+    "trueLineageId": "L1",
+    "relationshipType": "repost"
+  },
+  {
+    "evidenceId": "EVID-0231",
+    "trueEventId": "EVT-CASE-18-A",
+    "trueLineageId": "L8",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0232",
+    "trueEventId": "EVT-CASE-18-A",
+    "trueLineageId": "L1",
+    "relationshipType": "repost"
+  },
+  {
+    "evidenceId": "EVID-0233",
+    "trueEventId": "EVT-CASE-18-A",
+    "trueLineageId": "L10",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0234",
+    "trueEventId": "EVT-CASE-18-A",
+    "trueLineageId": "L1",
+    "relationshipType": "repost"
+  },
+  {
+    "evidenceId": "EVID-0235",
+    "trueEventId": "EVT-CASE-18-A",
+    "trueLineageId": "L12",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0236",
+    "trueEventId": "EVT-CASE-18-A",
+    "trueLineageId": "L1",
+    "relationshipType": "repost"
+  },
+  {
+    "evidenceId": "EVID-0237",
+    "trueEventId": "EVT-CASE-18-A",
+    "trueLineageId": "L14",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0238",
+    "trueEventId": "EVT-CASE-18-A",
+    "trueLineageId": "L_CONF",
+    "relationshipType": "contradicting"
+  },
+  {
+    "evidenceId": "EVID-0239",
+    "trueEventId": "EVT-CASE-19-A",
+    "trueLineageId": "L1",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0240",
+    "trueEventId": "EVT-CASE-19-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0241",
+    "trueEventId": "EVT-CASE-19-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0242",
+    "trueEventId": "EVT-CASE-19-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0243",
+    "trueEventId": "EVT-CASE-19-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0244",
+    "trueEventId": "EVT-CASE-19-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0245",
+    "trueEventId": "EVT-CASE-19-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0246",
+    "trueEventId": "EVT-CASE-19-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0247",
+    "trueEventId": "EVT-CASE-19-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0248",
+    "trueEventId": "EVT-CASE-19-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0249",
+    "trueEventId": "EVT-CASE-19-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0250",
+    "trueEventId": "EVT-CASE-19-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0251",
+    "trueEventId": "EVT-CASE-19-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0252",
+    "trueEventId": "EVT-CASE-19-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0253",
+    "trueEventId": "EVT-CASE-19-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0254",
+    "trueEventId": "EVT-CASE-20-A",
+    "trueLineageId": "L1",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0255",
+    "trueEventId": "EVT-CASE-20-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0256",
+    "trueEventId": "EVT-CASE-20-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0257",
+    "trueEventId": "EVT-CASE-20-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0258",
+    "trueEventId": "EVT-CASE-20-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0259",
+    "trueEventId": "EVT-CASE-20-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0260",
+    "trueEventId": "EVT-CASE-20-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0261",
+    "trueEventId": "EVT-CASE-20-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0262",
+    "trueEventId": "EVT-CASE-20-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0263",
+    "trueEventId": "EVT-CASE-20-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0264",
+    "trueEventId": "EVT-CASE-20-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0265",
+    "trueEventId": "EVT-CASE-21-A",
+    "trueLineageId": "L1",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0266",
+    "trueEventId": "EVT-CASE-21-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0267",
+    "trueEventId": "EVT-CASE-21-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0268",
+    "trueEventId": "EVT-CASE-21-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0269",
+    "trueEventId": "EVT-CASE-21-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0270",
+    "trueEventId": "EVT-CASE-21-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0271",
+    "trueEventId": "EVT-CASE-21-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0272",
+    "trueEventId": "EVT-CASE-21-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0273",
+    "trueEventId": "EVT-CASE-21-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0274",
+    "trueEventId": "EVT-CASE-21-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0275",
+    "trueEventId": "EVT-CASE-21-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0276",
+    "trueEventId": "EVT-CASE-21-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0277",
+    "trueEventId": "EVT-CASE-22-A",
+    "trueLineageId": "L1",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0278",
+    "trueEventId": "EVT-CASE-22-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0279",
+    "trueEventId": "EVT-CASE-22-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0280",
+    "trueEventId": "EVT-CASE-22-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0281",
+    "trueEventId": "EVT-CASE-22-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0282",
+    "trueEventId": "EVT-CASE-22-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0283",
+    "trueEventId": "EVT-CASE-22-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0284",
+    "trueEventId": "EVT-CASE-22-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0285",
+    "trueEventId": "EVT-CASE-22-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0286",
+    "trueEventId": "EVT-CASE-22-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0287",
+    "trueEventId": "EVT-CASE-22-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0288",
+    "trueEventId": "EVT-CASE-22-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0289",
+    "trueEventId": "EVT-CASE-22-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0290",
+    "trueEventId": "EVT-CASE-23-A",
+    "trueLineageId": "L1",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0291",
+    "trueEventId": "EVT-CASE-23-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0292",
+    "trueEventId": "EVT-CASE-23-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0293",
+    "trueEventId": "EVT-CASE-23-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0294",
+    "trueEventId": "EVT-CASE-23-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0295",
+    "trueEventId": "EVT-CASE-23-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0296",
+    "trueEventId": "EVT-CASE-23-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0297",
+    "trueEventId": "EVT-CASE-23-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0298",
+    "trueEventId": "EVT-CASE-23-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0299",
+    "trueEventId": "EVT-CASE-23-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0300",
+    "trueEventId": "EVT-CASE-23-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0301",
+    "trueEventId": "EVT-CASE-23-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0302",
+    "trueEventId": "EVT-CASE-23-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0303",
+    "trueEventId": "EVT-CASE-23-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0304",
+    "trueEventId": "EVT-CASE-24-A",
+    "trueLineageId": "L1",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0305",
+    "trueEventId": "EVT-CASE-24-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0306",
+    "trueEventId": "EVT-CASE-24-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0307",
+    "trueEventId": "EVT-CASE-24-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0308",
+    "trueEventId": "EVT-CASE-24-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0309",
+    "trueEventId": "EVT-CASE-24-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0310",
+    "trueEventId": "EVT-CASE-24-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0311",
+    "trueEventId": "EVT-CASE-24-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0312",
+    "trueEventId": "EVT-CASE-24-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0313",
+    "trueEventId": "EVT-CASE-24-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0314",
+    "trueEventId": "EVT-CASE-24-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0315",
+    "trueEventId": "EVT-CASE-24-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0316",
+    "trueEventId": "EVT-CASE-24-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0317",
+    "trueEventId": "EVT-CASE-24-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0318",
+    "trueEventId": "EVT-CASE-24-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0319",
+    "trueEventId": "EVT-CASE-25-A",
+    "trueLineageId": "L1",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0320",
+    "trueEventId": "EVT-CASE-25-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0321",
+    "trueEventId": "EVT-CASE-25-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0322",
+    "trueEventId": "EVT-CASE-25-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0323",
+    "trueEventId": "EVT-CASE-25-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0324",
+    "trueEventId": "EVT-CASE-25-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0325",
+    "trueEventId": "EVT-CASE-25-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0326",
+    "trueEventId": "EVT-CASE-25-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0327",
+    "trueEventId": "EVT-CASE-25-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0328",
+    "trueEventId": "EVT-CASE-25-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0329",
+    "trueEventId": "EVT-CASE-25-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0330",
+    "trueEventId": "EVT-CASE-25-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0331",
+    "trueEventId": "EVT-CASE-25-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0332",
+    "trueEventId": "EVT-CASE-25-A",
+    "trueLineageId": "L2",
+    "relationshipType": "contradicting"
+  },
+  {
+    "evidenceId": "EVID-0333",
+    "trueEventId": "EVT-CASE-26-A",
+    "trueLineageId": "L1",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0334",
+    "trueEventId": "EVT-CASE-26-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0335",
+    "trueEventId": "EVT-CASE-26-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0336",
+    "trueEventId": "EVT-CASE-26-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0337",
+    "trueEventId": "EVT-CASE-26-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0338",
+    "trueEventId": "EVT-CASE-26-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0339",
+    "trueEventId": "EVT-CASE-26-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0340",
+    "trueEventId": "EVT-CASE-26-B",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0341",
+    "trueEventId": "EVT-CASE-26-B",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0342",
+    "trueEventId": "EVT-CASE-26-B",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0343",
+    "trueEventId": "EVT-CASE-26-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0344",
+    "trueEventId": "EVT-CASE-26-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0345",
+    "trueEventId": "EVT-CASE-26-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0346",
+    "trueEventId": "EVT-CASE-26-B",
+    "trueLineageId": "L2",
+    "relationshipType": "contradicting"
+  },
+  {
+    "evidenceId": "EVID-0347",
+    "trueEventId": "EVT-CASE-27-A",
+    "trueLineageId": "L1",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0348",
+    "trueEventId": "EVT-CASE-27-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0349",
+    "trueEventId": "EVT-CASE-27-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0350",
+    "trueEventId": "EVT-CASE-27-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0351",
+    "trueEventId": "EVT-CASE-27-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0352",
+    "trueEventId": "EVT-CASE-27-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0353",
+    "trueEventId": "EVT-CASE-27-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0354",
+    "trueEventId": "EVT-CASE-27-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0355",
+    "trueEventId": "EVT-CASE-27-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0356",
+    "trueEventId": "EVT-CASE-27-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0357",
+    "trueEventId": "EVT-CASE-27-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0358",
+    "trueEventId": "EVT-CASE-27-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0359",
+    "trueEventId": "EVT-CASE-27-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0360",
+    "trueEventId": "EVT-CASE-27-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0361",
+    "trueEventId": "EVT-CASE-27-A",
+    "trueLineageId": "L3",
+    "relationshipType": "contradicting"
+  },
+  {
+    "evidenceId": "EVID-0362",
+    "trueEventId": "EVT-CASE-28-A",
+    "trueLineageId": "L1",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0363",
+    "trueEventId": "EVT-CASE-28-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0364",
+    "trueEventId": "EVT-CASE-28-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0365",
+    "trueEventId": "EVT-CASE-28-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0366",
+    "trueEventId": "EVT-CASE-28-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0367",
+    "trueEventId": "EVT-CASE-28-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0368",
+    "trueEventId": "EVT-CASE-28-B",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0369",
+    "trueEventId": "EVT-CASE-28-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0370",
+    "trueEventId": "EVT-CASE-28-B",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0371",
+    "trueEventId": "EVT-CASE-28-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0372",
+    "trueEventId": "EVT-CASE-28-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0373",
+    "trueEventId": "EVT-CASE-28-A",
+    "trueLineageId": "L3",
+    "relationshipType": "contradicting"
+  },
+  {
+    "evidenceId": "EVID-0374",
+    "trueEventId": "EVT-CASE-29-A",
+    "trueLineageId": "L1",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0375",
+    "trueEventId": "EVT-CASE-29-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0376",
+    "trueEventId": "EVT-CASE-29-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0377",
+    "trueEventId": "EVT-CASE-29-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0378",
+    "trueEventId": "EVT-CASE-29-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0379",
+    "trueEventId": "EVT-CASE-29-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0380",
+    "trueEventId": "EVT-CASE-29-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0381",
+    "trueEventId": "EVT-CASE-29-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0382",
+    "trueEventId": "EVT-CASE-29-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0383",
+    "trueEventId": "EVT-CASE-29-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0384",
+    "trueEventId": "EVT-CASE-29-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0385",
+    "trueEventId": "EVT-CASE-29-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0386",
+    "trueEventId": "EVT-CASE-29-A",
+    "trueLineageId": "L1",
+    "relationshipType": "contradicting"
+  },
+  {
+    "evidenceId": "EVID-0387",
+    "trueEventId": "EVT-CASE-30-A",
+    "trueLineageId": "L1",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0388",
+    "trueEventId": "EVT-CASE-30-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0389",
+    "trueEventId": "EVT-CASE-30-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0390",
+    "trueEventId": "EVT-CASE-30-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0391",
+    "trueEventId": "EVT-CASE-30-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0392",
+    "trueEventId": "EVT-CASE-30-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0393",
+    "trueEventId": "EVT-CASE-30-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0394",
+    "trueEventId": "EVT-CASE-30-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0395",
+    "trueEventId": "EVT-CASE-30-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0396",
+    "trueEventId": "EVT-CASE-30-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0397",
+    "trueEventId": "EVT-CASE-30-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0398",
+    "trueEventId": "EVT-CASE-30-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0399",
+    "trueEventId": "EVT-CASE-31-A",
+    "trueLineageId": "L1",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0400",
+    "trueEventId": "EVT-CASE-31-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0401",
+    "trueEventId": "EVT-CASE-31-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0402",
+    "trueEventId": "EVT-CASE-31-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0403",
+    "trueEventId": "EVT-CASE-31-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0404",
+    "trueEventId": "EVT-CASE-31-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0405",
+    "trueEventId": "EVT-CASE-31-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0406",
+    "trueEventId": "EVT-CASE-31-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0407",
+    "trueEventId": "EVT-CASE-31-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0408",
+    "trueEventId": "EVT-CASE-31-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0409",
+    "trueEventId": "EVT-CASE-31-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0410",
+    "trueEventId": "EVT-CASE-31-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0411",
+    "trueEventId": "EVT-CASE-31-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0412",
+    "trueEventId": "EVT-CASE-32-A",
+    "trueLineageId": "L1",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0413",
+    "trueEventId": "EVT-CASE-32-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0414",
+    "trueEventId": "EVT-CASE-32-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0415",
+    "trueEventId": "EVT-CASE-32-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0416",
+    "trueEventId": "EVT-CASE-32-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0417",
+    "trueEventId": "EVT-CASE-32-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0418",
+    "trueEventId": "EVT-CASE-32-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0419",
+    "trueEventId": "EVT-CASE-32-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0420",
+    "trueEventId": "EVT-CASE-32-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0421",
+    "trueEventId": "EVT-CASE-32-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0422",
+    "trueEventId": "EVT-CASE-32-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0423",
+    "trueEventId": "EVT-CASE-32-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0424",
+    "trueEventId": "EVT-CASE-32-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0425",
+    "trueEventId": "EVT-CASE-32-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0426",
+    "trueEventId": "EVT-CASE-33-A",
+    "trueLineageId": "L1",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0427",
+    "trueEventId": "EVT-CASE-33-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0428",
+    "trueEventId": "EVT-CASE-33-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0429",
+    "trueEventId": "EVT-CASE-33-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0430",
+    "trueEventId": "EVT-CASE-33-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0431",
+    "trueEventId": "EVT-CASE-33-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0432",
+    "trueEventId": "EVT-CASE-33-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0433",
+    "trueEventId": "EVT-CASE-33-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0434",
+    "trueEventId": "EVT-CASE-33-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0435",
+    "trueEventId": "EVT-CASE-33-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0436",
+    "trueEventId": "EVT-CASE-33-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0437",
+    "trueEventId": "EVT-CASE-33-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0438",
+    "trueEventId": "EVT-CASE-34-A",
+    "trueLineageId": "L1",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0439",
+    "trueEventId": "EVT-CASE-34-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0440",
+    "trueEventId": "EVT-CASE-34-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0441",
+    "trueEventId": "EVT-CASE-34-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0442",
+    "trueEventId": "EVT-CASE-34-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0443",
+    "trueEventId": "EVT-CASE-34-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0444",
+    "trueEventId": "EVT-CASE-34-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0445",
+    "trueEventId": "EVT-CASE-34-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0446",
+    "trueEventId": "EVT-CASE-34-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0447",
+    "trueEventId": "EVT-CASE-34-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0448",
+    "trueEventId": "EVT-CASE-34-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0449",
+    "trueEventId": "EVT-CASE-34-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0450",
+    "trueEventId": "EVT-CASE-34-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0451",
+    "trueEventId": "EVT-CASE-35-A",
+    "trueLineageId": "L_EVT_1_0",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0452",
+    "trueEventId": "EVT-CASE-35-A",
+    "trueLineageId": "L_EVT_1_1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0453",
+    "trueEventId": "EVT-CASE-35-A",
+    "trueLineageId": "L_EVT_1_2",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0454",
+    "trueEventId": "EVT-CASE-35-A",
+    "trueLineageId": "L_EVT_1_3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0455",
+    "trueEventId": "EVT-CASE-35-A",
+    "trueLineageId": "L_EVT_1_4",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0456",
+    "trueEventId": "EVT-CASE-35-A",
+    "trueLineageId": "L_EVT_1_5",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0457",
+    "trueEventId": "EVT-CASE-35-A",
+    "trueLineageId": "L_EVT_1_6",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0458",
+    "trueEventId": "EVT-CASE-35-A",
+    "trueLineageId": "L_EVT_1_7",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0459",
+    "trueEventId": "EVT-CASE-35-A",
+    "trueLineageId": "L_EVT_1_8",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0460",
+    "trueEventId": "EVT-CASE-35-A",
+    "trueLineageId": "L_EVT_1_9",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0461",
+    "trueEventId": "EVT-CASE-35-A",
+    "trueLineageId": "L_EVT_1_10",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0462",
+    "trueEventId": "EVT-CASE-35-A",
+    "trueLineageId": "L_EVT_1_11",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0463",
+    "trueEventId": "EVT-CASE-35-B",
+    "trueLineageId": "L_EVT_2_12",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0464",
+    "trueEventId": "EVT-CASE-35-B",
+    "trueLineageId": "L_EVT_2_13",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0465",
+    "trueEventId": "EVT-CASE-35-B",
+    "trueLineageId": "L_EVT_2_14",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0466",
+    "trueEventId": "EVT-CASE-35-B",
+    "trueLineageId": "L_EVT_2_15",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0467",
+    "trueEventId": "EVT-CASE-35-A",
+    "trueLineageId": "L_EVT_1_16",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0468",
+    "trueEventId": "EVT-CASE-36-A",
+    "trueLineageId": "L_EVT_1_0",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0469",
+    "trueEventId": "EVT-CASE-36-A",
+    "trueLineageId": "L_EVT_1_1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0470",
+    "trueEventId": "EVT-CASE-36-A",
+    "trueLineageId": "L_EVT_1_2",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0471",
+    "trueEventId": "EVT-CASE-36-A",
+    "trueLineageId": "L_EVT_1_3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0472",
+    "trueEventId": "EVT-CASE-36-A",
+    "trueLineageId": "L_EVT_1_4",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0473",
+    "trueEventId": "EVT-CASE-36-A",
+    "trueLineageId": "L_EVT_1_5",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0474",
+    "trueEventId": "EVT-CASE-36-A",
+    "trueLineageId": "L_EVT_1_6",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0475",
+    "trueEventId": "EVT-CASE-36-B",
+    "trueLineageId": "L_EVT_2_7",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0476",
+    "trueEventId": "EVT-CASE-36-B",
+    "trueLineageId": "L_EVT_2_8",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0477",
+    "trueEventId": "EVT-CASE-36-B",
+    "trueLineageId": "L_EVT_2_9",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0478",
+    "trueEventId": "EVT-CASE-36-A",
+    "trueLineageId": "L_EVT_1_10",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0479",
+    "trueEventId": "EVT-CASE-36-A",
+    "trueLineageId": "L_EVT_1_11",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0480",
+    "trueEventId": "EVT-CASE-36-A",
+    "trueLineageId": "L_EVT_1_12",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0481",
+    "trueEventId": "EVT-CASE-36-B",
+    "trueLineageId": "L_EVT_2_13",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0482",
+    "trueEventId": "EVT-CASE-37-A",
+    "trueLineageId": "L_EVT_1_0",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0483",
+    "trueEventId": "EVT-CASE-37-A",
+    "trueLineageId": "L_EVT_1_1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0484",
+    "trueEventId": "EVT-CASE-37-A",
+    "trueLineageId": "L_EVT_1_2",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0485",
+    "trueEventId": "EVT-CASE-37-A",
+    "trueLineageId": "L_EVT_1_3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0486",
+    "trueEventId": "EVT-CASE-37-A",
+    "trueLineageId": "L_EVT_1_4",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0487",
+    "trueEventId": "EVT-CASE-37-A",
+    "trueLineageId": "L_EVT_1_5",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0488",
+    "trueEventId": "EVT-CASE-37-A",
+    "trueLineageId": "L_EVT_1_6",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0489",
+    "trueEventId": "EVT-CASE-37-B",
+    "trueLineageId": "L_EVT_2_7",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0490",
+    "trueEventId": "EVT-CASE-37-B",
+    "trueLineageId": "L_EVT_2_8",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0491",
+    "trueEventId": "EVT-CASE-37-B",
+    "trueLineageId": "L_EVT_2_9",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0492",
+    "trueEventId": "EVT-CASE-37-B",
+    "trueLineageId": "L_EVT_2_10",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0493",
+    "trueEventId": "EVT-CASE-37-B",
+    "trueLineageId": "L_EVT_2_11",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0494",
+    "trueEventId": "EVT-CASE-37-B",
+    "trueLineageId": "L_EVT_2_12",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0495",
+    "trueEventId": "EVT-CASE-37-B",
+    "trueLineageId": "L_EVT_2_13",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0496",
+    "trueEventId": "EVT-CASE-37-B",
+    "trueLineageId": "L_EVT_2_14",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0497",
+    "trueEventId": "EVT-CASE-38-A",
+    "trueLineageId": "L_EVT_1_0",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0498",
+    "trueEventId": "EVT-CASE-38-A",
+    "trueLineageId": "L_EVT_1_1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0499",
+    "trueEventId": "EVT-CASE-38-A",
+    "trueLineageId": "L_EVT_1_2",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0500",
+    "trueEventId": "EVT-CASE-38-A",
+    "trueLineageId": "L_EVT_1_3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0501",
+    "trueEventId": "EVT-CASE-38-A",
+    "trueLineageId": "L_EVT_1_4",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0502",
+    "trueEventId": "EVT-CASE-38-A",
+    "trueLineageId": "L_EVT_1_5",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0503",
+    "trueEventId": "EVT-CASE-38-A",
+    "trueLineageId": "L_EVT_1_6",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0504",
+    "trueEventId": "EVT-CASE-38-A",
+    "trueLineageId": "L_EVT_1_7",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0505",
+    "trueEventId": "EVT-CASE-38-A",
+    "trueLineageId": "L_EVT_1_8",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0506",
+    "trueEventId": "EVT-CASE-38-A",
+    "trueLineageId": "L_EVT_1_9",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0507",
+    "trueEventId": "EVT-CASE-38-A",
+    "trueLineageId": "L_EVT_1_10",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0508",
+    "trueEventId": "EVT-CASE-38-A",
+    "trueLineageId": "L_EVT_1_11",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0509",
+    "trueEventId": "EVT-CASE-38-B",
+    "trueLineageId": "L_EVT_2_12",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0510",
+    "trueEventId": "EVT-CASE-38-A",
+    "trueLineageId": "L_EVT_1_13",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0511",
+    "trueEventId": "EVT-CASE-38-B",
+    "trueLineageId": "L_EVT_2_14",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0512",
+    "trueEventId": "EVT-CASE-39-A",
+    "trueLineageId": "L_EVT_1_0",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0513",
+    "trueEventId": "EVT-CASE-39-A",
+    "trueLineageId": "L_EVT_1_1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0514",
+    "trueEventId": "EVT-CASE-39-A",
+    "trueLineageId": "L_EVT_1_2",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0515",
+    "trueEventId": "EVT-CASE-39-A",
+    "trueLineageId": "L_EVT_1_3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0516",
+    "trueEventId": "EVT-CASE-39-A",
+    "trueLineageId": "L_EVT_1_4",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0517",
+    "trueEventId": "EVT-CASE-39-A",
+    "trueLineageId": "L_EVT_1_5",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0518",
+    "trueEventId": "EVT-CASE-39-A",
+    "trueLineageId": "L_EVT_1_6",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0519",
+    "trueEventId": "EVT-CASE-39-A",
+    "trueLineageId": "L_EVT_1_7",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0520",
+    "trueEventId": "EVT-CASE-39-A",
+    "trueLineageId": "L_EVT_1_8",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0521",
+    "trueEventId": "EVT-CASE-39-A",
+    "trueLineageId": "L_EVT_1_9",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0522",
+    "trueEventId": "EVT-CASE-39-B",
+    "trueLineageId": "L_EVT_2_10",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0523",
+    "trueEventId": "EVT-CASE-39-B",
+    "trueLineageId": "L_EVT_2_11",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0524",
+    "trueEventId": "EVT-CASE-39-A",
+    "trueLineageId": "L_EVT_1_12",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0525",
+    "trueEventId": "EVT-CASE-40-A",
+    "trueLineageId": "L1",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0526",
+    "trueEventId": "EVT-CASE-40-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0527",
+    "trueEventId": "EVT-CASE-40-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0528",
+    "trueEventId": "EVT-CASE-40-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0529",
+    "trueEventId": "EVT-CASE-40-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0530",
+    "trueEventId": "EVT-CASE-40-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0531",
+    "trueEventId": "EVT-CASE-40-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0532",
+    "trueEventId": "EVT-CASE-40-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0533",
+    "trueEventId": "EVT-CASE-40-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0534",
+    "trueEventId": "EVT-CASE-40-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0535",
+    "trueEventId": "EVT-CASE-40-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0536",
+    "trueEventId": "EVT-CASE-40-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0537",
+    "trueEventId": "EVT-CASE-41-A",
+    "trueLineageId": "L1",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0538",
+    "trueEventId": "EVT-CASE-41-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0539",
+    "trueEventId": "EVT-CASE-41-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0540",
+    "trueEventId": "EVT-CASE-41-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0541",
+    "trueEventId": "EVT-CASE-41-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0542",
+    "trueEventId": "EVT-CASE-41-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0543",
+    "trueEventId": "EVT-CASE-41-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0544",
+    "trueEventId": "EVT-CASE-41-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0545",
+    "trueEventId": "EVT-CASE-41-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0546",
+    "trueEventId": "EVT-CASE-41-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0547",
+    "trueEventId": "EVT-CASE-41-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0548",
+    "trueEventId": "EVT-CASE-41-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0549",
+    "trueEventId": "EVT-CASE-41-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0550",
+    "trueEventId": "EVT-CASE-42-A",
+    "trueLineageId": "L1",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0551",
+    "trueEventId": "EVT-CASE-42-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0552",
+    "trueEventId": "EVT-CASE-42-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0553",
+    "trueEventId": "EVT-CASE-42-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0554",
+    "trueEventId": "EVT-CASE-42-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0555",
+    "trueEventId": "EVT-CASE-42-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0556",
+    "trueEventId": "EVT-CASE-42-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0557",
+    "trueEventId": "EVT-CASE-42-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0558",
+    "trueEventId": "EVT-CASE-42-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0559",
+    "trueEventId": "EVT-CASE-42-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0560",
+    "trueEventId": "EVT-CASE-42-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0561",
+    "trueEventId": "EVT-CASE-42-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0562",
+    "trueEventId": "EVT-CASE-42-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0563",
+    "trueEventId": "EVT-CASE-42-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0564",
+    "trueEventId": "EVT-CASE-43-A",
+    "trueLineageId": "L1",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0565",
+    "trueEventId": "EVT-CASE-43-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0566",
+    "trueEventId": "EVT-CASE-43-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0567",
+    "trueEventId": "EVT-CASE-43-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0568",
+    "trueEventId": "EVT-CASE-43-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0569",
+    "trueEventId": "EVT-CASE-43-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0570",
+    "trueEventId": "EVT-CASE-43-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0571",
+    "trueEventId": "EVT-CASE-43-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0572",
+    "trueEventId": "EVT-CASE-43-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0573",
+    "trueEventId": "EVT-CASE-43-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0574",
+    "trueEventId": "EVT-CASE-43-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0575",
+    "trueEventId": "EVT-CASE-43-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0576",
+    "trueEventId": "EVT-CASE-43-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0577",
+    "trueEventId": "EVT-CASE-43-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0578",
+    "trueEventId": "EVT-CASE-43-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0579",
+    "trueEventId": "EVT-CASE-44-A",
+    "trueLineageId": "L1",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0580",
+    "trueEventId": "EVT-CASE-44-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0581",
+    "trueEventId": "EVT-CASE-44-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0582",
+    "trueEventId": "EVT-CASE-44-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0583",
+    "trueEventId": "EVT-CASE-44-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0584",
+    "trueEventId": "EVT-CASE-44-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0585",
+    "trueEventId": "EVT-CASE-44-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0586",
+    "trueEventId": "EVT-CASE-44-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0587",
+    "trueEventId": "EVT-CASE-44-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0588",
+    "trueEventId": "EVT-CASE-44-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0589",
+    "trueEventId": "EVT-CASE-44-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0590",
+    "trueEventId": "EVT-CASE-44-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0591",
+    "trueEventId": "EVT-CASE-44-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0592",
+    "trueEventId": "EVT-CASE-44-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0593",
+    "trueEventId": "EVT-CASE-44-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0594",
+    "trueEventId": "EVT-CASE-44-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0595",
+    "trueEventId": "EVT-CASE-45-A",
+    "trueLineageId": "L1",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0596",
+    "trueEventId": "EVT-CASE-45-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0597",
+    "trueEventId": "EVT-CASE-45-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0598",
+    "trueEventId": "EVT-CASE-45-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0599",
+    "trueEventId": "EVT-CASE-45-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0600",
+    "trueEventId": "EVT-CASE-45-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0601",
+    "trueEventId": "EVT-CASE-45-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0602",
+    "trueEventId": "EVT-CASE-45-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0603",
+    "trueEventId": "EVT-CASE-45-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0604",
+    "trueEventId": "EVT-CASE-45-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0605",
+    "trueEventId": "EVT-CASE-45-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0606",
+    "trueEventId": "EVT-CASE-45-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0607",
+    "trueEventId": "EVT-CASE-45-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0608",
+    "trueEventId": "EVT-CASE-45-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0609",
+    "trueEventId": "EVT-CASE-46-A",
+    "trueLineageId": "L1",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0610",
+    "trueEventId": "EVT-CASE-46-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0611",
+    "trueEventId": "EVT-CASE-46-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0612",
+    "trueEventId": "EVT-CASE-46-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0613",
+    "trueEventId": "EVT-CASE-46-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0614",
+    "trueEventId": "EVT-CASE-46-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0615",
+    "trueEventId": "EVT-CASE-46-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0616",
+    "trueEventId": "EVT-CASE-46-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0617",
+    "trueEventId": "EVT-CASE-46-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0618",
+    "trueEventId": "EVT-CASE-46-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0619",
+    "trueEventId": "EVT-CASE-46-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0620",
+    "trueEventId": "EVT-CASE-46-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0621",
+    "trueEventId": "EVT-CASE-47-A",
+    "trueLineageId": "L1",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0622",
+    "trueEventId": "EVT-CASE-47-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0623",
+    "trueEventId": "EVT-CASE-47-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0624",
+    "trueEventId": "EVT-CASE-47-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0625",
+    "trueEventId": "EVT-CASE-47-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0626",
+    "trueEventId": "EVT-CASE-47-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0627",
+    "trueEventId": "EVT-CASE-47-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0628",
+    "trueEventId": "EVT-CASE-47-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0629",
+    "trueEventId": "EVT-CASE-47-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0630",
+    "trueEventId": "EVT-CASE-47-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0631",
+    "trueEventId": "EVT-CASE-47-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0632",
+    "trueEventId": "EVT-CASE-47-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0633",
+    "trueEventId": "EVT-CASE-47-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0634",
+    "trueEventId": "EVT-CASE-47-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0635",
+    "trueEventId": "EVT-CASE-47-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0636",
+    "trueEventId": "EVT-CASE-47-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0637",
+    "trueEventId": "EVT-CASE-48-A",
+    "trueLineageId": "L1",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0638",
+    "trueEventId": "EVT-CASE-48-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0639",
+    "trueEventId": "EVT-CASE-48-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0640",
+    "trueEventId": "EVT-CASE-48-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0641",
+    "trueEventId": "EVT-CASE-48-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0642",
+    "trueEventId": "EVT-CASE-48-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0643",
+    "trueEventId": "EVT-CASE-48-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0644",
+    "trueEventId": "EVT-CASE-48-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0645",
+    "trueEventId": "EVT-CASE-48-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0646",
+    "trueEventId": "EVT-CASE-48-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0647",
+    "trueEventId": "EVT-CASE-48-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0648",
+    "trueEventId": "EVT-CASE-48-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0649",
+    "trueEventId": "EVT-CASE-48-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0650",
+    "trueEventId": "EVT-CASE-49-A",
+    "trueLineageId": "L1",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0651",
+    "trueEventId": "EVT-CASE-49-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0652",
+    "trueEventId": "EVT-CASE-49-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0653",
+    "trueEventId": "EVT-CASE-49-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0654",
+    "trueEventId": "EVT-CASE-49-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0655",
+    "trueEventId": "EVT-CASE-49-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0656",
+    "trueEventId": "EVT-CASE-49-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0657",
+    "trueEventId": "EVT-CASE-49-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0658",
+    "trueEventId": "EVT-CASE-49-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0659",
+    "trueEventId": "EVT-CASE-49-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0660",
+    "trueEventId": "EVT-CASE-49-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0661",
+    "trueEventId": "EVT-CASE-49-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0662",
+    "trueEventId": "EVT-CASE-49-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0663",
+    "trueEventId": "EVT-CASE-49-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0664",
+    "trueEventId": "EVT-CASE-50-A",
+    "trueLineageId": "L1",
+    "relationshipType": "primary_observation"
+  },
+  {
+    "evidenceId": "EVID-0665",
+    "trueEventId": "EVT-CASE-50-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0666",
+    "trueEventId": "EVT-CASE-50-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0667",
+    "trueEventId": "EVT-CASE-50-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0668",
+    "trueEventId": "EVT-CASE-50-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0669",
+    "trueEventId": "EVT-CASE-50-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0670",
+    "trueEventId": "EVT-CASE-50-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0671",
+    "trueEventId": "EVT-CASE-50-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0672",
+    "trueEventId": "EVT-CASE-50-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0673",
+    "trueEventId": "EVT-CASE-50-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0674",
+    "trueEventId": "EVT-CASE-50-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0675",
+    "trueEventId": "EVT-CASE-50-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0676",
+    "trueEventId": "EVT-CASE-50-A",
+    "trueLineageId": "L1",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0677",
+    "trueEventId": "EVT-CASE-50-A",
+    "trueLineageId": "L2",
+    "relationshipType": "corroborating"
+  },
+  {
+    "evidenceId": "EVID-0678",
+    "trueEventId": "EVT-CASE-50-A",
+    "trueLineageId": "L3",
+    "relationshipType": "corroborating"
+  }
+]

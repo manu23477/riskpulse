@@ -1,0 +1,42 @@
+{
+  "boundaryName": "C08 MINIMAL BOUNDARY",
+  "completeRelationshipStatement": "A system receives evidence after the event occurrence time, distinguishes event time from arrival time, updates the current event state and shared downstream spatial-administrative-risk states, while retaining historical states and preserving unrelated event states.",
+  "singleReferenceEvaluations": [
+    {
+      "referenceId": "REF-04 (US20200379978A1)",
+      "subFeatures": {
+        "G1_late_evidence": "YES",
+        "G2_event_arrival_time_distinction": "YES",
+        "G3_historical_state": "PARTIAL",
+        "G4_current_state_revision": "YES",
+        "G5_spatial_propagation": "NO",
+        "G6_administrative_propagation": "NO",
+        "G7_risk_propagation": "NO",
+        "G8_shared_downstream_dependency": "PARTIAL",
+        "G9_cross_event_isolation": "YES",
+        "G10_provenance": "PARTIAL",
+        "G11_temporal_reconstruction": "YES"
+      },
+      "disclosesCompleteRelationship": false
+    },
+    {
+      "referenceId": "REF-08 (CN117235153B)",
+      "subFeatures": {
+        "G1_late_evidence": "PARTIAL",
+        "G2_event_arrival_time_distinction": "PARTIAL",
+        "G3_historical_state": "YES",
+        "G4_current_state_revision": "YES",
+        "G5_spatial_propagation": "NO",
+        "G6_administrative_propagation": "NO",
+        "G7_risk_propagation": "NO",
+        "G8_shared_downstream_dependency": "PARTIAL",
+        "G9_cross_event_isolation": "PARTIAL",
+        "G10_provenance": "YES",
+        "G11_temporal_reconstruction": "YES"
+      },
+      "disclosesCompleteRelationship": false
+    }
+  ],
+  "singleReferenceCoverageResult": "PARTIAL MULTI-REFERENCE COVERAGE ONLY",
+  "completeRelationshipLocated": false
+}

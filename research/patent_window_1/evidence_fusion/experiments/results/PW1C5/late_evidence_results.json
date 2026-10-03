@@ -1,0 +1,58 @@
+[
+  {
+    "scenarioId": "C08-A",
+    "eventTimestamp": "2026-08-15T09:55:00Z",
+    "arrivalTimestamp": "2026-08-15T11:00:00Z",
+    "historicalVersionPreserved": true,
+    "currentVersionUpdated": true
+  },
+  {
+    "scenarioId": "C08-B",
+    "eventTimestamp": "2026-08-15T09:55:00Z",
+    "arrivalTimestamp": "2026-08-15T11:00:00Z",
+    "historicalVersionPreserved": true,
+    "currentVersionUpdated": true
+  },
+  {
+    "scenarioId": "C08-C",
+    "eventTimestamp": "2026-08-15T09:55:00Z",
+    "arrivalTimestamp": "2026-08-15T11:00:00Z",
+    "historicalVersionPreserved": true,
+    "currentVersionUpdated": true
+  },
+  {
+    "scenarioId": "C08-D",
+    "eventTimestamp": "2026-08-15T09:55:00Z",
+    "arrivalTimestamp": "2026-08-15T11:00:00Z",
+    "historicalVersionPreserved": true,
+    "currentVersionUpdated": true
+  },
+  {
+    "scenarioId": "C08-E",
+    "eventTimestamp": "2026-08-15T09:55:00Z",
+    "arrivalTimestamp": "2026-08-15T11:00:00Z",
+    "historicalVersionPreserved": true,
+    "currentVersionUpdated": true
+  },
+  {
+    "scenarioId": "C08-F",
+    "eventTimestamp": "2026-08-15T09:55:00Z",
+    "arrivalTimestamp": "2026-08-15T11:00:00Z",
+    "historicalVersionPreserved": true,
+    "currentVersionUpdated": true
+  },
+  {
+    "scenarioId": "C08-G",
+    "eventTimestamp": "2026-08-15T09:55:00Z",
+    "arrivalTimestamp": "2026-08-15T11:00:00Z",
+    "historicalVersionPreserved": true,
+    "currentVersionUpdated": true
+  },
+  {
+    "scenarioId": "C08-H",
+    "eventTimestamp": "2026-08-15T09:55:00Z",
+    "arrivalTimestamp": "2026-08-15T11:00:00Z",
+    "historicalVersionPreserved": true,
+    "currentVersionUpdated": true
+  }
+]

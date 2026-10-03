@@ -1,0 +1,41 @@
+{
+  "graphClasses": [
+    {"classId": "C07-G1", "description": "2 events -> 1 shared administrative node -> 1 shared risk node"},
+    {"classId": "C07-G2", "description": "3 events -> 1 shared administrative node -> 1 shared risk node"},
+    {"classId": "C07-G3", "description": "3 events -> 2 shared administrative nodes -> 1 shared risk node"},
+    {"classId": "C07-G4", "description": "1 event -> multiple administrative nodes -> multiple risk nodes"},
+    {"classId": "C07-G5", "description": "2 events -> same two administrative nodes -> same risk node"},
+    {"classId": "C07-G6", "description": "3 events -> overlapping administrative memberships -> overlapping risk aggregation"},
+    {"classId": "C07-G7", "description": "Event enters and exits a shared administrative dependency"},
+    {"classId": "C07-G8", "description": "Event changes from Administrative X to Administrative Y"},
+    {"classId": "C07-G9", "description": "Event changes from Risk X contribution to Risk Y contribution"}
+  ],
+  "mutationAttacks": [
+    {"mutationId": "MUT-A", "type": "semantic_interpretation_change", "target": "Event A"},
+    {"mutationId": "MUT-B", "type": "spatial_state_change", "target": "Event A"},
+    {"mutationId": "MUT-C", "type": "temporal_state_change", "target": "Event A"},
+    {"mutationId": "MUT-D", "type": "add_corroboration", "target": "Event A"},
+    {"mutationId": "MUT-E", "type": "add_contradiction", "target": "Event A"},
+    {"mutationId": "MUT-F", "type": "withdraw_contradiction", "target": "Event A"},
+    {"mutationId": "MUT-G", "type": "change_admin_attribution", "target": "Event A"},
+    {"mutationId": "MUT-H", "type": "change_risk_contribution", "target": "Event A"},
+    {"mutationId": "MUT-I", "type": "move_admin_x_to_y", "target": "Event A"},
+    {"mutationId": "MUT-J", "type": "mutation_reversal", "target": "Event A"},
+    {"mutationId": "MUT-K", "type": "repeated_mutations", "target": "Event A"},
+    {"mutationId": "MUT-L", "type": "simultaneous_mutations", "target": "Event A and Event B"},
+    {"mutationId": "MUT-M", "type": "shared_downstream_mutation", "target": "Event A"},
+    {"mutationId": "MUT-N", "type": "independent_branch_mutation", "target": "Event C"},
+    {"mutationId": "MUT-O", "type": "dependency_closure_expansion", "target": "Event A"}
+  ],
+  "crossEventScaleNodes": [2, 3, 5, 10, 25, 50],
+  "scaleStressNodes": [10, 25, 50, 100, 250, 500, 1000],
+  "negativeControls": [
+    {"id": "NEG-01", "description": "Mutation A must NOT affect isolated Event C"},
+    {"id": "NEG-02", "description": "Mutation A must NOT affect Admin Y if A is not connected to Y"},
+    {"id": "NEG-03", "description": "Late evidence for A must NOT rewrite B"},
+    {"id": "NEG-04", "description": "Contradiction in A must NOT propagate to unrelated C"},
+    {"id": "NEG-05", "description": "Mutation with no dependency change must NOT trigger unnecessary downstream recomputation"},
+    {"id": "NEG-06", "description": "Administrative state with no changed contributing event must remain unchanged"},
+    {"id": "NEG-07", "description": "Historical V1 must remain byte-for-byte equivalent after all later mutations"}
+  ]
+}

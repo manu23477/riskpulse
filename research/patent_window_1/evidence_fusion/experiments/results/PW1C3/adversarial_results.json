@@ -1,0 +1,26 @@
+[
+  {
+    "mutationId": "MUT3-11",
+    "falsePropagationDetected": false,
+    "missedPropagationDetected": false,
+    "unaffectedBranchPreserved": true
+  },
+  {
+    "mutationId": "MUT3-12",
+    "falsePropagationDetected": false,
+    "missedPropagationDetected": false,
+    "unaffectedBranchPreserved": true
+  },
+  {
+    "mutationId": "MUT3-13",
+    "falsePropagationDetected": false,
+    "missedPropagationDetected": false,
+    "unaffectedBranchPreserved": true
+  },
+  {
+    "mutationId": "MUT3-14",
+    "falsePropagationDetected": false,
+    "missedPropagationDetected": false,
+    "unaffectedBranchPreserved": true
+  }
+]

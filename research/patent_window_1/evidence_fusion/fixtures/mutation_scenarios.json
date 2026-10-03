@@ -1,0 +1,129 @@
+[
+  {
+    "mutationId": "MUT-01",
+    "mutationType": "evidence_invalidation",
+    "targetEvidenceId": "EVID-0001",
+    "targetCaseId": "CASE-01",
+    "description": "Evidence item EVID-0001 initially treated as valid is subsequently invalidated.",
+    "attributeChanges": {
+      "isValid": false,
+      "invalidationReason": "Source account retracted initial report."
+    },
+    "expectedAffectedLayer": "interpretation_and_downstream",
+    "isNegativeControl": false
+  },
+  {
+    "mutationId": "MUT-02",
+    "mutationType": "support_to_contradiction",
+    "targetEvidenceId": "EVID-0003",
+    "targetCaseId": "CASE-01",
+    "description": "Evidence item EVID-0003 initially supporting Event A is later changed to contradictory evidence.",
+    "attributeChanges": {
+      "relationshipType": "contradicting",
+      "rawText": "Correction: Subsequent field check confirms no landslide at NH-05 Km 42."
+    },
+    "expectedAffectedLayer": "contradiction_and_confidence",
+    "isNegativeControl": false
+  },
+  {
+    "mutationId": "MUT-03",
+    "mutationType": "spatial_location_revision",
+    "targetEvidenceId": "EVID-0012",
+    "targetCaseId": "CASE-02",
+    "description": "Evidence item EVID-0012 location interpretation is revised from Location A to Location B.",
+    "attributeChanges": {
+      "statedLocation": "State Highway 12, Km 18 near Rampur Bazaar",
+      "revisedCoordinates": [77.65, 31.45]
+    },
+    "expectedAffectedLayer": "spatial_state",
+    "isNegativeControl": false
+  },
+  {
+    "mutationId": "MUT-04",
+    "mutationType": "temporal_window_narrowing",
+    "targetEvidenceId": "EVID-0025",
+    "targetCaseId": "CASE-03",
+    "description": "Evidence item EVID-0025 temporal interpretation is narrowed from vague morning to explicit 08:15 IST.",
+    "attributeChanges": {
+      "statedTime": "08:15:00 IST",
+      "temporalUncertaintySeconds": 900.0
+    },
+    "expectedAffectedLayer": "temporal_state",
+    "isNegativeControl": false
+  },
+  {
+    "mutationId": "MUT-05",
+    "mutationType": "repost_echo_identification",
+    "targetEvidenceId": "EVID-0080",
+    "targetCaseId": "CASE-07",
+    "description": "A duplicated/reposted evidence lineage is identified and its echo status changes from independent to repost.",
+    "attributeChanges": {
+      "sourceLineageId": "L1",
+      "relationshipType": "repost"
+    },
+    "expectedAffectedLayer": "lineage_and_confidence",
+    "isNegativeControl": false
+  },
+  {
+    "mutationId": "MUT-06",
+    "mutationType": "single_event_mutation",
+    "targetEvidenceId": "EVID-0150",
+    "targetCaseId": "CASE-13",
+    "description": "Mutation affecting only one single event in a multi-event case context.",
+    "attributeChanges": {
+      "extractedHazardHint": "flash flood"
+    },
+    "expectedAffectedLayer": "single_event_hypothesis",
+    "isNegativeControl": false
+  },
+  {
+    "mutationId": "MUT-07",
+    "mutationType": "multi_interpretation_mutation",
+    "targetEvidenceId": "EVID-0200",
+    "targetCaseId": "CASE-19",
+    "description": "Mutation affecting multiple interpretations of the same primary event.",
+    "attributeChanges": {
+      "sourceReliabilityInput": 0.30
+    },
+    "expectedAffectedLayer": "interpretation_and_confidence",
+    "isNegativeControl": false
+  },
+  {
+    "mutationId": "MUT-08",
+    "mutationType": "negative_control_unrelated_event",
+    "targetEvidenceId": "EVID-0450",
+    "targetCaseId": "CASE-35",
+    "description": "Negative control mutation on Event 1 in a 2-event case that should NOT affect unrelated Event 2.",
+    "attributeChanges": {
+      "statedLocation": "Aut Bridge North Bank"
+    },
+    "expectedAffectedLayer": "event_1_only",
+    "isNegativeControl": true,
+    "unaffectedTargetCaseId": "CASE-35",
+    "unaffectedTargetEventId": "EVT-CASE-35-B"
+  },
+  {
+    "mutationId": "MUT-09",
+    "mutationType": "downstream_risk_state_mutation",
+    "targetEvidenceId": "EVID-0550",
+    "targetCaseId": "CASE-43",
+    "description": "Mutation affecting spatial severity that propagates all the way to downstream RiskState.",
+    "attributeChanges": {
+      "rawText": "Earthquake epicenter intensity revised to M6.2 causing structural damage."
+    },
+    "expectedAffectedLayer": "full_downstream_risk",
+    "isNegativeControl": false
+  },
+  {
+    "mutationId": "MUT-10",
+    "mutationType": "early_termination_mutation",
+    "targetEvidenceId": "EVID-0600",
+    "targetCaseId": "CASE-47",
+    "description": "Mutation whose dependency chain terminates at AdministrativeState without altering RiskState.",
+    "attributeChanges": {
+      "statedLocation": "Sub-district Boundary Minor Correction"
+    },
+    "expectedAffectedLayer": "terminates_at_administrative",
+    "isNegativeControl": false
+  }
+]

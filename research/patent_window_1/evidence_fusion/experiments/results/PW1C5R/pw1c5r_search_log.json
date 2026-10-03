@@ -1,0 +1,26 @@
+[
+  {
+    "query": "\"event mutation\" \"dependency graph\" \"selective recomputation\"",
+    "databases": ["Google Patents", "USPTO", "Espacenet"],
+    "date": "2026-09-30",
+    "resultsLocated": ["US7441230B2", "US20210286481A1"]
+  },
+  {
+    "query": "\"late arriving evidence\" \"historical state\" spatial event",
+    "databases": ["Google Patents", "WIPO Patentscope"],
+    "date": "2026-09-30",
+    "resultsLocated": ["US20200379978A1", "US11200215B2"]
+  },
+  {
+    "query": "\"shared administrative\" event risk aggregation",
+    "databases": ["Google Patents", "IEEE Xplore", "ACM Digital Library"],
+    "date": "2026-09-30",
+    "resultsLocated": ["US10452652B2", "US10891340B2"]
+  },
+  {
+    "query": "\"cross-event isolation\" spatial event dependency graph",
+    "databases": ["Google Patents", "Google Scholar"],
+    "date": "2026-09-30",
+    "resultsLocated": ["US7441230B2"]
+  }
+]

@@ -1,0 +1,6 @@
+Discrepancy_ID,Component,Observation,Magnitude,Category,Likely_Cause,Scientific_Significance,Confidence
+D-01,Sink_Conditioning,Filled DEM elevation delta on lake beds,Local 0.1-2.0m,Category F (Algorithm),Planchon-Darboux fill vs Wang & Liu breaching,LOW (Non-comparable for elevation delta; downstream flow direction matches 100%),HIGH
+D-02,D8_Direction_Codes,D8 numeric integer codes differ (ESRI 1..128 vs GRASS 1..8),Codec shift,Category C (Convention),ESRI bitmask convention vs GRASS counter-clockwise degrees,NONE (100% compass sector match after normalization),HIGH
+D-03,Area_and_Length,Basin area and stream length differ by ~0.48-0.69%,0.48% Area / 0.69% Length,Category B (Geodesic Model),RiskPulse spherical 111320*cos(lat) vs WGS84 ellipsoidal geodesics,VERY LOW (0.48% is well within 1.0% research tolerance),HIGH
+D-04,Stream_Vertices,Polyline vertex count differs between vector networks,32 vertices,Category G (Vectorization),RiskPulse cell-center vertices vs QGIS line simplification,NONE (Network topology and order distribution match 100%),HIGH
+D-05,NoData_Accumulation,Inflow into NoData cell mutated -9999.0 to -9991.0 (Fixed in HYDRO-1),8.0 cells,Category D (NoData),Upstream flow added to sentinel -9999.0 in unpatched code,RESOLVED (Fixed in HYDRO-1; destination NoData now remains -9999.0),HIGH

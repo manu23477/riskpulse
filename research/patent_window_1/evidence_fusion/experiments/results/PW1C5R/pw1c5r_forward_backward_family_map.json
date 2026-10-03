@@ -1,0 +1,37 @@
+[
+  {
+    "familyId": "FAM-US7441230",
+    "representativePublication": "US7441230B2",
+    "backwardCitationsCount": 14,
+    "forwardCitationsCount": 42,
+    "citedTechDomains": ["Compiler dependency graphs", "Build automation", "DAG invalidation"]
+  },
+  {
+    "familyId": "FAM-EP3622411",
+    "representativePublication": "EP3622411B1",
+    "backwardCitationsCount": 8,
+    "forwardCitationsCount": 19,
+    "citedTechDomains": ["Graph databases", "Incremental query evaluation"]
+  },
+  {
+    "familyId": "FAM-US10067788",
+    "representativePublication": "US10067788B2",
+    "backwardCitationsCount": 11,
+    "forwardCitationsCount": 28,
+    "citedTechDomains": ["Distributed job processing", "Output data invalidation"]
+  },
+  {
+    "familyId": "FAM-US20200379978",
+    "representativePublication": "US20200379978A1",
+    "backwardCitationsCount": 22,
+    "forwardCitationsCount": 35,
+    "citedTechDomains": ["Stream processing", "Watermark mechanisms", "Late data processing"]
+  },
+  {
+    "familyId": "FAM-CN117235153",
+    "representativePublication": "CN117235153B",
+    "backwardCitationsCount": 6,
+    "forwardCitationsCount": 12,
+    "citedTechDomains": ["PROV-DM model", "Compliance tracing", "Directed provenance graphs"]
+  }
+]

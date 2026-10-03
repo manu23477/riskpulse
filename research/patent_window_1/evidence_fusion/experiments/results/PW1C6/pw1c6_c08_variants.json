@@ -1,0 +1,102 @@
+[
+  {
+    "variantId": "C08-A",
+    "isTechnicallyMeaningful": true,
+    "collapsesOnRemoval": false,
+    "necessaryComponents": [
+      "late_evidence",
+      "event_arrival_time_separation",
+      "bitemporal_state_history"
+    ]
+  },
+  {
+    "variantId": "C08-B",
+    "isTechnicallyMeaningful": true,
+    "collapsesOnRemoval": false,
+    "necessaryComponents": [
+      "late_evidence",
+      "event_arrival_time_separation",
+      "bitemporal_state_history"
+    ]
+  },
+  {
+    "variantId": "C08-C",
+    "isTechnicallyMeaningful": true,
+    "collapsesOnRemoval": false,
+    "necessaryComponents": [
+      "late_evidence",
+      "event_arrival_time_separation",
+      "bitemporal_state_history"
+    ]
+  },
+  {
+    "variantId": "C08-D",
+    "isTechnicallyMeaningful": true,
+    "collapsesOnRemoval": false,
+    "necessaryComponents": [
+      "late_evidence",
+      "event_arrival_time_separation",
+      "bitemporal_state_history"
+    ]
+  },
+  {
+    "variantId": "C08-E",
+    "isTechnicallyMeaningful": true,
+    "collapsesOnRemoval": false,
+    "necessaryComponents": [
+      "late_evidence",
+      "event_arrival_time_separation",
+      "bitemporal_state_history"
+    ]
+  },
+  {
+    "variantId": "C08-F",
+    "isTechnicallyMeaningful": true,
+    "collapsesOnRemoval": false,
+    "necessaryComponents": [
+      "late_evidence",
+      "event_arrival_time_separation",
+      "bitemporal_state_history"
+    ]
+  },
+  {
+    "variantId": "C08-G",
+    "isTechnicallyMeaningful": true,
+    "collapsesOnRemoval": false,
+    "necessaryComponents": [
+      "late_evidence",
+      "event_arrival_time_separation",
+      "bitemporal_state_history"
+    ]
+  },
+  {
+    "variantId": "C08-H",
+    "isTechnicallyMeaningful": true,
+    "collapsesOnRemoval": true,
+    "necessaryComponents": [
+      "late_evidence",
+      "event_arrival_time_separation",
+      "bitemporal_state_history"
+    ]
+  },
+  {
+    "variantId": "C08-I",
+    "isTechnicallyMeaningful": true,
+    "collapsesOnRemoval": false,
+    "necessaryComponents": [
+      "late_evidence",
+      "event_arrival_time_separation",
+      "bitemporal_state_history"
+    ]
+  },
+  {
+    "variantId": "C08-J",
+    "isTechnicallyMeaningful": true,
+    "collapsesOnRemoval": true,
+    "necessaryComponents": [
+      "late_evidence",
+      "event_arrival_time_separation",
+      "bitemporal_state_history"
+    ]
+  }
+]

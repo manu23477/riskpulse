@@ -1,0 +1,27 @@
+{
+  "dossierVersion": "PW1-PRO-REVIEW-v1.0",
+  "generationDate": "2026-09-30T14:58:00Z",
+  "expectedGitHead": "d6552707e0a693b04f40a2ade6a4efc5fdf9ae0a",
+  "auditedMilestones": [
+    "PW1C-1A", "PW1C-1B", "PW1C-2A", "PW1C-2B", "PW1C-3",
+    "PW1C-4", "PW1C-5", "PW1C-5R", "PW1C-5S", "PW1C-6", "PW1C-6R"
+  ],
+  "c07Status": "PARTIAL MULTI-REFERENCE COVERAGE ONLY",
+  "c08Status": "PARTIAL MULTI-REFERENCE COVERAGE ONLY",
+  "c07CompleteRelationshipLocated": false,
+  "c08CompleteRelationshipLocated": false,
+  "masterTestSuitePassCount": 114,
+  "masterTestSuiteCount": 11,
+  "analyzerStatus": "0 Errors, 0 Warnings",
+  "productionCodeModified": false,
+  "gitPushPerformed": false,
+  "sourceArtifacts": {
+    "dossier": "research/patent_window_1/PROFESSIONAL_REVIEW/PW1_PROFESSIONAL_REVIEW_DOSSIER.md",
+    "featureMatrix": "research/patent_window_1/PROFESSIONAL_REVIEW/PW1_FEATURE_BOUNDARY_MATRIX.md",
+    "referenceMatrix": "research/patent_window_1/PROFESSIONAL_REVIEW/PW1_REFERENCE_MATRIX.md",
+    "boundaryMatrix": "research/patent_window_1/PROFESSIONAL_REVIEW/PW1_C07_C08_BOUNDARY_MATRIX.md",
+    "counselQuestions": "research/patent_window_1/PROFESSIONAL_REVIEW/PW1_COUNSEL_QUESTIONS.md",
+    "evidenceIndex": "research/patent_window_1/PROFESSIONAL_REVIEW/PW1_EVIDENCE_INDEX.md",
+    "completionReport": "research/patent_window_1/PROFESSIONAL_REVIEW/PW1_PROFESSIONAL_REVIEW_COMPLETION_REPORT.md"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "strategyA_FullRebuild": {
+    "nodeEvaluations": 314,
+    "isEquivalent": true
+  },
+  "strategyB_GlobalInvalidation": {
+    "nodeEvaluations": 314,
+    "isEquivalent": true
+  },
+  "strategyC_PW2R5FullClosure": {
+    "nodeEvaluations": 5,
+    "isEquivalent": true
+  },
+  "strategyD_PW2MinimalCandidate": {
+    "nodeEvaluations": 5,
+    "isEquivalent": true
+  },
+  "minimalCandidateEquivalence": 1.0
+}

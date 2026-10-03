@@ -1,0 +1,44 @@
+[
+  {
+    "topologyMutationId": "T1",
+    "passed": true,
+    "edgeUpdatedCorrectly": true,
+    "isFullRebuildEquivalent": true
+  },
+  {
+    "topologyMutationId": "T2",
+    "passed": true,
+    "edgeUpdatedCorrectly": true,
+    "isFullRebuildEquivalent": true
+  },
+  {
+    "topologyMutationId": "T3",
+    "passed": true,
+    "edgeUpdatedCorrectly": true,
+    "isFullRebuildEquivalent": true
+  },
+  {
+    "topologyMutationId": "T4",
+    "passed": true,
+    "edgeUpdatedCorrectly": true,
+    "isFullRebuildEquivalent": true
+  },
+  {
+    "topologyMutationId": "T5",
+    "passed": true,
+    "edgeUpdatedCorrectly": true,
+    "isFullRebuildEquivalent": true
+  },
+  {
+    "topologyMutationId": "T6",
+    "passed": true,
+    "edgeUpdatedCorrectly": true,
+    "isFullRebuildEquivalent": true
+  },
+  {
+    "topologyMutationId": "T7",
+    "passed": true,
+    "edgeUpdatedCorrectly": true,
+    "isFullRebuildEquivalent": true
+  }
+]

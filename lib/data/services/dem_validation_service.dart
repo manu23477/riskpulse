@@ -76,6 +76,8 @@ class DemValidationService {
     // 2. Compute Footprint Bounding Box Overlap
     final demExtent = raster.extent;
 
+    debugPrint('[DEM Validation Diagnostics] DEM Footprint: (${demExtent.southWest.latitude}, ${demExtent.southWest.longitude}) -> (${demExtent.northEast.latitude}, ${demExtent.northEast.longitude}) | AOI Footprint: (${aoiExtent.southWest.latitude}, ${aoiExtent.southWest.longitude}) -> (${aoiExtent.northEast.latitude}, ${aoiExtent.northEast.longitude})');
+
     final double interWest = math.max(demExtent.southWest.longitude, aoiExtent.southWest.longitude);
     final double interEast = math.min(demExtent.northEast.longitude, aoiExtent.northEast.longitude);
     final double interSouth = math.max(demExtent.southWest.latitude, aoiExtent.southWest.latitude);
@@ -83,6 +85,8 @@ class DemValidationService {
 
     final double interDx = interEast - interWest;
     final double interDy = interNorth - interSouth;
+
+    debugPrint('[DEM Validation Diagnostics] Footprint Overlap interDx: $interDx, interDy: $interDy');
 
     // Outside AOI check
     if (interDx <= 0.0 || interDy <= 0.0) {

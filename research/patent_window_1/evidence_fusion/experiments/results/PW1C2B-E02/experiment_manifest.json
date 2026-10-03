@@ -1,0 +1,23 @@
+{
+  "experimentId": "PW1C2B-E02",
+  "experimentName": "CONTROLLED-MULTI-PERMUTATION-AND-ACTIVE-DEPENDENCY-PROPAGATION",
+  "datasetVersion": "PW1C1-DATA-v1.0",
+  "groundTruthVersion": "PW1C1-GT-v1.0",
+  "randomSeed": 20260929,
+  "executionTimestamp": "2026-09-30T12:50:00Z",
+  "permutationModesTested": [
+    "chronological",
+    "shuffled",
+    "reverse"
+  ],
+  "mutationScenariosEvaluated": 10,
+  "totalNodesEvaluatedSelective": 30,
+  "totalNodesEvaluatedFullRebuild": 316,
+  "overallRebuildReductionPercentage": 90.51,
+  "resultHashes": {
+    "permutations": "0b5be862707b44f31572be1c53af52e495e6a1a6075ff04c3f78794675e86971",
+    "mutations": "ac8c90f9770294b48b9e6c9c3369d5d3908de0e0e3b6c8cdb0dba29793eb3a7d",
+    "dependencies": "4dbff473ba64b2e2f3727a36fea25a10b670874248394d7460ca91a9cc032a2f",
+    "histories": "c0a9e085e803547b68c8c6ebf4682ed587de86177c6610ddd64412836d561bd8"
+  }
+}

@@ -1,0 +1,122 @@
+[
+  {
+    "ablationId": "A01",
+    "removedComponent": "C01",
+    "failureOccurred": true,
+    "failureType": "mutation_unrecognized",
+    "technicalConsequence": "State mutation failed to register upstream",
+    "affectedMetrics": {
+      "fullRebuildEquivalence": 0.0,
+      "falsePropagationCount": 0,
+      "missedPropagationCount": 0
+    }
+  },
+  {
+    "ablationId": "A02",
+    "removedComponent": "C02",
+    "failureOccurred": true,
+    "failureType": "missed_propagation",
+    "technicalConsequence": "Downstream spatial states failed to recompute",
+    "affectedMetrics": {
+      "fullRebuildEquivalence": 0.0,
+      "falsePropagationCount": 0,
+      "missedPropagationCount": 3
+    }
+  },
+  {
+    "ablationId": "A03",
+    "removedComponent": "C03",
+    "failureOccurred": true,
+    "failureType": "crosswalk_failure",
+    "technicalConsequence": "Administrative attribution failed to update",
+    "affectedMetrics": {
+      "fullRebuildEquivalence": 0.0,
+      "falsePropagationCount": 0,
+      "missedPropagationCount": 0
+    }
+  },
+  {
+    "ablationId": "A04",
+    "removedComponent": "C04",
+    "failureOccurred": true,
+    "failureType": "risk_state_failure",
+    "technicalConsequence": "Composite risk evaluation failed to update",
+    "affectedMetrics": {
+      "fullRebuildEquivalence": 0.0,
+      "falsePropagationCount": 0,
+      "missedPropagationCount": 0
+    }
+  },
+  {
+    "ablationId": "A05",
+    "removedComponent": "C05",
+    "failureOccurred": true,
+    "failureType": "false_cross_event_propagation",
+    "technicalConsequence": "Mutation leaked into unrelated Event B branch",
+    "affectedMetrics": {
+      "fullRebuildEquivalence": 0.0,
+      "falsePropagationCount": 5,
+      "missedPropagationCount": 0
+    }
+  },
+  {
+    "ablationId": "A06",
+    "removedComponent": "C06",
+    "failureOccurred": true,
+    "failureType": "historical_state_loss",
+    "technicalConsequence": "Historical snapshots V1..V3 were corrupted or overwritten",
+    "affectedMetrics": {
+      "fullRebuildEquivalence": 0.0,
+      "falsePropagationCount": 0,
+      "missedPropagationCount": 0
+    }
+  },
+  {
+    "ablationId": "A07",
+    "removedComponent": "C07",
+    "failureOccurred": false,
+    "failureType": "efficiency_only",
+    "technicalConsequence": "Recomputed full graph (0% reduction) without violating correctness",
+    "affectedMetrics": {
+      "fullRebuildEquivalence": 1.0,
+      "falsePropagationCount": 0,
+      "missedPropagationCount": 0
+    }
+  },
+  {
+    "ablationId": "A08",
+    "removedComponent": "C08",
+    "failureOccurred": true,
+    "failureType": "shared_admin_failure",
+    "technicalConsequence": "Shared district state collapsed when contributor mutated",
+    "affectedMetrics": {
+      "fullRebuildEquivalence": 0.0,
+      "falsePropagationCount": 0,
+      "missedPropagationCount": 0
+    }
+  },
+  {
+    "ablationId": "A09",
+    "removedComponent": "C09",
+    "failureOccurred": true,
+    "failureType": "shared_risk_failure",
+    "technicalConsequence": "Shared risk score collapsed when admin contributor mutated",
+    "affectedMetrics": {
+      "fullRebuildEquivalence": 0.0,
+      "falsePropagationCount": 0,
+      "missedPropagationCount": 0
+    }
+  },
+  {
+    "ablationId": "A10",
+    "removedComponent": "C10",
+    "failureOccurred": true,
+    "failureType": "topology_mutation_failure",
+    "technicalConsequence": "Failed to update dynamic edge redirection",
+    "affectedMetrics": {
+      "fullRebuildEquivalence": 0.0,
+      "falsePropagationCount": 0,
+      "missedPropagationCount": 0
+    }
+  }
+]

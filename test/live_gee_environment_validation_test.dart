@@ -4,11 +4,9 @@ import 'package:http/http.dart' as http;
 import 'package:http/testing.dart' as http_testing;
 import 'package:riskpulse/domain/location/geo_location.dart';
 import 'package:riskpulse/domain/gis/spatial_concepts.dart';
-import 'package:riskpulse/domain/gis/raster_data.dart';
+import 'package:riskpulse/domain/gis/research_data_provider.dart';
 import 'package:riskpulse/data/services/gee/gee_client.dart';
 import 'package:riskpulse/data/services/gee/gee_data_provider.dart';
-import 'package:riskpulse/data/services/gee/gee_remote_sensing_provider.dart';
-import 'package:riskpulse/domain/gis/remote_sensing_query.dart';
 import 'package:riskpulse/data/providers/research_workspace_provider.dart';
 import 'package:riskpulse/data/services/osint/controlled_promotion_gate.dart';
 
@@ -26,10 +24,9 @@ void main() {
         return http.Response('Permission denied for $testSecretToken', 403);
       });
 
-      final geeClient = GeeClient(httpClient: mockClient, projectId: 'riskpulse-prod-ee');
-      expect(geeClient.projectId, equals('riskpulse-prod-ee'));
-
+      final geeClient = GeeClient(httpClient: mockClient, defaultProjectId: 'riskpulse-prod-ee');
       final geeProvider = GeeDataProvider(client: geeClient);
+
       final result = await geeProvider.fetchDem(
         extent: testExtent,
         accessToken: testSecretToken,
@@ -51,7 +48,7 @@ void main() {
       final res503 = await provider503.fetchDem(extent: testExtent, accessToken: 'any_token');
 
       expect(res401.error?.type, equals(DataProviderErrorType.unauthorized));
-      expect(res503.error?.type, equals(DataProviderErrorType.serviceUnavailable));
+      expect(res503.error?.type, equals(DataProviderErrorType.networkFailure));
     });
 
     test('TEST 14: 2500 x 2500 memory safeguard enforcement', () async {

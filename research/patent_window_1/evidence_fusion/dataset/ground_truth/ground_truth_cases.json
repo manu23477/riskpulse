@@ -1,0 +1,2421 @@
+[
+  {
+    "caseId": "CASE-01",
+    "difficultyLevel": 2,
+    "family": "independent_corroboration",
+    "events": [
+      {
+        "trueEventId": "EVT-CASE-01-A",
+        "hazardType": "landslide",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            77.3031,
+            31.602
+          ]
+        },
+        "eventStart": "2026-08-15T08:00:00Z",
+        "eventEnd": "2026-08-15T18:00:00Z",
+        "trueEventState": "active",
+        "evidenceIds": [
+          "EVID-0001",
+          "EVID-0002",
+          "EVID-0003",
+          "EVID-0004",
+          "EVID-0005",
+          "EVID-0006",
+          "EVID-0007",
+          "EVID-0008",
+          "EVID-0009",
+          "EVID-0010",
+          "EVID-0011"
+        ],
+        "independentLineageIds": [
+          "L1",
+          "L2",
+          "L3",
+          "L4",
+          "L5",
+          "L6",
+          "L7",
+          "L8",
+          "L9",
+          "L10",
+          "L11"
+        ],
+        "conflictingEvidenceIds": []
+      }
+    ]
+  },
+  {
+    "caseId": "CASE-02",
+    "difficultyLevel": 3,
+    "family": "independent_corroboration",
+    "events": [
+      {
+        "trueEventId": "EVT-CASE-02-A",
+        "hazardType": "landslide",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            77.353,
+            32.2313
+          ]
+        },
+        "eventStart": "2026-08-15T08:00:00Z",
+        "eventEnd": "2026-08-15T18:00:00Z",
+        "trueEventState": "active",
+        "evidenceIds": [
+          "EVID-0012",
+          "EVID-0013",
+          "EVID-0014",
+          "EVID-0015",
+          "EVID-0016",
+          "EVID-0017",
+          "EVID-0018",
+          "EVID-0019",
+          "EVID-0020",
+          "EVID-0021",
+          "EVID-0022",
+          "EVID-0023"
+        ],
+        "independentLineageIds": [
+          "L1",
+          "L2",
+          "L3",
+          "L4",
+          "L5",
+          "L6",
+          "L7",
+          "L8",
+          "L9",
+          "L10",
+          "L11",
+          "L12"
+        ],
+        "conflictingEvidenceIds": []
+      }
+    ]
+  },
+  {
+    "caseId": "CASE-03",
+    "difficultyLevel": 1,
+    "family": "independent_corroboration",
+    "events": [
+      {
+        "trueEventId": "EVT-CASE-03-A",
+        "hazardType": "landslide",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            78.4679,
+            32.4301
+          ]
+        },
+        "eventStart": "2026-08-15T08:00:00Z",
+        "eventEnd": "2026-08-15T18:00:00Z",
+        "trueEventState": "active",
+        "evidenceIds": [
+          "EVID-0024",
+          "EVID-0025",
+          "EVID-0026",
+          "EVID-0027",
+          "EVID-0028",
+          "EVID-0029",
+          "EVID-0030",
+          "EVID-0031",
+          "EVID-0032",
+          "EVID-0033",
+          "EVID-0034",
+          "EVID-0035",
+          "EVID-0036"
+        ],
+        "independentLineageIds": [
+          "L1",
+          "L2",
+          "L3",
+          "L4",
+          "L5",
+          "L6",
+          "L7",
+          "L8",
+          "L9",
+          "L10",
+          "L11",
+          "L12",
+          "L13"
+        ],
+        "conflictingEvidenceIds": []
+      }
+    ]
+  },
+  {
+    "caseId": "CASE-04",
+    "difficultyLevel": 2,
+    "family": "independent_corroboration",
+    "events": [
+      {
+        "trueEventId": "EVT-CASE-04-A",
+        "hazardType": "landslide",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            77.1567,
+            32.2818
+          ]
+        },
+        "eventStart": "2026-08-15T08:00:00Z",
+        "eventEnd": "2026-08-15T18:00:00Z",
+        "trueEventState": "active",
+        "evidenceIds": [
+          "EVID-0037",
+          "EVID-0038",
+          "EVID-0039",
+          "EVID-0040",
+          "EVID-0041",
+          "EVID-0042",
+          "EVID-0043",
+          "EVID-0044",
+          "EVID-0045",
+          "EVID-0046"
+        ],
+        "independentLineageIds": [
+          "L1",
+          "L2",
+          "L3",
+          "L4",
+          "L5",
+          "L6",
+          "L7",
+          "L8",
+          "L9",
+          "L10"
+        ],
+        "conflictingEvidenceIds": []
+      }
+    ]
+  },
+  {
+    "caseId": "CASE-05",
+    "difficultyLevel": 3,
+    "family": "independent_corroboration",
+    "events": [
+      {
+        "trueEventId": "EVT-CASE-05-A",
+        "hazardType": "landslide",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            77.5155,
+            31.7848
+          ]
+        },
+        "eventStart": "2026-08-15T08:00:00Z",
+        "eventEnd": "2026-08-15T18:00:00Z",
+        "trueEventState": "active",
+        "evidenceIds": [
+          "EVID-0047",
+          "EVID-0048",
+          "EVID-0049",
+          "EVID-0050",
+          "EVID-0051",
+          "EVID-0052",
+          "EVID-0053",
+          "EVID-0054",
+          "EVID-0055",
+          "EVID-0056",
+          "EVID-0057"
+        ],
+        "independentLineageIds": [
+          "L1",
+          "L2",
+          "L3",
+          "L4",
+          "L5",
+          "L6",
+          "L7",
+          "L8",
+          "L9",
+          "L10",
+          "L11"
+        ],
+        "conflictingEvidenceIds": []
+      }
+    ]
+  },
+  {
+    "caseId": "CASE-06",
+    "difficultyLevel": 1,
+    "family": "independent_corroboration",
+    "events": [
+      {
+        "trueEventId": "EVT-CASE-06-A",
+        "hazardType": "landslide",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            77.0545,
+            32.1308
+          ]
+        },
+        "eventStart": "2026-08-15T08:00:00Z",
+        "eventEnd": "2026-08-15T18:00:00Z",
+        "trueEventState": "active",
+        "evidenceIds": [
+          "EVID-0058",
+          "EVID-0059",
+          "EVID-0060",
+          "EVID-0061",
+          "EVID-0062",
+          "EVID-0063",
+          "EVID-0064",
+          "EVID-0065",
+          "EVID-0066",
+          "EVID-0067",
+          "EVID-0068",
+          "EVID-0069"
+        ],
+        "independentLineageIds": [
+          "L1",
+          "L2",
+          "L3",
+          "L4",
+          "L5",
+          "L6",
+          "L7",
+          "L8",
+          "L9",
+          "L10",
+          "L11",
+          "L12"
+        ],
+        "conflictingEvidenceIds": []
+      }
+    ]
+  },
+  {
+    "caseId": "CASE-07",
+    "difficultyLevel": 2,
+    "family": "repost_echo_amplification",
+    "events": [
+      {
+        "trueEventId": "EVT-CASE-07-A",
+        "hazardType": "landslide",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            78.031,
+            31.4889
+          ]
+        },
+        "eventStart": "2026-08-15T08:00:00Z",
+        "eventEnd": "2026-08-15T18:00:00Z",
+        "trueEventState": "active",
+        "evidenceIds": [
+          "EVID-0070",
+          "EVID-0071",
+          "EVID-0072",
+          "EVID-0073",
+          "EVID-0074",
+          "EVID-0075",
+          "EVID-0076",
+          "EVID-0077",
+          "EVID-0078",
+          "EVID-0079",
+          "EVID-0080",
+          "EVID-0081",
+          "EVID-0082",
+          "EVID-0083"
+        ],
+        "independentLineageIds": [
+          "L1"
+        ],
+        "conflictingEvidenceIds": []
+      }
+    ]
+  },
+  {
+    "caseId": "CASE-08",
+    "difficultyLevel": 3,
+    "family": "repost_echo_amplification",
+    "events": [
+      {
+        "trueEventId": "EVT-CASE-08-A",
+        "hazardType": "landslide",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            78.1465,
+            31.8846
+          ]
+        },
+        "eventStart": "2026-08-15T08:00:00Z",
+        "eventEnd": "2026-08-15T18:00:00Z",
+        "trueEventState": "active",
+        "evidenceIds": [
+          "EVID-0084",
+          "EVID-0085",
+          "EVID-0086",
+          "EVID-0087",
+          "EVID-0088",
+          "EVID-0089",
+          "EVID-0090",
+          "EVID-0091",
+          "EVID-0092",
+          "EVID-0093",
+          "EVID-0094",
+          "EVID-0095",
+          "EVID-0096",
+          "EVID-0097",
+          "EVID-0098"
+        ],
+        "independentLineageIds": [
+          "L1"
+        ],
+        "conflictingEvidenceIds": []
+      }
+    ]
+  },
+  {
+    "caseId": "CASE-09",
+    "difficultyLevel": 1,
+    "family": "repost_echo_amplification",
+    "events": [
+      {
+        "trueEventId": "EVT-CASE-09-A",
+        "hazardType": "landslide",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            78.3755,
+            32.0638
+          ]
+        },
+        "eventStart": "2026-08-15T08:00:00Z",
+        "eventEnd": "2026-08-15T18:00:00Z",
+        "trueEventState": "active",
+        "evidenceIds": [
+          "EVID-0099",
+          "EVID-0100",
+          "EVID-0101",
+          "EVID-0102",
+          "EVID-0103",
+          "EVID-0104",
+          "EVID-0105",
+          "EVID-0106",
+          "EVID-0107",
+          "EVID-0108",
+          "EVID-0109",
+          "EVID-0110",
+          "EVID-0111",
+          "EVID-0112",
+          "EVID-0113",
+          "EVID-0114"
+        ],
+        "independentLineageIds": [
+          "L1"
+        ],
+        "conflictingEvidenceIds": []
+      }
+    ]
+  },
+  {
+    "caseId": "CASE-10",
+    "difficultyLevel": 2,
+    "family": "repost_echo_amplification",
+    "events": [
+      {
+        "trueEventId": "EVT-CASE-10-A",
+        "hazardType": "landslide",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            77.292,
+            32.0986
+          ]
+        },
+        "eventStart": "2026-08-15T08:00:00Z",
+        "eventEnd": "2026-08-15T18:00:00Z",
+        "trueEventState": "active",
+        "evidenceIds": [
+          "EVID-0115",
+          "EVID-0116",
+          "EVID-0117",
+          "EVID-0118",
+          "EVID-0119",
+          "EVID-0120",
+          "EVID-0121",
+          "EVID-0122",
+          "EVID-0123",
+          "EVID-0124",
+          "EVID-0125",
+          "EVID-0126"
+        ],
+        "independentLineageIds": [
+          "L1"
+        ],
+        "conflictingEvidenceIds": []
+      }
+    ]
+  },
+  {
+    "caseId": "CASE-11",
+    "difficultyLevel": 3,
+    "family": "repost_echo_amplification",
+    "events": [
+      {
+        "trueEventId": "EVT-CASE-11-A",
+        "hazardType": "flash_flood",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            78.4961,
+            32.121
+          ]
+        },
+        "eventStart": "2026-08-15T08:00:00Z",
+        "eventEnd": "2026-08-15T18:00:00Z",
+        "trueEventState": "active",
+        "evidenceIds": [
+          "EVID-0127",
+          "EVID-0128",
+          "EVID-0129",
+          "EVID-0130",
+          "EVID-0131",
+          "EVID-0132",
+          "EVID-0133",
+          "EVID-0134",
+          "EVID-0135",
+          "EVID-0136",
+          "EVID-0137",
+          "EVID-0138",
+          "EVID-0139",
+          "EVID-0140"
+        ],
+        "independentLineageIds": [
+          "L1"
+        ],
+        "conflictingEvidenceIds": []
+      }
+    ]
+  },
+  {
+    "caseId": "CASE-12",
+    "difficultyLevel": 1,
+    "family": "repost_echo_amplification",
+    "events": [
+      {
+        "trueEventId": "EVT-CASE-12-A",
+        "hazardType": "flash_flood",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            77.27,
+            32.2259
+          ]
+        },
+        "eventStart": "2026-08-15T08:00:00Z",
+        "eventEnd": "2026-08-15T18:00:00Z",
+        "trueEventState": "active",
+        "evidenceIds": [
+          "EVID-0141",
+          "EVID-0142",
+          "EVID-0143",
+          "EVID-0144",
+          "EVID-0145",
+          "EVID-0146",
+          "EVID-0147",
+          "EVID-0148",
+          "EVID-0149",
+          "EVID-0150",
+          "EVID-0151"
+        ],
+        "independentLineageIds": [
+          "L1"
+        ],
+        "conflictingEvidenceIds": []
+      }
+    ]
+  },
+  {
+    "caseId": "CASE-13",
+    "difficultyLevel": 2,
+    "family": "mixed_lineage",
+    "events": [
+      {
+        "trueEventId": "EVT-CASE-13-A",
+        "hazardType": "flash_flood",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            78.3374,
+            31.6743
+          ]
+        },
+        "eventStart": "2026-08-15T08:00:00Z",
+        "eventEnd": "2026-08-15T18:00:00Z",
+        "trueEventState": "active",
+        "evidenceIds": [
+          "EVID-0152",
+          "EVID-0153",
+          "EVID-0154",
+          "EVID-0155",
+          "EVID-0156",
+          "EVID-0157",
+          "EVID-0158",
+          "EVID-0159",
+          "EVID-0160",
+          "EVID-0161",
+          "EVID-0162",
+          "EVID-0163",
+          "EVID-0164",
+          "EVID-0165"
+        ],
+        "independentLineageIds": [
+          "L1",
+          "L2",
+          "L4",
+          "L6",
+          "L8",
+          "L10",
+          "L12",
+          "L_CONF"
+        ],
+        "conflictingEvidenceIds": [
+          "EVID-0165"
+        ]
+      }
+    ]
+  },
+  {
+    "caseId": "CASE-14",
+    "difficultyLevel": 3,
+    "family": "mixed_lineage",
+    "events": [
+      {
+        "trueEventId": "EVT-CASE-14-A",
+        "hazardType": "flash_flood",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            77.9607,
+            31.4688
+          ]
+        },
+        "eventStart": "2026-08-15T08:00:00Z",
+        "eventEnd": "2026-08-15T18:00:00Z",
+        "trueEventState": "active",
+        "evidenceIds": [
+          "EVID-0166",
+          "EVID-0167",
+          "EVID-0168",
+          "EVID-0169",
+          "EVID-0170",
+          "EVID-0171",
+          "EVID-0172",
+          "EVID-0173",
+          "EVID-0174",
+          "EVID-0175",
+          "EVID-0176",
+          "EVID-0177",
+          "EVID-0178",
+          "EVID-0179",
+          "EVID-0180"
+        ],
+        "independentLineageIds": [
+          "L1",
+          "L2",
+          "L4",
+          "L6",
+          "L8",
+          "L10",
+          "L12",
+          "L14",
+          "L_CONF"
+        ],
+        "conflictingEvidenceIds": [
+          "EVID-0180"
+        ]
+      }
+    ]
+  },
+  {
+    "caseId": "CASE-15",
+    "difficultyLevel": 1,
+    "family": "mixed_lineage",
+    "events": [
+      {
+        "trueEventId": "EVT-CASE-15-A",
+        "hazardType": "flash_flood",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            77.0309,
+            31.2373
+          ]
+        },
+        "eventStart": "2026-08-15T08:00:00Z",
+        "eventEnd": "2026-08-15T18:00:00Z",
+        "trueEventState": "active",
+        "evidenceIds": [
+          "EVID-0181",
+          "EVID-0182",
+          "EVID-0183",
+          "EVID-0184",
+          "EVID-0185",
+          "EVID-0186",
+          "EVID-0187",
+          "EVID-0188",
+          "EVID-0189",
+          "EVID-0190",
+          "EVID-0191",
+          "EVID-0192",
+          "EVID-0193",
+          "EVID-0194",
+          "EVID-0195",
+          "EVID-0196"
+        ],
+        "independentLineageIds": [
+          "L1",
+          "L2",
+          "L4",
+          "L6",
+          "L8",
+          "L10",
+          "L12",
+          "L14",
+          "L_CONF"
+        ],
+        "conflictingEvidenceIds": [
+          "EVID-0196"
+        ]
+      }
+    ]
+  },
+  {
+    "caseId": "CASE-16",
+    "difficultyLevel": 2,
+    "family": "mixed_lineage",
+    "events": [
+      {
+        "trueEventId": "EVT-CASE-16-A",
+        "hazardType": "flash_flood",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            78.4191,
+            31.0919
+          ]
+        },
+        "eventStart": "2026-08-15T08:00:00Z",
+        "eventEnd": "2026-08-15T18:00:00Z",
+        "trueEventState": "active",
+        "evidenceIds": [
+          "EVID-0197",
+          "EVID-0198",
+          "EVID-0199",
+          "EVID-0200",
+          "EVID-0201",
+          "EVID-0202",
+          "EVID-0203",
+          "EVID-0204",
+          "EVID-0205",
+          "EVID-0206",
+          "EVID-0207",
+          "EVID-0208",
+          "EVID-0209"
+        ],
+        "independentLineageIds": [
+          "L1",
+          "L2",
+          "L4",
+          "L6",
+          "L8",
+          "L10",
+          "L12",
+          "L_CONF"
+        ],
+        "conflictingEvidenceIds": [
+          "EVID-0209"
+        ]
+      }
+    ]
+  },
+  {
+    "caseId": "CASE-17",
+    "difficultyLevel": 3,
+    "family": "mixed_lineage",
+    "events": [
+      {
+        "trueEventId": "EVT-CASE-17-A",
+        "hazardType": "flash_flood",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            77.2945,
+            32.0533
+          ]
+        },
+        "eventStart": "2026-08-15T08:00:00Z",
+        "eventEnd": "2026-08-15T18:00:00Z",
+        "trueEventState": "active",
+        "evidenceIds": [
+          "EVID-0210",
+          "EVID-0211",
+          "EVID-0212",
+          "EVID-0213",
+          "EVID-0214",
+          "EVID-0215",
+          "EVID-0216",
+          "EVID-0217",
+          "EVID-0218",
+          "EVID-0219",
+          "EVID-0220",
+          "EVID-0221",
+          "EVID-0222",
+          "EVID-0223"
+        ],
+        "independentLineageIds": [
+          "L1",
+          "L2",
+          "L4",
+          "L6",
+          "L8",
+          "L10",
+          "L12",
+          "L_CONF"
+        ],
+        "conflictingEvidenceIds": [
+          "EVID-0223"
+        ]
+      }
+    ]
+  },
+  {
+    "caseId": "CASE-18",
+    "difficultyLevel": 1,
+    "family": "mixed_lineage",
+    "events": [
+      {
+        "trueEventId": "EVT-CASE-18-A",
+        "hazardType": "flash_flood",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            77.1847,
+            31.1561
+          ]
+        },
+        "eventStart": "2026-08-15T08:00:00Z",
+        "eventEnd": "2026-08-15T18:00:00Z",
+        "trueEventState": "active",
+        "evidenceIds": [
+          "EVID-0224",
+          "EVID-0225",
+          "EVID-0226",
+          "EVID-0227",
+          "EVID-0228",
+          "EVID-0229",
+          "EVID-0230",
+          "EVID-0231",
+          "EVID-0232",
+          "EVID-0233",
+          "EVID-0234",
+          "EVID-0235",
+          "EVID-0236",
+          "EVID-0237",
+          "EVID-0238"
+        ],
+        "independentLineageIds": [
+          "L1",
+          "L2",
+          "L4",
+          "L6",
+          "L8",
+          "L10",
+          "L12",
+          "L14",
+          "L_CONF"
+        ],
+        "conflictingEvidenceIds": [
+          "EVID-0238"
+        ]
+      }
+    ]
+  },
+  {
+    "caseId": "CASE-19",
+    "difficultyLevel": 2,
+    "family": "spatial_ambiguity",
+    "events": [
+      {
+        "trueEventId": "EVT-CASE-19-A",
+        "hazardType": "flood",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            77.4361,
+            32.0357
+          ]
+        },
+        "eventStart": "2026-08-15T08:00:00Z",
+        "eventEnd": "2026-08-15T18:00:00Z",
+        "trueEventState": "active",
+        "evidenceIds": [
+          "EVID-0239",
+          "EVID-0240",
+          "EVID-0241",
+          "EVID-0242",
+          "EVID-0243",
+          "EVID-0244",
+          "EVID-0245",
+          "EVID-0246",
+          "EVID-0247",
+          "EVID-0248",
+          "EVID-0249",
+          "EVID-0250",
+          "EVID-0251",
+          "EVID-0252",
+          "EVID-0253"
+        ],
+        "independentLineageIds": [
+          "L1",
+          "L2",
+          "L3"
+        ],
+        "conflictingEvidenceIds": []
+      }
+    ]
+  },
+  {
+    "caseId": "CASE-20",
+    "difficultyLevel": 3,
+    "family": "spatial_ambiguity",
+    "events": [
+      {
+        "trueEventId": "EVT-CASE-20-A",
+        "hazardType": "flood",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            77.9755,
+            31.5199
+          ]
+        },
+        "eventStart": "2026-08-15T08:00:00Z",
+        "eventEnd": "2026-08-15T18:00:00Z",
+        "trueEventState": "active",
+        "evidenceIds": [
+          "EVID-0254",
+          "EVID-0255",
+          "EVID-0256",
+          "EVID-0257",
+          "EVID-0258",
+          "EVID-0259",
+          "EVID-0260",
+          "EVID-0261",
+          "EVID-0262",
+          "EVID-0263",
+          "EVID-0264"
+        ],
+        "independentLineageIds": [
+          "L1",
+          "L2",
+          "L3"
+        ],
+        "conflictingEvidenceIds": []
+      }
+    ]
+  },
+  {
+    "caseId": "CASE-21",
+    "difficultyLevel": 1,
+    "family": "spatial_ambiguity",
+    "events": [
+      {
+        "trueEventId": "EVT-CASE-21-A",
+        "hazardType": "flood",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            78.1278,
+            32.0281
+          ]
+        },
+        "eventStart": "2026-08-15T08:00:00Z",
+        "eventEnd": "2026-08-15T18:00:00Z",
+        "trueEventState": "active",
+        "evidenceIds": [
+          "EVID-0265",
+          "EVID-0266",
+          "EVID-0267",
+          "EVID-0268",
+          "EVID-0269",
+          "EVID-0270",
+          "EVID-0271",
+          "EVID-0272",
+          "EVID-0273",
+          "EVID-0274",
+          "EVID-0275",
+          "EVID-0276"
+        ],
+        "independentLineageIds": [
+          "L1",
+          "L2",
+          "L3"
+        ],
+        "conflictingEvidenceIds": []
+      }
+    ]
+  },
+  {
+    "caseId": "CASE-22",
+    "difficultyLevel": 2,
+    "family": "spatial_ambiguity",
+    "events": [
+      {
+        "trueEventId": "EVT-CASE-22-A",
+        "hazardType": "flood",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            78.3175,
+            32.4532
+          ]
+        },
+        "eventStart": "2026-08-15T08:00:00Z",
+        "eventEnd": "2026-08-15T18:00:00Z",
+        "trueEventState": "active",
+        "evidenceIds": [
+          "EVID-0277",
+          "EVID-0278",
+          "EVID-0279",
+          "EVID-0280",
+          "EVID-0281",
+          "EVID-0282",
+          "EVID-0283",
+          "EVID-0284",
+          "EVID-0285",
+          "EVID-0286",
+          "EVID-0287",
+          "EVID-0288",
+          "EVID-0289"
+        ],
+        "independentLineageIds": [
+          "L1",
+          "L2",
+          "L3"
+        ],
+        "conflictingEvidenceIds": []
+      }
+    ]
+  },
+  {
+    "caseId": "CASE-23",
+    "difficultyLevel": 3,
+    "family": "spatial_ambiguity",
+    "events": [
+      {
+        "trueEventId": "EVT-CASE-23-A",
+        "hazardType": "flood",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            77.7872,
+            31.3463
+          ]
+        },
+        "eventStart": "2026-08-15T08:00:00Z",
+        "eventEnd": "2026-08-15T18:00:00Z",
+        "trueEventState": "active",
+        "evidenceIds": [
+          "EVID-0290",
+          "EVID-0291",
+          "EVID-0292",
+          "EVID-0293",
+          "EVID-0294",
+          "EVID-0295",
+          "EVID-0296",
+          "EVID-0297",
+          "EVID-0298",
+          "EVID-0299",
+          "EVID-0300",
+          "EVID-0301",
+          "EVID-0302",
+          "EVID-0303"
+        ],
+        "independentLineageIds": [
+          "L1",
+          "L2",
+          "L3"
+        ],
+        "conflictingEvidenceIds": []
+      }
+    ]
+  },
+  {
+    "caseId": "CASE-24",
+    "difficultyLevel": 1,
+    "family": "spatial_ambiguity",
+    "events": [
+      {
+        "trueEventId": "EVT-CASE-24-A",
+        "hazardType": "flood",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            77.8581,
+            31.1835
+          ]
+        },
+        "eventStart": "2026-08-15T08:00:00Z",
+        "eventEnd": "2026-08-15T18:00:00Z",
+        "trueEventState": "active",
+        "evidenceIds": [
+          "EVID-0304",
+          "EVID-0305",
+          "EVID-0306",
+          "EVID-0307",
+          "EVID-0308",
+          "EVID-0309",
+          "EVID-0310",
+          "EVID-0311",
+          "EVID-0312",
+          "EVID-0313",
+          "EVID-0314",
+          "EVID-0315",
+          "EVID-0316",
+          "EVID-0317",
+          "EVID-0318"
+        ],
+        "independentLineageIds": [
+          "L1",
+          "L2",
+          "L3"
+        ],
+        "conflictingEvidenceIds": []
+      }
+    ]
+  },
+  {
+    "caseId": "CASE-25",
+    "difficultyLevel": 2,
+    "family": "conflicting_locations",
+    "events": [
+      {
+        "trueEventId": "EVT-CASE-25-A",
+        "hazardType": "flood",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            78.17,
+            31.8426
+          ]
+        },
+        "eventStart": "2026-08-15T08:00:00Z",
+        "eventEnd": "2026-08-15T18:00:00Z",
+        "trueEventState": "active",
+        "evidenceIds": [
+          "EVID-0319",
+          "EVID-0320",
+          "EVID-0321",
+          "EVID-0322",
+          "EVID-0323",
+          "EVID-0324",
+          "EVID-0325",
+          "EVID-0326",
+          "EVID-0327",
+          "EVID-0328",
+          "EVID-0329",
+          "EVID-0330",
+          "EVID-0331",
+          "EVID-0332"
+        ],
+        "independentLineageIds": [
+          "L1",
+          "L2",
+          "L3"
+        ],
+        "conflictingEvidenceIds": [
+          "EVID-0332"
+        ]
+      }
+    ]
+  },
+  {
+    "caseId": "CASE-26",
+    "difficultyLevel": 3,
+    "family": "conflicting_locations",
+    "events": [
+      {
+        "trueEventId": "EVT-CASE-26-A",
+        "hazardType": "cloudburst",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            77.1693,
+            31.4961
+          ]
+        },
+        "eventStart": "2026-08-15T08:00:00Z",
+        "eventEnd": "2026-08-15T18:00:00Z",
+        "trueEventState": "active",
+        "evidenceIds": [
+          "EVID-0333",
+          "EVID-0334",
+          "EVID-0335",
+          "EVID-0336",
+          "EVID-0337",
+          "EVID-0338",
+          "EVID-0339",
+          "EVID-0343",
+          "EVID-0344",
+          "EVID-0345"
+        ],
+        "independentLineageIds": [
+          "L1",
+          "L2",
+          "L3"
+        ],
+        "conflictingEvidenceIds": []
+      },
+      {
+        "trueEventId": "EVT-CASE-26-B",
+        "hazardType": "cloudburst",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            78.2368,
+            32.4008
+          ]
+        },
+        "eventStart": "2026-08-15T10:00:00Z",
+        "eventEnd": "2026-08-15T20:00:00Z",
+        "trueEventState": "active",
+        "evidenceIds": [
+          "EVID-0340",
+          "EVID-0341",
+          "EVID-0342",
+          "EVID-0346"
+        ],
+        "independentLineageIds": [
+          "L2",
+          "L3",
+          "L1"
+        ],
+        "conflictingEvidenceIds": [
+          "EVID-0346"
+        ]
+      }
+    ]
+  },
+  {
+    "caseId": "CASE-27",
+    "difficultyLevel": 1,
+    "family": "conflicting_locations",
+    "events": [
+      {
+        "trueEventId": "EVT-CASE-27-A",
+        "hazardType": "cloudburst",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            78.3332,
+            31.0782
+          ]
+        },
+        "eventStart": "2026-08-15T08:00:00Z",
+        "eventEnd": "2026-08-15T18:00:00Z",
+        "trueEventState": "active",
+        "evidenceIds": [
+          "EVID-0347",
+          "EVID-0348",
+          "EVID-0349",
+          "EVID-0350",
+          "EVID-0351",
+          "EVID-0352",
+          "EVID-0353",
+          "EVID-0354",
+          "EVID-0355",
+          "EVID-0356",
+          "EVID-0357",
+          "EVID-0358",
+          "EVID-0359",
+          "EVID-0360",
+          "EVID-0361"
+        ],
+        "independentLineageIds": [
+          "L1",
+          "L2",
+          "L3"
+        ],
+        "conflictingEvidenceIds": [
+          "EVID-0361"
+        ]
+      }
+    ]
+  },
+  {
+    "caseId": "CASE-28",
+    "difficultyLevel": 2,
+    "family": "conflicting_locations",
+    "events": [
+      {
+        "trueEventId": "EVT-CASE-28-A",
+        "hazardType": "cloudburst",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            78.4715,
+            31.5183
+          ]
+        },
+        "eventStart": "2026-08-15T08:00:00Z",
+        "eventEnd": "2026-08-15T18:00:00Z",
+        "trueEventState": "active",
+        "evidenceIds": [
+          "EVID-0362",
+          "EVID-0363",
+          "EVID-0364",
+          "EVID-0365",
+          "EVID-0366",
+          "EVID-0367",
+          "EVID-0369",
+          "EVID-0371",
+          "EVID-0372",
+          "EVID-0373"
+        ],
+        "independentLineageIds": [
+          "L1",
+          "L2",
+          "L3"
+        ],
+        "conflictingEvidenceIds": [
+          "EVID-0373"
+        ]
+      },
+      {
+        "trueEventId": "EVT-CASE-28-B",
+        "hazardType": "cloudburst",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            77.4128,
+            31.9935
+          ]
+        },
+        "eventStart": "2026-08-15T10:00:00Z",
+        "eventEnd": "2026-08-15T20:00:00Z",
+        "trueEventState": "active",
+        "evidenceIds": [
+          "EVID-0368",
+          "EVID-0370"
+        ],
+        "independentLineageIds": [
+          "L1",
+          "L3"
+        ],
+        "conflictingEvidenceIds": []
+      }
+    ]
+  },
+  {
+    "caseId": "CASE-29",
+    "difficultyLevel": 3,
+    "family": "conflicting_locations",
+    "events": [
+      {
+        "trueEventId": "EVT-CASE-29-A",
+        "hazardType": "cloudburst",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            78.2779,
+            31.6874
+          ]
+        },
+        "eventStart": "2026-08-15T08:00:00Z",
+        "eventEnd": "2026-08-15T18:00:00Z",
+        "trueEventState": "active",
+        "evidenceIds": [
+          "EVID-0374",
+          "EVID-0375",
+          "EVID-0376",
+          "EVID-0377",
+          "EVID-0378",
+          "EVID-0379",
+          "EVID-0380",
+          "EVID-0381",
+          "EVID-0382",
+          "EVID-0383",
+          "EVID-0384",
+          "EVID-0385",
+          "EVID-0386"
+        ],
+        "independentLineageIds": [
+          "L1",
+          "L2",
+          "L3"
+        ],
+        "conflictingEvidenceIds": [
+          "EVID-0386"
+        ]
+      }
+    ]
+  },
+  {
+    "caseId": "CASE-30",
+    "difficultyLevel": 1,
+    "family": "temporal_ambiguity",
+    "events": [
+      {
+        "trueEventId": "EVT-CASE-30-A",
+        "hazardType": "cloudburst",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            77.0406,
+            32.0982
+          ]
+        },
+        "eventStart": "2026-08-15T08:00:00Z",
+        "eventEnd": "2026-08-15T18:00:00Z",
+        "trueEventState": "active",
+        "evidenceIds": [
+          "EVID-0387",
+          "EVID-0388",
+          "EVID-0389",
+          "EVID-0390",
+          "EVID-0391",
+          "EVID-0392",
+          "EVID-0393",
+          "EVID-0394",
+          "EVID-0395",
+          "EVID-0396",
+          "EVID-0397",
+          "EVID-0398"
+        ],
+        "independentLineageIds": [
+          "L1",
+          "L2",
+          "L3"
+        ],
+        "conflictingEvidenceIds": []
+      }
+    ]
+  },
+  {
+    "caseId": "CASE-31",
+    "difficultyLevel": 2,
+    "family": "temporal_ambiguity",
+    "events": [
+      {
+        "trueEventId": "EVT-CASE-31-A",
+        "hazardType": "cloudburst",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            78.4272,
+            31.6179
+          ]
+        },
+        "eventStart": "2026-08-15T08:00:00Z",
+        "eventEnd": "2026-08-15T18:00:00Z",
+        "trueEventState": "active",
+        "evidenceIds": [
+          "EVID-0399",
+          "EVID-0400",
+          "EVID-0401",
+          "EVID-0402",
+          "EVID-0403",
+          "EVID-0404",
+          "EVID-0405",
+          "EVID-0406",
+          "EVID-0407",
+          "EVID-0408",
+          "EVID-0409",
+          "EVID-0410",
+          "EVID-0411"
+        ],
+        "independentLineageIds": [
+          "L1",
+          "L2",
+          "L3"
+        ],
+        "conflictingEvidenceIds": []
+      }
+    ]
+  },
+  {
+    "caseId": "CASE-32",
+    "difficultyLevel": 3,
+    "family": "temporal_ambiguity",
+    "events": [
+      {
+        "trueEventId": "EVT-CASE-32-A",
+        "hazardType": "forest_fire",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            77.6142,
+            31.7454
+          ]
+        },
+        "eventStart": "2026-08-15T08:00:00Z",
+        "eventEnd": "2026-08-15T18:00:00Z",
+        "trueEventState": "active",
+        "evidenceIds": [
+          "EVID-0412",
+          "EVID-0413",
+          "EVID-0414",
+          "EVID-0415",
+          "EVID-0416",
+          "EVID-0417",
+          "EVID-0418",
+          "EVID-0419",
+          "EVID-0420",
+          "EVID-0421",
+          "EVID-0422",
+          "EVID-0423",
+          "EVID-0424",
+          "EVID-0425"
+        ],
+        "independentLineageIds": [
+          "L1",
+          "L2",
+          "L3"
+        ],
+        "conflictingEvidenceIds": []
+      }
+    ]
+  },
+  {
+    "caseId": "CASE-33",
+    "difficultyLevel": 1,
+    "family": "temporal_ambiguity",
+    "events": [
+      {
+        "trueEventId": "EVT-CASE-33-A",
+        "hazardType": "forest_fire",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            77.2093,
+            31.6482
+          ]
+        },
+        "eventStart": "2026-08-15T08:00:00Z",
+        "eventEnd": "2026-08-15T18:00:00Z",
+        "trueEventState": "active",
+        "evidenceIds": [
+          "EVID-0426",
+          "EVID-0427",
+          "EVID-0428",
+          "EVID-0429",
+          "EVID-0430",
+          "EVID-0431",
+          "EVID-0432",
+          "EVID-0433",
+          "EVID-0434",
+          "EVID-0435",
+          "EVID-0436",
+          "EVID-0437"
+        ],
+        "independentLineageIds": [
+          "L1",
+          "L2",
+          "L3"
+        ],
+        "conflictingEvidenceIds": []
+      }
+    ]
+  },
+  {
+    "caseId": "CASE-34",
+    "difficultyLevel": 2,
+    "family": "temporal_ambiguity",
+    "events": [
+      {
+        "trueEventId": "EVT-CASE-34-A",
+        "hazardType": "forest_fire",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            78.0146,
+            31.1566
+          ]
+        },
+        "eventStart": "2026-08-15T08:00:00Z",
+        "eventEnd": "2026-08-15T18:00:00Z",
+        "trueEventState": "active",
+        "evidenceIds": [
+          "EVID-0438",
+          "EVID-0439",
+          "EVID-0440",
+          "EVID-0441",
+          "EVID-0442",
+          "EVID-0443",
+          "EVID-0444",
+          "EVID-0445",
+          "EVID-0446",
+          "EVID-0447",
+          "EVID-0448",
+          "EVID-0449",
+          "EVID-0450"
+        ],
+        "independentLineageIds": [
+          "L1",
+          "L2",
+          "L3"
+        ],
+        "conflictingEvidenceIds": []
+      }
+    ]
+  },
+  {
+    "caseId": "CASE-35",
+    "difficultyLevel": 3,
+    "family": "nearby_separate_events",
+    "events": [
+      {
+        "trueEventId": "EVT-CASE-35-A",
+        "hazardType": "forest_fire",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            77.4183,
+            31.8315
+          ]
+        },
+        "eventStart": "2026-08-15T08:00:00Z",
+        "eventEnd": "2026-08-15T18:00:00Z",
+        "trueEventState": "active",
+        "evidenceIds": [
+          "EVID-0451",
+          "EVID-0452",
+          "EVID-0453",
+          "EVID-0454",
+          "EVID-0455",
+          "EVID-0456",
+          "EVID-0457",
+          "EVID-0458",
+          "EVID-0459",
+          "EVID-0460",
+          "EVID-0461",
+          "EVID-0462",
+          "EVID-0467"
+        ],
+        "independentLineageIds": [
+          "L_EVT_1_0",
+          "L_EVT_1_1",
+          "L_EVT_1_2",
+          "L_EVT_1_3",
+          "L_EVT_1_4",
+          "L_EVT_1_5",
+          "L_EVT_1_6",
+          "L_EVT_1_7",
+          "L_EVT_1_8",
+          "L_EVT_1_9",
+          "L_EVT_1_10",
+          "L_EVT_1_11",
+          "L_EVT_1_16"
+        ],
+        "conflictingEvidenceIds": []
+      },
+      {
+        "trueEventId": "EVT-CASE-35-B",
+        "hazardType": "forest_fire",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            77.2064,
+            31.8196
+          ]
+        },
+        "eventStart": "2026-08-15T10:00:00Z",
+        "eventEnd": "2026-08-15T20:00:00Z",
+        "trueEventState": "active",
+        "evidenceIds": [
+          "EVID-0463",
+          "EVID-0464",
+          "EVID-0465",
+          "EVID-0466"
+        ],
+        "independentLineageIds": [
+          "L_EVT_2_12",
+          "L_EVT_2_13",
+          "L_EVT_2_14",
+          "L_EVT_2_15"
+        ],
+        "conflictingEvidenceIds": []
+      }
+    ]
+  },
+  {
+    "caseId": "CASE-36",
+    "difficultyLevel": 1,
+    "family": "nearby_separate_events",
+    "events": [
+      {
+        "trueEventId": "EVT-CASE-36-A",
+        "hazardType": "forest_fire",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            77.313,
+            31.2526
+          ]
+        },
+        "eventStart": "2026-08-15T08:00:00Z",
+        "eventEnd": "2026-08-15T18:00:00Z",
+        "trueEventState": "active",
+        "evidenceIds": [
+          "EVID-0468",
+          "EVID-0469",
+          "EVID-0470",
+          "EVID-0471",
+          "EVID-0472",
+          "EVID-0473",
+          "EVID-0474",
+          "EVID-0478",
+          "EVID-0479",
+          "EVID-0480"
+        ],
+        "independentLineageIds": [
+          "L_EVT_1_0",
+          "L_EVT_1_1",
+          "L_EVT_1_2",
+          "L_EVT_1_3",
+          "L_EVT_1_4",
+          "L_EVT_1_5",
+          "L_EVT_1_6",
+          "L_EVT_1_10",
+          "L_EVT_1_11",
+          "L_EVT_1_12"
+        ],
+        "conflictingEvidenceIds": []
+      },
+      {
+        "trueEventId": "EVT-CASE-36-B",
+        "hazardType": "forest_fire",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            78.1538,
+            31.743
+          ]
+        },
+        "eventStart": "2026-08-15T10:00:00Z",
+        "eventEnd": "2026-08-15T20:00:00Z",
+        "trueEventState": "active",
+        "evidenceIds": [
+          "EVID-0475",
+          "EVID-0476",
+          "EVID-0477",
+          "EVID-0481"
+        ],
+        "independentLineageIds": [
+          "L_EVT_2_7",
+          "L_EVT_2_8",
+          "L_EVT_2_9",
+          "L_EVT_2_13"
+        ],
+        "conflictingEvidenceIds": []
+      }
+    ]
+  },
+  {
+    "caseId": "CASE-37",
+    "difficultyLevel": 2,
+    "family": "nearby_separate_events",
+    "events": [
+      {
+        "trueEventId": "EVT-CASE-37-A",
+        "hazardType": "forest_fire",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            77.2288,
+            31.1548
+          ]
+        },
+        "eventStart": "2026-08-15T08:00:00Z",
+        "eventEnd": "2026-08-15T18:00:00Z",
+        "trueEventState": "active",
+        "evidenceIds": [
+          "EVID-0482",
+          "EVID-0483",
+          "EVID-0484",
+          "EVID-0485",
+          "EVID-0486",
+          "EVID-0487",
+          "EVID-0488"
+        ],
+        "independentLineageIds": [
+          "L_EVT_1_0",
+          "L_EVT_1_1",
+          "L_EVT_1_2",
+          "L_EVT_1_3",
+          "L_EVT_1_4",
+          "L_EVT_1_5",
+          "L_EVT_1_6"
+        ],
+        "conflictingEvidenceIds": []
+      },
+      {
+        "trueEventId": "EVT-CASE-37-B",
+        "hazardType": "forest_fire",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            77.6362,
+            32.2615
+          ]
+        },
+        "eventStart": "2026-08-15T10:00:00Z",
+        "eventEnd": "2026-08-15T20:00:00Z",
+        "trueEventState": "active",
+        "evidenceIds": [
+          "EVID-0489",
+          "EVID-0490",
+          "EVID-0491",
+          "EVID-0492",
+          "EVID-0493",
+          "EVID-0494",
+          "EVID-0495",
+          "EVID-0496"
+        ],
+        "independentLineageIds": [
+          "L_EVT_2_7",
+          "L_EVT_2_8",
+          "L_EVT_2_9",
+          "L_EVT_2_10",
+          "L_EVT_2_11",
+          "L_EVT_2_12",
+          "L_EVT_2_13",
+          "L_EVT_2_14"
+        ],
+        "conflictingEvidenceIds": []
+      }
+    ]
+  },
+  {
+    "caseId": "CASE-38",
+    "difficultyLevel": 3,
+    "family": "nearby_separate_events",
+    "events": [
+      {
+        "trueEventId": "EVT-CASE-38-A",
+        "hazardType": "avalanche",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            78.1657,
+            31.0694
+          ]
+        },
+        "eventStart": "2026-08-15T08:00:00Z",
+        "eventEnd": "2026-08-15T18:00:00Z",
+        "trueEventState": "active",
+        "evidenceIds": [
+          "EVID-0497",
+          "EVID-0498",
+          "EVID-0499",
+          "EVID-0500",
+          "EVID-0501",
+          "EVID-0502",
+          "EVID-0503",
+          "EVID-0504",
+          "EVID-0505",
+          "EVID-0506",
+          "EVID-0507",
+          "EVID-0508",
+          "EVID-0510"
+        ],
+        "independentLineageIds": [
+          "L_EVT_1_0",
+          "L_EVT_1_1",
+          "L_EVT_1_2",
+          "L_EVT_1_3",
+          "L_EVT_1_4",
+          "L_EVT_1_5",
+          "L_EVT_1_6",
+          "L_EVT_1_7",
+          "L_EVT_1_8",
+          "L_EVT_1_9",
+          "L_EVT_1_10",
+          "L_EVT_1_11",
+          "L_EVT_1_13"
+        ],
+        "conflictingEvidenceIds": []
+      },
+      {
+        "trueEventId": "EVT-CASE-38-B",
+        "hazardType": "avalanche",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            77.1533,
+            32.2097
+          ]
+        },
+        "eventStart": "2026-08-15T10:00:00Z",
+        "eventEnd": "2026-08-15T20:00:00Z",
+        "trueEventState": "active",
+        "evidenceIds": [
+          "EVID-0509",
+          "EVID-0511"
+        ],
+        "independentLineageIds": [
+          "L_EVT_2_12",
+          "L_EVT_2_14"
+        ],
+        "conflictingEvidenceIds": []
+      }
+    ]
+  },
+  {
+    "caseId": "CASE-39",
+    "difficultyLevel": 1,
+    "family": "nearby_separate_events",
+    "events": [
+      {
+        "trueEventId": "EVT-CASE-39-A",
+        "hazardType": "avalanche",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            77.1594,
+            32.3866
+          ]
+        },
+        "eventStart": "2026-08-15T08:00:00Z",
+        "eventEnd": "2026-08-15T18:00:00Z",
+        "trueEventState": "active",
+        "evidenceIds": [
+          "EVID-0512",
+          "EVID-0513",
+          "EVID-0514",
+          "EVID-0515",
+          "EVID-0516",
+          "EVID-0517",
+          "EVID-0518",
+          "EVID-0519",
+          "EVID-0520",
+          "EVID-0521",
+          "EVID-0524"
+        ],
+        "independentLineageIds": [
+          "L_EVT_1_0",
+          "L_EVT_1_1",
+          "L_EVT_1_2",
+          "L_EVT_1_3",
+          "L_EVT_1_4",
+          "L_EVT_1_5",
+          "L_EVT_1_6",
+          "L_EVT_1_7",
+          "L_EVT_1_8",
+          "L_EVT_1_9",
+          "L_EVT_1_12"
+        ],
+        "conflictingEvidenceIds": []
+      },
+      {
+        "trueEventId": "EVT-CASE-39-B",
+        "hazardType": "avalanche",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            77.365,
+            32.448
+          ]
+        },
+        "eventStart": "2026-08-15T10:00:00Z",
+        "eventEnd": "2026-08-15T20:00:00Z",
+        "trueEventState": "active",
+        "evidenceIds": [
+          "EVID-0522",
+          "EVID-0523"
+        ],
+        "independentLineageIds": [
+          "L_EVT_2_10",
+          "L_EVT_2_11"
+        ],
+        "conflictingEvidenceIds": []
+      }
+    ]
+  },
+  {
+    "caseId": "CASE-40",
+    "difficultyLevel": 2,
+    "family": "sequential_late_evidence",
+    "events": [
+      {
+        "trueEventId": "EVT-CASE-40-A",
+        "hazardType": "avalanche",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            78.3538,
+            32.4661
+          ]
+        },
+        "eventStart": "2026-08-15T08:00:00Z",
+        "eventEnd": "2026-08-15T18:00:00Z",
+        "trueEventState": "active",
+        "evidenceIds": [
+          "EVID-0525",
+          "EVID-0526",
+          "EVID-0527",
+          "EVID-0528",
+          "EVID-0529",
+          "EVID-0530",
+          "EVID-0531",
+          "EVID-0532",
+          "EVID-0533",
+          "EVID-0534",
+          "EVID-0535",
+          "EVID-0536"
+        ],
+        "independentLineageIds": [
+          "L1",
+          "L2",
+          "L3"
+        ],
+        "conflictingEvidenceIds": []
+      }
+    ]
+  },
+  {
+    "caseId": "CASE-41",
+    "difficultyLevel": 3,
+    "family": "sequential_late_evidence",
+    "events": [
+      {
+        "trueEventId": "EVT-CASE-41-A",
+        "hazardType": "avalanche",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            77.3827,
+            32.1941
+          ]
+        },
+        "eventStart": "2026-08-15T08:00:00Z",
+        "eventEnd": "2026-08-15T18:00:00Z",
+        "trueEventState": "active",
+        "evidenceIds": [
+          "EVID-0537",
+          "EVID-0538",
+          "EVID-0539",
+          "EVID-0540",
+          "EVID-0541",
+          "EVID-0542",
+          "EVID-0543",
+          "EVID-0544",
+          "EVID-0545",
+          "EVID-0546",
+          "EVID-0547",
+          "EVID-0548",
+          "EVID-0549"
+        ],
+        "independentLineageIds": [
+          "L1",
+          "L2",
+          "L3"
+        ],
+        "conflictingEvidenceIds": []
+      }
+    ]
+  },
+  {
+    "caseId": "CASE-42",
+    "difficultyLevel": 1,
+    "family": "sequential_late_evidence",
+    "events": [
+      {
+        "trueEventId": "EVT-CASE-42-A",
+        "hazardType": "avalanche",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            77.1498,
+            31.5815
+          ]
+        },
+        "eventStart": "2026-08-15T08:00:00Z",
+        "eventEnd": "2026-08-15T18:00:00Z",
+        "trueEventState": "active",
+        "evidenceIds": [
+          "EVID-0550",
+          "EVID-0551",
+          "EVID-0552",
+          "EVID-0553",
+          "EVID-0554",
+          "EVID-0555",
+          "EVID-0556",
+          "EVID-0557",
+          "EVID-0558",
+          "EVID-0559",
+          "EVID-0560",
+          "EVID-0561",
+          "EVID-0562",
+          "EVID-0563"
+        ],
+        "independentLineageIds": [
+          "L1",
+          "L2",
+          "L3"
+        ],
+        "conflictingEvidenceIds": []
+      }
+    ]
+  },
+  {
+    "caseId": "CASE-43",
+    "difficultyLevel": 2,
+    "family": "sequential_late_evidence",
+    "events": [
+      {
+        "trueEventId": "EVT-CASE-43-A",
+        "hazardType": "earthquake",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            78.4735,
+            32.2924
+          ]
+        },
+        "eventStart": "2026-08-15T08:00:00Z",
+        "eventEnd": "2026-08-15T18:00:00Z",
+        "trueEventState": "active",
+        "evidenceIds": [
+          "EVID-0564",
+          "EVID-0565",
+          "EVID-0566",
+          "EVID-0567",
+          "EVID-0568",
+          "EVID-0569",
+          "EVID-0570",
+          "EVID-0571",
+          "EVID-0572",
+          "EVID-0573",
+          "EVID-0574",
+          "EVID-0575",
+          "EVID-0576",
+          "EVID-0577",
+          "EVID-0578"
+        ],
+        "independentLineageIds": [
+          "L1",
+          "L2",
+          "L3"
+        ],
+        "conflictingEvidenceIds": []
+      }
+    ]
+  },
+  {
+    "caseId": "CASE-44",
+    "difficultyLevel": 3,
+    "family": "sequential_late_evidence",
+    "events": [
+      {
+        "trueEventId": "EVT-CASE-44-A",
+        "hazardType": "earthquake",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            77.8646,
+            31.549
+          ]
+        },
+        "eventStart": "2026-08-15T08:00:00Z",
+        "eventEnd": "2026-08-15T18:00:00Z",
+        "trueEventState": "active",
+        "evidenceIds": [
+          "EVID-0579",
+          "EVID-0580",
+          "EVID-0581",
+          "EVID-0582",
+          "EVID-0583",
+          "EVID-0584",
+          "EVID-0585",
+          "EVID-0586",
+          "EVID-0587",
+          "EVID-0588",
+          "EVID-0589",
+          "EVID-0590",
+          "EVID-0591",
+          "EVID-0592",
+          "EVID-0593",
+          "EVID-0594"
+        ],
+        "independentLineageIds": [
+          "L1",
+          "L2",
+          "L3"
+        ],
+        "conflictingEvidenceIds": []
+      }
+    ]
+  },
+  {
+    "caseId": "CASE-45",
+    "difficultyLevel": 1,
+    "family": "sequential_late_evidence",
+    "events": [
+      {
+        "trueEventId": "EVT-CASE-45-A",
+        "hazardType": "earthquake",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            77.775,
+            31.4634
+          ]
+        },
+        "eventStart": "2026-08-15T08:00:00Z",
+        "eventEnd": "2026-08-15T18:00:00Z",
+        "trueEventState": "active",
+        "evidenceIds": [
+          "EVID-0595",
+          "EVID-0596",
+          "EVID-0597",
+          "EVID-0598",
+          "EVID-0599",
+          "EVID-0600",
+          "EVID-0601",
+          "EVID-0602",
+          "EVID-0603",
+          "EVID-0604",
+          "EVID-0605",
+          "EVID-0606",
+          "EVID-0607",
+          "EVID-0608"
+        ],
+        "independentLineageIds": [
+          "L1",
+          "L2",
+          "L3"
+        ],
+        "conflictingEvidenceIds": []
+      }
+    ]
+  },
+  {
+    "caseId": "CASE-46",
+    "difficultyLevel": 1,
+    "family": "cross_modal_evidence",
+    "events": [
+      {
+        "trueEventId": "EVT-CASE-46-A",
+        "hazardType": "earthquake",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            77.7868,
+            32.1204
+          ]
+        },
+        "eventStart": "2026-08-15T08:00:00Z",
+        "eventEnd": "2026-08-15T18:00:00Z",
+        "trueEventState": "active",
+        "evidenceIds": [
+          "EVID-0609",
+          "EVID-0610",
+          "EVID-0611",
+          "EVID-0612",
+          "EVID-0613",
+          "EVID-0614",
+          "EVID-0615",
+          "EVID-0616",
+          "EVID-0617",
+          "EVID-0618",
+          "EVID-0619",
+          "EVID-0620"
+        ],
+        "independentLineageIds": [
+          "L1",
+          "L2",
+          "L3"
+        ],
+        "conflictingEvidenceIds": []
+      }
+    ]
+  },
+  {
+    "caseId": "CASE-47",
+    "difficultyLevel": 3,
+    "family": "cross_modal_evidence",
+    "events": [
+      {
+        "trueEventId": "EVT-CASE-47-A",
+        "hazardType": "road_blockage_infrastructure",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            77.4415,
+            32.1469
+          ]
+        },
+        "eventStart": "2026-08-15T08:00:00Z",
+        "eventEnd": "2026-08-15T18:00:00Z",
+        "trueEventState": "active",
+        "evidenceIds": [
+          "EVID-0621",
+          "EVID-0622",
+          "EVID-0623",
+          "EVID-0624",
+          "EVID-0625",
+          "EVID-0626",
+          "EVID-0627",
+          "EVID-0628",
+          "EVID-0629",
+          "EVID-0630",
+          "EVID-0631",
+          "EVID-0632",
+          "EVID-0633",
+          "EVID-0634",
+          "EVID-0635",
+          "EVID-0636"
+        ],
+        "independentLineageIds": [
+          "L1",
+          "L2",
+          "L3"
+        ],
+        "conflictingEvidenceIds": []
+      }
+    ]
+  },
+  {
+    "caseId": "CASE-48",
+    "difficultyLevel": 1,
+    "family": "cross_modal_evidence",
+    "events": [
+      {
+        "trueEventId": "EVT-CASE-48-A",
+        "hazardType": "road_blockage_infrastructure",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            77.4853,
+            32.1923
+          ]
+        },
+        "eventStart": "2026-08-15T08:00:00Z",
+        "eventEnd": "2026-08-15T18:00:00Z",
+        "trueEventState": "active",
+        "evidenceIds": [
+          "EVID-0637",
+          "EVID-0638",
+          "EVID-0639",
+          "EVID-0640",
+          "EVID-0641",
+          "EVID-0642",
+          "EVID-0643",
+          "EVID-0644",
+          "EVID-0645",
+          "EVID-0646",
+          "EVID-0647",
+          "EVID-0648",
+          "EVID-0649"
+        ],
+        "independentLineageIds": [
+          "L1",
+          "L2",
+          "L3"
+        ],
+        "conflictingEvidenceIds": []
+      }
+    ]
+  },
+  {
+    "caseId": "CASE-49",
+    "difficultyLevel": 2,
+    "family": "cross_modal_evidence",
+    "events": [
+      {
+        "trueEventId": "EVT-CASE-49-A",
+        "hazardType": "road_blockage_infrastructure",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            77.4821,
+            32.2473
+          ]
+        },
+        "eventStart": "2026-08-15T08:00:00Z",
+        "eventEnd": "2026-08-15T18:00:00Z",
+        "trueEventState": "active",
+        "evidenceIds": [
+          "EVID-0650",
+          "EVID-0651",
+          "EVID-0652",
+          "EVID-0653",
+          "EVID-0654",
+          "EVID-0655",
+          "EVID-0656",
+          "EVID-0657",
+          "EVID-0658",
+          "EVID-0659",
+          "EVID-0660",
+          "EVID-0661",
+          "EVID-0662",
+          "EVID-0663"
+        ],
+        "independentLineageIds": [
+          "L1",
+          "L2",
+          "L3"
+        ],
+        "conflictingEvidenceIds": []
+      }
+    ]
+  },
+  {
+    "caseId": "CASE-50",
+    "difficultyLevel": 3,
+    "family": "cross_modal_evidence",
+    "events": [
+      {
+        "trueEventId": "EVT-CASE-50-A",
+        "hazardType": "road_blockage_infrastructure",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            77.758,
+            32.4807
+          ]
+        },
+        "eventStart": "2026-08-15T08:00:00Z",
+        "eventEnd": "2026-08-15T18:00:00Z",
+        "trueEventState": "active",
+        "evidenceIds": [
+          "EVID-0664",
+          "EVID-0665",
+          "EVID-0666",
+          "EVID-0667",
+          "EVID-0668",
+          "EVID-0669",
+          "EVID-0670",
+          "EVID-0671",
+          "EVID-0672",
+          "EVID-0673",
+          "EVID-0674",
+          "EVID-0675",
+          "EVID-0676",
+          "EVID-0677",
+          "EVID-0678"
+        ],
+        "independentLineageIds": [
+          "L1",
+          "L2",
+          "L3"
+        ],
+        "conflictingEvidenceIds": []
+      }
+    ]
+  }
+]

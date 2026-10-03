@@ -1,4 +1,5 @@
-import 'dart:typed_data';
+import 'dart:io';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:riskpulse/domain/gis/spatial_concepts.dart';
 import 'package:riskpulse/domain/gis/research_data_provider.dart';
@@ -34,6 +35,7 @@ class DemAcquisitionDialog extends StatefulWidget {
 class _DemAcquisitionDialogState extends State<DemAcquisitionDialog> with SingleTickerProviderStateMixin {
   late TabController _tabController;
   final TextEditingController _tokenController = TextEditingController();
+  final TextEditingController _projectIdController = TextEditingController(text: 'riskpulse-earth-engine');
 
   bool _isProcessing = false;
   String? _errorMessage;
@@ -43,12 +45,72 @@ class _DemAcquisitionDialogState extends State<DemAcquisitionDialog> with Single
   void initState() {
     super.initState();
     _tabController = TabController(length: 2, vsync: this);
+    _initializeGeeCredentials();
+  }
+
+  void _initializeGeeCredentials() {
+    // 1. Dynamic Project ID Resolution
+    String? envProjectId;
+    try {
+      envProjectId = Platform.environment['GEE_PROJECT_ID'] ??
+          (const String.fromEnvironment('GEE_PROJECT_ID').isNotEmpty
+              ? const String.fromEnvironment('GEE_PROJECT_ID')
+              : null) ??
+          Platform.environment['GCP_PROJECT_ID'] ??
+          (const String.fromEnvironment('GCP_PROJECT_ID').isNotEmpty
+              ? const String.fromEnvironment('GCP_PROJECT_ID')
+              : null);
+    } catch (_) {
+      if (const String.fromEnvironment('GEE_PROJECT_ID').isNotEmpty) {
+        envProjectId = const String.fromEnvironment('GEE_PROJECT_ID');
+      } else if (const String.fromEnvironment('GCP_PROJECT_ID').isNotEmpty) {
+        envProjectId = const String.fromEnvironment('GCP_PROJECT_ID');
+      }
+    }
+
+    if (envProjectId != null && envProjectId.trim().isNotEmpty) {
+      _projectIdController.text = envProjectId.trim();
+    }
+
+    // 2. Dynamic Access Token Resolution
+    String? envToken;
+    try {
+      envToken = Platform.environment['GEE_ACCESS_TOKEN'] ??
+          (const String.fromEnvironment('GEE_ACCESS_TOKEN').isNotEmpty
+              ? const String.fromEnvironment('GEE_ACCESS_TOKEN')
+              : null) ??
+          Platform.environment['EARTH_ENGINE_TOKEN'] ??
+          (const String.fromEnvironment('EARTH_ENGINE_TOKEN').isNotEmpty
+              ? const String.fromEnvironment('EARTH_ENGINE_TOKEN')
+              : null) ??
+          Platform.environment['GCP_BEARER_TOKEN'] ??
+          (const String.fromEnvironment('GCP_BEARER_TOKEN').isNotEmpty
+              ? const String.fromEnvironment('GCP_BEARER_TOKEN')
+              : null);
+    } catch (_) {
+      if (const String.fromEnvironment('GEE_ACCESS_TOKEN').isNotEmpty) {
+        envToken = const String.fromEnvironment('GEE_ACCESS_TOKEN');
+      } else if (const String.fromEnvironment('EARTH_ENGINE_TOKEN').isNotEmpty) {
+        envToken = const String.fromEnvironment('EARTH_ENGINE_TOKEN');
+      } else if (const String.fromEnvironment('GCP_BEARER_TOKEN').isNotEmpty) {
+        envToken = const String.fromEnvironment('GCP_BEARER_TOKEN');
+      }
+    }
+
+    if (envToken != null && envToken.trim().isNotEmpty) {
+      var clean = envToken.trim();
+      if (clean.toLowerCase().startsWith('bearer ')) {
+        clean = clean.substring(7).trim();
+      }
+      _tokenController.text = clean;
+    }
   }
 
   @override
   void dispose() {
     _tabController.dispose();
     _tokenController.dispose();
+    _projectIdController.dispose();
     super.dispose();
   }
 
@@ -82,13 +144,23 @@ class _DemAcquisitionDialogState extends State<DemAcquisitionDialog> with Single
   }
 
   Future<void> _fetchGeeDem() async {
-    final token = _tokenController.text.trim();
+    var rawToken = _tokenController.text.trim();
+    if (rawToken.toLowerCase().startsWith('bearer ')) {
+      rawToken = rawToken.substring(7).trim();
+    }
+    final token = rawToken;
+    final projectId = _projectIdController.text.trim();
+    final activeProject = projectId.isNotEmpty ? projectId : 'riskpulse-earth-engine';
+
     if (token.isEmpty) {
+      debugPrint('[GEE Auth Diagnostics] Token Provider Status: Token empty/null | Project ID: $activeProject');
       setState(() {
         _errorMessage = 'GEE Authentication Required: Please enter a valid Bearer Access Token.';
       });
       return;
     }
+
+    debugPrint('[GEE Auth Diagnostics] Token Provider Status: Token available (len: ${token.length}) | Project ID: $activeProject');
 
     setState(() {
       _isProcessing = true;
@@ -101,6 +173,7 @@ class _DemAcquisitionDialogState extends State<DemAcquisitionDialog> with Single
         extent: widget.aoiExtent,
         resolutionMeters: 30.0,
         accessToken: token,
+        projectId: activeProject,
       );
 
       if (result.isSuccess && result.data != null) {
@@ -191,7 +264,7 @@ class _DemAcquisitionDialogState extends State<DemAcquisitionDialog> with Single
             ),
             const SizedBox(height: 16),
             SizedBox(
-              height: 180,
+              height: 230,
               child: TabBarView(
                 controller: _tabController,
                 children: [
@@ -301,7 +374,19 @@ class _DemAcquisitionDialogState extends State<DemAcquisitionDialog> with Single
           'Acquire Copernicus DEM GLO-30 raster directly from Google Earth Engine REST API.',
           style: TextStyle(fontSize: 11, color: Colors.black54),
         ),
-        const SizedBox(height: 12),
+        const SizedBox(height: 10),
+        TextField(
+          key: const Key('gee-project-field'),
+          controller: _projectIdController,
+          decoration: InputDecoration(
+            labelText: 'GCP Project ID',
+            hintText: 'e.g. riskpulse-earth-engine',
+            isDense: true,
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+            prefixIcon: const Icon(Icons.cloud, size: 18),
+          ),
+        ),
+        const SizedBox(height: 10),
         TextField(
           key: const Key('gee-token-field'),
           controller: _tokenController,

@@ -1,0 +1,82 @@
+[
+  {
+    "referenceId": "REF-PW2-01",
+    "publicationNumber": "CN119443785A",
+    "title": "Method and system for spatial index invalidation in GIS graphs",
+    "assignee": "Wuhan University",
+    "priorityDate": "2023-11-12",
+    "publicationDate": "2024-02-15",
+    "domain": "GIS Spatial Index Invalidation",
+    "classification": "PARTIAL_SINGLE_REFERENCE"
+  },
+  {
+    "referenceId": "REF-PW2-02",
+    "publicationNumber": "US8548248B2",
+    "title": "System for raster cell classification and spatial update",
+    "assignee": "DigitalGlobe Inc",
+    "priorityDate": "2010-05-18",
+    "publicationDate": "2013-10-01",
+    "domain": "Satellite Imagery Processing",
+    "classification": "PARTIAL_SINGLE_REFERENCE"
+  },
+  {
+    "referenceId": "REF-PW2-03",
+    "publicationNumber": "US10036650B2",
+    "title": "Geospatial dependency graph traversal in hazard mapping",
+    "assignee": "Environmental Systems Research Institute Inc (ESRI)",
+    "priorityDate": "2015-08-20",
+    "publicationDate": "2018-07-31",
+    "domain": "GIS Dependency Traversal",
+    "classification": "PARTIAL_SINGLE_REFERENCE"
+  },
+  {
+    "referenceId": "REF-PW2-04",
+    "publicationNumber": "US20230267118A2",
+    "title": "Bitemporal stream ingestion for remote sensing observations",
+    "assignee": "Planet Labs PBC",
+    "priorityDate": "2022-02-10",
+    "publicationDate": "2023-08-24",
+    "domain": "Remote Sensing Bitemporal Streams",
+    "classification": "PARTIAL_SINGLE_REFERENCE"
+  },
+  {
+    "referenceId": "REF-01",
+    "publicationNumber": "US7441230B2",
+    "title": "Method of utilizing product proxies with a dependency graph",
+    "assignee": "Microsoft Corp",
+    "priorityDate": "2003-09-30",
+    "publicationDate": "2008-10-21",
+    "domain": "Build Proxy Dependency Graphs",
+    "classification": "PARTIAL_SINGLE_REFERENCE"
+  },
+  {
+    "referenceId": "REF-04",
+    "publicationNumber": "US20200379978A1",
+    "title": "System and method of processing late arriving and out of order data",
+    "assignee": "Google LLC",
+    "priorityDate": "2019-05-31",
+    "publicationDate": "2020-12-03",
+    "domain": "Bitemporal Stream Processing",
+    "classification": "PARTIAL_SINGLE_REFERENCE"
+  },
+  {
+    "referenceId": "REF-08",
+    "publicationNumber": "CN117235153B",
+    "title": "ProV-DM model-based compliance data evidence-storing and tracing",
+    "assignee": "Zhejiang Univ",
+    "priorityDate": "2023-11-08",
+    "publicationDate": "2024-01-12",
+    "domain": "Provenance Version Graphs",
+    "classification": "PARTIAL_SINGLE_REFERENCE"
+  },
+  {
+    "referenceId": "REF-09",
+    "publicationNumber": "US10452652B2",
+    "title": "Geospatial event extraction and correlation graph",
+    "assignee": "BAE Systems",
+    "priorityDate": "2016-11-15",
+    "publicationDate": "2019-10-22",
+    "domain": "Geospatial Event Correlation",
+    "classification": "PARTIAL_SINGLE_REFERENCE"
+  }
+]

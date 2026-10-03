@@ -1,0 +1,53 @@
+{
+  "chronological": {
+    "modelA": {
+      "mode": "chronological",
+      "avgAssociationAccuracy": 1.0,
+      "avgLineageAccuracy": 0.8236
+    },
+    "modelB": {
+      "mode": "chronological",
+      "avgAssociationAccuracy": 1.0,
+      "avgLineageAccuracy": 0.8283
+    },
+    "modelC": {
+      "mode": "chronological",
+      "avgAssociationAccuracy": 1.0,
+      "avgLineageAccuracy": 0.8283
+    }
+  },
+  "shuffled": {
+    "modelA": {
+      "mode": "shuffled",
+      "avgAssociationAccuracy": 1.0,
+      "avgLineageAccuracy": 0.8236
+    },
+    "modelB": {
+      "mode": "shuffled",
+      "avgAssociationAccuracy": 1.0,
+      "avgLineageAccuracy": 0.8283
+    },
+    "modelC": {
+      "mode": "shuffled",
+      "avgAssociationAccuracy": 1.0,
+      "avgLineageAccuracy": 0.8283
+    }
+  },
+  "reverse": {
+    "modelA": {
+      "mode": "reverse",
+      "avgAssociationAccuracy": 1.0,
+      "avgLineageAccuracy": 0.8236
+    },
+    "modelB": {
+      "mode": "reverse",
+      "avgAssociationAccuracy": 1.0,
+      "avgLineageAccuracy": 0.8283
+    },
+    "modelC": {
+      "mode": "reverse",
+      "avgAssociationAccuracy": 1.0,
+      "avgLineageAccuracy": 0.8283
+    }
+  }
+}

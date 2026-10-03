@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:riskpulse/domain/weather/weather_data.dart';
 import 'package:riskpulse/domain/location/user_location.dart';
 import '../services/weather_service.dart';
@@ -47,37 +47,61 @@ class WeatherProvider extends ChangeNotifier {
     notifyListeners();
 
     try {
-      // PHASE 1: ANDROID DEVICE LOCATION (GPS)
-      // This works independently and requires NO API KEY.
-      final UserLocation location = await _locationService.getCurrentLocation();
-      _userLocation = location;
-      _locationError = null;
-      notifyListeners();
+      // PHASE 1: LOCATION RESOLUTION (GPS)
+      UserLocation location;
+      try {
+        location = await _locationService.getCurrentLocation();
+        _userLocation = location;
+        _locationError = null;
+        notifyListeners();
+        debugPrint('[Weather Provider Diagnostics] GPS Location Resolved: (${location.latitude}, ${location.longitude})');
+      } catch (e) {
+        final errorStr = e.toString();
+        debugPrint('[Weather Provider Diagnostics] GPS Location Error: $errorStr');
+        if (errorStr.contains('denied')) {
+          _permissionDenied = true;
+          _locationError = 'Location access unavailable.';
+        } else if (errorStr.contains('disabled')) {
+          _locationError = 'Turn on Location Services.';
+        } else {
+          _locationError = 'Unable to determine your location.';
+        }
+
+        if (_userLocation == null) {
+          _weatherError = 'Location unavailable. Please enable GPS or set location manually.';
+          _isLoading = false;
+          notifyListeners();
+          return;
+        }
+        location = _userLocation!;
+      }
 
       // PHASE 2: WEATHER RETRIEVAL (API)
-      // This requires the OpenWeatherMap API Key.
-      final WeatherData? weather = await _weatherService.fetchWeather(
+      final result = await _weatherService.fetchWeatherData(
         location.latitude, 
         location.longitude,
       );
 
-      if (weather != null) {
-        _weatherData = weather;
+      if (result.isSuccess && result.data != null) {
+        _weatherData = result.data!;
+        if (result.data!.locationName.isNotEmpty && (location.name == null || !location.isManual)) {
+          _userLocation = UserLocation(
+            latitude: location.latitude,
+            longitude: location.longitude,
+            name: result.data!.locationName,
+            isManual: location.isManual,
+          );
+        }
         _weatherError = null;
         _lastFetchTime = DateTime.now();
+        debugPrint('[Weather Provider Diagnostics] Temperature Resolved: ${_weatherData!.temperature.round()}°C for ${_userLocation?.name}');
       } else {
-        _weatherError = 'Temperature currently unavailable.';
+        _weatherError = result.errorMessage ?? 'Temperature currently unavailable.';
+        debugPrint('[Weather Provider Diagnostics] Weather Fetch Failure: ${result.errorMessage}');
       }
     } catch (e) {
-      final errorStr = e.toString();
-      if (errorStr.contains('denied')) {
-        _permissionDenied = true;
-        _locationError = 'Location access unavailable.';
-      } else if (errorStr.contains('disabled')) {
-        _locationError = 'Turn on Location Services.';
-      } else {
-        _locationError = 'Unable to determine your location.';
-      }
+      _weatherError = 'Weather Retrieval Error: $e';
+      debugPrint('[Weather Provider Diagnostics] Unexpected Error: $e');
     } finally {
       _isLoading = false;
       notifyListeners();
@@ -104,6 +128,7 @@ class WeatherProvider extends ChangeNotifier {
           isManual: true,
         );
         _lastFetchTime = DateTime.now();
+        debugPrint('[Weather Provider Diagnostics] Manual Location Set: ${weather.locationName} (${weather.temperature.round()}°C)');
       } else {
         _weatherError = 'Weather data unavailable for $cityName';
       }

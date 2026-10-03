@@ -77,7 +77,7 @@ class OsintEvidenceContract {
     required this.publishedAt,
     required this.acquiredAt,
     this.location,
-    this.spatialPrecision = OSINTSpatialPrecision.approximate,
+    this.spatialPrecision = OSINTSpatialPrecision.approximatePoint,
     required this.hazardCategory,
     this.confidenceComponents = const {},
     this.freshnessState = OsintFreshnessState.current,

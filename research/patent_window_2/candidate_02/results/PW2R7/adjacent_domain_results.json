@@ -1,0 +1,10 @@
+[
+  {
+    "domain": "Utility Networks",
+    "finding": "Discloses DAG invalidation across power grid nodes, but lacks spatial administrative risk crosswalks."
+  },
+  {
+    "domain": "Supply Chain Logistics",
+    "finding": "Discloses routing node dependencies, but lacks satellite observation mutation triggers."
+  }
+]

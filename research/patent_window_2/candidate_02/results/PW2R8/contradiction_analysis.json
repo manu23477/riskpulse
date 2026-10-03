@@ -1,0 +1,6 @@
+{
+  "status": "SUPPORTING_LINEAGE_BEHAVIOR",
+  "disclosedInPriorArt": true,
+  "primaryReference": "US9870396B2",
+  "explanation": "Contradiction retention is a supporting non-destructive fusion property present in lineage graphs, but is not part of the K10 minimal boundary."
+}

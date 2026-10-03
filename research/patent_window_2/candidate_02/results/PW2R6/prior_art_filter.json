@@ -1,0 +1,15 @@
+{
+  "classP_BroadlyDisclosedGenericComponents": [
+    "CN119443785A (Spatial Index Invalidation)",
+    "US8548248B2 (Raster Cell Classification)",
+    "US10036650B2 (Spatial Dependency Traversal)",
+    "US20230267118A2 (Temporal Stream Ingestion)"
+  ],
+  "classQ_CombinationDependentComponents": [
+    "C08 (Shared-administration dependency)",
+    "C09 (Shared-risk dependency)"
+  ],
+  "classR_NotLocatedInCurrentSearchCorpus": [
+    "Integrated multi-event spatial-administrative-risk crosswalk closure with cross-event isolation under continuous satellite observation mutation"
+  ]
+}

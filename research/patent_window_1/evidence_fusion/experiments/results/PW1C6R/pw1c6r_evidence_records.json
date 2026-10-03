@@ -1,0 +1,18 @@
+[
+  {
+    "recordId": "EV-6R-01",
+    "targetBoundary": "C07",
+    "referenceId": "REF-01 (US7441230B2)",
+    "citationPassage": "US7441230B2, Col. 3, lines 20-45",
+    "excerptText": "Traversal of product proxy dependency graph invalidates only connected downstream proxies upon mutation.",
+    "evaluation": "Discloses selective DAG invalidation (F2) but lacks spatial administrative risk crosswalk layers (F3, F4, F5)."
+  },
+  {
+    "recordId": "EV-6R-02",
+    "targetBoundary": "C08",
+    "referenceId": "REF-04 (US20200379978A1)",
+    "citationPassage": "US20200379978A1, Paragraphs [0028]-[0042]",
+    "excerptText": "Out of order late-arriving stream elements trigger incremental window evaluation using separate event time and processing watermark timestamps.",
+    "evaluation": "Discloses bitemporal stream processing (G1, G2, G11) but lacks multi-event administrative risk DAG versioning (G6, G7)."
+  }
+]

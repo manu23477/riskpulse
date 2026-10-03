@@ -1,0 +1,14 @@
+{
+  "auditId": "PW2R7",
+  "auditName": "TARGETED-SINGLE-REFERENCE-COLLISION-AUDIT",
+  "k10DisclosedInSingleReference": false,
+  "technicalBoundaryStatus": "MINIMAL BOUNDARY IDENTIFIED (PW2R6)",
+  "priorArtBoundaryStatus": "PARTIALLY DISCLOSED ACROSS SEPARATE REFERENCES (PW2R7)",
+  "legalPatentabilityStatus": "UNDETERMINED — REQUIRES PATENT COUNSEL",
+  "executionTimestamp": "2026-09-30T16:35:00Z",
+  "resultHashes": {
+    "singleReferenceMatrix": "0a7e5df8e8000fc10e02a53d6225b40eeb60baea5ece756badb6f8047247b4b6",
+    "k01K10Results": "81a4cc325900f38ce71e99f6dbbd4647f262a6e4ae4e6fc1350c734349582c57",
+    "boundaryStatus": "e6731c013591417d257a5b743723728cfe86448c5d26321e129c54ad223912cf"
+  }
+}

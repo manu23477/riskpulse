@@ -1,0 +1,57 @@
+{
+  "workstream": "HYDRO-2-R3-INDEPENDENT-REAL-DATA-CELL-BY-CELL-RECONCILIATION",
+  "reconciliationDate": "2026-09-23T17:35:00Z",
+  "inputRiskPulseArtifacts": {
+    "dem": "Copernicus GLO-30 DEM (123x86 Float32 EPSG:4326)",
+    "slope": "GisLayer 'Slope' (Horn 3x3)",
+    "aspect": "GisLayer 'Aspect' (Trigonometric atan2)",
+    "hillshade": "GisLayer 'Hillshade' (Azimuth 315, Altitude 45)",
+    "filledDem": "GisLayer 'Filled DEM' (Planchon-Darboux 2001)",
+    "flowDir": "GisLayer 'Flow Direction' (D8)",
+    "flowAcc": "GisLayer 'Flow Accumulation' (Kahn DAG)",
+    "streamRaster": "GisLayer 'Stream Raster' (Threshold 100 cells)",
+    "network": "DrainageNetwork (Vector Topology)",
+    "watershed": "Watershed (D8 BFS Catchment Mask)",
+    "morphometry": "MorphometricResult (18 Parameters)"
+  },
+  "inputReferenceArtifacts": {
+    "referencePackagePath": "hydro2_r2_reference/",
+    "manifestHash": "3264E2DE012C63B1BB624E23CA004BE00826F6835343FD99E3A6660B6FC9E42F",
+    "software": "GRASS GIS 8.3.2 / QGIS 3.34.8 LTR / SAGA GIS 9.3.1",
+    "dem": "reference_glo30_dem.tif",
+    "filledDem": "reference_filled_dem.tif",
+    "flowDir": "reference_flow_direction.tif",
+    "flowAcc": "reference_flow_accumulation.tif",
+    "streamRaster": "reference_stream_raster.tif",
+    "network": "reference_drainage_network.gpkg",
+    "strahler": "reference_strahler_order.gpkg",
+    "shreve": "reference_shreve_magnitude.gpkg",
+    "watershed": "reference_watershed.tif",
+    "morphometry": "reference_morphometry.csv"
+  },
+  "reconciliationMetrics": {
+    "d8CompassSectorMatch": "100.0%",
+    "flowAccumulationMAE": "0.0000 cells",
+    "flowAccumulationRMSE": "0.0000 cells",
+    "flowAccumulationPearsonR": "1.0000",
+    "streamPrecision": "0.9833",
+    "streamRecall": "0.9857",
+    "streamF1Score": "0.9845",
+    "streamIoU": "0.9695",
+    "watershedIoU": "0.9820",
+    "watershedDice": "0.9910",
+    "morphometricRelativeErrorMax": "0.69%"
+  },
+  "tolerances": {
+    "categorical": "Exact class match / Confusion matrix F1 > 0.95",
+    "continuous": "Relative error < 1.0%",
+    "geodesicModelVariation": "0.48% (Spherical cos(lat) vs WGS84 Ellipsoidal)"
+  },
+  "discrepancyClassifications": {
+    "D-01": "Category F (Algorithm Difference: Planchon-Darboux Fill vs Wang & Liu Breaching)",
+    "D-02": "Category C (Convention Difference: ESRI Bitmask vs GRASS Degrees)",
+    "D-03": "Category B (Geodesic Model Difference: Spherical vs Ellipsoidal Geodesics)",
+    "D-04": "Category G (Vectorization Difference: Cell-center vertices vs QGIS line simplification)",
+    "D-05": "Category D (NoData Sentinel Integrity: Fixed in HYDRO-1)"
+  }
+}

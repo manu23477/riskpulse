@@ -1,0 +1,51 @@
+[
+  {
+    "eventCount": 10,
+    "fullRebuildEvaluations": 26,
+    "selectiveEvaluations": 6,
+    "reductionPct": 76.92,
+    "fullRebuildEquivalence": true
+  },
+  {
+    "eventCount": 25,
+    "fullRebuildEvaluations": 26,
+    "selectiveEvaluations": 6,
+    "reductionPct": 76.92,
+    "fullRebuildEquivalence": true
+  },
+  {
+    "eventCount": 50,
+    "fullRebuildEvaluations": 26,
+    "selectiveEvaluations": 6,
+    "reductionPct": 76.92,
+    "fullRebuildEquivalence": true
+  },
+  {
+    "eventCount": 100,
+    "fullRebuildEvaluations": 26,
+    "selectiveEvaluations": 6,
+    "reductionPct": 76.92,
+    "fullRebuildEquivalence": true
+  },
+  {
+    "eventCount": 250,
+    "fullRebuildEvaluations": 26,
+    "selectiveEvaluations": 6,
+    "reductionPct": 76.92,
+    "fullRebuildEquivalence": true
+  },
+  {
+    "eventCount": 500,
+    "fullRebuildEvaluations": 26,
+    "selectiveEvaluations": 6,
+    "reductionPct": 76.92,
+    "fullRebuildEquivalence": true
+  },
+  {
+    "eventCount": 1000,
+    "fullRebuildEvaluations": 26,
+    "selectiveEvaluations": 6,
+    "reductionPct": 76.92,
+    "fullRebuildEquivalence": true
+  }
+]

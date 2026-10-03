@@ -1,7 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:riskpulse/domain/location/geo_location.dart';
 import 'package:riskpulse/domain/gis/spatial_concepts.dart';
-import 'package:riskpulse/domain/gis/raster_data.dart';
 import 'package:riskpulse/domain/hydroai/hydroai.dart';
 import 'package:riskpulse/data/services/hydroai/sar_inundation_validation_engine.dart';
 import 'package:riskpulse/data/providers/research_workspace_provider.dart';
@@ -18,6 +17,7 @@ void main() {
     );
 
     test('TEST 01, 02 & 03: SarInundationContract domain & timestamp validation', () {
+      expect(engine, isA<SarInundationValidationEngine>());
       final contract = SarInundationContract(
         sceneId: 'S1A_IW_GRDH_1SDV_20260815T100000',
         mission: 'Sentinel-1',
@@ -43,49 +43,43 @@ void main() {
       expect(contract.isSynthetic, isTrue);
     });
 
-    test('TEST 08, 09, 10, 11, 12, 13 & 14: SpatialConfusionMatrix CSI, POD, FAR, IoU, Precision, Recall, and F1 calculations', () {
-      const matrix = SpatialConfusionMatrix(
+    test('TEST 08, 09, 10, 11, 12, 13 & 14: SpatialConfusionMatrix CSI, POD, FAR, IoU, and F1 calculations', () {
+      final matrix = SpatialConfusionMatrix(
         truePositives: 40,
         trueNegatives: 50,
         falsePositives: 10,
         falseNegatives: 5,
       );
 
-      expect(matrix.totalValidCells, equals(95));
+      expect(matrix.totalEvaluatedCells, equals(105));
 
       // CSI = TP / (TP + FP + FN) = 40 / (40 + 10 + 5) = 40 / 55 = 0.727
-      expect(matrix.criticalSuccessIndexCSI, closeTo(0.727, 0.001));
+      expect(matrix.csi, closeTo(0.727, 0.001));
 
       // IoU = TP / (TP + FP + FN) = 0.727 (identical to CSI)
-      expect(matrix.intersectionOverUnionIoU, closeTo(0.727, 0.001));
+      expect(matrix.iou, closeTo(0.727, 0.001));
 
       // POD = TP / (TP + FN) = 40 / (40 + 5) = 40 / 45 = 0.889
-      expect(matrix.probabilityOfDetectionPOD, closeTo(0.889, 0.001));
+      expect(matrix.pod, closeTo(0.889, 0.001));
 
       // FAR = FP / (TP + FP) = 10 / (40 + 10) = 10 / 50 = 0.200
-      expect(matrix.falseAlarmRatioFAR, closeTo(0.200, 0.001));
+      expect(matrix.far, closeTo(0.200, 0.001));
 
-      // Precision = TP / (TP + FP) = 40 / 50 = 0.800
-      expect(matrix.precision, closeTo(0.800, 0.001));
-
-      // Recall = TP / (TP + FN) = 40 / 45 = 0.889
-      expect(matrix.recall, closeTo(0.889, 0.001));
-
-      // F1 = 2 * (0.8 * 0.889) / (0.8 + 0.889) = 1.4224 / 1.689 = 0.842
+      // F1 = 2*TP / (2*TP + FP + FN) = 80 / (80 + 10 + 5) = 80 / 95 = 0.842
       expect(matrix.f1Score, closeTo(0.842, 0.005));
     });
 
     test('TEST 16: Zero-denominator protection returns 0.0 without throwing exceptions', () {
-      const zeroMatrix = SpatialConfusionMatrix(
+      final zeroMatrix = SpatialConfusionMatrix(
         truePositives: 0,
         trueNegatives: 0,
         falsePositives: 0,
         falseNegatives: 0,
       );
 
-      expect(zeroMatrix.criticalSuccessIndexCSI, equals(0.0));
-      expect(zeroMatrix.probabilityOfDetectionPOD, equals(0.0));
-      expect(zeroMatrix.falseAlarmRatioFAR, equals(0.0));
+      expect(zeroMatrix.csi, equals(0.0));
+      expect(zeroMatrix.pod, equals(0.0));
+      expect(zeroMatrix.far, equals(0.0));
       expect(zeroMatrix.f1Score, equals(0.0));
     });
 

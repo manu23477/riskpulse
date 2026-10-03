@@ -1,0 +1,58 @@
+[
+  {
+    "candidateId": "CAND-A",
+    "technicalCombination": "Mutation-driven dependency closure across evidence-derived disaster states (F08 + F09 + F10 + F11)",
+    "priorArtCoverage": "substantially covered by located prior art",
+    "experimentalSupport": "Verified in 1C-2B and 1C-3 (89.62% recomputation reduction)",
+    "unresolvedQuestion": "Generic dependency graph invalidation is strongly disclosed in US7441230B2 (REF-01) and US20210286481A1 (REF-05). Unsuitable as standalone distinction.",
+    "requiresFurtherResearch": false
+  },
+  {
+    "candidateId": "CAND-B",
+    "technicalCombination": "Selective recomputation across evidence -> interpretation -> event -> spatial -> administrative -> risk layers (F01..F06 + F11)",
+    "priorArtCoverage": "partially covered",
+    "experimentalSupport": "Verified in 1C-3 (100% full-rebuild equivalence M45 = 1.0)",
+    "unresolvedQuestion": "Whether the specific 6-layer disaster-intelligence crosswalk sequence creates a non-obvious technical relationship over general DAG recomputation.",
+    "requiresFurtherResearch": true
+  },
+  {
+    "candidateId": "CAND-C",
+    "technicalCombination": "Shared downstream administrative/risk state with selective cross-event propagation (F20 + F21 + F22 + F34)",
+    "priorArtCoverage": "partially covered",
+    "experimentalSupport": "Verified in 1C-3B (MUT3-04: Event A mutated, shared admin X updated, Event B hypothesis 100% unpoisoned)",
+    "unresolvedQuestion": "Shared DAG nodes are disclosed in REF-01/REF-03; whether shared spatial administrative crosswalk propagation provides a domain-specific technical distinction.",
+    "requiresFurtherResearch": true
+  },
+  {
+    "candidateId": "CAND-D",
+    "technicalCombination": "Historical state preservation combined with mutation-driven selective propagation (F13 + F14 + F11)",
+    "priorArtCoverage": "substantially covered by located prior art",
+    "experimentalSupport": "Verified in 1C-3C (7-generation history V1..V7 and non-sequential reconstruction M31 = 1.0)",
+    "unresolvedQuestion": "Persistent provenance graphs with versioning are disclosed in CN117235153B (REF-08).",
+    "requiresFurtherResearch": false
+  },
+  {
+    "candidateId": "CAND-E",
+    "technicalCombination": "Contradictory evidence retained while derived event state is recomputed (F15 + F35 + F11)",
+    "priorArtCoverage": "partially covered",
+    "experimentalSupport": "Verified in 1C-3 (MUT3-10 late negative report; E1 retained, contradiction recorded M25 = 1.0)",
+    "unresolvedQuestion": "Contradiction resolution disclosed in US9870396B2 (REF-10); non-deletion versioning disclosed in REF-08.",
+    "requiresFurtherResearch": true
+  },
+  {
+    "candidateId": "CAND-F",
+    "technicalCombination": "Late-arriving evidence updating current state while preserving historical event states (F18 + F19 + F13)",
+    "priorArtCoverage": "substantially covered by located prior art",
+    "experimentalSupport": "Verified in 1C-3D (MUT3-09: E4 arriving at 11:00 for 09:55 event creates V5 while V1..V4 remain intact)",
+    "unresolvedQuestion": "Late/out-of-order stream processing is strongly disclosed in US20200379978A1 (REF-04) and bitemporal model prior art.",
+    "requiresFurtherResearch": false
+  },
+  {
+    "candidateId": "CAND-G",
+    "technicalCombination": "Combined full multi-layer pipeline: mutation + selective DAG closure + contradiction retention + shared administrative risk crosswalks (C07 & C08)",
+    "priorArtCoverage": "insufficiently resolved",
+    "experimentalSupport": "Verified in 1C-3 (89.62% reduction, 100% full-rebuild equivalence, 0 false/missed propagation M41=0, M42=0)",
+    "unresolvedQuestion": "No single located reference discloses the full combined disaster-intelligence pipeline. Requires additional targeted prior-art search across specialized GIS and emergency management patent databases.",
+    "requiresFurtherResearch": true
+  }
+]

@@ -18,8 +18,11 @@ export 'flood_state.dart';
 export 'hydrodynamic_result.dart';
 export 'hydrodynamic_solver.dart';
 export 'solver_adapter.dart';
+export 'hydroai_execution_mode.dart';
+export 'hydroai_execution_contract.dart';
 
 // Stage 0.1.10 2D Inundation Validation & Sentinel-1 SAR CSI Engine
 export 'sar_inundation_record.dart';
 export 'spatial_confusion_matrix.dart';
 export 'inundation_validation_record.dart';
+export 'sar_inundation_contract.dart';

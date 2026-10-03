@@ -1,0 +1,5 @@
+{
+  "status": "EFFICIENCY_ONLY",
+  "isCoreToK10": false,
+  "explanation": "C07 selective recomputation reduces node evaluations by 98.73% but is an efficiency optimization rather than a correctness requirement."
+}

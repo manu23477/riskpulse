@@ -7,7 +7,6 @@ import 'package:riskpulse/domain/gis/color_ramp.dart';
 import 'package:riskpulse/domain/gis/data_source_type.dart';
 import 'package:riskpulse/domain/gis/gis_layer.dart';
 import 'package:riskpulse/domain/gis/gis_style.dart';
-import 'package:riskpulse/domain/gis/spatial_concepts.dart';
 
 /// Immutable result container holding choropleth classification & color mapping per administrative unit.
 class ThematicChoroplethResult {

@@ -1,0 +1,242 @@
+[
+  {
+    "relationshipId": "R01",
+    "description": "Remote-sensing observation -> state mutation",
+    "status": "STATUS_A",
+    "disclosedInSingleReference": true,
+    "requiresMosaicAssembly": false,
+    "notLocatedInSearchedCorpus": false
+  },
+  {
+    "relationshipId": "R02",
+    "description": "State mutation -> affected spatial state",
+    "status": "STATUS_A",
+    "disclosedInSingleReference": true,
+    "requiresMosaicAssembly": false,
+    "notLocatedInSearchedCorpus": false
+  },
+  {
+    "relationshipId": "R03",
+    "description": "Affected spatial state -> dependency closure",
+    "status": "STATUS_A",
+    "disclosedInSingleReference": true,
+    "requiresMosaicAssembly": false,
+    "notLocatedInSearchedCorpus": false
+  },
+  {
+    "relationshipId": "R04",
+    "description": "Spatial state -> administrative state",
+    "status": "STATUS_A",
+    "disclosedInSingleReference": true,
+    "requiresMosaicAssembly": false,
+    "notLocatedInSearchedCorpus": false
+  },
+  {
+    "relationshipId": "R05",
+    "description": "Multiple spatial states -> shared administrative state",
+    "status": "STATUS_C",
+    "disclosedInSingleReference": false,
+    "requiresMosaicAssembly": true,
+    "notLocatedInSearchedCorpus": false
+  },
+  {
+    "relationshipId": "R06",
+    "description": "Administrative state -> risk state",
+    "status": "STATUS_A",
+    "disclosedInSingleReference": true,
+    "requiresMosaicAssembly": false,
+    "notLocatedInSearchedCorpus": false
+  },
+  {
+    "relationshipId": "R07",
+    "description": "Multiple administrative/spatial contributors -> shared risk state",
+    "status": "STATUS_C",
+    "disclosedInSingleReference": false,
+    "requiresMosaicAssembly": true,
+    "notLocatedInSearchedCorpus": false
+  },
+  {
+    "relationshipId": "R08",
+    "description": "Mutation -> spatial -> administrative -> risk propagation",
+    "status": "STATUS_D",
+    "disclosedInSingleReference": false,
+    "requiresMosaicAssembly": false,
+    "notLocatedInSearchedCorpus": true
+  },
+  {
+    "relationshipId": "R09",
+    "description": "Mutation of Region/Event A -> preservation of unrelated Region/Event B",
+    "status": "STATUS_C",
+    "disclosedInSingleReference": false,
+    "requiresMosaicAssembly": true,
+    "notLocatedInSearchedCorpus": false
+  },
+  {
+    "relationshipId": "R10",
+    "description": "Shared administrative dependency recalculated after upstream mutation",
+    "status": "STATUS_D",
+    "disclosedInSingleReference": false,
+    "requiresMosaicAssembly": false,
+    "notLocatedInSearchedCorpus": true
+  },
+  {
+    "relationshipId": "R11",
+    "description": "Shared risk dependency recalculated after upstream mutation",
+    "status": "STATUS_D",
+    "disclosedInSingleReference": false,
+    "requiresMosaicAssembly": false,
+    "notLocatedInSearchedCorpus": true
+  },
+  {
+    "relationshipId": "R12",
+    "description": "Historical state retained after subsequent mutation",
+    "status": "STATUS_A",
+    "disclosedInSingleReference": true,
+    "requiresMosaicAssembly": false,
+    "notLocatedInSearchedCorpus": false
+  },
+  {
+    "relationshipId": "R13",
+    "description": "Historical state reconstructable after later mutations",
+    "status": "STATUS_A",
+    "disclosedInSingleReference": true,
+    "requiresMosaicAssembly": false,
+    "notLocatedInSearchedCorpus": false
+  },
+  {
+    "relationshipId": "R14",
+    "description": "Observation/state lineage retained across mutation",
+    "status": "STATUS_C",
+    "disclosedInSingleReference": false,
+    "requiresMosaicAssembly": true,
+    "notLocatedInSearchedCorpus": false
+  },
+  {
+    "relationshipId": "R15",
+    "description": "Topology mutation -> dependency closure change",
+    "status": "STATUS_C",
+    "disclosedInSingleReference": false,
+    "requiresMosaicAssembly": true,
+    "notLocatedInSearchedCorpus": false
+  },
+  {
+    "relationshipId": "R16",
+    "description": "Topology mutation -> downstream admin/risk recalculation",
+    "status": "STATUS_D",
+    "disclosedInSingleReference": false,
+    "requiresMosaicAssembly": false,
+    "notLocatedInSearchedCorpus": true
+  },
+  {
+    "relationshipId": "R17",
+    "description": "Addition of contributor to shared administrative state",
+    "status": "STATUS_C",
+    "disclosedInSingleReference": false,
+    "requiresMosaicAssembly": true,
+    "notLocatedInSearchedCorpus": false
+  },
+  {
+    "relationshipId": "R18",
+    "description": "Removal of contributor from shared administrative state",
+    "status": "STATUS_C",
+    "disclosedInSingleReference": false,
+    "requiresMosaicAssembly": true,
+    "notLocatedInSearchedCorpus": false
+  },
+  {
+    "relationshipId": "R19",
+    "description": "Addition of contributor to shared risk state",
+    "status": "STATUS_C",
+    "disclosedInSingleReference": false,
+    "requiresMosaicAssembly": true,
+    "notLocatedInSearchedCorpus": false
+  },
+  {
+    "relationshipId": "R20",
+    "description": "Removal of contributor from shared risk state",
+    "status": "STATUS_C",
+    "disclosedInSingleReference": false,
+    "requiresMosaicAssembly": true,
+    "notLocatedInSearchedCorpus": false
+  },
+  {
+    "relationshipId": "R21",
+    "description": "Current state and historical state coexist",
+    "status": "STATUS_C",
+    "disclosedInSingleReference": false,
+    "requiresMosaicAssembly": true,
+    "notLocatedInSearchedCorpus": false
+  },
+  {
+    "relationshipId": "R22",
+    "description": "Cross-event isolation despite shared downstream dependency",
+    "status": "STATUS_D",
+    "disclosedInSingleReference": false,
+    "requiresMosaicAssembly": false,
+    "notLocatedInSearchedCorpus": true
+  },
+  {
+    "relationshipId": "R23",
+    "description": "Mutation affects only its true dependency closure",
+    "status": "STATUS_C",
+    "disclosedInSingleReference": false,
+    "requiresMosaicAssembly": true,
+    "notLocatedInSearchedCorpus": false
+  },
+  {
+    "relationshipId": "R24",
+    "description": "Shared downstream state remains correct after one contributor is removed",
+    "status": "STATUS_C",
+    "disclosedInSingleReference": false,
+    "requiresMosaicAssembly": true,
+    "notLocatedInSearchedCorpus": false
+  },
+  {
+    "relationshipId": "R25",
+    "description": "Remote-sensing-derived mutation participates in same dependency structure driving admin/risk updates",
+    "status": "STATUS_D",
+    "disclosedInSingleReference": false,
+    "requiresMosaicAssembly": false,
+    "notLocatedInSearchedCorpus": true
+  },
+  {
+    "relationshipId": "R26",
+    "description": "Complete spatial -> admin -> risk functions as one integrated dependency system",
+    "status": "STATUS_C",
+    "disclosedInSingleReference": false,
+    "requiresMosaicAssembly": true,
+    "notLocatedInSearchedCorpus": false
+  },
+  {
+    "relationshipId": "R27",
+    "description": "Historical state remains valid while current state is revised",
+    "status": "STATUS_C",
+    "disclosedInSingleReference": false,
+    "requiresMosaicAssembly": true,
+    "notLocatedInSearchedCorpus": false
+  },
+  {
+    "relationshipId": "R28",
+    "description": "Topology mutation and historical versioning coexist",
+    "status": "STATUS_D",
+    "disclosedInSingleReference": false,
+    "requiresMosaicAssembly": false,
+    "notLocatedInSearchedCorpus": true
+  },
+  {
+    "relationshipId": "R29",
+    "description": "Cross-region isolation and shared downstream aggregation coexist",
+    "status": "STATUS_C",
+    "disclosedInSingleReference": false,
+    "requiresMosaicAssembly": true,
+    "notLocatedInSearchedCorpus": false
+  },
+  {
+    "relationshipId": "R30",
+    "description": "Remote-sensing mutation, dependency closure, shared aggregation, isolation, topology mutation, and historical state form one integrated mechanism",
+    "status": "STATUS_D",
+    "disclosedInSingleReference": false,
+    "requiresMosaicAssembly": false,
+    "notLocatedInSearchedCorpus": true
+  }
+]

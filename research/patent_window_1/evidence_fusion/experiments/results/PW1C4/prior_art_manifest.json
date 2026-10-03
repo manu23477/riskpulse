@@ -1,0 +1,122 @@
+[
+  {
+    "referenceId": "REF-01",
+    "title": "Method of utilizing product proxies with a dependency graph",
+    "publicationNumber": "US7441230B2",
+    "familyId": "FAM-US7441230",
+    "priorityDate": "2003-09-30",
+    "publicationDate": "2008-10-21",
+    "sourceUrl": "https://patents.google.com/patent/US7441230B2/en",
+    "sourceType": "PRIMARY",
+    "technicalRelevance": "Discloses dependency graph invalidation, traversal from changed nodes, and selective recalculation of affected product proxies.",
+    "status": "Granted Patent"
+  },
+  {
+    "referenceId": "REF-02",
+    "title": "Incremental graph computations for querying large graphs",
+    "publicationNumber": "EP3622411B1",
+    "familyId": "FAM-EP3622411",
+    "priorityDate": "2018-09-12",
+    "publicationDate": "2021-03-24",
+    "sourceUrl": "https://patents.google.com/patent/EP3622411B1/en",
+    "sourceType": "PRIMARY",
+    "technicalRelevance": "Discloses incremental graph computation for dynamic query evaluation on graph updates.",
+    "status": "Granted Patent"
+  },
+  {
+    "referenceId": "REF-03",
+    "title": "Automated invalidation of job output data in a job processing system",
+    "publicationNumber": "US10067788B2",
+    "familyId": "FAM-US10067788",
+    "priorityDate": "2015-06-29",
+    "publicationDate": "2018-09-04",
+    "sourceUrl": "https://patents.google.com/patent/US10067788B2/en",
+    "sourceType": "PRIMARY",
+    "technicalRelevance": "Discloses automated invalidation of downstream descendants in job dependency structures.",
+    "status": "Granted Patent"
+  },
+  {
+    "referenceId": "REF-04",
+    "title": "System and method of processing late arriving and out of order data",
+    "publicationNumber": "US20200379978A1",
+    "familyId": "FAM-US20200379978",
+    "priorityDate": "2019-05-31",
+    "publicationDate": "2020-12-03",
+    "sourceUrl": "https://patents.google.com/patent/US20200379978A1/en",
+    "sourceType": "PRIMARY",
+    "technicalRelevance": "Discloses incremental processing of out-of-order and late-arriving data streams in computation graphs.",
+    "status": "Patent Application"
+  },
+  {
+    "referenceId": "REF-05",
+    "title": "Unified Document Surface",
+    "publicationNumber": "US20210286481A1",
+    "familyId": "FAM-US20210286481",
+    "priorityDate": "2020-03-13",
+    "publicationDate": "2021-09-16",
+    "sourceUrl": "https://patents.google.com/patent/US20210286481A1/en",
+    "sourceType": "PRIMARY",
+    "technicalRelevance": "Discloses dependency invalidation graphs for determining affected document elements and reducing redundant recalculations.",
+    "status": "Patent Application"
+  },
+  {
+    "referenceId": "REF-06",
+    "title": "Highly selective invalidation of database cursors",
+    "publicationNumber": "US10360209B2",
+    "familyId": "FAM-US10360209",
+    "priorityDate": "2016-04-18",
+    "publicationDate": "2019-07-23",
+    "sourceUrl": "https://patents.google.com/patent/US10360209B2/en",
+    "sourceType": "PRIMARY",
+    "technicalRelevance": "Discloses fine-grained selective invalidation using dependency metadata.",
+    "status": "Granted Patent"
+  },
+  {
+    "referenceId": "REF-07",
+    "title": "System, devices and/or processes for updating call graphs",
+    "publicationNumber": "US12182202B2",
+    "familyId": "FAM-US12182202",
+    "priorityDate": "2021-08-20",
+    "publicationDate": "2024-12-31",
+    "sourceUrl": "https://patents.google.com/patent/US12182202B2/en",
+    "sourceType": "PRIMARY",
+    "technicalRelevance": "Discloses identification of specific graph tasks requiring recomputation to avoid unnecessary re-execution.",
+    "status": "Granted Patent"
+  },
+  {
+    "referenceId": "REF-08",
+    "title": "ProV-DM model-based compliance data evidence-storing and tracing",
+    "publicationNumber": "CN117235153B",
+    "familyId": "FAM-CN117235153",
+    "priorityDate": "2023-11-08",
+    "publicationDate": "2024-01-12",
+    "sourceUrl": "https://patents.google.com/patent/CN117235153B/en",
+    "sourceType": "PRIMARY",
+    "technicalRelevance": "Discloses persistent directed graphs for provenance tracing, modification tracking, and historical state preservation.",
+    "status": "Granted Patent"
+  },
+  {
+    "referenceId": "REF-09",
+    "title": "Geospatial event extraction and correlation graph",
+    "publicationNumber": "US10452652B2",
+    "familyId": "FAM-US10452652",
+    "priorityDate": "2016-11-15",
+    "publicationDate": "2019-10-22",
+    "sourceUrl": "https://patents.google.com/patent/US10452652B2/en",
+    "sourceType": "PRIMARY",
+    "technicalRelevance": "Discloses extraction of geospatial events and correlation graphs from unstructured text sources.",
+    "status": "Granted Patent"
+  },
+  {
+    "referenceId": "REF-10",
+    "title": "Multi-source evidence fusion and contradiction resolution",
+    "publicationNumber": "US9870396B2",
+    "familyId": "FAM-US9870396",
+    "priorityDate": "2014-05-12",
+    "publicationDate": "2018-01-16",
+    "sourceUrl": "https://patents.google.com/patent/US9870396B2/en",
+    "sourceType": "PRIMARY",
+    "technicalRelevance": "Discloses evidence fusion across heterogeneous sources and contradiction management.",
+    "status": "Granted Patent"
+  }
+]

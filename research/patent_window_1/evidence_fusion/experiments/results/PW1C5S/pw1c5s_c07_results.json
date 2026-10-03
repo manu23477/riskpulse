@@ -1,0 +1,74 @@
+[
+  {
+    "classId": "C07-G1",
+    "affectedNodes": 6,
+    "unaffectedNodes": 34,
+    "crossEventIsolationMaintained": true,
+    "sharedAdminCorrect": true,
+    "sharedRiskCorrect": true
+  },
+  {
+    "classId": "C07-G2",
+    "affectedNodes": 6,
+    "unaffectedNodes": 34,
+    "crossEventIsolationMaintained": true,
+    "sharedAdminCorrect": true,
+    "sharedRiskCorrect": true
+  },
+  {
+    "classId": "C07-G3",
+    "affectedNodes": 6,
+    "unaffectedNodes": 34,
+    "crossEventIsolationMaintained": true,
+    "sharedAdminCorrect": true,
+    "sharedRiskCorrect": true
+  },
+  {
+    "classId": "C07-G4",
+    "affectedNodes": 6,
+    "unaffectedNodes": 34,
+    "crossEventIsolationMaintained": true,
+    "sharedAdminCorrect": true,
+    "sharedRiskCorrect": true
+  },
+  {
+    "classId": "C07-G5",
+    "affectedNodes": 6,
+    "unaffectedNodes": 34,
+    "crossEventIsolationMaintained": true,
+    "sharedAdminCorrect": true,
+    "sharedRiskCorrect": true
+  },
+  {
+    "classId": "C07-G6",
+    "affectedNodes": 6,
+    "unaffectedNodes": 34,
+    "crossEventIsolationMaintained": true,
+    "sharedAdminCorrect": true,
+    "sharedRiskCorrect": true
+  },
+  {
+    "classId": "C07-G7",
+    "affectedNodes": 6,
+    "unaffectedNodes": 34,
+    "crossEventIsolationMaintained": true,
+    "sharedAdminCorrect": true,
+    "sharedRiskCorrect": true
+  },
+  {
+    "classId": "C07-G8",
+    "affectedNodes": 6,
+    "unaffectedNodes": 34,
+    "crossEventIsolationMaintained": true,
+    "sharedAdminCorrect": true,
+    "sharedRiskCorrect": true
+  },
+  {
+    "classId": "C07-G9",
+    "affectedNodes": 6,
+    "unaffectedNodes": 34,
+    "crossEventIsolationMaintained": true,
+    "sharedAdminCorrect": true,
+    "sharedRiskCorrect": true
+  }
+]

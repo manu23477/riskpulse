@@ -1,0 +1,5 @@
+{
+  "status": "SUPPORTING_LINEAGE_BEHAVIOR",
+  "isCoreToK10": false,
+  "explanation": "Contradiction retention is a supporting non-destructive fusion property present in evidence lineage graphs, but was not included as an independent component in the PW2R6 minimal boundary."
+}

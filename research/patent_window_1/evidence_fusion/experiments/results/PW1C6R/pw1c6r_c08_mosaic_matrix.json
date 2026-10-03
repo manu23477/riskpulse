@@ -1,0 +1,9 @@
+[
+  {
+    "boundaryName": "C08 MINIMAL BOUNDARY",
+    "mosaicReferences": ["US20200379978A1 (REF-04)", "CN117235153B (REF-08)", "US7441230B2 (REF-01)", "US11200215B2 (REF-C08-01)"],
+    "singleReferenceDisclosed": false,
+    "multiReferenceMosaicDisclosed": true,
+    "missingCouplingRelationship": "A single reference coupling bitemporal stream ingestion with multi-layer spatial administrative risk state DAG versioning."
+  }
+]

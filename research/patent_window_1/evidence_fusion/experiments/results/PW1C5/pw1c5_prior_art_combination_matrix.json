@@ -1,0 +1,12 @@
+[
+  {
+    "combinationId": "C07",
+    "status": "PARTIALLY_DISCLOSED",
+    "notes": "Targeted search located US10891340B2 (REF-C07-01) disclosing spatial DAG invalidation, but multi-event crosswalk isolation is partially disclosed."
+  },
+  {
+    "combinationId": "C08",
+    "status": "PARTIALLY_DISCLOSED",
+    "notes": "Targeted search located US11200215B2 (REF-C08-01) disclosing bitemporal stream ingestion, but multi-event risk state propagation is partially disclosed."
+  }
+]

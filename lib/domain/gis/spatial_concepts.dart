@@ -24,3 +24,10 @@ class CoordinateReferenceSystem {
     name: 'WGS 84',
   );
 }
+
+enum SpatialGeometryType {
+  point,
+  lineString,
+  polygon,
+  multiPolygon,
+}

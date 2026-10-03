@@ -1,0 +1,20 @@
+{
+  "combinationId": "C07",
+  "combinationDescription": "Mutation + selective DAG closure + contradiction + shared administrative/risk state + cross-event isolation",
+  "atomicFeatureDecomposition": [
+    {"subFeatureId": "C07-F1", "description": "Evidence mutation changes an existing event state", "singleReferenceStatus": "DISCLOSED (CN117235153B REF-08)"},
+    {"subFeatureId": "C07-F2", "description": "System identifies dependency closure caused by mutation", "singleReferenceStatus": "DISCLOSED (US7441230B2 REF-01)"},
+    {"subFeatureId": "C07-F3", "description": "Only affected downstream nodes are recomputed", "singleReferenceStatus": "DISCLOSED (US7441230B2 REF-01)"},
+    {"subFeatureId": "C07-F4", "description": "Unaffected branches remain unchanged", "singleReferenceStatus": "DISCLOSED (US7441230B2 REF-01)"},
+    {"subFeatureId": "C07-F5", "description": "Contradictory evidence remains represented rather than deleted", "singleReferenceStatus": "DISCLOSED (US9870396B2 REF-10)"},
+    {"subFeatureId": "C07-F6", "description": "Multiple events contribute to same administrative state", "singleReferenceStatus": "PARTIALLY DISCLOSED (US10452652B2 REF-09)"},
+    {"subFeatureId": "C07-F7", "description": "Multiple events contribute to same risk state", "singleReferenceStatus": "PARTIALLY DISCLOSED (US10452652B2 REF-09)"},
+    {"subFeatureId": "C07-F8", "description": "Mutation of Event A updates shared administrative/risk state", "singleReferenceStatus": "PARTIALLY DISCLOSED (US7441230B2 REF-01)"},
+    {"subFeatureId": "C07-F9", "description": "Mutation of Event A does NOT rewrite Event B event hypothesis", "singleReferenceStatus": "DISCLOSED (US7441230B2 REF-01)"},
+    {"subFeatureId": "C07-F10", "description": "Mutation of Event A does NOT rewrite Event B spatial state", "singleReferenceStatus": "DISCLOSED (US7441230B2 REF-01)"},
+    {"subFeatureId": "C07-F11", "description": "Resulting shared state remains traceable to contributing events", "singleReferenceStatus": "DISCLOSED (CN117235153B REF-08)"},
+    {"subFeatureId": "C07-F12", "description": "Historical state versions remain reconstructable", "singleReferenceStatus": "DISCLOSED (CN117235153B REF-08)"}
+  ],
+  "singleReferenceCoverageResult": "NO_SINGLE_REFERENCE_DISCLOSES_COMPLETE_COMBINATION",
+  "decisionGateClassification": "PARTIAL_MULTI_REFERENCE_COVERAGE"
+}

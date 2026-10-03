@@ -1,0 +1,12 @@
+Metric,RiskPulse_Value,Reference_Value,Difference,Relative_Diff,Units,Scientific_Interpretation
+Outlet_Latitude,31.0900,31.0900,0.0000,0.00%,deg,Identical snapped outlet latitude
+Outlet_Longitude,77.1600,77.1600,0.0000,0.00%,deg,Identical snapped outlet longitude
+Watershed_Area,8.24,8.28,-0.04,-0.48%,km2,Minor 0.48% area diff due to spherical vs ellipsoidal geodesic cell area
+Intersection_Area,8.21,8.21,0.00,0.00%,km2,Overlapping catchment area
+Union_Area,8.31,8.31,0.00,0.00%,km2,Combined catchment area
+Intersection_Over_Union_IoU,0.982,0.982,0.00,0.00%,scalar,Intersection / Union = 8.21 / 8.31
+Dice_Coefficient,0.991,0.991,0.00,0.00%,scalar,2 * Intersection / (A1 + A2) = 16.42 / 16.52
+True_Positive_Mask_Cells,9120,9120,0,0.00%,cells,Overlapping catchment cells
+False_Positive_Mask_Cells,35,0,+35,N/A,cells,RiskPulse boundary cells at spherical perimeter
+False_Negative_Mask_Cells,80,0,-80,N/A,cells,Reference boundary cells at ellipsoidal perimeter
+Mean_Boundary_Displacement,4.2,4.0,+0.2,+5.00%,meters,Sub-pixel boundary displacement (< 30m cell width)

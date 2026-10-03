@@ -9,7 +9,11 @@ import 'package:riskpulse/data/services/geotiff_reader.dart';
 ///
 /// Converts GEE REST `computePixels` GeoTIFF responses into validated [RasterData].
 ///
-/// This provider performs NO GIS analysis, stores NO embedded credentials, and does NOT mutate research state.
+/// SCIENTIFIC GOVERNANCE:
+/// 1. Uses Copernicus DEM GLO-30 dataset ('COPERNICUS/DEM/GLO30') and 'DEM' band.
+/// 2. Calculates DEM output grid at nominal 30m resolution (~0.00027 deg in EPSG:4326).
+/// 3. Enforces 2500x2500 max cell materialization boundary.
+/// 4. Stores ZERO credentials and NEVER logs or leaks access tokens.
 class GeeDataProvider implements ResearchDataProvider {
   final GeeClient _client;
   final GeoTiffReader _reader;
@@ -36,6 +40,7 @@ class GeeDataProvider implements ResearchDataProvider {
     double resolutionMeters = 30.0,
     String? datasetId,
     String? accessToken,
+    String? projectId,
   }) async {
     final String targetDataset = datasetId ?? 'COPERNICUS/DEM/GLO30';
 
@@ -51,7 +56,7 @@ class GeeDataProvider implements ResearchDataProvider {
       );
     }
 
-    // 2. Memory Boundary Safeguard
+    // 2. Memory Boundary Safeguard (30m GLO-30 DEM Grid Calculation)
     final double latMid = (extent.southWest.latitude + extent.northEast.latitude) / 2.0;
     final double dyMeters = (extent.northEast.latitude - extent.southWest.latitude) * 111320.0;
     final double dxMeters = (extent.northEast.longitude - extent.southWest.longitude) * 111320.0 * math.cos(latMid * math.pi / 180.0);
@@ -73,7 +78,13 @@ class GeeDataProvider implements ResearchDataProvider {
     }
 
     // 3. Authentication Check
-    if (accessToken == null || accessToken.trim().isEmpty) {
+    var rawToken = accessToken?.trim() ?? '';
+    if (rawToken.toLowerCase().startsWith('bearer ')) {
+      rawToken = rawToken.substring(7).trim();
+    }
+    final cleanToken = rawToken;
+
+    if (cleanToken.isEmpty) {
       return DataProviderResult.failure(
         const DataProviderError(
           type: DataProviderErrorType.unauthorized,
@@ -83,7 +94,7 @@ class GeeDataProvider implements ResearchDataProvider {
       );
     }
 
-    // 4. Calculate Cell Degree Resolution
+    // 4. Calculate Cell Degree Resolution for GLO-30 30m Grid
     final double cellHeightDeg = (extent.northEast.latitude - extent.southWest.latitude) / estimatedHeight;
     final double cellWidthDeg = (extent.northEast.longitude - extent.southWest.longitude) / estimatedWidth;
 
@@ -91,9 +102,12 @@ class GeeDataProvider implements ResearchDataProvider {
       // 5. Fetch GeoTIFF Bytes via GEE Client
       final bytes = await _client.computeDemPixels(
         extent: extent,
+        width: estimatedWidth,
+        height: estimatedHeight,
         cellWidthDeg: cellWidthDeg,
         cellHeightDeg: cellHeightDeg,
-        accessToken: accessToken,
+        accessToken: cleanToken,
+        projectId: projectId,
         datasetId: targetDataset,
       );
 
@@ -127,6 +141,8 @@ class GeeDataProvider implements ResearchDataProvider {
           'provider': displayName,
           'providerId': providerId,
           'datasetId': targetDataset,
+          'datasetName': 'Copernicus DEM GLO-30 / Digital Surface Model',
+          'surfaceModelType': 'Digital Surface Model (DSM)',
           'acquisitionDate': DateTime.now().toIso8601String(),
           'resolutionMeters': resolutionMeters,
         },

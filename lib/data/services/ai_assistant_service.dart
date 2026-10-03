@@ -1,70 +1,76 @@
-import 'package:google_generative_ai/google_generative_ai.dart';
-import 'gemini_service.dart';
+import 'package:riskpulse/data/services/gemini_service.dart';
 
+/// High-level AI Assistant Service for disaster risk intelligence chat.
+///
+/// SECURITY & SAFETY GOVERNANCE:
+/// 1. ZERO client-side Gemini API keys stored. Communicates with RiskPulse backend proxy.
+/// 2. Handles 5 explicit runtime states ([AiRuntimeStatus]).
+/// 3. FALLBACK TRANSPARENCY: Rule-based fallback responses are explicitly labeled "RULE-BASED EMERGENCY ADVISORY FALLBACK".
 class AiAssistantService {
-  final GeminiService _geminiService = GeminiService();
-  ChatSession? _chat;
+  final GeminiService _geminiService;
 
-  Future<String> sendMessage(String message, {String? contextData}) async {
-    final model = _geminiService.createModel(
-      systemInstruction: 'You are RiskPulse AI, an expert assistant for disaster risk intelligence and decision support. '
-          'Your goal is to help users understand complex disaster data, especially landslide hazards in Himachal Pradesh and Uttarakhand. '
-          'Provide actionable advice on safety protocols, risk mitigation, and emergency preparedness. '
-          'Be concise, professional, and empathetic. Use markdown for better readability. '
-          'Respond in the language the user uses (English or Hindi). '
-          'If you do not know specific real-time data, state that clearly and suggest where to look (e.g., local authorities).'
+  AiAssistantService({
+    GeminiService? geminiService,
+  }) : _geminiService = geminiService ?? GeminiService();
+
+  /// Sends a chat message to the RiskPulse AI Backend Proxy.
+  Future<String> sendMessage(
+    String message, {
+    String? contextData,
+    String sessionToken = 'transient_session_token_default',
+    String userRole = 'citizen',
+  }) async {
+    final response = await _geminiService.sendProxyChatRequest(
+      message: message,
+      contextData: contextData,
+      sessionToken: sessionToken,
+      userRole: userRole,
     );
-    
-    if (model == null) {
-      return _generateDemoResponse(message, contextData);
+
+    if (response.status == AiRuntimeStatus.liveAiAvailable && !response.isFallback) {
+      return response.text;
     }
 
-    _chat ??= model.startChat();
-    
-    final fullMessage = contextData != null 
-      ? 'CONTEXT: $contextData\n\nUSER QUESTION: $message'
-      : message;
+    // Explicitly transparent rule-based emergency fallback
+    final fallbackBody = _generateRuleBasedFallbackResponse(message, contextData);
 
-    try {
-      final response = await _chat!.sendMessage(Content.text(fullMessage));
-      final text = response.text;
-      
-      if (text == null || text.isEmpty) {
-        return 'The AI returned an empty response. This can happen if the safety filters are triggered or the key is invalid.';
-      }
-      
-      return text;
-    } catch (e) {
-      return 'Intelligence service temporarily limited. Please check your connection. RiskPulse continues to monitor regional hazards.';
-    }
+    return '''
+> **RULE-BASED EMERGENCY ADVISORY FALLBACK**
+> *Status: ${response.status.name.toUpperCase()}*
+
+$fallbackBody''';
   }
 
-  Future<String> _generateDemoResponse(String message, String? contextData) async {
-    // Simulate API delay
-    await Future.delayed(const Duration(seconds: 2));
-
+  /// Generates deterministic, rule-based local emergency advisory fallback.
+  String _generateRuleBasedFallbackResponse(String message, String? contextData) {
     final input = message.toLowerCase();
     final isHindi = message.contains(RegExp(r'[\u0900-\u097F]'));
 
     if (isHindi) {
       if (input.contains('मदद') || input.contains('बचाव')) {
-        return 'नमस्ते! मैं रिस्कपल्स AI हूँ। आपकी स्थिति को देखते हुए, मेरा सुझाव है कि आप तुरंत ऊंचे स्थानों पर चले जाएं और स्थानीय अधिकारियों (1070) से संपर्क करें। क्या आप अपने पास के सुरक्षित क्षेत्रों के बारे में जानना चाहते हैं?';
+        return 'नमस्ते! मैं रिस्कपल्स इमरजेंसी असिस्टेंट हूँ। कृपया तुरंत ऊंचे स्थानों पर चले जाएं और राज्य आपदा प्रतिक्रिया (1070) से संपर्क करें।';
       }
-      return 'मैं आपकी सहायता के लिए यहाँ हूँ। आपके स्थान के आधार पर, मैंने आपके आसपास 2 संभावित जोखिम क्षेत्रों की पहचान की है। कृपया भारी बारिश के दौरान ढलानों से दूर रहें।';
+      return 'स्थानिक डेटा के आधार पर, भारी बारिश के दौरान ढलानों और भूस्खलन क्षेत्रों से दूर रहें। आपातकालीन स्थिति में 1070 पर कॉल करें।';
     }
 
-    if (input.contains('safety') || input.contains('help')) {
-      return '### 🚨 Safety Intelligence\nBased on your location, here are immediate actions:\n1. **Avoid slopes**: Stay away from steep terrain.\n2. **Monitor water**: Watch for sudden changes in stream levels.\n3. **Call 1070**: Contact state emergency services if you see cracks.';
+    if (input.contains('safety') || input.contains('help') || input.contains('sos')) {
+      return '### 🚨 Immediate Emergency Protocol\n'
+          '1. **Evacuate Steep Terrain**: Move away from active slopes and drainage channels.\n'
+          '2. **Monitor Water Levels**: Watch for sudden flash flood surges or muddy discharge.\n'
+          '3. **Contact Authorities**: Dial **1070** (State Emergency Operations Center) or **112** (National Emergency).';
     }
 
-    if (input.contains('hazard') || input.contains('risk')) {
-      return 'Currently, I am tracking **high rainfall intensity** in your region. In our database, there are historical landslide points within 5km of you. Would you like a detailed risk assessment?';
+    if (input.contains('hazard') || input.contains('risk') || input.contains('landslide')) {
+      return '### 🏔️ Regional Risk Assessment\n'
+          'High rainfall intensity detected in mountainous sectors. Historical landslide activity recorded nearby.\n'
+          '- Enable **Live Landslides** layer on the RiskMap.\n'
+          '- Check local **Yatra & Highway Status** before traveling.';
     }
 
-    return 'I am analyzing the **Disaster Risk Intelligence** for your current location. Please ensure you have enabled the "Live Landslides" layer on the map for a visual overview. How else can I assist you?';
+    return 'I am analyzing local **Disaster Risk Intelligence** for your coordinates. Please enable map risk layers and follow local district magistrate advisories.';
   }
 
   void resetChat() {
-    _chat = null;
+    // Session state reset
   }
 }

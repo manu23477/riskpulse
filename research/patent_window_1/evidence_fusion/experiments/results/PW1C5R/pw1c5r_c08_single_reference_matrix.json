@@ -1,0 +1,18 @@
+{
+  "combinationId": "C08",
+  "combinationDescription": "Late evidence + shared spatial/admin/risk state + historical state + temporal reconstruction",
+  "atomicFeatureDecomposition": [
+    {"subFeatureId": "C08-F1", "description": "Evidence arrives after event occurrence time", "singleReferenceStatus": "DISCLOSED (US20200379978A1 REF-04)"},
+    {"subFeatureId": "C08-F2", "description": "Arrival time differs from event time", "singleReferenceStatus": "DISCLOSED (US20200379978A1 REF-04)"},
+    {"subFeatureId": "C08-F3", "description": "Late evidence modifies current event state", "singleReferenceStatus": "DISCLOSED (US20200379978A1 REF-04)"},
+    {"subFeatureId": "C08-F4", "description": "Historical prior state is retained", "singleReferenceStatus": "DISCLOSED (CN117235153B REF-08)"},
+    {"subFeatureId": "C08-F5", "description": "System can reconstruct prior state", "singleReferenceStatus": "DISCLOSED (CN117235153B REF-08)"},
+    {"subFeatureId": "C08-F6", "description": "Late evidence propagates through spatial dependencies", "singleReferenceStatus": "PARTIALLY DISCLOSED (US11200215B2 REF-C08-01)"},
+    {"subFeatureId": "C08-F7", "description": "Late evidence propagates through administrative dependencies", "singleReferenceStatus": "PARTIALLY DISCLOSED (US11200215B2 REF-C08-01)"},
+    {"subFeatureId": "C08-F8", "description": "Late evidence propagates through risk dependencies", "singleReferenceStatus": "PARTIALLY DISCLOSED (US11200215B2 REF-C08-01)"},
+    {"subFeatureId": "C08-F9", "description": "Shared downstream state updated without rewriting unrelated event states", "singleReferenceStatus": "DISCLOSED (US7441230B2 REF-01)"},
+    {"subFeatureId": "C08-F10", "description": "Temporal reconstruction remains consistent after late evidence", "singleReferenceStatus": "DISCLOSED (US20200379978A1 REF-04)"}
+  ],
+  "singleReferenceCoverageResult": "NO_SINGLE_REFERENCE_DISCLOSES_COMPLETE_COMBINATION",
+  "decisionGateClassification": "PARTIAL_MULTI_REFERENCE_COVERAGE"
+}

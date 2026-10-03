@@ -1,0 +1,57 @@
+[
+  {
+    "unitCount": 10,
+    "totalNodes": 32,
+    "totalEdges": 40,
+    "affectedNodes": 5,
+    "fullRebuildEvaluations": 32,
+    "globalInvalidationEvaluations": 32,
+    "selectiveEvaluations": 5,
+    "reductionPct": 84.38,
+    "isFullRebuildEquivalent": true
+  },
+  {
+    "unitCount": 50,
+    "totalNodes": 157,
+    "totalEdges": 200,
+    "affectedNodes": 5,
+    "fullRebuildEvaluations": 157,
+    "globalInvalidationEvaluations": 157,
+    "selectiveEvaluations": 5,
+    "reductionPct": 96.82,
+    "isFullRebuildEquivalent": true
+  },
+  {
+    "unitCount": 100,
+    "totalNodes": 314,
+    "totalEdges": 400,
+    "affectedNodes": 5,
+    "fullRebuildEvaluations": 314,
+    "globalInvalidationEvaluations": 314,
+    "selectiveEvaluations": 5,
+    "reductionPct": 98.41,
+    "isFullRebuildEquivalent": true
+  },
+  {
+    "unitCount": 500,
+    "totalNodes": 1570,
+    "totalEdges": 2000,
+    "affectedNodes": 5,
+    "fullRebuildEvaluations": 1570,
+    "globalInvalidationEvaluations": 1570,
+    "selectiveEvaluations": 5,
+    "reductionPct": 99.68,
+    "isFullRebuildEquivalent": true
+  },
+  {
+    "unitCount": 1000,
+    "totalNodes": 3140,
+    "totalEdges": 4000,
+    "affectedNodes": 5,
+    "fullRebuildEvaluations": 3140,
+    "globalInvalidationEvaluations": 3140,
+    "selectiveEvaluations": 5,
+    "reductionPct": 99.84,
+    "isFullRebuildEquivalent": true
+  }
+]

@@ -1,0 +1,18 @@
+[
+  {
+    "referenceId": "REF-C07-01",
+    "title": "Hierarchical Spatial Dependency Graph Invalidation in Emergency Systems",
+    "publicationNumber": "US10891340B2",
+    "priorityDate": "2018-04-10",
+    "publicationDate": "2021-01-12",
+    "technicalRelevance": "Discloses DAG dependency propagation across spatial and administrative layers."
+  },
+  {
+    "referenceId": "REF-C08-01",
+    "title": "Bitemporal Stream Ingestion for Late Arriving Spatial Events",
+    "publicationNumber": "US11200215B2",
+    "priorityDate": "2019-11-20",
+    "publicationDate": "2021-12-14",
+    "technicalRelevance": "Discloses bitemporal stream ingestion separating event time from arrival time in spatial graphs."
+  }
+]

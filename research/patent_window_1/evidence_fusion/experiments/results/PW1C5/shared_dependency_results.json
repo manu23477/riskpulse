@@ -1,0 +1,66 @@
+[
+  {
+    "scenarioId": "C07-A",
+    "sharedAdministrativeUpdated": true,
+    "sharedRiskUpdated": true,
+    "unrelatedEventBranchPreserved": true,
+    "affectedNodesCount": 6,
+    "unaffectedNodesCount": 34
+  },
+  {
+    "scenarioId": "C07-B",
+    "sharedAdministrativeUpdated": true,
+    "sharedRiskUpdated": true,
+    "unrelatedEventBranchPreserved": true,
+    "affectedNodesCount": 6,
+    "unaffectedNodesCount": 34
+  },
+  {
+    "scenarioId": "C07-C",
+    "sharedAdministrativeUpdated": true,
+    "sharedRiskUpdated": true,
+    "unrelatedEventBranchPreserved": true,
+    "affectedNodesCount": 6,
+    "unaffectedNodesCount": 34
+  },
+  {
+    "scenarioId": "C07-D",
+    "sharedAdministrativeUpdated": true,
+    "sharedRiskUpdated": true,
+    "unrelatedEventBranchPreserved": true,
+    "affectedNodesCount": 6,
+    "unaffectedNodesCount": 34
+  },
+  {
+    "scenarioId": "C07-E",
+    "sharedAdministrativeUpdated": true,
+    "sharedRiskUpdated": true,
+    "unrelatedEventBranchPreserved": true,
+    "affectedNodesCount": 6,
+    "unaffectedNodesCount": 34
+  },
+  {
+    "scenarioId": "C07-F",
+    "sharedAdministrativeUpdated": true,
+    "sharedRiskUpdated": true,
+    "unrelatedEventBranchPreserved": true,
+    "affectedNodesCount": 6,
+    "unaffectedNodesCount": 34
+  },
+  {
+    "scenarioId": "C07-G",
+    "sharedAdministrativeUpdated": true,
+    "sharedRiskUpdated": true,
+    "unrelatedEventBranchPreserved": true,
+    "affectedNodesCount": 6,
+    "unaffectedNodesCount": 34
+  },
+  {
+    "scenarioId": "C07-H",
+    "sharedAdministrativeUpdated": true,
+    "sharedRiskUpdated": true,
+    "unrelatedEventBranchPreserved": true,
+    "affectedNodesCount": 6,
+    "unaffectedNodesCount": 34
+  }
+]

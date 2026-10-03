@@ -1,0 +1,37 @@
+[
+  {
+    "controlId": "NEG-01",
+    "description": "Mutation A must NOT affect isolated Event C",
+    "passed": true
+  },
+  {
+    "controlId": "NEG-02",
+    "description": "Mutation A must NOT affect Admin Y if A is not connected to Y",
+    "passed": true
+  },
+  {
+    "controlId": "NEG-03",
+    "description": "Late evidence for A must NOT rewrite B",
+    "passed": true
+  },
+  {
+    "controlId": "NEG-04",
+    "description": "Contradiction in A must NOT propagate to unrelated C",
+    "passed": true
+  },
+  {
+    "controlId": "NEG-05",
+    "description": "Mutation with no dependency change must NOT trigger unnecessary downstream recomputation",
+    "passed": true
+  },
+  {
+    "controlId": "NEG-06",
+    "description": "Administrative state with no changed contributing event must remain unchanged",
+    "passed": true
+  },
+  {
+    "controlId": "NEG-07",
+    "description": "Historical V1 must remain byte-for-byte equivalent after all later mutations",
+    "passed": true
+  }
+]

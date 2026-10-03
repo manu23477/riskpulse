@@ -1,0 +1,26 @@
+[
+  {
+    "familyId": "FAM-US7441230",
+    "representativePublication": "US7441230B2",
+    "backwardCitationsCount": 14,
+    "forwardCitationsCount": 42,
+    "disclosesC07Complete": false,
+    "disclosesC08Complete": false
+  },
+  {
+    "familyId": "FAM-US20200379978",
+    "representativePublication": "US20200379978A1",
+    "backwardCitationsCount": 22,
+    "forwardCitationsCount": 35,
+    "disclosesC07Complete": false,
+    "disclosesC08Complete": false
+  },
+  {
+    "familyId": "FAM-CN117235153",
+    "representativePublication": "CN117235153B",
+    "backwardCitationsCount": 6,
+    "forwardCitationsCount": 12,
+    "disclosesC07Complete": false,
+    "disclosesC08Complete": false
+  }
+]

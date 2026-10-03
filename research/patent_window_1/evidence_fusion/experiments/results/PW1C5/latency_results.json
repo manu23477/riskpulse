@@ -1,0 +1,44 @@
+[
+  {
+    "targetRatePerSec": 1,
+    "avgLatencyMs": 10.0,
+    "maxQueueBacklog": 0,
+    "stateConvergenceTimeMs": 12.0
+  },
+  {
+    "targetRatePerSec": 10,
+    "avgLatencyMs": 0.2,
+    "maxQueueBacklog": 0,
+    "stateConvergenceTimeMs": 0.24
+  },
+  {
+    "targetRatePerSec": 50,
+    "avgLatencyMs": 0.14,
+    "maxQueueBacklog": 0,
+    "stateConvergenceTimeMs": 0.168
+  },
+  {
+    "targetRatePerSec": 100,
+    "avgLatencyMs": 0.08,
+    "maxQueueBacklog": 0,
+    "stateConvergenceTimeMs": 0.096
+  },
+  {
+    "targetRatePerSec": 250,
+    "avgLatencyMs": 0.08,
+    "maxQueueBacklog": 0,
+    "stateConvergenceTimeMs": 0.096
+  },
+  {
+    "targetRatePerSec": 500,
+    "avgLatencyMs": 0.06,
+    "maxQueueBacklog": 0,
+    "stateConvergenceTimeMs": 0.072
+  },
+  {
+    "targetRatePerSec": 1000,
+    "avgLatencyMs": 0.042,
+    "maxQueueBacklog": 0,
+    "stateConvergenceTimeMs": 0.0504
+  }
+]

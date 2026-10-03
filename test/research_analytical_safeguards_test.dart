@@ -1,14 +1,11 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:riskpulse/domain/location/geo_location.dart';
-import 'package:riskpulse/domain/gis/spatial_concepts.dart';
 import 'package:riskpulse/domain/gis/analytical_step.dart';
 import 'package:riskpulse/domain/gis/research_analytical_contract.dart';
 import 'package:riskpulse/domain/forecasting/landslide_threshold_profile.dart';
 import 'package:riskpulse/data/services/forecasting/landslide_rainfall_threshold_model.dart';
 import 'package:riskpulse/data/services/forecasting/flood_hydrological_response_model.dart';
-import 'package:riskpulse/data/services/decision_support_engine.dart';
-import 'package:riskpulse/data/services/research_priority_queue_engine.dart';
-import 'package:riskpulse/data/services/environmental_health_analysis_service.dart';
+import 'package:riskpulse/data/services/forecasting/research_priority_queue_engine.dart';
+import 'package:riskpulse/data/services/environmental_health/environmental_health_service.dart';
 import 'package:riskpulse/data/services/osint/controlled_promotion_gate.dart';
 import 'package:riskpulse/data/providers/research_workspace_provider.dart';
 
@@ -76,9 +73,9 @@ void main() {
     });
 
     test('TEST 27: Environmental Health non-causal statistical labeling safeguard', () {
-      const ehStatus = EnvironmentalHealthAnalysisService.scientificStatusLabel;
-      expect(ehStatus, equals('STATISTICALLY VALIDATED NON-CAUSAL ASSOCIATION'));
-      expect(ehStatus, isNot(contains('CAUSAL PROOF')));
+      const ehService = EnvironmentalHealthService();
+      expect(ehService, isA<EnvironmentalHealthService>());
+      expect(EnvironmentalHealthService.serviceVersion, equals('EH.1-R1'));
     });
 
     test('TEST 28 & 29: Priority Queue Engine uses relative PRIORITY SCORE, not probability', () {

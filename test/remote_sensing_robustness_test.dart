@@ -1,11 +1,10 @@
-import 'dart:convert';
-import 'dart:typed_data';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart' as http_testing;
 import 'package:riskpulse/domain/location/geo_location.dart';
 import 'package:riskpulse/domain/gis/spatial_concepts.dart';
 import 'package:riskpulse/domain/gis/raster_data.dart';
+import 'package:riskpulse/domain/gis/remote_sensing_band.dart';
 import 'package:riskpulse/domain/gis/multispectral_product.dart';
 import 'package:riskpulse/domain/gis/multispectral_band_contract.dart';
 import 'package:riskpulse/data/services/spectral_index_engine.dart';
@@ -38,10 +37,20 @@ void main() {
 
       final product = MultispectralProduct(
         productId: 's2-test-01',
+        providerId: 'gee',
         datasetId: 'COPERNICUS/S2_SR_HARMONIZED',
-        acquisitionTime: DateTime.utc(2026, 8, 15),
+        acquisitionDate: DateTime.utc(2026, 8, 15),
         crs: CoordinateReferenceSystem.wgs84,
-        bands: {
+        extent: MapExtent(
+          southWest: const GeoLocation(latitude: 31.0, longitude: 77.0),
+          northEast: const GeoLocation(latitude: 31.05, longitude: 77.05),
+        ),
+        bands: const [
+          RemoteSensingBand.sentinel2B8,
+          RemoteSensingBand.sentinel2B4,
+          RemoteSensingBand.sentinel2B3,
+        ],
+        bandRasters: {
           'B8': nirRaster,
           'B4': redRaster,
           'B3': greenRaster,
@@ -113,17 +122,18 @@ void main() {
       expect(() => spectralEngine.calculateNdvi(nir: r1x5, red: r1x5), returnsNormally);
     });
 
-    test('TEST 23, 24, 25 & 26: CloudMaskingEngine masks cloudy pixels as NoData in index rasters', () {
+    test('TEST 23, 24, 25 & 26: CloudMaskingEngine masks SCL invalid cells as NoData in index rasters', () {
       final nir = RasterData(width: 2, height: 2, cellWidth: 0.0001, cellHeight: 0.0001, origin: testOrigin, crs: CoordinateReferenceSystem.wgs84, values: [6000.0, 6000.0, 6000.0, 6000.0]);
       final red = RasterData(width: 2, height: 2, cellWidth: 0.0001, cellHeight: 0.0001, origin: testOrigin, crs: CoordinateReferenceSystem.wgs84, values: [2000.0, 2000.0, 2000.0, 2000.0]);
-      final cloudProb = RasterData(width: 2, height: 2, cellWidth: 0.0001, cellHeight: 0.0001, origin: testOrigin, crs: CoordinateReferenceSystem.wgs84, values: [10.0, 85.0, 5.0, 90.0]); // (1,0) and (1,1) cloudy >= 60%
+      final scl = RasterData(width: 2, height: 2, cellWidth: 0.0001, cellHeight: 0.0001, origin: testOrigin, crs: CoordinateReferenceSystem.wgs84, values: [4.0, 9.0, 4.0, 8.0]); // SCL 4=vegetation (valid), SCL 9=cloud high (invalid), SCL 8=cloud med (invalid)
 
-      final maskedNir = cloudEngine.applyCloudMask(nir, cloudProbabilityRaster: cloudProb, maxCloudProbabilityPercent: 60.0);
+      final qualityMask = cloudEngine.buildMaskFromSCL(scl);
+      final maskedNir = cloudEngine.applyMask(sourceRaster: nir, mask: qualityMask);
       final ndvi = spectralEngine.calculateNdvi(nir: maskedNir, red: red);
 
       expect(ndvi.isNoData(ndvi.getValue(0, 0)), isFalse);
-      expect(ndvi.isNoData(ndvi.getValue(1, 0)), isTrue); // Masked cloudy cell
-      expect(ndvi.isNoData(ndvi.getValue(1, 1)), isTrue); // Masked cloudy cell
+      expect(ndvi.isNoData(ndvi.getValue(1, 0)), isTrue); // Masked SCL 9 cloudy cell
+      expect(ndvi.isNoData(ndvi.getValue(1, 1)), isTrue); // Masked SCL 8 cloudy cell
     });
 
     test('TEST 33, 34, 35 & 36: GEE Remote Sensing Provider failure produces NO synthetic Sentinel raster and redacts token', () async {
