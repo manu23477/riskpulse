@@ -96,13 +96,13 @@ class LocalEventGraphRepository implements EventGraphRepository {
 
   @override
   Future<List<GraphNode>> getDirectDependencies(String nodeId) async {
-    final incoming = await getIncomingEdges(nodeId);
+    final outgoing = await getOutgoingEdges(nodeId);
     final List<GraphNode> dependencies = [];
 
-    for (final edge in incoming) {
-      final srcNode = _nodesById[edge.sourceNodeId];
-      if (srcNode != null) {
-        dependencies.add(srcNode);
+    for (final edge in outgoing) {
+      final tgtNode = _nodesById[edge.targetNodeId];
+      if (tgtNode != null && !dependencies.contains(tgtNode)) {
+        dependencies.add(tgtNode);
       }
     }
 
@@ -111,13 +111,13 @@ class LocalEventGraphRepository implements EventGraphRepository {
 
   @override
   Future<List<GraphNode>> getDirectDependents(String nodeId) async {
-    final outgoing = await getOutgoingEdges(nodeId);
+    final incoming = await getIncomingEdges(nodeId);
     final List<GraphNode> dependents = [];
 
-    for (final edge in outgoing) {
-      final tgtNode = _nodesById[edge.targetNodeId];
-      if (tgtNode != null) {
-        dependents.add(tgtNode);
+    for (final edge in incoming) {
+      final srcNode = _nodesById[edge.sourceNodeId];
+      if (srcNode != null && !dependents.contains(srcNode)) {
+        dependents.add(srcNode);
       }
     }
 

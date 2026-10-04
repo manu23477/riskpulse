@@ -3,7 +3,6 @@ import 'package:riskpulse/domain/osint/osint_evidence.dart';
 import 'package:riskpulse/domain/osint/multi_stream_fusion_result.dart';
 import 'package:riskpulse/domain/gis/research_product.dart';
 import 'package:riskpulse/domain/gis/multispectral_product.dart';
-import 'package:riskpulse/domain/gis/spatial_concepts.dart';
 import 'package:riskpulse/data/services/osint/corroboration_verification_engine.dart';
 
 /// Pure-Dart, provider-neutral cross-domain evidence fusion engine (OSINT + GIS + Remote Sensing).
@@ -179,7 +178,7 @@ class MultiStreamFusionEngine {
     // OSINT vs GIS layer extents
     for (final e in osint) {
       if (e.spatialRef == null) continue;
-      for (final g in gis) {
+      for (final _ in gis) {
         comparisons++;
         if (e.spatialRef!.placeName != null || e.spatialRef!.district != null) {
           matches += 0.8;
